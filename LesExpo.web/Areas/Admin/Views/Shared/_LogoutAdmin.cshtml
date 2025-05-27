@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+
+<div class="">
+    <img src="~/images/logo-turkuaz.png" alt="logo" class="logo">
+</div>
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="d-flex align-items-center gap-5 pe-5">
+        <div class="nav-item ">
+            <div class="nav-link">Hello @UserManager.GetUserName(User)</div>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" asp-area="Admin" asp-controller="Account" asp-action="Logout">Logout</a>
+        </div>
+    </div>
+}

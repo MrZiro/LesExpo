@@ -1,0 +1,200 @@
+﻿@model BlogVM
+
+@section Styles {
+    <style>
+        .img-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .img-preview {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .img-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+            color: #dc3545;
+        }
+
+        .dropzone {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .dropzone:hover {
+                border-color: #007bff;
+            }
+
+            .dropzone.dragover {
+                border-color: #28a745;
+                background-color: rgba(40, 167, 69, 0.1);
+            }
+    </style>
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-12">
+            <h2 class="text-primary">
+                @(Model.Blog.Id == 0 ? "Create" : "Update") Blog
+            </h2>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="Blog.Id" hidden />
+        <input asp-for="Blog.CardImageUrl" hidden />
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <div class="border p-3 mt-2 mb-3 rounded-2">
+                    <div class="mb-3">
+                        <label asp-for="Blog.Title" class="form-label">Title</label>
+                        <input asp-for="Blog.Title" class="form-control" />
+                        <span asp-validation-for="Blog.Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Blog.Slug" class="form-label">URL Slug</label>
+                        <input asp-for="Blog.Slug" class="form-control" placeholder="Leave blank to auto-generate" />
+                        <span asp-validation-for="Blog.Slug" class="text-danger"></span>
+                        <div class="form-text">Will be auto-generated from title if left blank.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Blog.Author" class="form-label">Author</label>
+                        <input asp-for="Blog.Author" class="form-control" />
+                        <span asp-validation-for="Blog.Author" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Blog.ContentTypeId" class="form-label">Content Type</label>
+                        <select asp-for="@Model.Blog.ContentTypeId" class="form-select"
+                                asp-items="@Model.ContentTypeList">
+                            @* <option value="">-- Select Content Type --</option> *@
+                        </select>
+                        <span asp-validation-for="Blog.ContentTypeId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="border p-3 mt-2 mb-3 rounded-2">
+                    <div class="row">
+                        <label asp-for="Blog.Content" class="form-label">Content</label>
+                        <textarea asp-for="Blog.Content" class="form-control Editor" rows="15"></textarea>
+                        <span asp-validation-for="Blog.Content" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Card Image Section -->
+                <div class="border p-3 mt-2 rounded-2">
+                    <label class="form-label">Card Image</label>
+                    <p class="text-muted small">This image will be used for cards or thumbnails</p>
+
+                    <div class="dropzone" id="card-image-dropzone" enabled="true">
+                        <input type="file" id="cardImageInput" asp-for="CardImage" class="d-none" accept=".jpg,.jpeg,.png,.gif,.webp" />
+                        <div id="card-dropzone-content">
+                            <i class="bi bi-cloud-arrow-up fs-3"></i>
+                            <p class="mb-1">Drag and drop an image here, or click to select</p>
+                            <p class="text-muted small mb-0">Accepted: JPG, JPEG, PNG, GIF, WEBP (Max 5MB)</p>
+                            <p class="text-muted small mb-0 mt-2"><strong>Required dimensions:</strong> 300×550 pixels</p>
+                        </div>
+                    </div>
+                    <span asp-validation-for="CardImage" class="text-danger d-block mt-2"></span>
+                </div>
+                <div class="mb-3 text-center" id="card-image-preview-container">
+                    @if (!string.IsNullOrEmpty(Model.Blog.CardImageUrl))
+                    {
+                        <div class="img-container">
+                            <input asp-for="Blog.CardImageUrl" hidden />
+                            <img src="@Model.Blog.CardImageUrl" id="cardImagePreview" class="img-preview" />
+                            <div class="img-remove" id="removeCardImage" title="Remove card image">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small">Current card image. Replace by uploading a new one.</p>
+                    }
+                    else
+                    {
+                        <div class="img-container" style="display:none;">
+                            <img src="" id="cardImagePreview" class="img-preview" />
+                            <div class="img-remove" id="removeCardImage" title="Remove card image">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small" id="card-preview-caption" style="display:none;">Card image preview. Submit to save changes.</p>
+                    }
+                </div>
+
+                <div class="border p-3 mt-2 rounded-2">
+                    <div class="mb-3">
+                        <label asp-for="Blog.MetaDescription" class="form-label">Meta Description</label>
+                        <textarea asp-for="Blog.MetaDescription" class="form-control" rows="3"
+                                  placeholder="Brief description for search engines"></textarea>
+                        <span asp-validation-for="Blog.MetaDescription" class="text-danger"></span>
+                        <div class="form-text">Recommended: 150-160 characters</div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Blog.MetaKeywords" class="form-label">Meta Keywords</label>
+                        <input asp-for="Blog.MetaKeywords" class="form-control" placeholder="Comma-separated keywords" />
+                        <span asp-validation-for="Blog.MetaKeywords" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="border p-3 mt-2">
+                    <div class="mb-3 form-check">
+                        <input asp-for="Blog.IsPublished" type="checkbox" class="form-check-input" />
+                        <label asp-for="Blog.IsPublished" class="form-check-label">Published</label>
+                        <div class="form-text">Uncheck to save as draft</div>
+                    </div>
+                </div>
+
+                <div class="text-end mt-3">
+                    <a asp-controller="Blog" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                    <button type="submit" class="btn btn-primary" style="width:150px">
+                        <i class="bi bi-save"></i> @(Model.Blog.Id == 0 ? "Create" : "Update")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @{
+        <script src="https://cdn.tiny.cloud/1/ksmksgnd1ppn1dd8gfjy1rhu22ru4v191js89isjbbf27fnm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="~/admin/scripts/Editor.js"></script>
+        <partial name="_ValidationScriptsPartial" />
+        <script src="~/admin/scripts/Dropzone.js"></script>
+    }
+    <script>
+        // Auto-generate slug from title if slug is empty
+        $('#Blog_Title').change(function () {
+            // Convert title to slug format
+            var slug = $(this).val().toLowerCase()
+                .replace(/[^\w\s-]/g, '') // Remove special characters
+                .replace(/\s+/g, '-')     // Replace spaces with hyphens
+                .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
+            console.log(slug);
+
+            $('#Blog_Slug').val(slug);
+        });
+    </script>
+}

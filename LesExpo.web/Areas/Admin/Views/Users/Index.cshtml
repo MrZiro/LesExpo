@@ -1,0 +1,70 @@
+﻿@model List<UserVM>
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
+}
+@* @Html.AntiForgeryToken() *@
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Users List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Users" asp-action="Upsert" class="btn btn-primary">
+                Create New User
+            </a>
+        </div>
+    </div>
+
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+        </thead>
+    </table>
+</div>
+
+@section Scripts {
+    <partial name="_PartialReqScript" />
+
+
+    <script>
+
+
+        $(document).ready(() => {
+            initializeDataTableNoOption('users', [
+                {
+                    title: 'name',
+                    data: 'name',
+                    width: '15%'
+                },
+                {
+                    title: 'email',
+                    data: 'email',
+                    width: '15%'
+                },
+                {
+                    title: 'role',
+                    data: 'role',
+                    width: '10%'
+                },
+                {
+                    title: 'createdAt',
+                    data: 'createdAt',
+                    width: '25%',
+                    render: function(data) {
+                    // Use Intl.DateTimeFormat for localized formatting
+                    return new Intl.DateTimeFormat('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    }).format(new Date(data)).replace(',', ' -');
+                }
+                }
+            ]);
+        });
+    </script>
+}

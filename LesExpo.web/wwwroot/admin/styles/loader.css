@@ -1,0 +1,79 @@
+.loading-container {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    opacity: 0;
+    visibility: visible;
+    transition: all 1s ease;
+    overflow: hidden;
+}
+
+.loading-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding-bottom: 5em;
+}
+
+.name-container .logo-name {
+    font-size: 3em;
+    letter-spacing: 0.2em;
+    color: #149A9B;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+#my-svg {
+    opacity: 1;
+    width: 150px;
+    max-width: 500px;
+    height: auto; 
+    stroke: #149A9B;
+    stroke-width: 10px;
+    stroke-dasharray: 1115;
+    animation: dash 1.5s normal forwards ease-in-out;
+    fill-opacity: 0;
+}
+
+.logo-name {
+    animation: fadeInAndUp 2s normal forwards ease;
+}
+
+@keyframes dash {
+    from {
+        stroke-dashoffset: 1115;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeInAndUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide scrollbar when loader is shown */
+body.loading {
+    overflow: hidden;
+}
