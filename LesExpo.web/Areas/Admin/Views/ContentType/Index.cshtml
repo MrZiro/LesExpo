@@ -1,6 +1,6 @@
 ﻿@model List<ContentType>
 @{
-    ViewData["Title"] = "Content Types";
+    ViewData["Title"] = "İçerik Türleri";
 }
 @section Styles{
 	<link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
@@ -10,12 +10,12 @@
     <div class="row pt-4 pb-3">
         <div class="col-6">
             <h2 class="text-primary">
-                Content Types
+                İçerik Türleri
             </h2>
         </div>
         <div class="col-6 text-end">
             <a asp-controller="ContentType" asp-action="Upsert" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Create New Content Type
+                <i class="bi bi-plus-circle"></i> Yeni İçerik Türü Oluştur
             </a>
         </div>
     </div>
@@ -39,7 +39,7 @@
         $(document).ready(() => {
             initializeDataTableWithOption('ContentType', [
                 {
-                    title: 'Name',
+                    title: 'İsim',
                     data: 'name',
                     width: '80%'
                 },

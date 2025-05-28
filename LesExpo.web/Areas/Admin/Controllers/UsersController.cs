@@ -71,13 +71,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             if (currentUser.Id == id)
             {
-                return Json(new { success = false, message = "You cannot delete your own account" });
+                return Json(new { success = false, message = "Kendi hesabınızı silemezsiniz" });
             }
 
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return Json(new { success = false, message = "User not found" });
+                return Json(new { success = false, message = "Kullanıcı bulunamadı" });
             }
 
             // Check if it's the last admin account
@@ -86,20 +86,20 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 var adminUsers = await _userManager.GetUsersInRoleAsync(SD.Role_Admin);
                 if (adminUsers.Count <= 1)
                 {
-                    return Json(new { success = false, message = "Cannot delete the last admin account" });
+                    return Json(new { success = false, message = "Son admin hesabı silinemez" });
                 }
             }
 
             var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
             {
-                return Json(new { success = true, message = "User deleted successfully" });
+                return Json(new { success = true, message = "Kullanıcı başarıyla silindi" });
             }
 
             return Json(new
             {
                 success = false,
-                message = "Error deleting user: " + result.Errors.FirstOrDefault()?.Description
+                message = "Kullanıcı silinirken hata oluştu: " + result.Errors.FirstOrDefault()?.Description
             });
         }
 
@@ -210,7 +210,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                         }
                     }
 
-                    TempData["success"] = "User updated successfully";
+                    TempData["success"] = "Kullanıcı başarıyla güncellendi";
                     return RedirectToAction("Index");
                 }
 
@@ -248,7 +248,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                         await _userManager.AddToRoleAsync(user, SD.Role_Editor);
                     }
 
-                    TempData["success"] = "User created successfully";
+                    TempData["success"] = "Kullanıcı başarıyla oluşturuldu";
                     return RedirectToAction("Index");
                 }
 

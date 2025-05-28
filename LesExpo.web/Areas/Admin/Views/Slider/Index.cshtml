@@ -1,19 +1,23 @@
-﻿@model List<Blog>
+@model List<Slider>
+@{
+    ViewData["Title"] = "Slider Yönetimi";
+}
+
 @section Styles {
-	<link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
-	<link href="~/admin/styles/table.css" rel="stylesheet" />
+    <link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
+    <link href="~/admin/styles/table.css" rel="stylesheet" />
 }
 
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
             <h2 class="text-primary">
-                Blog Yazıları
+                Slider Yönetimi
             </h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Blog" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Yeni Blog Yazısı Oluştur
+            <a asp-controller="Slider" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Yeni Slider Ekle
             </a>
         </div>
     </div>
@@ -35,38 +39,42 @@
 
     <script>
         $(document).ready(() => {
-            initializeDataTableWithOption('Blog', [
+            initializeDataTableWithOption('Slider', [
+                {
+                    title: 'Resim',
+                    data: 'imageUrl',
+                    width: '15%',
+                    render: function (data) {
+                        if (data) {
+                            return `<img src="${data}" alt="Slider Görseli" style="width: 100px; height: 60px; object-fit: cover;" />`;
+                        }
+                        return 'Resim Yok';
+                    }
+                },
                 {
                     title: 'Başlık',
                     data: 'title',
-                    width: '25%'
+                    width: '20%'
                 },
+
                 {
-                    title: 'İçerik Türü',
-                    data: 'contentType.name',
-                    width: '15%',
-                    render: function (data) {
-                        return data || 'Yok';
-                    }
-                },
-                {
-                    title: 'Slug',
-                    data: 'slug',
-                    width: '15%'
+                    title: 'Sıralama',
+                    data: 'displayOrder',
+                    width: '10%'
                 },
                 {
                     title: 'Durum',
-                    data: 'isPublished',
+                    data: 'isActive',
                     width: '10%',
                     render: function (data) {
                         return data ?
-                            '<span class="badge bg-success">Yayınlandı</span>' :
-                            '<span class="badge bg-warning text-dark">Taslak</span>';
+                            '<span class="badge bg-success">Aktif</span>' :
+                            '<span class="badge bg-danger">Pasif</span>';
                     }
                 },
                 {
-                    title: 'Oluşturuldu',
-                    data: 'createdAt',
+                    title: 'Oluşturulma Tarihi',
+                    data: 'createdDate',
                     width: '15%',
                     render: function(data) {
                         return new Intl.DateTimeFormat('tr-TR', {
@@ -82,4 +90,4 @@
             ]);
         });
     </script>
-} 
+}

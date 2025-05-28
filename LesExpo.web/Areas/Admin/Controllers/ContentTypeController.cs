@@ -52,12 +52,12 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 if (contentType.Id == 0)
                 {
                     _unitOfWork.ContentType.Add(contentType);
-                    TempData["success"] = "Content type created successfully";
+                    TempData["success"] = "İçerik türü başarıyla oluşturuldu";
                 }
                 else
                 {
                     _unitOfWork.ContentType.Update(contentType);
-                    TempData["success"] = "Content type updated successfully";
+                    TempData["success"] = "İçerik türü başarıyla güncellendi";
                 }
 
                 _unitOfWork.Save();
@@ -140,14 +140,14 @@ namespace LesExpo.web.Areas.Admin.Controllers
         {
             if (id == null || id == 0)
             {
-                return Json(new { success = false, message = "Invalid ID" });
+                return Json(new { success = false, message = "Geçersiz ID" });
             }
 
             ContentType contentTypeToDelete = _unitOfWork.ContentType.Get(u => u.Id == id);
 
             if (contentTypeToDelete == null)
             {
-                return Json(new { success = false, message = "Error: Content type not found" });
+                return Json(new { success = false, message = "Hata: İçerik türü bulunamadı" });
             }
 
             try
@@ -155,11 +155,11 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 _unitOfWork.ContentType.Remove(contentTypeToDelete);
                 _unitOfWork.Save();
 
-                return Json(new { success = true, message = "Content type deleted successfully" });
+                return Json(new { success = true, message = "İçerik türü başarıyla silindi" });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "An error occurred while deleting the content type: " + ex.Message });
+                return Json(new { success = false, message = "İçerik türünü silerken bir hata oluştu: " + ex.Message });
             }
         }
     }

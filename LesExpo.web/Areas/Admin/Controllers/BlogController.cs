@@ -80,7 +80,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     
                     if (pageVM.Blog.CardImageUrl == null)
                     {
-                        ModelState.AddModelError("CardImage", "Failed to upload image. Please try again.");
+                        ModelState.AddModelError("CardImage", "Görsel yüklenirken hata oluştu. Lütfen tekrar deneyin.");
                         return View(pageVM);
                     }
 
@@ -93,13 +93,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
                     _unitOfWork.Blog.Add(pageVM.Blog);
                     _unitOfWork.Save();
-                    TempData["success"] = "Blog created successfully.";
+                    TempData["success"] = "Blog başarıyla oluşturuldu.";
                     
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Error: " + ex.Message);
+                    ModelState.AddModelError("", "Hata: " + ex.Message);
                     return View(pageVM);
                 }
             }
@@ -165,7 +165,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                         
                         if (pageVM.Blog.CardImageUrl == null)
                         {
-                            ModelState.AddModelError("CardImage", "Failed to upload image. Please try again.");
+                            ModelState.AddModelError("CardImage", "Görsel yüklenirken hata oluştu. Lütfen tekrar deneyin.");
                             return View(pageVM);
                         }
                     }
@@ -179,13 +179,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
                     _unitOfWork.Blog.Update(pageVM.Blog);
                     _unitOfWork.Save();
-                    TempData["success"] = "Blog updated successfully.";
+                    TempData["success"] = "Blog başarıyla güncellendi.";
                     
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Error: " + ex.Message);
+                    ModelState.AddModelError("", "Hata: " + ex.Message);
                     return View(pageVM);
                 }
             }
@@ -198,14 +198,14 @@ namespace LesExpo.web.Areas.Admin.Controllers
         {
             if (id == null || id == 0)
             {
-                return Json(new { success = false, message = "Invalid ID." });
+                return Json(new { success = false, message = "Geçersiz ID." });
             }
 
             Blog pageToDelete = await _unitOfWork.Blog.GetAsync(u => u.Id == id);
 
             if (pageToDelete == null)
             {
-                return Json(new { success = false, message = "Error: Page not found." });
+                return Json(new { success = false, message = "Hata: Sayfa bulunamadı." });
             }
 
             try
@@ -225,11 +225,11 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 _unitOfWork.Blog.Remove(pageToDelete);
                 await _unitOfWork.SaveAsync();
 
-                return Json(new { success = true, message = "Blog deleted successfully." });
+                return Json(new { success = true, message = "Blog başarıyla silindi." });
             }
             catch (Exception ex)
             {
-                return Json(new { success = false, message = "An error occurred while deleting the blog: " + ex.Message });
+                return Json(new { success = false, message = "Blog silinirken bir hata oluştu: " + ex.Message });
             }
         }
 

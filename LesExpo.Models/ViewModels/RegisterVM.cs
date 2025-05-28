@@ -13,20 +13,21 @@ namespace LesExpo.Models.ViewModels
     {
 
         public string? Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "E-posta alanı gereklidir")]
+        
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Şifre alanı gereklidir")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Şifre onay alanı gereklidir")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password))]
-        [Display(Name = "Confirm password")]
+        [Compare(nameof(Password), ErrorMessage = "Şifreler eşleşmiyor")]
+        [Display(Name = "Şifreyi onayla")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "İsim alanı gereklidir")]
         public string Name { get; set; }
 
         public string? RedirectUrl { get; set; }

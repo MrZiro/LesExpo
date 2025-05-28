@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LesExpo.Utility;
 
 namespace LesExpo.Models
 {
@@ -13,9 +14,9 @@ namespace LesExpo.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        [DisplayName("Content Type")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field)]
+        [MaxLength(50, ErrorMessage = "İçerik türü adı 50 karakterden uzun olamaz")]
+        [DisplayName("İçerik Türü")]
         public string Name { get; set; }
     }
 }

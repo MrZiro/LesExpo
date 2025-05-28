@@ -1,4 +1,4 @@
-﻿using LesExpo.DataAccess.Data;
+using LesExpo.DataAccess.Data;
 using LesExpo.DataAccess.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -13,12 +13,14 @@ namespace LesExpo.DataAccess.Repository
         private readonly ApplicationDbContext _db;
         public IContentTypeRepository ContentType { get; private set; }
         public IBlogRepository Blog { get; private set; }
+        public ISliderRepository Slider { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             ContentType = new ContentTypeRepository(_db);
             Blog = new BlogRepository(_db);
+            Slider = new SliderRepository(_db);
         }
 
         public void Save()

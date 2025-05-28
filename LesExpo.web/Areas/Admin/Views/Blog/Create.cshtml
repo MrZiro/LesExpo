@@ -51,7 +51,7 @@
     <div class="row pt-4 pb-3">
         <div class="col-12">
             <h2 class="text-primary">
-                Create Blog
+                Blog Oluştur
             </h2>
         </div>
     </div>
@@ -63,26 +63,26 @@
             <div class="col-md-8">
                 <div class="border p-3 mt-2 mb-3 rounded-2">
                     <div class="mb-3">
-                        <label asp-for="Blog.Title" class="form-label">Title</label>
+                        <label asp-for="Blog.Title" class="form-label">Başlık</label>
                         <input asp-for="Blog.Title" class="form-control" />
                         <span asp-validation-for="Blog.Title" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Blog.Slug" class="form-label">URL Slug</label>
-                        <input asp-for="Blog.Slug" class="form-control" placeholder="Leave blank to auto-generate" />
+                        <label asp-for="Blog.Slug" class="form-label">Slug</label>
+                        <input asp-for="Blog.Slug" class="form-control" placeholder="Otomatik oluşturmak için boş bırakın" />
                         <span asp-validation-for="Blog.Slug" class="text-danger"></span>
-                        <div class="form-text">Will be auto-generated from title if left blank.</div>
+                        <div class="form-text">Başlıktan otomatik oluşturmak için boş bırakın.</div>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Blog.Author" class="form-label">Author</label>
+                        <label asp-for="Blog.Author" class="form-label">Yazar</label>
                         <input asp-for="Blog.Author" class="form-control" />
                         <span asp-validation-for="Blog.Author" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Blog.ContentTypeId" class="form-label">Content Type</label>
+                        <label asp-for="Blog.ContentTypeId" class="form-label">İçerik Türü</label>
                         <select asp-for="@Model.Blog.ContentTypeId" class="form-select"
                                 asp-items="@Model.ContentTypeList">
-                            <option value="">-- Select Content Type --</option>
+                            <option value="">-- İçerik Türü Seçin --</option>
                         </select>
                         <span asp-validation-for="Blog.ContentTypeId" class="text-danger"></span>
                     </div>
@@ -90,7 +90,7 @@
 
                 <div class="border p-3 mt-2 mb-3 rounded-2">
                     <div class="row">
-                        <label asp-for="Blog.Content" class="form-label">Content</label>
+                        <label asp-for="Blog.Content" class="form-label">İçerik</label>
                         <textarea asp-for="Blog.Content" class="form-control Editor" rows="15"></textarea>
                         <span asp-validation-for="Blog.Content" class="text-danger"></span>
                     </div>
@@ -100,16 +100,16 @@
             <div class="col-md-4">
                 <!-- Card Image Section -->
                 <div class="border p-3 mt-2 rounded-2">
-                    <label class="form-label">Card Image</label>
-                    <p class="text-muted small">This image will be used for cards or thumbnails</p>
+                    <label class="form-label">Kart Görseli</label>
+                    <p class="text-muted small">Bu görsel kartlarda veya küçük resimlerde kullanılacak</p>
 
                     <div class="dropzone" id="card-image-dropzone" enabled="true">
                         <input type="file" id="cardImageInput" asp-for="CardImage" class="d-none" accept=".jpg,.jpeg,.png,.gif,.webp" />
                         <div id="card-dropzone-content">
                             <i class="bi bi-cloud-arrow-up fs-3"></i>
-                            <p class="mb-1">Drag and drop an image here, or click to select</p>
-                            <p class="text-muted small mb-0">Accepted: JPG, JPEG, PNG, GIF, WEBP (Max 5MB)</p>
-                            <p class="text-muted small mb-0 mt-2"><strong>Required dimensions:</strong> 300×550 pixels</p>
+                            <p class="mb-1">Bir görseli buraya sürükleyip bırakın veya seçmek için tıklayın</p>
+                            <p class="text-muted small mb-0">Kabul edilen: JPG, JPEG, PNG, GIF, WEBP (Maks 5MB)</p>
+                            <p class="text-muted small mb-0 mt-2"><strong>Önerilen boyutlar:</strong> 300×550 piksel</p>
                         </div>
                     </div>
                     <span asp-validation-for="CardImage" class="text-danger d-block mt-2"></span>
@@ -117,24 +117,24 @@
                 <div class="mb-3 text-center" id="card-image-preview-container">
                     <div class="img-container" style="display:none;">
                         <img src="" id="cardImagePreview" class="img-preview" />
-                        <div class="img-remove" id="removeCardImage" title="Remove card image">
+                        <div class="img-remove" id="removeCardImage" title="Kart görselini kaldır">
                             <i class="bi bi-x-circle-fill"></i>
                         </div>
                     </div>
-                    <p class="text-muted small" id="card-preview-caption" style="display:none;">Card image preview. Submit to save changes.</p>
+                    <p class="text-muted small" id="card-preview-caption" style="display:none;">Kart görseli önizleme. Değişiklikleri kaydetmek için gönder.</p>
                 </div>
 
                 <div class="border p-3 mt-2 rounded-2">
                     <div class="mb-3">
-                        <label asp-for="Blog.MetaDescription" class="form-label">Meta Description</label>
+                        <label asp-for="Blog.MetaDescription" class="form-label">Meta Açıklama</label>
                         <textarea asp-for="Blog.MetaDescription" class="form-control" rows="3"
-                                  placeholder="Brief description for search engines"></textarea>
+                                  placeholder="Arama motorları için kısa açıklama"></textarea>
                         <span asp-validation-for="Blog.MetaDescription" class="text-danger"></span>
-                        <div class="form-text">Recommended: 150-160 characters</div>
+                        <div class="form-text">Önerilen: 150-160 karakter</div>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Blog.MetaKeywords" class="form-label">Meta Keywords</label>
-                        <input asp-for="Blog.MetaKeywords" class="form-control" placeholder="Comma-separated keywords" />
+                        <label asp-for="Blog.MetaKeywords" class="form-label">Meta Anahtar Kelimeler</label>
+                        <input asp-for="Blog.MetaKeywords" class="form-control" placeholder="Virgülle ayrılmış anahtar kelimeler" />
                         <span asp-validation-for="Blog.MetaKeywords" class="text-danger"></span>
                     </div>
                 </div>
@@ -142,17 +142,17 @@
                 <div class="border p-3 mt-2">
                     <div class="mb-3 form-check">
                         <input asp-for="Blog.IsPublished" type="checkbox" class="form-check-input" />
-                        <label asp-for="Blog.IsPublished" class="form-check-label">Published</label>
-                        <div class="form-text">Uncheck to save as draft</div>
+                        <label asp-for="Blog.IsPublished" class="form-check-label">Yayınlandı</label>
+                        <div class="form-text">Taslak olarak kaydetmek için işareti kaldırın</div>
                     </div>
                 </div>
 
                 <div class="text-end mt-3">
                     <a asp-controller="Blog" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                        <i class="bi bi-arrow-left"></i> Back to List
+                        <i class="bi bi-arrow-left"></i> Listeye Dön
                     </a>
                     <button type="submit" class="btn btn-primary" style="width:150px">
-                        <i class="bi bi-save"></i> Create
+                        <i class="bi bi-save"></i> Oluştur
                     </button>
                 </div>
             </div>

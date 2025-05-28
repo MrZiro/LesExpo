@@ -107,7 +107,7 @@ namespace LesExpo.web.Services
             // Check if file is required but not provided
             if (isRequired && (file == null || file.Length == 0))
             {
-                modelState.AddModelError(key, "Please select an image.");
+                modelState.AddModelError(key, "Lütfen bir görsel seçin.");
                 return false;
             }
             
@@ -122,7 +122,7 @@ namespace LesExpo.web.Services
             // Check file size using constant from SD
             if (file.Length > SD.MaxImageSizeInBytes)
             {
-                modelState.AddModelError(key, $"Image size cannot exceed {SD.MaxImageSizeInMB}MB.");
+                modelState.AddModelError(key, $"Görsel boyutu {SD.MaxImageSizeInMB}MB'ı geçemez.");
                 isValid = false;
             }
 
@@ -130,7 +130,7 @@ namespace LesExpo.web.Services
             var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
             if (!SD.AllowedImageExtensions.Contains(fileExtension))
             {
-                modelState.AddModelError(key, "Only image files (jpg, jpeg, png, gif, webp) are allowed.");
+                modelState.AddModelError(key, "Yalnızca görsel dosyaları (jpg, jpeg, png, gif, webp) kabul edilir.");
                 isValid = false;
             }
 

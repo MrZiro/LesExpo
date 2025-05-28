@@ -7,12 +7,12 @@
     <div class="row pt-4 pb-3">
         <div class="col-6">
             <h2 class="text-primary">
-                Users List
+                Kullanıcı Listesi
             </h2>
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Users" asp-action="Upsert" class="btn btn-primary">
-                Create New User
+                Yeni Kullanıcı Oluştur
             </a>
         </div>
     </div>
@@ -33,27 +33,27 @@
         $(document).ready(() => {
             initializeDataTableNoOption('users', [
                 {
-                    title: 'name',
+                    title: 'isim',
                     data: 'name',
                     width: '15%'
                 },
                 {
-                    title: 'email',
+                    title: 'e-posta',
                     data: 'email',
                     width: '15%'
                 },
                 {
-                    title: 'role',
+                    title: 'rol',
                     data: 'role',
                     width: '10%'
                 },
                 {
-                    title: 'createdAt',
+                    title: 'oluşturma tarihi',
                     data: 'createdAt',
                     width: '25%',
                     render: function(data) {
                     // Use Intl.DateTimeFormat for localized formatting
-                    return new Intl.DateTimeFormat('en-GB', {
+                    return new Intl.DateTimeFormat('tr-TR', {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',

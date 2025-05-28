@@ -1,4 +1,4 @@
-﻿using LesExpo.Models;
+using LesExpo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +20,7 @@ namespace LesExpo.DataAccess.Data
 
         public DbSet<ContentType> ContentTypes { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

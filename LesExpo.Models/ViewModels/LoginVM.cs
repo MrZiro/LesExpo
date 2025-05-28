@@ -9,10 +9,10 @@ namespace LesExpo.Models.ViewModels
 {
     public class LoginVM
     {
-        [Required]
+        [Required(ErrorMessage = "E-posta alanı gereklidir")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Şifre alanı gereklidir")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

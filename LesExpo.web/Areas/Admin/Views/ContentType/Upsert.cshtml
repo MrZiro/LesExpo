@@ -1,14 +1,14 @@
 ﻿@model ContentType
 
 @{
-    ViewData["Title"] = Model.Id == 0 ? "Create Content Type" : "Edit Content Type";
+    ViewData["Title"] = Model.Id == 0 ? "İçerik Türü Oluştur" : "İçerik Türü Düzenle";
 }
 
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-12">
             <h2 class="text-primary">
-                @(Model.Id == 0 ? "Create" : "Update") Content Type
+                İçerik Türü @(Model.Id == 0 ? "Oluştur" : "Güncelle")
             </h2>
         </div>
     </div>
@@ -18,17 +18,17 @@
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
+            <label asp-for="Name" class="form-label">İsim</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="text-end mt-4">
             <a asp-controller="ContentType" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                <i class="bi bi-arrow-left"></i> Back to List
+                <i class="bi bi-arrow-left"></i> Listeye Dön
             </a>
             <button type="submit" class="btn btn-primary" style="width:150px">
-                <i class="bi bi-save"></i> @(Model.Id == 0 ? "Create" : "Update")
+                <i class="bi bi-save"></i> @(Model.Id == 0 ? "Oluştur" : "Güncelle")
             </button>
         </div>
     </form>

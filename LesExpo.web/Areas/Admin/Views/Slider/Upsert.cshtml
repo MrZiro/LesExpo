@@ -1,0 +1,117 @@
+@model LesExpo.Models.ViewModels.SliderVM
+
+@{
+    var title = Model.Slider.Id == 0 ? "Yeni Slider Oluştur" : "Slider Düzenle";
+    ViewData["Title"] = title;
+}
+
+@section Styles {
+    <style>
+        .img-preview {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-12">
+            <h2 class="text-primary">
+                @title
+            </h2>
+        </div>
+    </div>
+
+    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+        <input asp-for="Slider.Id" hidden />
+        <input asp-for="Slider.ImageUrl" hidden />
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <div class="border p-3 mt-2 mb-3 rounded-2">
+                    <div class="mb-3">
+                        <label asp-for="Slider.Title" class="form-label">Başlık</label>
+                        <input asp-for="Slider.Title" class="form-control" />
+                        <span asp-validation-for="Slider.Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Slider.Subtitle" class="form-label">Alt Başlık</label>
+                        <input asp-for="Slider.Subtitle" class="form-control" />
+                        <span asp-validation-for="Slider.Subtitle" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Slider.Description" class="form-label">Açıklama</label>
+                        <textarea asp-for="Slider.Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Slider.Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Slider.ButtonText" class="form-label">Buton Metni</label>
+                        <input asp-for="Slider.ButtonText" class="form-control" />
+                        <span asp-validation-for="Slider.ButtonText" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Slider.ButtonUrl" class="form-label">Buton URL</label>
+                        <input asp-for="Slider.ButtonUrl" class="form-control" />
+                        <span asp-validation-for="Slider.ButtonUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Image Section -->
+                <div class="border p-3 mt-2 rounded-2">
+                    <label class="form-label">Slider Görseli</label>
+                    <p class="text-muted small">Ana sayfada görüntülenecek slider görseli</p>
+
+                    <div class="mb-3">
+                        <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Slider.ImageUrl))
+                {
+                    <div class="border p-3 mt-2 rounded-2">
+                        <img src="@Model.Slider.ImageUrl" class="img-preview" alt="Slider Görseli" />
+                        <p class="text-muted small text-center mt-2">Mevcut slider görseli. Değiştirmek için yeni bir görsel yükleyin.</p>
+                    </div>
+                }
+
+                <div class="border p-3 mt-2 rounded-2">
+                    <div class="mb-3">
+                        <label asp-for="Slider.DisplayOrder" class="form-label">Görüntülenme Sırası</label>
+                        <input asp-for="Slider.DisplayOrder" class="form-control" />
+                        <span asp-validation-for="Slider.DisplayOrder" class="text-danger"></span>
+                        <div class="form-text">Slider'ların gösterim sırası için kullanılır. Küçük sayılı olanlar önce gösterilir.</div>
+                    </div>
+                </div>
+
+                <div class="border p-3 mt-2">
+                    <div class="mb-3 form-check">
+                        <input asp-for="Slider.IsActive" class="form-check-input" />
+                        <label asp-for="Slider.IsActive" class="form-check-label">Aktif</label>
+                        <div class="form-text">Slider'ı web sitesinde göstermek için işaretleyin</div>
+                    </div>
+                </div>
+
+                <div class="text-end mt-3">
+                    <a asp-controller="Slider" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                        <i class="bi bi-arrow-left"></i> Listeye Dön
+                    </a>
+                    <button type="submit" class="btn btn-primary" style="width:150px">
+                        <i class="bi bi-save"></i> @(Model.Slider.Id == 0 ? "Oluştur" : "Güncelle")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

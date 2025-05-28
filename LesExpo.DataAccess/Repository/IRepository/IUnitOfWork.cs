@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +10,7 @@ namespace LesExpo.DataAccess.Repository.IRepository
     {
         IContentTypeRepository ContentType { get; }
         IBlogRepository Blog { get; }
+        ISliderRepository Slider { get; }
 
         void Save();
         Task SaveAsync();

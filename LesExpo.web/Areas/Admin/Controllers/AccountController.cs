@@ -71,7 +71,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Geçersiz giriş denemesi.");
                 }
             }
 
