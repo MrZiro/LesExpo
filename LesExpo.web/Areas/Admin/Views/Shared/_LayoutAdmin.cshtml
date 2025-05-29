@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BursaFuarMerkezi.web</title>
+    <title>@ViewData["Title"] - LesExpo</title>
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -54,6 +54,14 @@
                                         home
                                     </span>
                                     <span class="label ms-3">Ana Sayfa</span>
+                                </a>
+                            </li>
+                            <li class="nav-item @GetActiveClass("Slider")">
+                                <a asp-area="admin" asp-controller="Slider" asp-action="Index" class="nav-link d-flex align-items-center">
+                                    <span class="svv material-symbols-rounded">
+                                        home
+                                    </span>
+                                    <span class="label ms-3">Slider</span>
                                 </a>
                             </li>
                             <li class="nav-item @GetActiveClass("ContentType")">

@@ -1,0 +1,43 @@
+@model IEnumerable<LesExpo.Models.Slider>
+
+@{
+  var sliders = Model.ToList();
+  var sliderCount = sliders.Count;
+}
+
+ <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Görsel slider'ları aktif etmek için bu kısımdaki yorum satırlarını kaldırmak yeterli. -->
+    <div class="carousel-indicators">
+      <!-- <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="" aria-current="true"></button> -->
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <!-- <img src="./images/sliderphoto-1.jpg" class="d-block w-100 img-1 video-slide" alt="..."> -->
+        <video class="video-slide" autoplay muted loop playsinline>
+          <source src="videos/les-expo-teaser.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <!-- Hero Section -->
+        <section class="hero">
+          <div class="hero-content">
+            <h1>LES-EXPO 2025</h1>
+            <p> Dünya Yük Mühendisliği Hizmetleri Firmaları 9-11 Eylül 2025 de İstanbul'da Buluşuyor </p>
+          </div>
+          <div class="stats">
+            <h4>RAKAMLAR İLE LES-EXPO 2025</h4>
+            <div class="stat-item">
+              <h2>28.000</h2>
+              <span>m² alan</span>
+            </div>
+            <div class="stat-item">
+              <h2>3 Kıtadan</h2>
+              <span>ziyaretçi</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!-- Slider End -->

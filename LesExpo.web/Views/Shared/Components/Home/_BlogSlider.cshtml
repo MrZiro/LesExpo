@@ -1,0 +1,87 @@
+
+@model List<LesExpo.Models.Blog>
+
+  <!-- Section-1 Start -->
+  <section class="section-1-sc">
+    <div class="slider-container-sc">
+      <div class="slider-sc">
+        @if (Model != null && Model.Any())
+        {
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var blog = Model[i];
+                var isActive = i == 0 ? "active-sc" : "";
+                
+                <!-- Blog Slide -->
+                <div class="slide-sc @isActive">
+                  <div class="slide-content-sc">
+                    <div class="text-content-sc">
+                      <h2 class="mt-5"><span class="highlight-sc">@blog.Title</span></h2>
+                      <p>@Html.Raw(blog.MetaDescription)</p>
+                      <a href="/Blog/Detail/@blog.Slug" class="btn-sc">Detaylı Bilgi</a>
+                    </div>
+                    <div class="media-content-sc">
+                      @if (!string.IsNullOrEmpty(blog.CardImageUrl))
+                      {
+                          <img src="@blog.CardImageUrl" alt="@blog.Title">
+                      }
+                      else
+                      {
+                          <img src="/img/default-blog-image.jpg" alt="@blog.Title">
+                      }
+                    </div>
+                  </div>
+                </div>
+            }
+        }
+        else
+        {
+            <!-- Default Slide if no blogs are available -->
+            <div class="slide-sc active-sc">
+              <div class="slide-content-sc">
+                <div class="text-content-sc">
+                  <h2 class="mt-5">Mühendislik gerektiren yük taşımacılığın tüm paydaşlarını buluşturacak olan <span
+                      class="highlight-sc">LES-EXPO Fuarı'nın iş birliği protokolü imzalandı.</span></h2>
+                  <p>Türkiye ekonomisine yaklaşık 12 milyar doların üzerinde katkı sağlayan yük mühendisliği hizmetleri
+                    ekosistemindeki hizmet alan ve hizmet verenleri bir araya getirecek ilk ihtisas fuarı <span
+                      class="highlight-sc">ve İstanbul'da düzenleniyor.</span></p>
+                  <a href="#" class="btn-sc">Detaylı Bilgi</a>
+                </div>
+                <div class="media-content-sc">
+                  <img src="/img/default-blog-image.jpg" alt="LES-EXPO Fuarı">
+                </div>
+              </div>
+            </div>
+        }
+      </div>
+    </div>
+
+    <!-- Separate Controls Container -->
+    <div class="controls-container-sc">
+      <!-- Navigation Arrows on the left -->
+      <div class="arrows-container-sc">
+        <button class="arrow-sc prev-arrow-sc"><i class="fas fa-chevron-left"></i></button>
+        <button class="arrow-sc next-arrow-sc"><i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <!-- Pagination Dots on the right -->
+      <div class="pagination-sc">
+        @if (Model != null && Model.Any())
+        {
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var isActive = i == 0 ? "active-sc" : "";
+                <span class="dot-sc @isActive" data-index="@i"></span>
+            }
+        }
+        else
+        {
+            <span class="dot-sc active-sc" data-index="0"></span>
+        }
+      </div>
+    </div>
+  </section>
+
+<script>
+</script>
+
