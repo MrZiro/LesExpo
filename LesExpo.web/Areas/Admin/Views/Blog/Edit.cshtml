@@ -183,18 +183,15 @@
         <script src="~/admin/scripts/Editor.js"></script>
         <partial name="_ValidationScriptsPartial" />
         <script src="~/admin/scripts/Dropzone.js"></script>
+        <script src="~/js/slug-generator.js"></script>
     }
     <script>
         // Auto-generate slug from title if slug is empty
         $('#Blog_Title').change(function () {
             // Only update slug if it's empty
             if (!$('#Blog_Slug').val()) {
-                // Convert title to slug format
-                var slug = $(this).val().toLowerCase()
-                    .replace(/[^\w\s-]/g, '') // Remove special characters
-                    .replace(/\s+/g, '-')     // Replace spaces with hyphens
-                    .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
-
+                // Use our professional slug generator function
+                var slug = generateSlug($(this).val());
                 $('#Blog_Slug').val(slug);
             }
         });

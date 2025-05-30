@@ -47,15 +47,16 @@
         // processing: true,
         serverSide: true,
         language: {
-            zeroRecords: "No matching products found",
+            zeroRecords: "Eşleşen kayıt bulunamadı",
             info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
             paginate: {
                 next: "Sonraki",
                 previous: "Önceki"
-            }
+            },
+            search: "Arama:"
         },
         pagingType: "full_numbers",
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Tümü"]],
     });
 }
 
@@ -101,10 +102,10 @@ function initializeDataTableNoOption(entity, columns, tableId = '#tblData') {
             orderable: false
         }),
         language: {
-            zeroRecords: "No matching products found",
+            zeroRecords: "Eşleşen kayıt bulunamadı",
             info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
-        }
-        ,
+            search: "Arama:"
+        },
         paging: false,
         info: false,
         searching: false,
@@ -172,13 +173,14 @@ function initializeDataTableWithOption(entity, columns, tableId = '#tblData') {
             width: "",
         }),
         language: {
-            zeroRecords: "No matching products found",
+            zeroRecords: "Eşleşen kayıt bulunamadı",
             info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
             paginate: {
                 next: "Sonraki",
                 previous: "Önceki"
-            }
+            },
+            search: "Arama:"
         },
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Tümü"]],
     });
 }

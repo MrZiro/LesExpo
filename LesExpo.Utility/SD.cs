@@ -18,7 +18,7 @@ namespace LesExpo.Utility
         public static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
 
         // Temp File Cleanup
-        public const int TempFileCleanupIntervalMinutes = 120; // 2 hours
-        public const int TempFileMaxAgeMinutes = 1440;         // 24 hours
+        public const int TempFileCleanupIntervalMinutes =  1440; // 24 hours
+        public const int TempFileMaxAgeMinutes = 120; // 2 hours
     }
 }

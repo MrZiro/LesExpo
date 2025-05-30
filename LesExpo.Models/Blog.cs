@@ -8,9 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlTypes;
 using LesExpo.Utility;
+using Microsoft.EntityFrameworkCore;
 
 namespace LesExpo.Models
 {
+    [Index(nameof(Slug), IsUnique = true)]
     public class Blog
     {
         [Key]

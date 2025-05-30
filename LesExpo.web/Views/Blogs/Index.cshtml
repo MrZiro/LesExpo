@@ -1,0 +1,120 @@
+@model List<ContentType>
+
+
+@section Styles{
+        <!-- Css -->
+        <link rel="stylesheet" href="~/css/tum-haberler.css">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+        <style>
+            .banner {
+                position: relative;
+                background-image: url('./images/LES\ 5.jpg');
+                /* Görselin yolu */
+                background-size: cover;
+                background-position: center;
+                height: 300px;
+                /* Yüksekliği isteğe göre ayarlayın */
+                font-family: Arial, sans-serif;
+                align-items: center;
+                text-align: center;
+            }
+    
+            .banner-yazi {
+                position: relative;
+                font-size: 48px;
+                font-weight: bold;
+                padding-top: 178px;
+                color: white;
+            }
+    
+            .breadcrumb-1 a {
+                color: white;
+            }
+        </style>
+}
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+    </div>
+</div>
+
+<div class="container-blogs">
+    <h2 class="heading-blogs">BFM Gündem</h2>
+    <div class="filter-buttons-blogs" id="filterButtons-blogs">
+        <button class="filter-button-blogs active-blogs" data-category="all">Tümü</button>
+        @foreach (var contentType in Model)
+        {
+            <button class="filter-button-blogs" data-category="@contentType.Name">@contentType.Name</button>
+        }
+
+    </div>
+    <div class="card-grid-blogs" id="cardGrid-blogs">
+        <!-- Cards will be added here dynamically -->
+    </div>
+</div>
+
+<!-- Logo Slider -->
+<div class="container-fluid logo-slider">
+    <div class="logo-slider-container">
+        <!-- First Slide -->
+        <div class="logo-slide">
+            <a href="https://ymbd.org" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+            <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+            <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+        </div>
+
+        <!-- Second Slide (duplicate for seamless looping) -->
+        <div class="logo-slide">
+            <a href="https://ymbd.org" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+            <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+            <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                <div class="logo-img-container">
+                    <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                </div>
+                <div class="logo-text"></div>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- Custom Scripts -->
+        <script src="~/js/tum-haberler.js"></script>
+
+
+}
+
+
