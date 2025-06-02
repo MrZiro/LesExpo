@@ -3,6 +3,7 @@ using LesExpo.DataAccess.DbInitializer;
 using LesExpo.DataAccess.Repository;
 using LesExpo.DataAccess.Repository.IRepository;
 using LesExpo.Models;
+using LesExpo.Utility;
 using LesExpo.web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -39,9 +40,17 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Add other services
 builder.Services.AddScoped<IFileHelper, FileHelper>();
 builder.Services.AddScoped<IHtmlContentService, HtmlContentService>();
+// builder.Services.AddScoped<IEmailSender, EmailSenderGrid>(); // Comment out or remove old sender
+builder.Services.AddScoped<IEmailSender, EmailSenderSmtp>(); // Add new SMTP sender
 
 // Register background services
 builder.Services.AddHostedService<TempFileCleanupService>();
+
+builder.Services.AddHttpClient("FairApi", client =>
+{
+    client.BaseAddress = new Uri("https://fair.smartexpo.com.tr/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 
 
 var app = builder.Build();

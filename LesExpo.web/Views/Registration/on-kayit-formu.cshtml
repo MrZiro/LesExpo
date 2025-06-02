@@ -1,3 +1,4 @@
+@model LesExpo.Models.ViewModels.RegistrationVM
 
 @section Styles{
     <link rel="stylesheet" href="~/css/on-kayit-formu.css">
@@ -5,7 +6,7 @@
         <style>
             .banner {
                 position: relative;
-                background-image: url('./images/LES\ 2.jpg');
+                background-image: url('/images/LES\ 2.jpg');
                 /* Görselin yolu */
                 background-size: cover;
                 background-position: center;
@@ -22,47 +23,87 @@
             font-size: 48px;
             font-weight: bold;
             padding-top: 180px;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
 
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: block;
         }
     </style>
 }
 @{
-    ViewData["Title"] = "LESEXPO";
-    ViewData["Description"] = "LESEXPO";
-    ViewData["Keywords"] = "LESEXPO";
+    ViewData["Title"] = "Ön Kayıt Formu - LESEXPO";
+    ViewData["Description"] = "LESEXPO Ön Kayıt Formu";
+    ViewData["Keywords"] = "LESEXPO, Ön Kayıt, Fuar";
     ViewData["Author"] = "LESEXPO";
-
 }
 
     <div class="banner">
         <div class="banner-yazi">LES-EXPO</div>
         <div class="breadcrumb-1 mt-1">
-            <a href="index.html">Ana Sayfa</a> /
-            <a href="on-kayit-formu.html">Ön Kayıt Formu</a>
+            <a asp-controller="Home" asp-action="Index">Ana Sayfa</a> /
+            <a asp-controller="Registration" asp-action="OnKayitFormu">Ön Kayıt Formu</a>
         </div>
     </div>
 
         <div class="container my-5">
             <div class="form-container">
-                <form>
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["Success"]
+                    </div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["Error"]
+                    </div>
+                }
+                <form asp-controller="Registration" asp-action="OnKayitFormu" method="post">
+                    @Html.AntiForgeryToken()
                     <!-- First Row -->
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="sirketAdmini">Şirket Adınız *</label>
-                                <input type="text" class="form-control" id="sirketAdmini" required>
+                                <label asp-for="SirketAdi">Şirket Adınız *</label>
+                                <input asp-for="SirketAdi" class="form-control" required>
+                                <span asp-validation-for="SirketAdi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="adinaSoyadina">Adınız Soyadınız *</label>
-                                <input type="text" class="form-control" id="adinaSoyadina" required>
+                                <label asp-for="AdSoyad">Adınız Soyadınız *</label>
+                                <input asp-for="AdSoyad" class="form-control" required>
+                                <span asp-validation-for="AdSoyad" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="gorevTitle">Göreviniz *</label>
-                                <input type="text" class="form-control" id="gorevTitle" required>
+                                <label asp-for="Gorev">Göreviniz *</label>
+                                <input asp-for="Gorev" class="form-control" required>
+                                <span asp-validation-for="Gorev" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -71,8 +112,9 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="sirketAdresi">Şirket Adresiniz *</label>
-                                <textarea class="form-control" id="sirketAdresi" rows="3" required></textarea>
+                                <label asp-for="SirketAdresi">Şirket Adresiniz *</label>
+                                <textarea asp-for="SirketAdresi" class="form-control" rows="3" required></textarea>
+                                <span asp-validation-for="SirketAdresi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -81,37 +123,29 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ulke">Ülke *</label>
-                                <select class="form-select" id="ulke" required>
+                                <label asp-for="Ulke">Ülke *</label>
+                                <select asp-for="Ulke" class="form-select" id="ulke" required>
                                     <option value="">Lütfen Seçiniz</option>
-                                    <option value="turkiye">Türkiye</option>
-                                    <option value="almanya">Almanya</option>
-                                    <option value="fransa">Fransa</option>
-                                    <option value="ingiltere">İngiltere</option>
-                                    <option value="rusya">Rusya</option>
                                 </select>
+                                <span asp-validation-for="Ulke" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="sehir">Şehir *</label>
-                                <select class="form-select" id="sehir" required>
+                                <label asp-for="Sehir">Şehir *</label>
+                                <select asp-for="Sehir" class="form-select" id="sehir" required>
                                     <option value="">Lütfen Önce Ülke Seçiniz</option>
                                 </select>
+                                <span asp-validation-for="Sehir" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="telefon">Telefon *</label>
+                                <label asp-for="Telefon">Telefon *</label>
                                 <div class="input-group">
-                                    <span class="input-group-text" id="phoneCode">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg"
-                                            alt="TR" width="20" id="countryFlag">
-                                        +90
-                                    </span>
-                                    <input type="tel" class="form-control" id="telefon" placeholder="501 234 56 78"
-                                        required>
+                                    <input asp-for="Telefon" type="tel" class="form-control" id="telefon" placeholder="+90 501 234 56 78" required>
                                 </div>
+                                <span asp-validation-for="Telefon" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -120,20 +154,25 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="epostaAdresi">E-Posta Adresiniz *</label>
-                                <input type="email" class="form-control" id="epostaAdresi" required>
+                                <label asp-for="Email">E-Posta Adresiniz *</label>
+                                <input asp-for="Email" type="email" class="form-control" required>
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="webSitesi">Web Sitesi Adresiniz/Giriniz</label>
-                                <input type="url" class="form-control" id="webSitesi">
+                                <label asp-for="WebSitesi">Web Sitesi Adresiniz</label>
+                                <input asp-for="WebSitesi" type="url" class="form-control">
+                                <span asp-validation-for="WebSitesi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="faaliyetAlaniniziGiriniz">Faaliyet Alanınızı Giriniz *</label>
-                                <input type="text" class="form-control" id="faaliyetAlaniniziGiriniz" required>
+                                <label asp-for="FaaliyetAlani">Faaliyet Alanınız *</label>
+                                <select asp-for="FaaliyetAlani" class="form-select" id="FaaliyetAlani" required>
+                                    <option value="">Lütfen Seçiniz</option>
+                                </select>
+                                <span asp-validation-for="FaaliyetAlani" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -142,20 +181,23 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="urunGrubuGiriniz">Ürün Grubunuzu Giriniz *</label>
-                                <input type="text" class="form-control" id="urunGrubuGiriniz" required>
+                                <label asp-for="UrunGrubu">Ürün Grubunuzu Giriniz *</label>
+                                <input asp-for="UrunGrubu" type="text" class="form-control" required>
+                                <span asp-validation-for="UrunGrubu" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="markalarinizGiriniz">Markalarınızı Giriniz *</label>
-                                <input type="text" class="form-control" id="markalarinizGiriniz" required>
+                                <label asp-for="Markalar">Markalarınızı Giriniz *</label>
+                                <input asp-for="Markalar" type="text" class="form-control" required>
+                                <span asp-validation-for="Markalar" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ayrintiliMerkezi">Ayırtmak İstediğiniz Metrekareyi Giriniz *</label>
-                                <input type="text" class="form-control" id="ayrintiliMerkezi" required>
+                                <label asp-for="IstenenMetrekare">Ayırtmak İstediğiniz Metrekareyi Giriniz *</label>
+                                <input asp-for="IstenenMetrekare" type="text" class="form-control" required>
+                                <span asp-validation-for="IstenenMetrekare" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -164,9 +206,9 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="kurulusTarihi">Firmanızın Kuruluş Tarihi *</label>
-                                <input type="date" class="form-control" id="kurulusTarihi" placeholder="GG-AA-YYYY"
-                                    required>
+                                <label asp-for="KurulusTarihi">Firmanızın Kuruluş Tarihi *</label>
+                                <input asp-for="KurulusTarihi" type="date" class="form-control" placeholder="GG-AA-YYYY" required>
+                                <span asp-validation-for="KurulusTarihi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -175,9 +217,9 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="aktiviteTuru">Firmanızın Aktivite Türü *</label>
-                                <select class="form-select" id="aktiviteTuru" required>
-                                    <option selected>Seçiniz</option>
+                                <label asp-for="AktiviteTuru">Firmanızın Aktivite Türü *</label>
+                                <select asp-for="AktiviteTuru" class="form-select" required>
+                                    <option value="">Seçiniz</option>
                                     <option value="uretici">Üretici</option>
                                     <option value="ithalatci">İthalatçı</option>
                                     <option value="ihracatci">İhracatçı</option>
@@ -185,24 +227,27 @@
                                     <option value="toptanci">Toptancı</option>
                                     <option value="perakendeci">Perakendeci</option>
                                 </select>
+                                <span asp-validation-for="AktiviteTuru" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="ihracatCirosu">Firmanızın İhracat Cirosu *</label>
+                                <label asp-for="IhracatCirosu">Firmanızın İhracat Cirosu *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
-                                    <input type="text" class="form-control" id="ihracatCirosu" required>
+                                    <input asp-for="IhracatCirosu" type="text" class="form-control" required>
                                 </div>
+                                <span asp-validation-for="IhracatCirosu" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="toplamCirosu">Firmanızın Toplam Cirosu *</label>
+                                <label asp-for="ToplamCiro">Firmanızın Toplam Cirosu *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
-                                    <input type="text" class="form-control" id="toplamCirosu" required>
+                                    <input asp-for="ToplamCiro" type="text" class="form-control" required>
                                 </div>
+                                <span asp-validation-for="ToplamCiro" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -211,8 +256,9 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="personelSayisi">Firmanızda İstihdam Edilen Personel Sayısı *</label>
-                                <input type="number" class="form-control" id="personelSayisi" required>
+                                <label asp-for="PersonelSayisi">Firmanızda İstihdam Edilen Personel Sayısı *</label>
+                                <input asp-for="PersonelSayisi" type="number" class="form-control" required>
+                                <span asp-validation-for="PersonelSayisi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -225,13 +271,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ulusalFuarAdi">Fuar Adı</label>
-                                        <input type="text" class="form-control" id="ulusalFuarAdi">
+                                        <input type="text" class="form-control ulusal-fuar-adi" id="ulusalFuarAdi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="ulusalKatilimYili">Katılım Yılı</label>
-                                        <input type="text" class="form-control" id="ulusalKatilimYili">
+                                        <input type="text" class="form-control ulusal-katilim-yili" id="ulusalKatilimYili">
                                     </div>
                                 </div>
                             </div>
@@ -251,13 +297,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="uluslararasiFuarAdi">Fuar Adı</label>
-                                        <input type="text" class="form-control" id="uluslararasiFuarAdi">
+                                        <input type="text" class="form-control uluslararasi-fuar-adi" id="uluslararasiFuarAdi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="uluslararasiKatilimYili">Katılım Yılı</label>
-                                        <input type="text" class="form-control" id="uluslararasiKatilimYili">
+                                        <input type="text" class="form-control uluslararasi-katilim-yili" id="uluslararasiKatilimYili">
                                     </div>
                                 </div>
                             </div>
@@ -279,10 +325,8 @@
                     </div>
 
                     <div class="row mb-4">
-
                         <div class="col-md-6">
                             <div class="input-group">
-
                                 <button class="btn btn-primary" type="submit">Hemen Yerinizi Ayırtın</button>
                             </div>
                         </div>
@@ -291,11 +335,71 @@
             </div>
         </div>
 
-
-
 @section Scripts{
-        <!-- Custom Scripts -->
-        <script src="~/js/on-kayit-formu.js"></script>
-
-    }
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/on-kayit-formu.js"></script>
+    <script>
+        // Form submission için ek JS
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submit olduğunda ulusal ve uluslararası fuarları topla
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Ulusal fuarları topla
+                const ulusalFuarlar = [];
+                document.querySelectorAll('.national-fair-row').forEach(function(row) {
+                    const fuarAdi = row.querySelector('.ulusal-fuar-adi').value.trim();
+                    const katilimYili = row.querySelector('.ulusal-katilim-yili').value.trim();
+                    
+                    if (fuarAdi && katilimYili) {
+                        // Hidden input oluştur
+                        const fuarAdiInput = document.createElement('input');
+                        fuarAdiInput.type = 'hidden';
+                        fuarAdiInput.name = 'UlusalFuarlar[' + ulusalFuarlar.length + '].FuarAdi';
+                        fuarAdiInput.value = fuarAdi;
+                        
+                        const katilimYiliInput = document.createElement('input');
+                        katilimYiliInput.type = 'hidden';
+                        katilimYiliInput.name = 'UlusalFuarlar[' + ulusalFuarlar.length + '].KatilimYili';
+                        katilimYiliInput.value = katilimYili;
+                        
+                        this.appendChild(fuarAdiInput);
+                        this.appendChild(katilimYiliInput);
+                        
+                        ulusalFuarlar.push({ fuarAdi, katilimYili });
+                    }
+                }, this);
+                
+                // Uluslararası fuarları topla
+                const uluslararasiFuarlar = [];
+                document.querySelectorAll('.international-fair-row').forEach(function(row) {
+                    const fuarAdi = row.querySelector('.uluslararasi-fuar-adi').value.trim();
+                    const katilimYili = row.querySelector('.uluslararasi-katilim-yili').value.trim();
+                    
+                    if (fuarAdi && katilimYili) {
+                        // Hidden input oluştur
+                        const fuarAdiInput = document.createElement('input');
+                        fuarAdiInput.type = 'hidden';
+                        fuarAdiInput.name = 'UluslararasiFuarlar[' + uluslararasiFuarlar.length + '].FuarAdi';
+                        fuarAdiInput.value = fuarAdi;
+                        
+                        const katilimYiliInput = document.createElement('input');
+                        katilimYiliInput.type = 'hidden';
+                        katilimYiliInput.name = 'UluslararasiFuarlar[' + uluslararasiFuarlar.length + '].KatilimYili';
+                        katilimYiliInput.value = katilimYili;
+                        
+                        this.appendChild(fuarAdiInput);
+                        this.appendChild(katilimYiliInput);
+                        
+                        uluslararasiFuarlar.push({ fuarAdi, katilimYili });
+                    }
+                }, this);
+                
+                // Formu gönder
+                this.submit();
+            });
+        });
+    </script>
+}
 
