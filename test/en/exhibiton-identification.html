@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">LESEXPO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Css -->
+    <link rel="stylesheet" href="../tr/assets/style.css">
+    <link rel="stylesheet" href="../tr/assets/fuar-kunye.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .banner {
+            position: relative;
+            background-image: url('./images/LES\ 5.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .breadcrumb-1 a {
+            color: white;
+        }
+
+        .sls {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Start -->
+    <header class="main-header">
+        <div class="container-navbar">
+            <a href="home.html" class="logo mt-5">
+                <!-- Gerçek logo dosyanızın yolunu buraya ekleyin -->
+                <img src="./images/lesexpologo-inter.png" class="" alt="">
+            </a>
+
+            <nav class="main-nav">
+                <ul class="">
+                    <!-- nav-toggle-button class'ı menüyü açar -->
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.discoverBFM">LES-EXPO<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.organizeFair">Exhibitor<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.visitBFM">Visitor<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.events">Events<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.events">Media<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="contact.html" data-translate="nav.contactUs">Contact</a></li>
+                </ul>
+
+            </nav>
+
+            <div class="header-actions">
+                <div class="lang-switch mt-4 ms-4">
+                    <div class="header-search">
+                        <input type="text" class="header-search-input" placeholder="Ara...">
+                        <button class="header-search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <a href="online-bilet.html" class="trigger-button">Onlıne Ticket</a>
+                    <a href="../tr/fuar-kunyesi.html" class="" data-lang="tr" data-translate="lang.tr">TR</a> | <a
+                        href="#" class="active" data-lang="en" data-translate="lang.en">EN</a>
+                </div>
+                <!-- nav-toggle-button class'ı menüyü açar -->
+
+            </div>
+
+            <!-- Mobil için Hamburger İkonu (nav-toggle-button class'ı menüyü açar/kapatır) -->
+            <button class="mobile-menu-toggle nav-toggle-button" data-translate-aria-label="menu.toggleAriaLabel"
+                aria-label="Menüyü Aç/Kapat">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Tam Ekran Overlay Menü -->
+    <div class="fullscreen-menu">
+        <div class="menu-header">
+            <a href="home.html" class="logo-menu">
+                <!-- Menüdeki logo -->
+                <img src="./images/lesexpologo-inter.png" alt="" class="fs-2">
+            </a>
+
+            <div class="menu-header-actions-fs">
+                <div class="lang-switch">
+                    <a href="online-bilet.html" class="trigger-button">Onlıne Ticket</a>
+                    <a href="../tr/fuar-kunyesi.html" class="" data-lang="tr" data-translate="lang.tr">TR</a> | <a
+                        href="#" class="active" data-lang="en" data-translate="lang.en">EN</a>
+                </div>
+                <button class="close-menu-btn" aria-label="Menüyü Kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <div class="menu-column">
+                <!-- Başlığa tıklanınca menüyü kapatmak için nav-toggle-button ekledik -->
+                <h3 class="nav-toggle-button">LES-EXPO</h3>
+                <ul>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="exhibition-identification.html">Exhibition Identification</a></li>
+                    <li><a href="exhibition-area.html">Exhibition Area</a></li>
+                    <li><a href="how-to-reach.html">How To Reach?</a></li>
+                    <li><a href="show-report.html">Post Show Report</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Exhibitor</h3>
+                <ul>
+                    <li><a href="exhibitor-profile.html">Exhibitor Profile</a></li>
+                    <li><a href="pre-registration-form.html">Pre-Registration Form</a></li>
+                    <li><a href="why-exhibit.html">Why Should You Exhibit?</a></li>
+                    <li><a href="exhibitor-list.html">2025 Exhibitor List</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button" data-translate="menu.visitBFM">Visitor</h3>
+                <ul>
+                    <li><a href="visitor-profile.html">Visitor Profile</a></li>
+                    <li><a href="why-visit.html">Why Should You Visit?</a></li>
+                    <li><a href="sss.html">Frequently Asked Questions</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Events</h3>
+                <ul>
+                    <li><a href="b2b-meeting.html">B2B Toplantıları</a></li>
+                    <li><a href="#">İlham Alanları</a></li>
+                    <li><a href="#">LES-EXPO Dialogs</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Media</h3>
+                <ul>
+                    <li><a href="media-logo.html">Logo</a></li>
+                    <li><a href="all-news.html">News</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Corporate Identity</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Contact Us</h3>
+                <ul>
+                    <li><a href="contact.html">Contact Information</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="menu-footer">
+            <!-- <span class="up-menu-f2f"> Powered By F2F Bilişim Reklam ve Danışmanlık Hizmetleri</span> -->
+            <span data-translate="menu.followUs">Bizi Takip Edin</span>
+            <div class="social-icons-menu">
+                <a href="https://www.facebook.com/lesexpofair" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="banner-yazi">LES-EXPO</div>
+        <div class="breadcrumb-1">
+            <a href="home.html">Home Page / </a>
+            <a href="exhibiton-identification.html">Exhibition Identification</a>
+        </div>
+        <div class="container main-container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 sidebar-container">
+                    <div class="sidebar">
+                        <div class="sidebar-sticky">
+                            <div class="sidebar-header p-3 mb-3 text-center">
+                                <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
+                                <p class="small mb-0" data-translate="hakkimizda.sidebar.subTitle">About
+                                </p>
+                            </div>
+                            <ul class="nav flex-column">
+                                <!-- Hakkımızda -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                                        data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
+                                        <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
+                                        <span data-translate="hakkimizda.sidebar.aboutUs">About Us</span>
+                                    </a>
+                                    <div class="collapse show" id="hakkimizdaSubmenu">
+                                        <ul class="nav flex-column submenu">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="about-us.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.bfmAbout">About
+                                                        LES-EXPO</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="exhibiton-identification.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span
+                                                        data-translate="hakkimizda.sidebar.presidentMessage">Exhibition
+                                                        Identification</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="exhibition-area.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.qualityPolicy">Exhibition
+                                                        Area</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="how-to-reach.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.ourTeam">How To
+                                                        Reach?</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="show-report.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.boardOfDirectors">Post Show
+                                                        Report</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main content -->
+                <div class="container-kunye col-md-9">
+                    <div class="main-content-kunye">
+                        <div class="header-text-kunye"></div>
+                        <div class="title-container-kunye">
+                            <div class="title-left-kunye">
+                                <h1>LES-EXPO</h1>
+                            </div>
+                        </div>
+
+                        <h2 class="kunye-h2">LES-EXPO-Cargo Engineering Services Fair Meets You at Istanbul Fair Center
+                            on September 9-11!</h2>
+
+                        <p class="kunye-p">Les-Expo 2025 brings together the latest developments, technologies and
+                            innovative solutions in the field of freight engineering services.</p>
+
+                        <p class="kunye-p">This fair, which will be held with the participation of expert companies and
+                            professionals in the field, will offer you a unique opportunity to discover the latest
+                            trends in the sector and revolutionary innovations in engineering services. The fair, where
+                            Load Engineering services will be exhibited in an area of ​​28 thousand square meters at the
+                            Istanbul Fair Center, will offer both visitors and participants a business-oriented
+                            experience where technology and trends are at the forefront.
+                        </p>
+
+                        <h2>Fair Calendar</h2>
+
+                        <div class="calendar-grid-kunye">
+                            <div class="calendar-item-kunye">
+                                <div class="calendar-header-kunye">Tuesday</div>
+                                <div class="calendar-content-kunye">
+                                    LES-EXPO-Cargo Engineering Services Fair
+                                </div>
+                            </div>
+
+                            <div class="calendar-item-kunye">
+                                <div class="calendar-header-kunye">Wednesday</div>
+                                <div class="calendar-content-kunye">
+                                    LESEXPO-Cargo Engineering Services Fair
+                                </div>
+                            </div>
+
+                            <div class="calendar-item-kunye">
+                                <div class="calendar-header-kunye">Perşembe</div>
+                                <div class="calendar-content-kunye">
+                                    LESEXPO-Cargo Engineering Services Fair
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="salon-info-kunye">
+
+                        </div>
+                    </div>
+
+                    <div class="sidebar-kunye">
+                        <h3>Exhibition Identification</h3>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">Start Date:</div>
+                            <div class="info-content-kunye">09.09.2025</div>
+                        </div>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">End Date:</div>
+                            <div class="info-content-kunye">11.09.2025</div>
+                        </div>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">Fair Topic:</div>
+                            <div class="info-content-kunye">Load Engineering Services</div>
+                        </div>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">Organizing Company:</div>
+                            <div class="info-content-kunye">Istanbul Fair Center</div>
+                        </div>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">Visiting hours:</div>
+                            <div class="info-content-kunye">9.30 A.M - 6 P.M </div>
+                        </div>
+
+                        <div class="info-item-kunye">
+                            <div class="info-title-kunye">Fair Area:</div>
+                            <div class="info-content-kunye">Istanbul Fair Center</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar mobile toggle button -->
+        <button class="sidebar-toggle-button d-md-none">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Logo Slider -->
+        <div class="container-fluid logo-slider">
+            <div class="logo-slider-container">
+                <!-- First Slide -->
+                <div class="logo-slide">
+                    <a href="https://ymbd.org" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                </div>
+
+                <!-- Second Slide (duplicate for seamless looping) -->
+                <div class="logo-slide">
+                    <a href="https://ymbd.org" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="footer-content mt-3">
+                <div class="footer-left">
+                    <div class="logo-footer">
+                        <img src="./images/lesexpologo-inter.png" alt="">
+
+                    </div>
+                    <p class="address">Yesilkoy Istanbul, Fair Center, 34149 Bakirkoy/Istanbul</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> (0212) 468 52 51</p>
+                        <p><i class="fas fa-fax"></i> (0212) 468 52 54</p>
+                        <p><i class="fas fa-envelope"></i> info@les-expo.com</p>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>LES-EXPO</h3>
+                        <ul>
+                            <li><a href="about-us.html">About</a></li>
+                            <li><a href="exhibiton-identification.html">Exhibiton Identification</a></li>
+                            <li><a href="exhibition-area.html">Exhibiton Area</a></li>
+                            <li><a href="how-to-reach.html">How To Reach?</a></li>
+                            <li><a href="show-report.html">Post Show Report</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Exhibitor</h3>
+                        <ul>
+                            <li><a href="exhibitor-profile.html">Exhibitor Profile</a></li>
+                            <li><a href="pre-registration-form.html">Pre-Registration Form</a></li>
+                            <li><a href="why-exhibit.html">Why Should You Exhibit</a></li>
+                            <li><a href="exhibitor-list.html">2025 Exhibitor List</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Visitor</h3>
+                        <ul>
+                            <li><a href="visitor-profile.html">Visitor Profile</a></li>
+                            <li><a href="why-visit.html">Why Should You Visit?</a></li>
+                            <li><a href="faq.html">Frequently Asked Questions</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Events</h3>
+                        <ul>
+                            <li><a href="b2b-toplantı.html">B2B Meetings</a></li>
+                            <li><a href="all-news.html">News</a></li>
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">Corporate Identity</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="footer-bottom">
+          <div class="copyright">
+            <p>KFA Fuarcılık A.Ş. Bursa Ticaret ve Sanayi Odası (BTSO) iştirakidir. ©2025 | <a href="#">KVKK Aydınlatma
+                Metni</a> | <a href="#">Çerez Politikası</a></p>
+          </div>
+          <div class="created-by">
+            <p>created by <span>exmedia</span></p>
+          </div>
+        </div> -->
+        </footer>
+
+        <script>
+
+
+
+        </script>
+
+        <!-- Bootstrap Bundle JS (includes Popper) - Load BEFORE custom scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+            crossorigin="anonymous"></script>
+
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- Custom Scripts -->
+        <script src="../tr/hakkimizda.js"></script>
+        <script src="../tr/main.js"></script>
+
+</body>
+
+</html>
