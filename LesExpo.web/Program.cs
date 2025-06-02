@@ -35,6 +35,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Add repository services
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Add other services
 builder.Services.AddScoped<IFileHelper, FileHelper>();
 builder.Services.AddScoped<IHtmlContentService, HtmlContentService>();
 

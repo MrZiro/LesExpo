@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "card-blogs";
     card.setAttribute("data-category", category);
-    card.setAttribute("data-url", `/Blog-Detay/${slug}`);
+    card.setAttribute("data-url", `/Blog/${slug}`);
 
     card.innerHTML = `
       <div class="card-image-container-blogs">

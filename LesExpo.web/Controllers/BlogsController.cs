@@ -25,8 +25,8 @@ namespace LesExpo.web.Controllers
         }
 
         [HttpGet]
-        [Route("Blog-Detay/{slug}")]
-        public IActionResult Detail(string slug)
+        [Route("Blog/{slug}")]
+        public IActionResult Details(string slug)
         {
             if (string.IsNullOrEmpty(slug))
             {
@@ -59,10 +59,10 @@ namespace LesExpo.web.Controllers
             {
                 title = b.Title,
                 image = b.CardImageUrl,
-                date = b.CreatedAt.ToString("dd.MM"),
+                date = b.CreatedAt.ToString("dd MMMM yyyy"),
                 category = b.ContentType.Name,
                 slug = b.Slug,
-                metaDescription = b.MetaDescription
+                metaDescription = b.MetaDescription,
             });
                 
 

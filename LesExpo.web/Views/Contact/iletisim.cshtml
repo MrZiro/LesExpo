@@ -1,0 +1,116 @@
+@{
+    ViewData["Title"] = "İletişim";
+    ViewData["Description"] = "İletişim";
+    ViewData["Keywords"] = "İletişim, LES-EXPO, Fuar, Katılımcı, Ziyaretçi, Etkinlik, Haber, Galeri, Kurumsal Kimlik";
+    ViewData["Author"] = "LESEXPO";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/iletisim.css">
+    <style>
+        .banner {
+            position: relative;
+            background-image: url('./images/LES\ 5.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 178px;
+            color: white;
+        }
+
+        .breadcrumb-1 a {
+            color: white;
+        }
+
+        .img-harita {
+            width: 45%;
+        }
+
+    </style>
+}
+
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+        <a href="index.html">Ana Sayfa /</a>
+        <a href="iletisim.html">İletişim</a>
+    </div>
+</div>
+
+<div class="container-if">
+    <div class="contact-form-container-if">
+        <div class="form-header-if">
+            <h2 class="contact-title-if">Bize Ulaşın</h2>
+            <p class="contact-subtitle-if">Detaylı Bilgi</p>
+            <p class="contact-description-if">
+                LES-EXPO Fuarı ile ilgili soru, öneri ve görüşleriniz için lütfen bize yazın.
+            </p>
+        </div>
+        <div class="form-content-if">
+            <form class="contact-form-if">
+                <div class="form-row-if">
+                    <div class="form-group-if">
+                        <label for="name">İsim:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group-if">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group-if">
+                    <label for="subject">Konu:</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group-if">
+                    <label for="message">Mesaj:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn-if">Gönder</button>
+            </form>
+        </div>
+    </div>
+    <div class="contact-info-container-if">
+        <div class="contact-card-if address-if">
+            <i class="icon-if fas fa-map-marker-alt"></i>
+            <h4>Adress</h4>
+            <p>Fethiye OSB Mahallesi Mavi Cadde No:13 Nilüfer Bursa</p>
+        </div>
+        <div class="contact-card-if email-if">
+            <i class="icon-if fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p>info@les-expo.com</p>
+            <p>info@kfa.com.tr</p>
+        </div>
+        <div class="contact-card-if phone-if">
+            <i class="icon-if fas fa-phone"></i>
+            <h4>Telefon</h4>
+            <p>İFM: 0216 526 44 64</p>
+            <p>KFA: +90 (224) 294 85 50</p>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.4858715894916!2d28.823648507992235!3d40.98895529824187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa37998cc3537%3A0xee53d7b87dde799d!2s%C4%B0stanbul%20Fuar%20Merkezi!5e0!3m2!1str!2str!4v1746697199685!5m2!1str!2str"
+            width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" class="iframe1"></iframe>
+    </div>
+</section>
+
+
+

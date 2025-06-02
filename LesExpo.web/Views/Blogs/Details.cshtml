@@ -1,212 +1,92 @@
-    <div class="banner">
-        <div class="banner-yazi">LES-EXPO</div>
-        <div class="breadcrumb-1">
-        </div>
+  @model Blog
 
-        <div class="container py-5">
-            <div class="breadcrumb justify-content-center mt-5">
-                <a href="index.html">Ana Sayfa</a> /
-                <a href="hakkimizda.html">Bloglar</a> /
-                <a href="blog-single-page.html">Textile Show Blog</a>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="news-container">
+  @{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.MetaDescription;
+    ViewData["Keywords"] = Model.MetaKeywords;
+  }
+  @section Styles{
+    <link rel="stylesheet" href="~/css/blog-single-page.css">
+    
+    <style>
+        .banner {
+            position: relative;
+            background-image: url('@Url.Content("~/images/LES 5.jpg")');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+            }
 
-                        <div class="news-content">
-                            <!-- Görsel Eklendi -->
-                            <h2 class="blog-first-title">Ağır Yüklerin Taşınmasında Mühendisliğin Gücü: Yük Mühendisliği
-                                Nedir?
-                            </h2>
-                            <p>Yük mühendisliği, yapıların, taşıma araçlarının ve altyapı sistemlerinin güvenli ve
-                                verimli bir şekilde ağır yükleri taşıyabilmesi için yapılan mühendislik çalışmalarının
-                                tümünü kapsar. Özellikle inşaat, lojistik, savunma sanayi ve enerji sektörlerinde kritik
-                                rol oynayan bu mühendislik disiplini, çoğu zaman görünmeyen ama hayati bir sürecin temel
-                                taşıdır.</p>
-                            <img src="./images/blogphoto1.jpg" alt="KFA Fuarcılık Uluslararası Fuar Katılımı"
-                                class="news-image">
-                            <h3 class="subtitle"> Yük Mühendisliği Hangi Alanlarda Kullanılır?</h3>
-                            <ul class="list-2">
-                                <li>• Ağır sanayi ekipmanlarının taşınması ve montajı</li>
-                                <li>• Köprü, vinç, rafineriler gibi büyük yapılar için yük analizleri</li>
-                                <li>• Rüzgar türbinleri, enerji nakil hatları gibi yüksek mühendislik gerektiren
-                                    projeler</li>
-                                <li>• Tersane ve limanlarda yük taşıma operasyonları</li>
-                                <li>• Modüler yapıların sevkiyat planlaması</li>
-                            </ul>
+            .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 178px;
+            color: white;
+            }
 
-                            <h3 class="subtitle"> Yük Mühendisliğinde Dikkate Alınan Temel Unsurlar</h3>
-                            <ul class="list-2">
-                                <li>• Ağırlık dağılımı ve denge hesapları</li>
-                                <li>• Taşıma ekipmanlarının kapasite uyumu</li>
-                                <li>• Yol güzergah analizleri ve altyapı uygunluğu</li>
-                                <li>• Yük sabitleme ve emniyet yöntemleri</li>
-                                <li>• Yasal mevzuatlar ve güvenlik standartları</li>
-                            </ul>
+            .breadcrumb-1 a {
+            color: white;
+            }
+    </style>
+  }
+  
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+    </div>
+</div>
 
-                            <h3 class="subtitle">Gerçek Hayattan Bir Örnek: Rüzgar Türbini Nakliyesi</h3>
-                            <p class="mb-4">Bir rüzgar türbini kanadının tek parça olarak taşınması, yük mühendisliğinin
-                                detaylı planlama gerektiren örneklerinden biridir. 60 metreyi aşan uzunluğu ve 10 tona
-                                yakın ağırlığı ile bu tür bir taşıma işlemi, özel taşıma araçları, rota izinleri, trafik
-                                yönetimi ve rüzgar koşulları gibi onlarca değişkenin bir arada yönetilmesini gerektirir.
-                            </p>
+<div class="container py-5">
+    <div class="breadcrumb justify-content-center mt-5">
+        <a href="/">Ana Sayfa</a> /
+        <a href="/tum-bloglar">Bloglar</a> /
+        <a href="/Blog/@Model.Slug">@Model.Title</a>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="news-container">
 
-                            <h3 class="subtitle">Geleceğin Mühendisliği</h3>
-                            <p class="mb-4">Dijitalleşmenin ve otomasyonun artmasıyla birlikte yük mühendisliği de
-                                dönüşüyor. 3D modellemeler, simülasyon yazılımları ve yapay zekâ tabanlı yük dağıtım
-                                algoritmaları, bu alandaki hata payını minimuma indiriyor. Ayrıca sürdürülebilirlik
-                                odaklı mühendislik çözümleri de artık daha fazla önem kazanıyor.
-                            </p>
-
-
-                            <p class="mb-4 mt-3">Sonuç olarak, yük mühendisliği sadece büyük ağırlıkları taşımakla
-                                ilgili değil, aynı zamanda mühendislik zekâsı, detaylı planlama ve yüksek güvenlik
-                                standartlarının bir bütünüdür. Sektör fark etmeksizin, ağır yüklerle ilgili her proje,
-                                bu uzmanlık alanının dokunuşuna ihtiyaç duyar.</p>
-
-                            <!-- Eğer önemli bir kısım varsa highlight section kısmına yazılabilir -->
-                            <!-- <div class="highlight-section">
-                            <h3 class="subtitle mb-3">"İhracat Odaklı Büyüme Hedeflerine Katkımızı Sürdüreceğiz"</h3>
-                            <p class="mb-0">BTSO Yönetim Kurulu Başkanı <strong>İbrahim Burkay</strong>, Türkiye'nin
-                                büyüme ve kalkınma hedeflerinde ihracatçıların önemli bir rol üstlendiğini söyledi.
-                                BTSO'nun kentin dış ticaretine rehberlik eden birçok projeyi hayata geçirdiğini belirten
-                                Başkan Burkay, KFA Fuarcılık A.Ş. firmasının organizasyon becerisiyle milli katılım
-                                düzenleme yetkisine sahip olduğunu ifade etti.</p>
-                        </div> -->
-                        </div>
-                    </div>
+                <div class="news-content">
+                    <!-- Görsel Eklendi -->
+                    <h2 class="blog-first-title">@Model.Title</h2>
+                    @Html.Raw(Model.Content)
                 </div>
-            </div>
-        </div>
-
-        <!-- Haberler Card Section -->
-
-        <div class="container-haberler">
-            <div class="header-haberler">
-                <h2><i class="fas fa-arrow-right"></i>DİĞER HABERLER</h2>
-                <div class="header-right">
-                    <a href="tum-haberler.html" class="all-news">TÜM HABERLER</a>
-                </div>
-            </div>
-
-            <div class="slider-container-haberler">
-                <div class="slider-haberler" id="slider-haberler">
-                    <!-- Card 1 -->
-                    <div class="card-haberler">
-                        <div class="card-image-haberler">
-                            <img src="./images/haberler-1.jpeg" alt="IDEX İstanbul Etkinliği">
-                            <div class="card-date-haberler">
-                                <i class="far fa-calendar-alt"></i> 05 Mayıs 2025
-                            </div>
-                        </div>
-                        <div class="card-content-haberler">
-                            <h3 class="card-title-haberler">BTSO Başkanı İbrahim Burkay, Yük Mühendisliği Birliği ile
-                                İftar Programında
-                                Buluştu</h3>
-                            <a href="#" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="card-haberler">
-                        <div class="card-image-haberler">
-                            <img src="./images/haberler-2.jpeg" alt="Dental Sektör Etkinliği">
-                            <div class="card-date-haberler">
-                                <i class="far fa-calendar-alt"></i> 04 Mayıs 2025
-                            </div>
-                        </div>
-                        <div class="card-content-haberler">
-                            <h3 class="card-title-haberler">Sistem Vinç, 700 ton kaldırma kapasiteli Demag AC 700 mobil
-                                vinci ile
-                                Gebze'den Dilovası'na 155 ton ağırlığındaki trafonun tüm taşıma ve tahliye sürecini
-                                başarıyla tamamladı.
-                            </h3>
-                            <a href="#" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="card-haberler">
-                        <div class="card-image-haberler">
-                            <img src="./images/haberler-3.jpg" alt="Diş Hekimliği Etkinliği">
-                            <div class="card-date-haberler">
-                                <i class="far fa-calendar-alt"></i> 02 Mayıs 2025
-                            </div>
-                        </div>
-                        <div class="card-content-haberler">
-                            <h3 class="card-title-haberler">Yük mühendisliği şirketlerine de ulaşılabilir yatırım
-                                kredisi verilmeli</h3>
-                            <a href="#" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Card 6 (Extra card for continuous scrolling effect) -->
-                    <div class="card-haberler">
-                        <div class="card-image-haberler">
-                            <img src="./images/haberler-6.jpeg" alt="Dental Konferans">
-                            <div class="card-date-haberler">
-                                <i class="far fa-calendar-alt"></i> 15 Nisan 2025
-                            </div>
-                        </div>
-                        <div class="card-content-haberler">
-                            <h3 class="card-title-haberler">SANY, Dünyanın En Büyük Arazi Vinci ile Ağır Kaldırmayı
-                                Yeniden Tanımlıyor
-                            </h3>
-                            <a href="#" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Logo Slider -->
-        <div class="container-fluid logo-slider">
-            <div class="logo-slider-container">
-                <!-- First Slide -->
-                <div class="logo-slide">
-                    <a href="https://ymbd.org" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
-                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
-                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
-                </div>
-
-                <!-- Second Slide (duplicate for seamless looping) -->
-                <div class="logo-slide">
-                    <a href="https://ymbd.org" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
-                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
-                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
-                        <div class="logo-img-container">
-                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
-                        </div>
-                        <div class="logo-text"></div>
-                    </a>
+                <div class="=mt-4">
+                    <small class="text-muted">
+                        <i class="far fa-calendar-alt"></i> @Model.CreatedAt.ToString("dd MMMM yyyy")
+                    </small>
+                    <small class="text-muted ml-2">
+                        <i class="fas fa-tag"></i> @Model.ContentType.Name
+                    </small>
                 </div>
             </div>
         </div>
     </div>
+</div>
+    <!-- Haberler Card Section -->
+
+<div class="container-haberler">
+    <div class="header-haberler">
+        <h2><i class="fas fa-arrow-right"></i>DİĞER HABERLER</h2>
+        <div class="header-right">
+            <a href="tum-haberler.html" class="all-news">TÜM HABERLER</a>
+        </div>
+    </div>
+
+    <div class="slider-container-haberler">
+        <div class="slider-haberler" id="slider-haberler">
+            <!-- Related blog-single-page will breadcrumb loaded via js-->
+            
+
+        </div>
+    </div>
+</div>
 
 
 
@@ -214,7 +94,48 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
    <!-- Custom Scripts -->
-    <script src="hakkimizda.js"></script>
-    <script src="main.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+            fetchData();
+        });
+
+        function fetchData(){
+            $.ajax({
+                url: "/Blogs/GetAllBlogs",
+                type: "GET",
+                success: function(response){
+                    console.log(response);
+                    var relatedBlogs = response.filter(blog => blog.slug !== '@Model.Slug');
+                    var sliderContainer = $('#slider-haberler');
+                    sliderContainer.empty();
+
+                    console.log(relatedBlogs);
+                    relatedBlogs.forEach(blog => {
+                        var blogHtml = `
+                            <div class="card-haberler">
+                                <div class="card-image-haberler">
+                                    <img src="${blog.image}" alt="${blog.title}">
+                                    <div class="card-date-haberler">
+                                        <i class="far fa-calendar-alt"></i> ${blog.date}
+                                    </div>
+                                </div>
+                                <div class="card-content-haberler">
+                                    <h3 class="card-title-haberler">${blog.title}</h3>
+                                    <a href="/Blog/${blog.slug}" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        `;
+                        sliderContainer.append(blogHtml);
+                    });
+                },
+                error: function(error){
+                    console.error("Error from fetchData:", error);
+                }
+            });
+        }
+    </script>
 
 }
