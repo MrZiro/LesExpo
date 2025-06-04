@@ -20,13 +20,6 @@ body {
   overflow-x: hidden;
   /* Yatay kaydırmayı engeller */
 }
-input[type="radio"] {
-  display: none;
-}
-
-body {
-  background-color: #0c243d;
-}
 
 html {
   scroll-behavior: smooth;
@@ -679,8 +672,8 @@ ul {
 
 /* Buton Stilleri */
 .trigger-button {
-  background-color: var(--primarycolor);
-  color: var(--thirdcolor) !important;
+  background-color: #fff;
+  color: var(--primarycolor) !important;
   border: none;
   font-weight: 600 !important;
   padding: 5px 14px !important;
@@ -693,7 +686,7 @@ ul {
 
 
 .trigger-button:hover {
-  background-color: rgba(179, 174, 174, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white !important;
 }
 
@@ -712,26 +705,24 @@ ul {
   animation: slide 20s linear infinite;
 }
 
-.logo-slider-container:hover {
-  animation-play-state: paused;
-}
-
 .logo-slide {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   flex-shrink: 0;
 }
 
 .logo-link {
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 25px;
-  max-width: 220px;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s;
+  flex: 1;
+  max-width: 310px;
 }
 
 .logo-img-container {
@@ -740,13 +731,16 @@ ul {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .logo-img-slider {
-  width: 310px;
-  height: 150px;
+  max-width: 100%;
+  height: auto;
+  max-height: 150px;
   filter: grayscale(100%);
   transition: all 0.3s;
+  object-fit: contain;
 }
 
 .logo-link:hover .logo-img {
@@ -765,7 +759,6 @@ ul {
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-50%);
   }
@@ -785,170 +778,146 @@ ul {
 
 @media (max-width: 768px) {
   .logo-slider {
-    /* Add padding if needed so only one logo appears centered */
-    padding: 40px 0;
-    /* Keep vertical padding */
+    padding: 20px 0;
   }
 
   .logo-slider-container {
-    /* Original structure: 2 slides, total width 200% */
-    /* We have 4 logos per slide */
-    /* To show 1 logo out of 4 per slide, each logo takes 1/4 of the viewport */
-    /* Container needs to be 4 * 100% = 400% wide to hold one slide's logos */
-    /* With the duplicate slide for looping, total width = 800% */
-    width: 800%;
-    /* Animation: 4 steps per original slide content. 12s => 3s per logo */
-    animation: slide-mobile 12s steps(4, end) infinite;
-  }
-
-  @keyframes slide-mobile {
-    0% {
-      transform: translateX(0%);
-    }
-
-    100% {
-      /* Slide by the width of the first 4 logos = 4 * 100% viewport = 400% viewport */
-      /* Container is 800% wide, so move by 400/800 = 50% */
-      transform: translateX(-50%);
-    }
+    width: 200%;
   }
 
   .logo-slide {
-    /* Each slide originally held 4 logos. Now it should span 400% viewport */
-    /* Relative to 800% container, each slide is 50% wide */
     width: 50%;
-    /* Align logos to the start within the slide */
-    justify-content: flex-start;
+    justify-content: space-evenly;
+    gap: 10px;
   }
 
   .logo-link {
-    /* Each logo should occupy 100% viewport width */
-    /* Parent .logo-slide is 400% viewport width. Each link is 1/4 of parent */
-    width: 25%;
-    /* Center the logo within its 100% viewport slot */
-    display: flex;
-    /* Use flex to center content */
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    padding: 0;
-    /* Remove previous padding */
-    max-width: none;
-    /* Remove max-width */
-    flex-shrink: 0;
-    /* Prevent shrinking */
+    padding: 0 10px;
+    max-width: 200px;
   }
 
   .logo-img-container {
-    /* Adjust container size if needed */
     height: 80px;
-    /* Example height */
-    margin-bottom: 0;
-    /* Remove margin if text is hidden */
   }
 
-  .logo-img {
-    height: 60px;
-    /* Example height */
-    width: auto;
-    /* Maintain aspect ratio */
-    max-width: 80%;
-    /* Limit width within the link area */
-    filter: grayscale(100%);
-    /* Keep filter or remove */
+  .logo-img-slider {
+    max-height: 70px;
   }
 
   .logo-text {
     display: none;
-    /* Hide text on mobile */
-  }
-
-  /* Keep animation running on hover */
-  .logo-slider-container:hover {
-    animation-play-state: running;
-  }
-
-  /* Disable image hover effect on mobile */
-  .logo-link:hover .logo-img {
-    filter: grayscale(100%);
-    transform: scale(1);
   }
 }
 
 /* Footer Styles */
 .footer {
-  background-color: var(--thirdcolor);
+  background-color: #0c243d;
   color: #fff;
+  padding: 40px 0;
   width: 100%;
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
+  text-align: start;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 50px;
+  margin: 0;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 310px;
 }
 
-/* Left Section */
 .footer-left {
-  width: 25%;
-  padding-right: 20px;
+  flex: 0 0 300px;
+  padding-left: 30px;
 }
 
-.logo-footer img {
-  height: 106px;
-  margin-bottom: 5px;
-}
-
-.fuarcilik {
-  display: block;
-  font-size: 2.7rem;
-  letter-spacing: 1px;
-}
-
-.address {
-  margin-bottom: 20px;
-  font-size: 14px;
-  line-height: 1.5;
+.contact-info {
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .contact-info p {
   margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.contact-info i {
-  margin-right: 8px;
-  width: 15px;
-}
-
-/* Links Section */
-.footer-links {
-  width: 75%;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  margin-left: -10px;
+  position: relative;
 }
 
-.footer-column {
-  width: 25%;
-  padding: 0 15px;
-  text-align: start;
+.contact-info p i {
+  width: 20px;
+  margin-right: 15px;
+  text-align: left;
+  position: relative;
+  left: 0;
+}
+
+.contact-info p span {
+  flex: 1;
+}
+
+.follow-us {
+  margin: 20px 0 15px;
+  font-size: 18px;
+  text-align: left;
+  color: var(--primarycolor);
+}
+
+.social-icons-footer {
+  display: flex;
+  gap: 15px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.address {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-left: 0;
+  color: var(--primarycolor);
+}
+
+.logo-footer {
+  margin-bottom: 20px;
+}
+
+.logo-footer img {
+  max-width: 200px;
+}
+
+.footer-right {
+  flex: 1;
+  max-width: 800px;
+}
+
+.logo-footer {
+  margin-bottom: 20px;
+}
+
+.logo-footer img {
+  max-width: 200px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
 }
 
 .footer-column h3 {
-  color: var(--primarycolor);
-  margin-bottom: 20px;
+  color: #fff;
   font-size: 16px;
-  font-weight: 500;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .footer-column ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .footer-column ul li {
@@ -959,64 +928,55 @@ ul {
   color: #fff;
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .footer-column ul li a:hover {
-  color: var(--primarycolor);
+  color: #007bff;
 }
 
-/* Footer Bottom */
-.footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 12px;
-}
-
-.copyright a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.created-by span {
-  font-weight: bold;
-}
-
-/* Responsive Design */
 @media (max-width: 992px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
   .footer-left {
-    width: 100%;
-    margin-bottom: 30px;
+    flex: none;
+    text-align: start;
+    padding-left: 0;
+  }
+
+  .footer-right {
+    max-width: 100%;
+  }
+
+  .contact-info p {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .contact-info p i {
+    margin-right: 10px;
+    left: 0;
   }
 
   .footer-links {
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .footer-column {
-    width: 50%;
-    margin-bottom: 30px;
+    flex: 0 0 calc(50% - 15px);
+    text-align: center;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .footer-column {
-    width: 100%;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .copyright,
-  .created-by {
-    margin-bottom: 15px;
+    flex: 0 0 100%;
+    text-align: start;
   }
 }
 
@@ -1761,6 +1721,8 @@ body {
     font-size: 16px;
   }
 }
+
+/* header arama çubuğu */
 
 .header-search {
   display: inline-flex;

@@ -201,9 +201,44 @@
                             </div>
                         </div>
                     </div>
+                    
 
                     <!-- Sixth Row -->
                     <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Firmanızı Ziyaret Etmemizi İster Misiniz? *</label>
+                                <div class="radio-group">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="ziyaret" id="ziyaretEvet"
+                                            value="evet" required>
+                                        <label class="form-check-label" for="ziyaretEvet">Evet</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="ziyaret" id="ziyaretHayir"
+                                            value="hayir">
+                                        <label class="form-check-label" for="ziyaretHayir">Hayır</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fuar Katılım Hakkında Ayrıntılı Bilgi *</label>
+                                <div class="radio-group-form">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="katilim"
+                                            id="katilimIstiyorum" value="istiyorum" required>
+                                        <label class="form-check-label" for="katilimIstiyorum">İstiyorum</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="katilim"
+                                            id="katilimIstemiyorum" value="istemiyorum">
+                                        <label class="form-check-label" for="katilimIstemiyorum">İstemiyorum</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label asp-for="KurulusTarihi">Firmanızın Kuruluş Tarihi *</label>

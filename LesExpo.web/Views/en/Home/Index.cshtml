@@ -1,0 +1,355 @@
+@model LesExpo.Models.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles{
+    <link href="~/css/index.css" rel="stylesheet" />
+}
+
+  <!-- Splash Screen -->
+  <div class="splash-container" id="splash">
+    <div class="blueprint-overlay"></div>
+
+    <div class="corner-element top-left"></div>
+    <div class="corner-element top-right"></div>
+    <div class="corner-element bottom-left"></div>
+    <div class="corner-element bottom-right"></div>
+
+    <div class="logo-container">
+      <div class="logo-text-splash">LES-EXPO</div>
+      <div class="divider"></div>
+      <div class="tagline">YÜK MÜHENDİSLİĞİ FUARI</div>
+    </div>
+
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+
+    <div class="year">2025</div>
+  </div>
+
+
+    
+
+<partial name="Components/Home/_Slider" model="Model.Sliders" />
+
+<!-- <partial name="Components/Home/_BlogSlider" model="Model.Blogs" /> -->
+ <!-- Section-1 Start -->
+  <section class="section-1-sc">
+    <div class="slider-container-sc">
+      <div class="slider-sc">
+        <!-- Slide 1 -->
+        <div class="slide-sc active-sc">
+          <div class="slide-content-sc">
+            <div class="text-content-sc">
+              <h2 class="mt-5">The cooperation protocol for the LES-EXPO Fair, which will bring together all
+                stakeholders of freight <span class="highlight-sc">transportation requiring engineering, was
+                  signed.</span></h2>
+              <p>
+                It is the first specialized fair that will bring together service providers and service recipients in
+                the freight engineering services ecosystem, which contributes over 12 billion dollars to the Turkish
+                economy,<span class="highlight-sc">and it is being held in Istanbul.</span></p>
+              <a href="ymb-en-blog-1.html" class="btn-sc">More Information</a>
+            </div>
+            <div class="media-content-sc">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/I_Wu55RfC4I"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <!-- <div class="slide-sc">
+          <div class="slide-content-sc">
+            <div class="text-content-sc">
+              <h2><span class="highlight-sc">ESTA 2025 EXCELLENCE AWARDS HAVE FOUND THEIR WINNERS!</span></h2>
+              <p>YMB member YILNAK won the award in the Education category</p>
+              <a href="example-blog-1.html" class="btn-sc">More Information</a>
+            </div>
+            <div class="media-content-sc">
+              <img src="./images/ymb-odul.jpeg" alt="Yük taşımacılığı teknolojileri">
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Slide 3 -->
+        <!-- <div class="slide-sc">
+          <div class="slide-content-sc">
+            <div class="text-content-sc">
+              <h2><span class="highlight-sc">THE GREAT MEETING OF THE SECTOR</span></h2>
+              <p>LES-EXPO Freight Engineering Services Fair will be held on 9-11 September at the Istanbul Fair Center.
+              </p>
+              <a href="blog2-single.html" class="btn-sc">More Information</a>
+            </div>
+            <div class="media-content-sc">
+              <img src="./images/blogphoto1.jpg" alt="Sürdürülebilir lojistik">
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Separate Controls Container -->
+    <div class="controls-container-sc">
+      <!-- Navigation Arrows on the left -->
+      <!-- <div class="arrows-container-sc">
+        <button class="arrow-sc prev-arrow-sc"><i class="fas fa-chevron-left"></i></button>
+        <button class="arrow-sc next-arrow-sc"><i class="fas fa-chevron-right"></i></button>
+      </div> -->
+
+      <!-- Pagination Dots on the right -->
+      <!-- <div class="pagination-sc">
+        <span class="dot-sc active-sc" data-index="0"></span>
+        <span class="dot-sc" data-index="1"></span>
+        <span class="dot-sc" data-index="2"></span>
+      </div> -->
+    </div>
+  </section>
+
+
+
+  <section class="mt-5">
+
+  </section>
+  <!-- Gallery Wrapper -->
+  <div class="gallery-container-2">
+    <!-- Navigation Arrows -->
+    <div class="gallery-nav-buttons">
+      <button class="nav-button-gallery prev-button" id="prevBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="nav-button-gallery next-button" id="nextBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+    <div class="gallery-wrapper" id="galleryWrapper">
+      <div class="gallery-slider" id="gallerySlider">
+        <!-- Card 1 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-2.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Crane Manufacturers and Dealers</h3>
+              <p></p>
+              <!-- <div class="arrow-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="7" y1="17" x2="17" y2="7"></line>
+                          <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                  </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-1.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Tow Truck Manufacturers and Dealers</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-3.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Trailer Manufacturers and Dealers</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-8.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Equipment Manufacturers and Sellers</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-5.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Industry Related Service Companies</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-6.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Cargo Engineering Service Companies</h3>
+              <p></p>
+
+            </div>
+          </div>
+        </div>
+        <!-- Card 7 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/zp-7.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Freight Forwarder Şirketleri ve Temsilcileri</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 8 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/LES\ 1.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Gemi Brokerlik Şirketleri </h3>
+              <p></p>
+
+            </div>
+          </div>
+        </div>
+        <!-- Card 9 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/LES\ 2.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Freight Forwarder Companies and Representatives</h3>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <!-- Card 9 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/LES\ 5.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Ship Brokerage Companies</h3>
+              <p></p>
+
+            </div>
+          </div>
+        </div>
+        <!-- Card 9 -->
+        <div class="gallery-card">
+          <div class="card-image" style="background-image: url('./images/LES\ 4.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-content">
+              <h3>Business Organizations and Networks</h3>
+              <p></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Section-2 -->
+  <div class="container-3">
+    <div class="content-wrapper-3">
+      <div class="text-content-3">
+        <h3 class="title-3">LES-EXPO 2025</h3>
+        <h1 class="heading-3">Freight Engineering Services: The Strategic Discipline of Heavy Transportation</h1>
+        <p class="description-3">Load engineering is a multidisciplinary field that involves the safe, accurate and
+          planned lifting, transportation and placement of loads of unusual size and weight. This process is not only
+          realized with vehicles, but also with the planning, analysis and decisions of the expert engineers who manage
+          these vehicles. <a href="about-us.html" class="text-danger">Read more...</a></p>
+        <a href="on-kayit-formu.html" class="button" target="_blank">
+          Yerinizi Ayırtın
+        </a>
+      </div>
+      <div class="image-content-3">
+        <img src="./images/sectionphoto.jpg" alt="LES-EXPO 2025">
+      </div>
+    </div>
+  </div>
+
+  <!-- Section-3 -->
+   <section class="section-3">
+    <div class="text-content-4">
+      <h2 class="text-uppercase">The future of freight engineering takes shape at les-expo</h2>
+      <p>
+        LES-EXPO 2025 brings together the latest developments, technologies and innovative solutions in the cargo
+        engineering sector. With the participation of expert companies and professionals in the field, this fair offers
+        a unique opportunity to discover the latest trends in the sector and revolutionary innovations in engineering.
+        <a href="about-us.html" class="text-danger">Read more...</a>
+      </p>
+    </div>
+    <div class="image-content-3">
+      <img src="https://chcistanbul.com/storage/uploads/2024/09/01J8Q9Y55P8PF3QH90X43WH392.png"
+        alt="Cosmetics & Home Care Ingredients Fuarı Görseli">
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- Haberler Card Section -->
+
+  <!-- countdown -->
+
+  <div class="countdown-wrapper">
+    <div class="timer">
+      <div class="time-box">
+        <div class="time-value" id="days">00</div>
+        <div class="time-label">DAYS</div>
+      </div>
+      <div class="time-box">
+        <div class="time-value" id="hours">00</div>
+        <div class="time-label">HOURS</div>
+      </div>
+      <div class="time-box">
+        <div class="time-value" id="minutes">00</div>
+        <div class="time-label">MİNUTES</div>
+      </div>
+      <div class="time-box">
+        <div class="time-value" id="seconds">00</div>
+        <div class="time-label">SECONDS</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn btn-reserve"> <a href="pre-registration-form.html">STAND RESERVATION</a></button>
+      <button class="btn btn-ticket"> <a href="online-ticket.html">ONLINE TICKET</a></button>
+    </div>
+  </div>
+
+
+
+
+@section Scripts {
+    
+    <script src="~/js/index.js"></script>
+
+  }

@@ -61,6 +61,12 @@ namespace LesExpo.Models.ViewModels
         [Required(ErrorMessage = "Personel sayısı zorunludur.")]
         public int PersonelSayisi { get; set; }
 
+        [Required(ErrorMessage = "Fuar Katılımı zorunludur.")]
+        public string FuarKatilim { get; set; }
+
+        [Required(ErrorMessage = "Firma Ziyareti zorunludur.")]
+        public string FirmaZiyareti { get; set; }
+
         public List<FuarKatilimVM> UlusalFuarlar { get; set; }
         public List<FuarKatilimVM> UluslararasiFuarlar { get; set; }
 

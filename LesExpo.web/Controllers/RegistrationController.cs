@@ -71,6 +71,8 @@ namespace LesExpo.web.Controllers
                         <tr><td><b>Aktivite Türü:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.AktiviteTuru)}</td></tr>
                         <tr><td><b>İhracat Cirosu:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.IhracatCirosu)} USD</td></tr>
                         <tr><td><b>Toplam Ciro:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.ToplamCiro)} USD</td></tr>
+                        <tr><td><b>Fuar Katılımı:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.FuarKatilim)}</td></tr>
+                        <tr><td><b>Firma Ziyareti:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.FirmaZiyareti)}</td></tr>
                         <tr><td><b>Personel Sayısı:</b></td><td>{model.PersonelSayisi}</td></tr>
                         <tr><td><b>Tarih:</b></td><td>{DateTime.Now:dd.MM.yyyy HH:mm}</td></tr>
                     </table>";
