@@ -5,7 +5,7 @@ using LesExpo.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 namespace LesExpo.web.Controllers;
 
-public class HomeController : Controller
+public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
@@ -16,8 +16,13 @@ public class HomeController : Controller
         _unitOfWork = unitOfWork;
     }
 
+    [Route("{lang}/home")]
+    [Route("{lang}/anasayfa")]
     public IActionResult Index()
     {
+
+        var lang = Request.RouteValues["lang"]?.ToString();
+
         var sliders = _unitOfWork.Slider.GetAll()
                     .Where(s => s.IsActive)
                     .OrderBy(s => s.DisplayOrder)
@@ -37,7 +42,9 @@ public class HomeController : Controller
             Blogs = blogs
         };
 
-        return View(homeVM);
+        ViewBag.Lang = lang;
+
+        return LocalizedView(model: homeVM);
     }
 
     public IActionResult Privacy()

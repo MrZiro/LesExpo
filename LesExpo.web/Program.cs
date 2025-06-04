@@ -79,8 +79,19 @@ app.MapControllerRoute(
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 );
 
+app.MapControllerRoute(
+    name: "localized",
+    pattern: "{lang}/{controller=Home}/{action=Index}/{id?}",
+    constraints: new { lang = "en|tr" }
+);
 
-
+app.MapGet("/", context =>
+{
+    // Redirect to the localized home page based on the default language
+    var defaultLang = "tr"; // Change this to your desired default language
+    context.Response.Redirect($"/{defaultLang}/Anasayfa");
+    return Task.CompletedTask;
+});
 
 // app.MapControllerRoute(
 //     name: "default",
