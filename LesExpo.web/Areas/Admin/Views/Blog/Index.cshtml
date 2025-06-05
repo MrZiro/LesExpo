@@ -34,52 +34,62 @@
     <partial name="_PartialReqScript" />
 
     <script>
-        $(document).ready(() => {
-            initializeDataTableWithOption('Blog', [
-                {
-                    title: 'Başlık',
-                    data: 'title',
-                    width: '25%'
-                },
-                {
-                    title: 'İçerik Türü',
-                    data: 'contentType.name',
-                    width: '15%',
-                    render: function (data) {
-                        return data || 'Yok';
-                    }
-                },
-                {
-                    title: 'Slug',
-                    data: 'slug',
-                    width: '15%'
-                },
-                {
-                    title: 'Durum',
-                    data: 'isPublished',
-                    width: '10%',
-                    render: function (data) {
-                        return data ?
-                            '<span class="badge bg-success">Yayınlandı</span>' :
-                            '<span class="badge bg-warning text-dark">Taslak</span>';
-                    }
-                },
-                {
-                    title: 'Oluşturuldu',
-                    data: 'createdAt',
-                    width: '15%',
-                    render: function(data) {
-                        return new Intl.DateTimeFormat('tr-TR', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        }).format(new Date(data)).replace(',', ' -');
-                    }
-                }
-            ]);
-        });
+        // $(document).ready(() => {
+        //     initializeDataTableWithOption('Blog', [
+        //         {
+        //             title: 'Başlık',
+        //             data: 'title',
+        //             width: '20%'
+        //         },
+        //         {
+        //             title: 'Dil',
+        //             data: 'Language',
+        //             width: '10%',
+        //             render: function(data) {
+        //                 return data === 'tr' ? 
+        //                     '<span class="badge bg-primary">TR</span>' : 
+        //                     '<span class="badge bg-info text-dark">EN</span>';
+        //             }
+        //         },
+        //         {
+        //             title: 'İçerik Türü',
+        //             data: 'contentType.name',
+        //             width: '15%',
+        //             render: function (data) {
+        //                 return data || 'Yok';
+        //             }
+        //         },
+        //         {
+        //             title: 'Slug',
+        //             data: 'slug',
+        //             width: '15%'
+        //         },
+        //         {
+        //             title: 'Durum',
+        //             data: 'isPublished',
+        //             width: '10%',
+        //             render: function (data) {
+        //                 return data ?
+        //                     '<span class="badge bg-success">Yayınlandı</span>' :
+        //                     '<span class="badge bg-warning text-dark">Taslak</span>';
+        //             }
+        //         },
+        //         {
+        //             title: 'Oluşturuldu',
+        //             data: 'createdAt',
+        //             width: '15%',
+        //             render: function(data) {
+        //                 return new Intl.DateTimeFormat('tr-TR', {
+        //                     day: '2-digit',
+        //                     month: '2-digit',
+        //                     year: 'numeric',
+        //                     hour: '2-digit',
+        //                     minute: '2-digit',
+        //                     hour12: false
+        //                 }).format(new Date(data)).replace(',', ' -');
+        //             }
+        //         }
+        //     ]);
+        // });
     </script>
 } 

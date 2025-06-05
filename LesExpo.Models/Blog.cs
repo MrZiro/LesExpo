@@ -18,6 +18,10 @@ namespace LesExpo.Models
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = ValidationMessages.Required_Field)]
+        [Display(Name = "Dil")]
+        public string Language { get; set; } = "tr"; // Default to Turkish
+
         [Required(ErrorMessage = "Başlık alanı gereklidir")]
         [MaxLength(200, ErrorMessage = "Başlık 200 karakterden uzun olamaz")]
         [Display(Name = "Başlık")]

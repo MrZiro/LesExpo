@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LesExpo.web.Controllers
 {
+    [Route("{lang}")]
     public class BlogsController : Controller
     {
         private readonly ILogger<BlogsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
 
         public BlogsController(ILogger<BlogsController> logger, IUnitOfWork unitOfWork)
         {
@@ -14,9 +16,8 @@ namespace LesExpo.web.Controllers
             _unitOfWork = unitOfWork;
         }
 
-
-        [HttpGet]
-        [Route("tum-bloglar")]
+        [HttpGet("all-news")]
+        [HttpGet("tum-haberler")]
         public IActionResult Index()
         {
             var ContentTypes = _unitOfWork.ContentType.GetAll().ToList();
@@ -44,14 +45,15 @@ namespace LesExpo.web.Controllers
             }
 
             return View(blog);
-        }   
+        }
 
 
 
+        [Route("Blogs/GetAllBlogs")]
         public IActionResult GetAllBlogs()
         {
             var blogs = _unitOfWork.Blog.GetAll(includeProperties: "ContentType")
-                .Where(b => b.IsPublished)
+                .Where(b => b.IsPublished && b.Language == Lang)
                 .OrderByDescending(b => b.CreatedAt)
                 .ToList();
 

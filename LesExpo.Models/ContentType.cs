@@ -18,5 +18,11 @@ namespace LesExpo.Models
         [MaxLength(50, ErrorMessage = "İçerik türü adı 50 karakterden uzun olamaz")]
         [DisplayName("İçerik Türü")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.Required_Field)]
+        [MaxLength(50, ErrorMessage = "İçerik türü adı 50 karakterden uzun olamaz")]
+        [DisplayName("İçerik Türü")]
+        public string NameEn { get; set; }
+
     }
 }

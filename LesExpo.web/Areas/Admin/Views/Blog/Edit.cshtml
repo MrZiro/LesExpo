@@ -70,6 +70,14 @@
                         <span asp-validation-for="Blog.Title" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
+                        <label asp-for="Blog.Language" class="form-label">Dil</label>
+                        <select asp-for="Blog.Language" class="form-select">
+                            <option value="tr">Türkçe</option>
+                            <option value="en">English</option>
+                        </select>
+                        <span asp-validation-for="Blog.Language" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
                         <label asp-for="Blog.Slug" class="form-label">URL Slug</label>
                         <input asp-for="Blog.Slug" class="form-control" placeholder="Otomatik oluşturmak için boş bırakın" />
                         <span asp-validation-for="Blog.Slug" class="text-danger"></span>

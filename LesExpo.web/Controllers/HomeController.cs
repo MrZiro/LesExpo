@@ -16,8 +16,10 @@ public class HomeController : BaseController
         _unitOfWork = unitOfWork;
     }
 
-    [Route("{lang}/home")]
-    [Route("{lang}/anasayfa")]
+    [HttpGet("")]
+    [HttpGet("{lang:regex(^en$|^tr$)}")]
+    [HttpGet("{lang}/home")]
+    [HttpGet("{lang}/anasayfa")]
     public IActionResult Index()
     {
 
@@ -44,13 +46,9 @@ public class HomeController : BaseController
 
         ViewBag.Lang = lang;
 
-        return LocalizedView(model: homeVM);
+        return View(model: homeVM);
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

@@ -5,6 +5,7 @@ using LesExpo.DataAccess.Repository.IRepository;
 using LesExpo.Models;
 using LesExpo.Utility;
 using LesExpo.web.Services;
+using LesExpo.web.ViewEngines;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,6 +54,21 @@ builder.Services.AddHttpClient("FairApi", client =>
 });
 
 
+// View Engine Configuration
+
+builder.Services.AddRazorPages()
+    .AddRazorOptions(options =>
+    {
+        options.ViewLocationFormats.Add("/Views/{2}/{1}/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Views/{2}/Shared/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+
+        options.ViewLocationExpanders.Add(new CustomViewLocationExpander());
+    });
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -74,8 +90,10 @@ SeedDatabase();
 
 
 
+
+
 app.MapControllerRoute(
-    name: "AreaRoute",
+    name: "area",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 );
 
@@ -85,17 +103,11 @@ app.MapControllerRoute(
     constraints: new { lang = "en|tr" }
 );
 
-app.MapGet("/", context =>
-{
-    // Redirect to the localized home page based on the default language
-    var defaultLang = "tr"; // Change this to your desired default language
-    context.Response.Redirect($"/{defaultLang}/Anasayfa");
-    return Task.CompletedTask;
-});
-
-// app.MapControllerRoute(
-//     name: "default",
-//     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+    
+);
 
 app.Run();
 

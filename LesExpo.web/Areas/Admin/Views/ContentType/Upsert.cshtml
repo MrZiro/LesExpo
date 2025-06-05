@@ -12,15 +12,20 @@
             </h2>
         </div>
     </div>
-
     <form method="post" asp-action="Upsert">
         <input asp-for="Id" hidden />
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="mb-3">
-            <label asp-for="Name" class="form-label">İsim</label>
+            <label asp-for="Name" class="form-label">İsim (TR)</label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="NameEn" class="form-label">İsim (EN)</label>
+            <input asp-for="NameEn" class="form-control" />
+            <span asp-validation-for="NameEn" class="text-danger"></span>
         </div>
 
         <div class="text-end mt-4">
