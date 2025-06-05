@@ -12,7 +12,6 @@ namespace LesExpo.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]
-    [Route("Admin/[controller]/[action]")]
     public class BlogController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
