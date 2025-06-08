@@ -59,11 +59,23 @@ builder.Services.AddHttpClient("FairApi", client =>
 builder.Services.AddRazorPages()
     .AddRazorOptions(options =>
     {
+        // PRIORITY ORDER: Areas first (no language), then language-specific public views
+        
+        // 1. AREAS (Admin, etc.) - Use standard ASP.NET Core area placeholders
+        // {2} = Area name, {1} = Controller, {0} = Action
+        options.ViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
+        
+        // 2. LANGUAGE-SPECIFIC PUBLIC VIEWS - Custom language expansion
+        // These will be expanded by CustomViewLocationExpander to use language instead of {2}
         options.ViewLocationFormats.Add("/Views/{2}/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/{2}/Shared/{0}.cshtml");
+        
+        // 3. DEFAULT FALLBACK VIEWS - Last resort
         options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
 
+        // Custom expander ONLY for public controllers (replaces {2} with language)
         options.ViewLocationExpanders.Add(new CustomViewLocationExpander());
     });
 
@@ -92,21 +104,23 @@ SeedDatabase();
 
 
 
+// 1. AREA ROUTING - For all areas (Admin, etc.) - Language agnostic
 app.MapControllerRoute(
     name: "area",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
 );
 
+// 2. PUBLIC LOCALIZED ROUTING - Language-specific public controllers
 app.MapControllerRoute(
     name: "localized",
     pattern: "{lang}/{controller=Home}/{action=Index}/{id?}",
     constraints: new { lang = "en|tr" }
 );
 
+// 3. DEFAULT FALLBACK ROUTING - Non-localized public controllers
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
-    
 );
 
 app.Run();

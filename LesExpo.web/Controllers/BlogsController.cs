@@ -26,7 +26,7 @@ namespace LesExpo.web.Controllers
         }
 
         [HttpGet]
-        [Route("Blog/{slug}")]
+        [Route("Blog-detail/{slug}")]
         public IActionResult Details(string slug)
         {
             if (string.IsNullOrEmpty(slug))

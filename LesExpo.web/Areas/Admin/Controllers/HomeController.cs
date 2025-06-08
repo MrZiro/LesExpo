@@ -17,6 +17,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             var model = new DashboardViewModel

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace LesExpo.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+     [Authorize(Roles = SD.Role_Admin)] // Temporarily commented for testing
     public class BlogController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -34,6 +34,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        // DEBUG: Simple test action to verify routing works
+        [HttpGet]
+        public IActionResult Test()
+        {
+            return Content("BlogController Test Action - Routing Works!");
         }
 
         // GET: Admin/Blog/Create

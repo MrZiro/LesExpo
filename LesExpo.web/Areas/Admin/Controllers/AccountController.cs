@@ -62,7 +62,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
                     if (string.IsNullOrEmpty(loginVM.RedirectUrl))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Home", new { area = "Admin"});
                     }
                     else
                     {
