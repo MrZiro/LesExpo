@@ -17,7 +17,7 @@ public class HomeController : BaseController
     }
 
     [HttpGet("")]
-    [HttpGet("{lang:regex(^en$|^tr$)}")]
+    [HttpGet("{lang:regex(^tr|en$)}")]
     [HttpGet("{lang}/home")]
     [HttpGet("{lang}/anasayfa")]
     public IActionResult Index()
@@ -38,13 +38,11 @@ public class HomeController : BaseController
                     .ToList();
 
         // Create and populate ViewModel
-        var homeVM = new HomeViewModel
+        var homeVM = new HomeVM
         {
             Sliders = sliders,
             Blogs = blogs
         };
-
-        ViewBag.Lang = lang;
 
         return View(model: homeVM);
     }

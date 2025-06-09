@@ -15,18 +15,20 @@ namespace LesExpo.web.Controllers
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-
+        
         [HttpGet("all-news")]
         [HttpGet("tum-haberler")]
         public IActionResult Index()
         {
+
             var ContentTypes = _unitOfWork.ContentType.GetAll().ToList();
 
             return View(ContentTypes);
         }
 
         [HttpGet]
-        [Route("Blog-detail/{slug}")]
+        [Route("blog-detail/{slug}")]
+        [Route("blog-detay/{slug}")]
         public IActionResult Details(string slug)
         {
             if (string.IsNullOrEmpty(slug))
@@ -36,7 +38,7 @@ namespace LesExpo.web.Controllers
 
             // Find blog by slug with ContentType included
             var blog = _unitOfWork.Blog.GetAll(includeProperties: "ContentType")
-                .FirstOrDefault(b => b.Slug == slug && b.IsPublished);
+                .FirstOrDefault(b => b.Slug == slug && b.IsPublished && b.Language == Lang);
 
             if (blog == null)
             {
@@ -44,6 +46,7 @@ namespace LesExpo.web.Controllers
                 return NotFound();
             }
 
+            ViewData["Lang"] = Lang;
             return View(blog);
         }
 

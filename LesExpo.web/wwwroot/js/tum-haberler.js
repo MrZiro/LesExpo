@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cardDataUrl = "/Blogs/GetAllBlogs";
+
+  const lang = getLangFromUrl();
+  const cardDataUrl = `/${lang}/Blogs/GetAllBlogs`;
   const cardGrid = document.getElementById("cardGrid-blogs");
   let allCards = [];
   let currentFilter = "all";
@@ -8,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "card-blogs";
     card.setAttribute("data-category", category);
-    card.setAttribute("data-url", `/Blog/${slug}`);
+
+    if (lang === "en") {
+      card.setAttribute("data-url", `/${lang}/blog-detail/${slug}`);
+    } else {
+      card.setAttribute("data-url", `/${lang}/blog-detay/${slug}`);
+    }
 
     card.innerHTML = `
       <div class="card-image-container-blogs">
@@ -31,7 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderCards = (cards) => {
     cardGrid.innerHTML = "";
     if (!cards.length) {
-      cardGrid.innerHTML = `<div class="no-results-blogs">Bu kategoride henüz içerik bulunmamaktadır.</div>`;
+      if (lang === "en") {
+        cardGrid.innerHTML = `<div class="no-results-blogs">There is no content in this category.</div>`;
+      } else {
+        cardGrid.innerHTML = `<div class="no-results-blogs">Bu kategoride henüz içerik bulunmamaktadır.</div>`;
+      }
       return;
     }
     cards.forEach(card => cardGrid.appendChild(createCard(card)));
@@ -65,3 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchCards();
 });
+
+
+
+function getLangFromUrl() {
+  const path = window.location.pathname; // Gets the path part of the URL, e.g., "/en/home/index"
+  const segments = path.split('/');      // Splits the path into an array: ["", "en", "home", "index"]
+
+  // The 'lang' segment will be at index 1 if the URL structure is consistent
+  if (segments.length > 1) {
+    return segments[1];
+  }
+
+  return null; // Or a default language if 'lang' is not found
+}

@@ -44,10 +44,10 @@
 <div class="container-blogs">
     <h2 class="heading-blogs">BFM Gündem</h2>
     <div class="filter-buttons-blogs" id="filterButtons-blogs">
-        <button class="filter-button-blogs active-blogs" data-category="all">Tümü</button>
+        <button class="filter-button-blogs active-blogs" data-category="all">All</button>
         @foreach (var contentType in Model)
         {
-            <button class="filter-button-blogs" data-category="@contentType.Name">@contentType.Name</button>
+            <button class="filter-button-blogs" data-category="@contentType.NameEn">@contentType.NameEn</button>
         }
 
     </div>

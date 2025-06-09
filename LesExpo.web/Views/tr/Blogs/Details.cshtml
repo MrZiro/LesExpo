@@ -4,6 +4,7 @@
     ViewData["Title"] = Model.Title;
     ViewData["Description"] = Model.MetaDescription;
     ViewData["Keywords"] = Model.MetaKeywords;
+    var lang = ViewData["Lang"].ToString();
   }
   @section Styles{
     <link rel="stylesheet" href="~/css/blog-single-page.css">
@@ -44,9 +45,9 @@
 
 <div class="container py-5">
     <div class="breadcrumb justify-content-center mt-5">
-        <a href="/">Ana Sayfa</a> /
-        <a href="/tum-bloglar">Bloglar</a> /
-        <a href="/Blog/@Model.Slug">@Model.Title</a>
+        <a asp-controller="Home" asp-action="Index" asp-route-lang="@lang">Ana Sayfa</a> /
+        <a asp-controller="Blogs" asp-action="Index" asp-route-lang="@lang">Bloglar</a> /
+        <a asp-controller="Blogs" asp-action="Details" asp-route-lang="@lang" asp-route-slug="@Model.Slug">@Model.Title</a>
     </div>
     <div class="row justify-content-center">
         <div class="col-12">
@@ -102,9 +103,11 @@
             fetchData();
         });
 
+        var lang = getLangFromUrl();
+
         function fetchData(){
             $.ajax({
-                url: "/Blogs/GetAllBlogs",
+                url: `/${lang}/Blogs/GetAllBlogs`,
                 type: "GET",
                 success: function(response){
                     console.log(response);
@@ -124,7 +127,7 @@
                                 </div>
                                 <div class="card-content-haberler">
                                     <h3 class="card-title-haberler">${blog.title}</h3>
-                                    <a href="/Blog/${blog.slug}" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
+                                    <a href="/${lang}/blog-detay/${blog.slug}" class="read-more-haberler">Devamını Oku <i class="fas fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         `;
@@ -135,6 +138,19 @@
                     console.error("Error from fetchData:", error);
                 }
             });
+        }
+
+        
+        function getLangFromUrl() {
+        const path = window.location.pathname; // Gets the path part of the URL, e.g., "/en/home/index"
+        const segments = path.split('/');      // Splits the path into an array: ["", "en", "home", "index"]
+
+        // The 'lang' segment will be at index 1 if the URL structure is consistent
+        if (segments.length > 1) {
+            return segments[1];
+        }
+
+        return null; // Or a default language if 'lang' is not found
         }
     </script>
 
