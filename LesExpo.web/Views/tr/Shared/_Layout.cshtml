@@ -4,6 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LesExpo</title>
+    
+    @if (!string.IsNullOrEmpty(ViewData["Description"] as string))
+    {
+        <meta name="description" content="@ViewData["Description"]" />
+    }
+    
+    @if (!string.IsNullOrEmpty(ViewData["Keywords"] as string))
+    {
+        <meta name="keywords" content="@ViewData["Keywords"]" />
+    }
+    
+    <partial name="_SEOHelpers" />
+    
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
     @* <link rel="stylesheet" href="~/LesExpo.web.styles.css" asp-append-version="true" /> *@

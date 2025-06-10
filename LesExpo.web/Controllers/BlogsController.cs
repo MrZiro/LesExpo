@@ -26,8 +26,8 @@ namespace LesExpo.web.Controllers
             var ContentTypes = _unitOfWork.ContentType.GetAll().ToList();
 
             // Add URL data to ViewBag for SEO and navigation
-            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Index", Lang);
-            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Index", Lang);
+            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Blogs", "Index", Lang);
+            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Blogs", "Index", Lang);
 
             return View(ContentTypes);
         }
@@ -53,8 +53,8 @@ namespace LesExpo.web.Controllers
             }
 
             // Add URL data to ViewBag for SEO and navigation
-            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Details", Lang, new { slug });
-            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Details", Lang, new { slug });
+            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Blogs", "Details", Lang, new { slug });
+            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Blogs", "Details", Lang, new { slug });
             ViewData["Lang"] = Lang;
             
             return View(blog);

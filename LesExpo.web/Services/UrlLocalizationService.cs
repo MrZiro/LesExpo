@@ -7,23 +7,14 @@ namespace LesExpo.web.Services
     public class UrlLocalizationService : IUrlLocalizationService
     {
         private readonly ILogger<UrlLocalizationService> _logger;
-        private readonly LinkGenerator _linkGenerator;
         private readonly LocalizedRoutesConfig _routesConfig;
         
         public UrlLocalizationService(
             ILogger<UrlLocalizationService> logger, 
-            LinkGenerator linkGenerator,
             IOptions<LocalizedRoutesConfig> routesConfig)
         {
             _logger = logger;
-            _linkGenerator = linkGenerator;
             _routesConfig = routesConfig.Value;
-        }
-        
-        public string GetLocalizedRoute(string action, string language)
-        {
-            // Default to "Blogs" controller for backward compatibility
-            return GetLocalizedRoute("Blogs", action, language);
         }
         
         public string GetLocalizedRoute(string controller, string action, string language)
@@ -38,36 +29,39 @@ namespace LesExpo.web.Services
             return action.ToLower(); // Fallback
         }
         
-        public bool IsValidRouteForLanguage(string route, string language, string action)
+        public bool IsValidRouteForLanguage(string controller, string route, string language, string action)
         {
-            var expectedRoute = GetLocalizedRoute(action, language);
+            var expectedRoute = GetLocalizedRoute(controller, action, language);
             return string.Equals(route, expectedRoute, StringComparison.OrdinalIgnoreCase);
         }
         
-        public string GetCanonicalUrl(string action, string language, object? routeValues = null)
+        public string GetCanonicalUrl(string controller, string action, string language, object? routeValues = null)
         {
-            var localizedRoute = GetLocalizedRoute(action, language);
+            var localizedRoute = GetLocalizedRoute(controller, action, language);
             
-            var values = new RouteValueDictionary(routeValues)
+            // Build the URL based on the localized route configuration
+            var baseUrl = language.ToLower() == "tr" ? "https://lesexpo.com/tr" : "https://lesexpo.com/en";
+            
+            // For AboutUs controller, add the appropriate path segment
+            if (controller.Equals("AboutUs", StringComparison.OrdinalIgnoreCase))
             {
-                ["lang"] = language.ToLower(),
-                ["action"] = localizedRoute
-            };
+                baseUrl += language.ToLower() == "tr" ? "/hakkimizda" : "/about-us";
+            }
             
-            return _linkGenerator.GetPathByAction(action, "Blogs", values) ?? $"/{language}/{localizedRoute}";
+            return $"{baseUrl}/{localizedRoute}";
         }
         
-        public Dictionary<string, string> GetAlternateLanguageUrls(string action, string currentLanguage, object? routeValues = null)
+        public Dictionary<string, string> GetAlternateLanguageUrls(string controller, string action, string currentLanguage, object? routeValues = null)
         {
             var alternateUrls = new Dictionary<string, string>();
-            var actionRoutes = _routesConfig.GetAllRoutesForAction("Blogs", action);
+            var actionRoutes = _routesConfig.GetAllRoutesForAction(controller, action);
             
             foreach (var kvp in actionRoutes)
             {
                 var lang = kvp.Key;
                 if (lang != currentLanguage.ToLower())
                 {
-                    alternateUrls[lang] = GetCanonicalUrl(action, lang, routeValues);
+                    alternateUrls[lang] = GetCanonicalUrl(controller, action, lang, routeValues);
                 }
             }
             
@@ -75,19 +69,19 @@ namespace LesExpo.web.Services
         }
         
         /// <summary>
-        /// Gets all valid routes for a specific action across all languages
+        /// Gets all valid routes for a specific controller and action across all languages
         /// </summary>
-        public IEnumerable<string> GetAllRoutesForAction(string action)
+        public IEnumerable<string> GetAllRoutesForAction(string controller, string action)
         {
-            return _routesConfig.GetAllRoutesForAction("Blogs", action).Values;
+            return _routesConfig.GetAllRoutesForAction(controller, action).Values;
         }
         
         /// <summary>
-        /// Finds the correct language for a given route and action
+        /// Finds the correct language for a given route, controller and action
         /// </summary>
-        public string? GetLanguageForRoute(string route, string action)
+        public string? GetLanguageForRoute(string controller, string route, string action)
         {
-            return _routesConfig.GetLanguageForRoute("Blogs", action, route);
+            return _routesConfig.GetLanguageForRoute(controller, action, route);
         }
     }
 } 

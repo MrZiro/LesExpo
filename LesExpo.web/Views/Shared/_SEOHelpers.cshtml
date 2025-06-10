@@ -1,11 +1,12 @@
 @{
-    var canonicalUrl = ViewBag.CanonicalUrl as string;
-    var alternateUrls = ViewBag.AlternateUrls as Dictionary<string, string>;
+    var canonicalUrl = ViewData["CanonicalUrl"] as string;
+    var alternateUrls = ViewData["AlternateUrls"] as Dictionary<string, string>;
+    var alternateUrlsArray = ViewData["AlternateUrls"] as string[];
 }
 
 @if (!string.IsNullOrEmpty(canonicalUrl))
 {
-    <link rel="canonical" href="@Url.Content($"~{canonicalUrl}")" />
+    <link rel="canonical" href="@canonicalUrl" />
 }
 
 @if (alternateUrls != null)
@@ -13,6 +14,14 @@
     foreach (var alternate in alternateUrls)
     {
         var hreflang = alternate.Key == "en" ? "en-US" : "tr-TR";
-        <link rel="alternate" hreflang="@hreflang" href="@Url.Content($"~{alternate.Value}")" />
+        <link rel="alternate" hreflang="@hreflang" href="@alternate.Value" />
+    }
+}
+else if (alternateUrlsArray != null && alternateUrlsArray.Length > 0)
+{
+    @foreach (var url in alternateUrlsArray)
+    {
+        var hreflang = url.Contains("/en/") ? "en-US" : "tr-TR";
+        <link rel="alternate" hreflang="@hreflang" href="@url" />
     }
 } 
