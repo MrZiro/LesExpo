@@ -304,3 +304,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* Search Functionality */
+document.addEventListener('DOMContentLoaded', function() {
+  // Arama butonunu seç
+  const searchToggleButton = document.querySelector('.search-toggle-button');
+  const searchOverlay = document.querySelector('.search-overlay');
+  const searchClose = document.querySelector('.search-close');
+  const searchInput = document.querySelector('.search-input');
+
+  // Arama butonuna tıklandığında
+  searchToggleButton.addEventListener('click', function() {
+    searchOverlay.classList.add('active');
+    searchInput.focus();
+  });
+
+  // Kapatma butonuna tıklandığında
+  searchClose.addEventListener('click', function() {
+    searchOverlay.classList.remove('active');
+  });
+
+  // ESC tuşuna basıldığında
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+      searchOverlay.classList.remove('active');
+    }
+  });
+
+  // Arama çubuğuna tıklandığında overlay'i kapatma
+  searchOverlay.addEventListener('click', function(e) {
+    if (e.target === searchOverlay) {
+      searchOverlay.classList.remove('active');
+    }
+  });
+});
+
+
