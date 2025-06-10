@@ -1,12 +1,13 @@
 @{
-    ViewData["Title"] = "Ziyaretçi Profili";
-    ViewData["Description"] = "Ziyaretçi Profili";
-    ViewData["Keywords"] = "Ziyaretçi Profili";
-    ViewData["CanonicalUrl"] = "https://lesexpo.com/tr/ziyaretci-profili";
-    ViewData["AlternateUrls"] = new string[] { "https://lesexpo.com/en/visitor-profile" };
+    ViewData["Title"] = "Why Visiting";
+    ViewData["Description"] = "Why Visiting";
+    ViewData["Keywords"] = "Why Visiting";
+    ViewData["CanonicalUrl"] = "~/en/why-visiting";
+    ViewData["AlternateUrls"] = new string[] { "~/tr/neden-ziyaret-etmelisiniz" };
 }
 @section Styles {
-  <link rel="stylesheet" href="~/css/hakkimizda.css">
+    <link rel="stylesheet" href="~/css/katilimci-profili.css">
+  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
     <style>
     .banner {
       position: relative;
@@ -39,8 +40,8 @@
   <div class="banner">
     <div class="banner-yazi">LES-EXPO</div>
     <div class="breadcrumb-1">
-      <a href="/tr">Ana Sayfa /</a>
-      <a href="/tr/ziyaretci-profili">Ziyaretçi Profili</a>
+      <a href="/en">Home Page /</a>
+      <a href="/en/why-visiting">Why Visiting</a>
     </div>
   </div>
 
@@ -51,14 +52,14 @@
         <!-- Main content -->
         <div class="container-nze content-area">
             <section>
-                <h1 class="h1-ziyaretci mb-3 text-dark">LES-EXPO<br>NEDEN ZİYARET ETMELİSİNİZ ?</h1>
+                <h1 class="h1-ziyaretci mb-3 text-dark">LES-EXPO<br>WHY SHOULD YOU VISIT?</h1>
                 <div class="card-grid-nze">
                     <!-- Kart 1 -->
                     <div class="card-nze">
                         <div class="icon-nze">
                             <i class="fas fa-lightbulb"></i>
                         </div>
-                        <p class="card-text-nze">Sektördeki Yenilikleri Keşfedin.</p>
+                        <p class="card-text-nze">Discover Innovations in the Industry.</p>
                     </div>
 
                     <!-- Kart 2 -->
@@ -66,28 +67,28 @@
                         <div class="icon-nze">
                             <i class="far fa-handshake"></i>
                         </div>
-                        <p class="card-text-nze">Lider Firmalarla Tanışın.</p>
+                        <p class="card-text-nze">Meet Leading Companies.</p>
                     </div>
 
                     <div class="card-nze">
                         <div class="icon-nze">
                             <i class="fa-solid fa-award"></i>
                         </div>
-                        <p class="card-text-nze">Eğitim ve Seminer Fırsatları.</p>
+                        <p class="card-text-nze">Training and Seminar Opportunities.</p>
                     </div>
 
                     <div class="card-nze">
                         <div class="icon-nze">
                             <i class="fa-solid fa-network-wired"></i>
                         </div>
-                        <p class="card-text-nze">Ağ Kurma İmkanları.</p>
+                        <p class="card-text-nze">Networking Opportunities.</p>
                     </div>
 
                     <div class="card-nze">
                         <div class="icon-nze">
                             <i class="fa-solid fa-globe"></i>
                         </div>
-                        <p class="card-text-nze">Geleceğe Yön Verecek Teknolojiler.</p>
+                        <p class="card-text-nze">Technologies That Will Shape the Future.</p>
                     </div>
 
                     <!-- Kart 3 -->
@@ -95,7 +96,7 @@
                         <div class="icon-nze">
                             <i class="fas fa-cubes"></i>
                         </div>
-                        <p class="card-text-nze">Sektörel Çözümleri Bir Arada Görün.</p>
+                        <p class="card-text-nze">See Sectoral Solutions Together.</p>
                     </div>
 
                     <!-- Kart 4 -->
@@ -103,7 +104,7 @@
                         <div class="icon-nze">
                             <i class="fas fa-leaf"></i>
                         </div>
-                        <p class="card-text-nze">Sürdürülebilirlik Çözümleri Keşfedin</p>
+                        <p class="card-text-nze">Discover Sustainability Solutions</p>
                     </div>
 
                     <!-- Kart 5 -->
@@ -111,7 +112,7 @@
                         <div class="icon-nze">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <p class="card-text-nze">Rekabetçi Avantaj Kazanın</p>
+                        <p class="card-text-nze">Gain Competitive Advantage</p>
                     </div>
 
                     <!-- Kart 6 -->
@@ -119,7 +120,7 @@
                         <div class="icon-nze">
                             <i class="fas fa-industry"></i>
                         </div>
-                        <p class="card-text-nze">Endüstriyel Altyapı İhtiyacınızı Karşılayın </p>
+                        <p class="card-text-nze">Meet Your Industrial Infrastructure Needs</p>
                     </div>
                 </div>
             </section>
@@ -135,8 +136,3 @@
     <i class="fas fa-bars"></i>
 </button>
 
-
-@section Scripts {
-  <script src="~/js/hakkimizda.js"></script>
-
-}

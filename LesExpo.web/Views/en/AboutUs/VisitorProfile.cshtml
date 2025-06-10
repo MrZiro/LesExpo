@@ -1,12 +1,13 @@
 @{
-    ViewData["Title"] = "Ziyaretçi Profili";
-    ViewData["Description"] = "Ziyaretçi Profili";
-    ViewData["Keywords"] = "Ziyaretçi Profili";
-    ViewData["CanonicalUrl"] = "https://lesexpo.com/tr/ziyaretci-profili";
-    ViewData["AlternateUrls"] = new string[] { "https://lesexpo.com/en/visitor-profile" };
+    ViewData["Title"] = "Visitor Profile";
+    ViewData["Description"] = "Visitor Profile";
+    ViewData["Keywords"] = "Visitor Profile";
+    ViewData["CanonicalUrl"] = "~/en/visitor-profile";
+    ViewData["AlternateUrls"] = new string[] { "~/tr/ziyaretci-profili" };
 }
 @section Styles {
-  <link rel="stylesheet" href="~/css/hakkimizda.css">
+    <link rel="stylesheet" href="~/css/katilimci-profili.css">
+  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
     <style>
     .banner {
       position: relative;
@@ -39,8 +40,8 @@
   <div class="banner">
     <div class="banner-yazi">LES-EXPO</div>
     <div class="breadcrumb-1">
-      <a href="/tr">Ana Sayfa /</a>
-      <a href="/tr/ziyaretci-profili">Ziyaretçi Profili</a>
+      <a href="/en">Home Page /</a>
+      <a href="/en/visitor-profile">Visitor Profile</a>
     </div>
   </div>
 
@@ -52,7 +53,7 @@
         <!-- Main content -->
         <div class="container-ziyaretci content-area">
           <section class="">
-            <h1 class="h1-ziyaretci ">LES-EXPO<br>ZİYARETÇİ PROFİLİ</h1>
+            <h1 class="h1-ziyaretci ">LES-EXPO<br>VİSİTOR PROFİLE</h1>
             <div class="container-nze content-area">
               <div class="card-grid-nze">
                 <!-- Kart 1 -->
@@ -60,7 +61,7 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-drafting-compass"></i>
                   </div>
-                  <p class="card-text-nze"> Yük mühendisliği uzmanları ve mühendisler</p>
+                  <p class="card-text-nze"> Load engineering specialists and engineers</p>
                 </div>
 
                 <!-- Kart 2 -->
@@ -68,28 +69,28 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-truck-fast"></i>
                   </div>
-                  <p class="card-text-nze"> Lojistik ve taşıma sektöründen profesyoneller</p>
+                  <p class="card-text-nze"> Professionals from the logistics and transportation sector</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-gears"></i>
                   </div>
-                  <p class="card-text-nze">Makine ve ekipman tedarikçileri</p>
+                  <p class="card-text-nze">Machinery and equipment suppliers</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-microchip"></i>
                   </div>
-                  <p class="card-text-nze">Teknoloji ve dijital dönüşüm profesyonelleri</p>
+                  <p class="card-text-nze">Technology and digital transformation professionals</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-leaf"></i>
                   </div>
-                  <p class="card-text-nze">Çevre dostu ve sürdürülebilirlik uzmanları</p>
+                  <p class="card-text-nze">Eco-friendly and sustainability experts</p>
                 </div>
 
                 <!-- Kart 3 -->
@@ -97,7 +98,7 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-user-graduate"></i>
                   </div>
-                  <p class="card-text-nze">Akademisyenler ve araştırmacılar</p>
+                  <p class="card-text-nze">Academicians and researchers</p>
                 </div>
 
                 <!-- Kart 4 -->
@@ -105,7 +106,7 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-briefcase"></i>
                   </div>
-                  <p class="card-text-nze"> İş dünyası ve yatırımcılar</p>
+                  <p class="card-text-nze"> Business world and investors</p>
                 </div>
 
                 <!-- Kart 5 -->
@@ -113,7 +114,7 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-landmark"></i>
                   </div>
-                  <p class="card-text-nze"> Kamu kurumları ve regülatörler</p>
+                  <p class="card-text-nze"> Public institutions and regulators</p>
                 </div>
 
                 <!-- Kart 6 -->
@@ -121,42 +122,42 @@
                   <div class="icon-nze">
                     <i class="fa-solid fa-pen-ruler"></i>
                   </div>
-                  <p class="card-text-nze">Endüstriyel tasarımcılar ve proje yöneticileri</p>
+                  <p class="card-text-nze">Industrial designers and project managers</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-newspaper"></i>
                   </div>
-                  <p class="card-text-nze">Medya ve basın temsilcileri</p>
+                  <p class="card-text-nze">Media and press representatives</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-hard-hat"></i>
                   </div>
-                  <p class="card-text-nze">Maden sektörü profesyonelleri</p>
+                  <p class="card-text-nze">Mining industry professionals</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-road"></i>
                   </div>
-                  <p class="card-text-nze">Yol bakım ve inşaat sektörü profesyonelleri</p>
+                  <p class="card-text-nze">Road maintenance and construction industry professionals</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-truck-ramp-box"></i>
                   </div>
-                  <p class="card-text-nze"> Kaldırma ve taşıma sektörü profesyonelleri</p>
+                  <p class="card-text-nze"> Lifting and transport industry professionals</p>
                 </div>
 
                 <div class="card-nze">
                   <div class="icon-nze">
                     <i class="fa-solid fa-industry"></i>
                   </div>
-                  <p class="card-text-nze">Endüstriyel tedarikçiler ve üreticiler</p>
+                  <p class="card-text-nze">Industrial suppliers and manufacturers</p>
                 </div>
               </div>
             </div>
@@ -170,7 +171,3 @@
     </button>
 
 
-@section Scripts {
-  <script src="~/js/hakkimizda.js"></script>
-
-}

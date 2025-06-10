@@ -1,0 +1,196 @@
+@{
+    ViewData["Title"] = "Frequently Asked Questions";
+    ViewData["Description"] = "Frequently Asked Questions";
+    ViewData["Keywords"] = "Frequently Asked Questions";
+    ViewData["CanonicalUrl"] = "~/en/faq";
+    ViewData["AlternateUrls"] = new string[] { "~/tr/sikca-sorulan-sorular" };
+}
+@section Styles {
+
+  <link rel="stylesheet" href="~/css/sss.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES4.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      color: white;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+    }
+    .pharmaist-section{text-align: center;}
+
+  </style>
+}
+
+
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+        <a href="/en">Home Page</a> /
+        <a href="/en/faq">Frequently Asked Questions</a>
+    </div>
+  </div>
+
+
+        <div class="container main-container">
+            <div class="row">
+                <!-- Sidebar -->
+            <partial name="Components/AboutUs/_Sidebar" />
+                <!-- Main content -->
+                <div class=" content-area">
+                    <div class="container-sss faq-container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 class="faq-title">Frequently Asked Questions (F.A.Q.) by Visitors</h1>
+                                <div class="divider"></div>
+                            </div>
+                        </div>
+
+                        <div class="row position-relative">
+                            <div class="col-lg-9">
+                                <div class="accordion" id="faqAccordion">
+                                    <!-- FAQ Item 1 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                                aria-expanded="false" aria-controls="collapseOne">
+                                                How can I register as a visitor?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse"
+                                            aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                You can register as a visitor online from the "Online Ticket" section on
+                                                the homepage of our website. You can also register at the entrance on
+                                                the day of the event, but online registration will provide faster entry.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 2 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                What is the fair entrance fee?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                            aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                The entrance fee to our fair is 200 TL.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 3 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                What are the visiting hours of the fair?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                            aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                The fair is open to visitors between 10:00-18:00 on weekdays and
+                                                10:00-20:00 on weekends. Last entry is 1 hour before closing.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 4 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                Where can I find the Fair Layout Plan?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                            aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                You can download the fair layout plan from the "Fair Area" section of
+                                                our website. You can also get a free printed plan at the fair entrance.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 6 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingSix">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseSix"
+                                                aria-expanded="false" aria-controls="collapseSix">
+                                                Where can I access the Participant List?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseSix" class="accordion-collapse collapse"
+                                            aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                You can access the participant list from the "Participant List" section
+                                                of our website. The list is updated regularly.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 7 -->
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingSeven">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapseSeven"
+                                                aria-expanded="false" aria-controls="collapseSeven">
+                                                Where exactly is the Fairground located?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseSeven" class="accordion-collapse collapse"
+                                            aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                The fair will be held at the Istanbul Fair Center. Address: Yeşilköy
+                                                Istanbul, Fair Center, 34149 Bakırköy/İstanbul. You can find public
+                                                transportation and private vehicle transportation information on our
+                                                "Transportation" page.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 d-none d-lg-block">
+                                <div class="question-marks">
+                                    <div class="question-mark question-mark-1">?</div>
+                                    <div class="question-mark question-mark-2">?</div>
+                                    <div class="question-mark question-mark-3">?</div>
+                                    <div class="question-mark question-mark-4">?</div>
+                                </div>
+                            </div>
+
+                            <div class="right-border d-none d-lg-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar mobile toggle button -->
+        <button class="sidebar-toggle-button d-md-none">
+            <i class="fas fa-bars"></i>
+        </button>

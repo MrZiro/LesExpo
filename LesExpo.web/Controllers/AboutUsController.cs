@@ -80,6 +80,12 @@ namespace LesExpo.web.Controllers
         {
             return View();
         }
+        [HttpGet("faq")]
+        [HttpGet("sikca-sorulan-sorular")]
+        public IActionResult faq()
+        {
+            return View();
+        }
         
     }
 }
