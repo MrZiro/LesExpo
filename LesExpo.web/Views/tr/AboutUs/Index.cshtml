@@ -1,0 +1,271 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Hakkımızda";
+    ViewData["Description"] = "Hakkımızda";
+    ViewData["Keywords"] = "Hakkımızda";
+    ViewData["CanonicalUrl"] = "~/tr/hakkimizda";
+    ViewData["AlternateUrls"] = new string[] { "~/en/about-us" };
+}
+
+@section styles{
+    <link rel="stylesheet" href="~/css/hakkimizda.css">
+     <style>
+        .banner {
+            position: relative;
+            background-image: url('/images/LES5.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner::before {
+            content: '';
+            background-color: rgba(0, 0, 0, 0.1);
+            /* parlaklık azaltıcı katman */
+            z-index: 1;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 178px;
+            color: white;
+        }
+
+        .breadcrumb-1 a {
+            color: white;
+        }
+        .pharmaist-section{text-align: center;}
+    </style>
+}
+
+
+    <div class="banner">
+        <div class="banner-yazi">LES-EXPO</div>
+        <div class="breadcrumb-1">
+            <a href="index.html">Ana Sayfa /</a>
+            <a href="hakkimizda.html">Hakkımızda</a>
+        </div>
+    </div>
+
+    <div class="container main-container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 sidebar-container">
+                    <div class="sidebar">
+                        <div class="sidebar-sticky">
+                            <div class="sidebar-header p-3 mb-3 text-center">
+                                <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
+                                <p class="small mb-0" data-translate="hakkimizda.sidebar.subTitle">Hakkında
+                                </p>
+                            </div>
+                            <ul class="nav flex-column">
+                                <!-- Hakkımızda -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                                        data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
+                                        <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
+                                        <span data-translate="hakkimizda.sidebar.aboutUs">Hakkımızda</span>
+                                    </a>
+                                    <div class="collapse show" id="hakkimizdaSubmenu">
+                                        <ul class="nav flex-column submenu">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="hakkimizda.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.bfmAbout">LESEXPO
+                                                        Hakkında</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="fuar-kunyesi.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.presidentMessage">Fuar
+                                                        Künyesi</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="fuar-alani.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.qualityPolicy">Fuar
+                                                        Alanı</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ulasim.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.ourTeam">Nasıl Ulaşırım
+                                                        ?</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="fuar-sonuc-raporu.html">
+                                                    <i class="fas fa-angle-right me-2"></i>
+                                                    <span data-translate="hakkimizda.sidebar.boardOfDirectors">Fuar
+                                                        Sonuç
+                                                        Raporu</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main content -->
+                <div class="content-area">
+                    <section class="pharmaist-section">
+                        <div class="pharmaist-text">
+                            <h2 class="fw-bold fs-1">LESEXPO HAKKINDA</h2>
+                            <h3>9-11 Eylül 2025'te İstanbul'da Buluşuyor!</h3>
+                            <p>
+                                Yük mühendisliği hizmetleri alanında dünyanın ilk ve tek ihtisas fuarı olan LES-EXPO,
+                                9-11 Eylül 2025 tarihleri arasında İstanbul Fuar Merkezinde düzenleniyor. Yük
+                                Mühendisliği Birliği (YMB) ve KFA Fuarcılık iş birliğiyle hayata geçirilen bu dev
+                                organizasyon, Avrupa, Asya ve Afrika'dan sektörün önde gelen firmalarını bir araya
+                                getirerek, yük mühendisliği ekosisteminin tüm bileşenlerini tek çatı altında topluyor.
+                            </p>
+                            <p>İnşaat, enerji, denizcilik, ağır sanayi ve altyapı gibi sektörlerde kritik rol üstlenen
+                                yük mühendisliği hizmetleri, Türkiye ekonomisine yıllık yaklaşık 12 milyar dolarlık
+                                katkı sağlıyor. LES-EXPO, vinç, makine, araç, ekipman ve hizmet sağlayıcılarını bir
+                                araya getirerek, sektördeki en yeni teknolojiler ve çözümler hakkında bilgi edinme
+                                fırsatı sunacak.
+                            </p>
+                            <p>
+                                İstanbul Fuar Merkezi'nde hem kapalı hem de açık alanlarda gerçekleştirilecek fuar, üç
+                                kıtadan ziyaretçileri ağırlayarak, yük mühendisliği sektörünün küresel iş birliğini
+                                artırmayı hedefliyor.
+                                Yük mühendisliği sektörünün geleceğini şekillendirecek bu önemli buluşmada yerinizi
+                                almak için siz de LES-EXPO'ya <a href="on-kayit-formu.html" class="text-danger fw-bold"
+                                    target="_blank">katılın!</a>
+                            </p>
+                            <h2>Yük Mühendisliği Nedir ?</h2>
+                            <p> Yük mühendisliği, sıra dışı boyut ve ağırlıktaki yüklerin güvenli, doğru ve planlı
+                                şekilde kaldırılması, taşınması ve yerleştirilmesi süreçlerini kapsayan çok disiplinli
+                                bir alandır. Bu süreç yalnızca araçlarla değil, bu araçları yöneten uzman mühendislerin
+                                planlama, analiz ve kararlarıyla gerçekleşir.
+                            </p>
+                            <p>Resmi olarak tanımlanmamış olsa da yük mühendisliği; kara, hava, deniz ve demiryoluyla,
+                                hatta bazen denizaltında yapılan ağır taşıma operasyonlarında risk analizi, zemin
+                                değerlendirmesi, araç seçimi ve uygulama takibi gibi kritik süreçleri kapsar.
+                            </p>
+                            <p>Teknolojinin, iklimin ve projelerin değişimiyle birlikte, taşınan yüklerin çeşitliliği
+                                artmakta ve bu durum yük mühendisliği uzmanlarının gelecekteki rolünü daha da hayati
+                                hale getirmektedir.</p>
+                            <h2>Yük Mühendisliğinin Geleceği Les-Expo Fuarında Şekilleniyor</h2>
+                            <p>
+                                LES-EXPO 2025, yük mühendisliği sektöründeki en yeni gelişmeleri, teknolojileri ve
+                                yenilikçi çözümleri bir
+                                araya
+                                getiriyor. Alanında uzman firmaların ve profesyonellerin katılımıyla gerçekleşecek olan
+                                bu fuar, sektördeki en
+                                son trendleri ve mühendislikteki devrim niteliğindeki yenilikleri keşfetmeniz için eşsiz
+                                bir fırsat sunuyor.
+                                <br><br>
+                                Yük mühendisliği alanında yeniliklerin, teknolojik atılımların ve stratejik iş
+                                birliklerinin merkezi olan
+                                LES-EXPO, sektördeki tüm paydaşları aynı çatı altında toplayan uluslararası bir fuardır.
+                                Ağır yük kaldırma
+                                sistemlerinden taşıma çözümlerine, yapı destek teknolojilerinden dijital planlama
+                                araçlarına kadar geniş bir
+                                yelpazede ürün ve hizmetlerin sergilendiği LES-EXPO, mühendislik dünyasına yön veren
+                                buluşmalardan biridir.
+
+                                Fuar boyunca, sektörün lider firmaları en yeni ürünlerini ve projelerini sergilerken,
+                                ziyaretçiler güncel
+                                trendleri yerinde takip etme, uygulamalı gösterimlerle teknolojileri deneyimleme ve
+                                alanında uzman isimlerle
+                                doğrudan iletişim kurma fırsatı yakalar.
+                                <br><br>
+                                LES-EXPO, yalnızca bir sergi alanı değil; aynı zamanda bilgi paylaşımının, deneyim
+                                aktarımının ve profesyonel
+                                ağların kurulduğu dinamik bir platformdur. Seminerler, teknik oturumlar ve özel
+                                etkinliklerle dolu bu
+                                organizasyon, hem teknik derinlik arayan profesyoneller hem de sektöre yeni adım atanlar
+                                için ilham verici bir
+                                ortam sunar.
+                            </p>
+                            <h2>Yük Mühendisliği Hizmetleri: Ağır Taşımacılığın Stratejik Disiplini</h2>
+                            <p class="description-3">Yük mühendisliği, sıra dışı boyut ve ağırlıktaki yüklerin güvenli,
+                                doğru ve planlı
+                                şekilde kaldırılması, taşınması ve yerleştirilmesi süreçlerini kapsayan çok disiplinli
+                                bir alandır. Bu süreç
+                                yalnızca araçlarla değil, bu araçları yöneten uzman mühendislerin planlama, analiz ve
+                                kararlarıyla
+                                gerçekleşir.</p>
+                            <p class="description-3">Resmi olarak tanımlanmamış olsa da yük mühendisliği; kara, hava,
+                                deniz ve
+                                demiryoluyla,
+                                hatta bazen denizaltında yapılan ağır taşıma operasyonlarında risk analizi, zemin
+                                değerlendirmesi, araç
+                                seçimi
+                                ve uygulama takibi gibi kritik süreçleri kapsar.</p>
+                            <p class="description-3">Teknolojinin, iklimin ve projelerin değişimiyle birlikte, taşınan
+                                yüklerin
+                                çeşitliliği
+                                artmakta ve bu durum yük mühendisliği uzmanlarının gelecekteki rolünü daha da hayati
+                                hale getirmektedir.</p>
+                            <h2>MİSYONUMUZ</h2>
+                            <p>Yük mühendisliği alanında güvenilir, dayanıklı ve yenilikçi iş makineleri üretmek;
+                                müşterilerimizin operasyonel verimliliğini artıracak çözümler sunarak sektörün
+                                gelişimine katkı sağlamak. Teknolojiyi, kaliteyi ve müşteri memnuniyetini odağımıza
+                                alarak, sürdürülebilir ve sorumlu üretim anlayışıyla küresel pazarda fark yaratmak.</p>
+                            <h2>VİZYONUMUZ</h2>
+                            <p>Gelişmiş mühendislik çözümleriyle yük taşıma teknolojilerinde dünya çapında öncü bir
+                                marka olmak. Ar-Ge yatırımları, dijitalleşme ve çevreci üretim stratejileriyle geleceğin
+                                iş makinelerini bugünden tasarlamak ve endüstriyel dönüşüme liderlik etmek.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar mobile toggle button -->
+        <button class="sidebar-toggle-button d-md-none">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <section class="foam-eurasia-section">
+            <div class="foam-eurasia-container">
+                <div class="foam-eurasia-text">
+                    <h2>Yük Mühendisliğinde Yükseliş: LES-EXPO</h2>
+                    <p>İş makinaları ve ağır vasıta çözümleri alanında bölgenin en kapsamlı fuarı olan
+                        <strong>LES-EXPO</strong>, yük mühendisliği sektöründe teknolojinin geldiği son noktayı
+                        sergilemek üzere
+                        sektörü bir araya getiriyor.
+                    </p>
+
+                    <p>Günümüzde inşaat, madencilik, lojistik ve enerji sektörlerinde verimlilik, güvenlik ve
+                        sürdürülebilirlik artık vazgeçilmez kavramlar. Bu dönüşümün öncüsü olan firmalar, <strong>yük
+                            taşıma kapasiteleri artmış vinçler</strong>, <strong>akıllı kepçeler</strong> ve
+                        <strong>otomasyon destekli ağır vasıta araçlarıyla</strong> üretimde fark yaratıyor.
+                    </p>
+
+                    <p>Fuar kapsamında sergilenen en yeni ürünler ve teknolojiler, yalnızca sektör profesyonellerine
+                        değil, geleceğin mühendislik çözümlerine yön vermek isteyen tüm yatırımcılara ilham kaynağı
+                        oluyor. Sağda yer alan grafik de, bu hızlı gelişim sürecinin somut bir göstergesi. Ar-Ge
+                        yatırımları, sürdürülebilir tasarımlar ve dijitalleşme, sektörün büyüme ivmesini her geçen gün
+                        artırıyor.</p>
+
+                    <p>LES-EXPO, yalnızca bir sergi değil; sektörün nabzını tutan, iş bağlantılarına kapı aralayan
+                        stratejik bir platformdur. Geleceğin yük mühendisliği teknolojileri burada şekilleniyor.</p>
+                </div>
+                <div class="foam-eurasia-image">
+                    <img src="/images/grafik.png" alt="Foam Eurasia Grafik">
+                </div>
+            </div>
+        </section>
+
+
+
+
+@section scripts{
+    <script src="~/js/hakkimizda.js"></script>
+}

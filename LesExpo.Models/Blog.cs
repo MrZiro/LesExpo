@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlTypes;
 using LesExpo.Utility;
+using Microsoft.EntityFrameworkCore;
 
 namespace LesExpo.Models
 {
+    [Index(nameof(Slug), IsUnique = true)]
     public class Blog
     {
         [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = ValidationMessages.Required_Field)]
+        [Display(Name = "Dil")]
+        public string Language { get; set; } = "tr"; // Default to Turkish
 
         [Required(ErrorMessage = "Başlık alanı gereklidir")]
         [MaxLength(200, ErrorMessage = "Başlık 200 karakterden uzun olamaz")]

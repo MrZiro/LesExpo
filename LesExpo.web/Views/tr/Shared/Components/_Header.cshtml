@@ -1,0 +1,180 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+<!-- Header Start -->
+<header class="main-header">
+    <div class="container-navbar">
+        <a href="/" class="logo mt-5">
+            <!-- Gerçek logo dosyanızın yolunu buraya ekleyin -->
+            <img src="/images/lesexpologo-inter.png" class="" alt="">
+        </a>
+
+        <nav class="main-nav">
+            <ul class="">
+                <!-- nav-toggle-button class'ı menüyü açar -->
+                <li>
+                    <a href="#" class="nav-toggle-button" data-translate="nav.discoverBFM">
+                        LES-EXPO<i class="fas fa-chevron-down"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-toggle-button" data-translate="nav.organizeFair">
+                        Katılımcı<i class="fas fa-chevron-down"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-toggle-button" data-translate="nav.visitBFM">
+                        Ziyaretçi<i class="fas fa-chevron-down"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-toggle-button" data-translate="nav.events">
+                        Etkinlikler<i class="fas fa-chevron-down"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-toggle-button" data-translate="nav.events">
+                        Medya<i class="fas fa-chevron-down"></i>
+                    </a>
+                </li>
+                <li><a href="tr/iletisim" data-translate="nav.contactUs">Bize Ulaşın</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="header-actions">
+            <div class="lang-switch mt-4">
+                <div class="header-search">
+                    <input type="text" class="header-search-input" placeholder="Ara...">
+                    <button class="header-search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <a href="#" class="trigger-button">ONLINE BİLET</a>
+                <a href="index.html" class="active" data-lang="tr" data-translate="lang.tr">TR</a> | <a href="../en/home.html"
+                                                                                                        class="#" data-lang="en" data-translate="lang.en">EN</a>
+            </div>
+            <div class="mobile-actions">
+                <button class="search-toggle-button" aria-label="Arama">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="mobile-menu-toggle nav-toggle-button" data-translate-aria-label="menu.toggleAriaLabel"
+                        aria-label="Menüyü Aç/Kapat">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+
+
+
+<!-- Mobil Arama Çubuğu -->
+<div class="search-overlay">
+    <div class="search-container">
+        <div class="search-content">
+            <input type="text" class="search-input" placeholder="Aramak istediğiniz kelimeyi yazınız...">
+            <button class="search-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Tam Ekran Overlay Menü -->
+<div class="fullscreen-menu">
+    <div class="menu-header">
+        <a href="index.html" class="logo-menu">
+            <!-- Menüdeki logo -->
+            <img src="/images/lesexpologo-inter.png" alt="" class="fs-2">
+        </a>
+
+        <div class="menu-header-actions-fs">
+            <div class="lang-switch">
+                <a href="online-bilet.html" class="trigger-button">ONLINE BILET</a>
+                <a href="#" class="active" data-lang="tr" data-translate="lang.tr">TR</a> | <a href="../en/home.html" class=""
+                                                                                               data-lang="en" data-translate="lang.en">EN</a>
+            </div>
+            <button class="close-menu-btn" aria-label="Menüyü Kapat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="menu-content">
+        <div class="menu-column">
+            <!-- Başlığa tıklanınca menüyü kapatmak için nav-toggle-button ekledik -->
+            <h3 class="nav-toggle-button">LES-EXPO</h3>
+            <ul>
+                <li><a href="/tr/hakkimizda">Hakkında</a></li>
+                <li><a href="/tr/fuar-kunyesi">Fuar Künyesi</a></li>
+                <li><a href="/tr/fuar-alani">Fuar Alanı</a></li>
+                <li><a href="/tr/ulasim">Nasıl Ulaşırım ?</a></li>
+                <li><a href="/tr/fuar-sonuc-raporu">Fuar Sonuç Raporu</a></li>
+            </ul>
+            </ul>
+        </div>
+        <div class="menu-column">
+            <h3 class="nav-toggle-button">Katılımcı</h3>
+            <ul>
+                <li><a href="/tr/katilimci-profili">Katılımcı Profili</a></li>
+                <li><a href="/tr/on-kayit-formu">Ön Kayıt Formu</a></li>
+                <li><a href="/tr/neden-katilmalisiniz">Neden Katılmalısınız ?</a></li>
+                <li><a href="/tr/katilimci-listesi">Katılımcı Listesi 2025</a></li>
+            </ul>
+        </div>
+        <div class="menu-column">
+            <h3 class="nav-toggle-button" data-translate="menu.visitBFM">Ziyaretçi</h3>
+            <ul>
+                <li><a href="/tr/ziyaretci-profili">Ziyaretçi Profili</a></li>
+                <li><a href="/tr/neden-ziyaret-etmelisiniz">Neden Ziyaret Etmelisiniz ?</a></li>
+                <li><a href="/tr/sss">Sıkça Sorulan Sorular</a></li>
+            </ul>
+        </div>
+        <div class="menu-column">
+            <h3 class="nav-toggle-button">ETKİNLİKLER</h3>
+            <ul>
+                <li><a href="/tr/b2b-toplantıları">B2B Toplantıları</a></li>
+                <li><a href="/tr/insights">LES Insights</a></li>
+                <li><a href="/tr/experience">LES Experience</a></li>
+            </ul>
+        </div>
+        <div class="menu-column">
+            <h3 class="nav-toggle-button">Medya</h3>
+            <ul>
+                <li><a href="/tr/medya-logo">Logo</a></li>
+                <li><a href="/tr/tum-haberler">Haberler</a></li>
+                <li><a href="/tr/galeri">Galeri</a></li>
+                <li><a href="/tr/kurumsal-kimlik">Kurumsal Kimlik</a></li>
+            </ul>
+        </div>
+
+        <div class="menu-column">
+            <h3 class="nav-toggle-button">Bize Ulaşın</h3>
+            <ul>
+                <li><a href="/tr/iletisim">İletişim Bilgileri</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="menu-footer">
+        <!-- <span class="up-menu-f2f"> Powered By F2F Bilişim Reklam ve Danışmanlık Hizmetleri</span> -->
+        <span data-translate="menu.followUs">Bizi Takip Edin</span>
+        <div class="social-icons-menu">
+            <a href="https://www.facebook.com/lesexpofair" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Header End -->

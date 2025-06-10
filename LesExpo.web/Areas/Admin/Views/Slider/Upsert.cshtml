@@ -7,10 +7,96 @@
 
 @section Styles {
     <style>
-        .img-preview {
+        .media-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .media-preview {
             width: 100%;
             max-height: 300px;
             object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .video-preview {
+            width: 100%;
+            max-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .media-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+            color: #dc3545;
+        }
+
+        .dropzone {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dropzone:hover {
+            border-color: #007bff;
+        }
+
+        .dropzone.dragover {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+
+        .media-type-tabs {
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: #6c757d;
+        }
+
+        .tab-button.active {
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .video-source-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-source-option {
+            flex: 1;
+        }
+
+        .youtube-preview {
+            width: 100%;
+            height: 200px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
@@ -29,6 +115,9 @@
     <form method="post" asp-action="Upsert" enctype="multipart/form-data">
         <input asp-for="Slider.Id" hidden />
         <input asp-for="Slider.ImageUrl" hidden />
+        <input asp-for="Slider.VideoUrl" hidden />
+        <input asp-for="Slider.MediaType" hidden />
+        <input asp-for="Slider.VideoSource" hidden />
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="row mb-3">
@@ -60,28 +149,129 @@
                         <span asp-validation-for="Slider.ButtonUrl" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <!-- Image Section -->
+                
+                <!-- Media Section -->
                 <div class="border p-3 mt-2 rounded-2">
-                    <label class="form-label">Slider Görseli</label>
-                    <p class="text-muted small">Ana sayfada görüntülenecek slider görseli</p>
+                    <label class="form-label">Slider Medyası</label>
+                    <p class="text-muted small">Ana sayfada görüntülenecek görsel veya video</p>
 
-                    <div class="mb-3">
-                        <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
-                        <span asp-validation-for="ImageFile" class="text-danger"></span>
+                    <!-- Media Type Tabs -->
+                    <div class="media-type-tabs">
+                        <button type="button" class="tab-button active" data-tab="image">
+                            <i class="bi bi-image"></i> Görsel
+                        </button>
+                        <button type="button" class="tab-button" data-tab="video">
+                            <i class="bi bi-play-circle"></i> Video
+                        </button>
+                    </div>
+
+                    <!-- Image Tab Content -->
+                    <div class="tab-content active" id="image-tab">
+                        <div class="dropzone" id="image-dropzone">
+                            <input type="file" id="imageInput" asp-for="ImageFile" class="d-none" accept=".jpg,.jpeg,.png,.gif,.webp" />
+                            <div id="image-dropzone-content">
+                                <i class="bi bi-cloud-arrow-up fs-3"></i>
+                                <p class="mb-1">Bir görseli buraya sürükleyip bırakın veya seçmek için tıklayın</p>
+                                <p class="text-muted small mb-0">Kabul edilen: JPG, JPEG, PNG, GIF, WEBP (Maks 5MB)</p>
+                            </div>
+                        </div>
+                        <span asp-validation-for="ImageFile" class="text-danger d-block mt-2"></span>
+                    </div>
+
+                    <!-- Video Tab Content -->
+                    <div class="tab-content" id="video-tab">
+                        <div class="video-source-options">
+                            <div class="video-source-option">
+                                <input type="radio" id="video-upload" name="videoSource" value="upload" class="form-check-input" />
+                                <label for="video-upload" class="form-check-label ms-1">Dosya Yükle</label>
+                            </div>
+                            <div class="video-source-option">
+                                <input type="radio" id="video-youtube" name="videoSource" value="youtube" class="form-check-input" />
+                                <label for="video-youtube" class="form-check-label ms-1">YouTube URL</label>
+                            </div>
+                        </div>
+
+                        <!-- Video Upload Option -->
+                        <div id="video-upload-section" class="video-option" style="display:none;">
+                            <div class="dropzone" id="video-dropzone">
+                                <input type="file" id="videoInput" asp-for="VideoFile" class="d-none" accept=".mp4,.avi,.mov,.wmv,.webm" />
+                                <div id="video-dropzone-content">
+                                    <i class="bi bi-cloud-arrow-up fs-3"></i>
+                                    <p class="mb-1">Bir video dosyasını buraya sürükleyip bırakın veya seçmek için tıklayın</p>
+                                    <p class="text-muted small mb-0">Kabul edilen: MP4, AVI, MOV, WMV, WEBM (Maks 50MB)</p>
+                                </div>
+                            </div>
+                            <span asp-validation-for="VideoFile" class="text-danger d-block mt-2"></span>
+                        </div>
+
+                        <!-- YouTube URL Option -->
+                        <div id="video-youtube-section" class="video-option" style="display:none;">
+                            <div class="mb-3">
+                                <label asp-for="Slider.YoutubeUrl" class="form-label">YouTube Video URL</label>
+                                <input asp-for="Slider.YoutubeUrl" class="form-control" placeholder="https://www.youtube.com/watch?v=..." />
+                                <span asp-validation-for="Slider.YoutubeUrl" class="text-danger"></span>
+                                <div class="form-text">YouTube video URL'sini buraya yapıştırın</div>
+                            </div>
+                            <button type="button" id="preview-youtube" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-eye"></i> Önizleme
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                @if (!string.IsNullOrEmpty(Model.Slider.ImageUrl))
-                {
-                    <div class="border p-3 mt-2 rounded-2">
-                        <img src="@Model.Slider.ImageUrl" class="img-preview" alt="Slider Görseli" />
-                        <p class="text-muted small text-center mt-2">Mevcut slider görseli. Değiştirmek için yeni bir görsel yükleyin.</p>
-                    </div>
-                }
+                <!-- Media Preview Section -->
+                <div class="mb-3 text-center" id="media-preview-container">
+                    @if (!string.IsNullOrEmpty(Model.Slider.ImageUrl) && Model.Slider.MediaType == "image")
+                    {
+                        <div class="media-container">
+                            <img src="@Model.Slider.ImageUrl" id="mediaPreview" class="media-preview" alt="Slider Görseli" />
+                            <div class="media-remove" id="removeMedia" title="Medyayı kaldır">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small" id="preview-caption">Mevcut slider görseli. Değiştirmek için yeni bir medya yükleyin.</p>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.Slider.VideoUrl) && Model.Slider.MediaType == "video" && Model.Slider.VideoSource == "upload")
+                    {
+                        <div class="media-container">
+                            <video controls class="video-preview" id="mediaPreview">
+                                <source src="@Model.Slider.VideoUrl" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="media-remove" id="removeMedia" title="Videoyu kaldır">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small" id="preview-caption">Mevcut slider videosu. Değiştirmek için yeni bir medya yükleyin.</p>
+                    }
+                    else if (!string.IsNullOrEmpty(Model.Slider.YoutubeUrl) && Model.Slider.MediaType == "video" && Model.Slider.VideoSource == "youtube")
+                    {
+                        <div class="media-container">
+                            <iframe src="@Model.Slider.YoutubeUrl.Replace("watch?v=", "embed/")" class="youtube-preview" frameborder="0" allowfullscreen></iframe>
+                            <div class="media-remove" id="removeMedia" title="Videoyu kaldır">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small" id="preview-caption">Mevcut YouTube videosu. Değiştirmek için yeni bir URL girin.</p>
+                    }
+                    else
+                    {
+                        <div class="media-container" style="display:none;">
+                            <img src="" id="imagePreview" class="media-preview" style="display:none;" />
+                            <video controls class="video-preview" id="videoPreview" style="display:none;">
+                                <source src="" type="video/mp4">
+                            </video>
+                            <iframe src="" id="youtubePreview" class="youtube-preview" frameborder="0" allowfullscreen style="display:none;"></iframe>
+                            <div class="media-remove" id="removeMedia" title="Medyayı kaldır">
+                                <i class="bi bi-x-circle-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-muted small" id="preview-caption" style="display:none;">Medya önizleme. Değişiklikleri kaydetmek için formu gönderin.</p>
+                    }
+                </div>
+            </div>
 
+            <div class="col-md-4">
                 <div class="border p-3 mt-2 rounded-2">
                     <div class="mb-3">
                         <label asp-for="Slider.DisplayOrder" class="form-label">Görüntülenme Sırası</label>
@@ -114,4 +304,5 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/admin/scripts/MediaDropzone.js"></script>
 }

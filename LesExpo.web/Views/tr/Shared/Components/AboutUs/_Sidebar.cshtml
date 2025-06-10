@@ -1,0 +1,48 @@
+<!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+          <div class="sidebar">
+            <div class="sidebar-sticky">
+              <div class="sidebar-header p-3 mb-3 text-center">
+                <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
+                <p class="text-muted small mb-0" data-translate="hakkimizda.sidebar.subTitle">Ziyaretçi</p>
+              </div>
+              <ul class="nav flex-column">
+                <!-- Hakkımızda -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
+                    <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
+                    <span data-translate="hakkimizda.sidebar.aboutUs">ZİYARETÇİ</span>
+                  </a>
+                  <div class="collapse show" id="hakkimizdaSubmenu">
+                    <ul class="nav flex-column submenu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/tr/ziyaretci-profili">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.bfmAbout">Ziyaretçi Profili</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/tr/neden-ziyaret-etmelisiniz">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.ourTeam">Neden Ziyaret Etmelisiniz ?</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/tr/Sikca-Sorulan-Sorular">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.presidentMessage">Sıkça Sorulan Sorular</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        @section scripts{
+          <script src="~/js/sidebar-2.js"></script>
+        }

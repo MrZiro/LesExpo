@@ -1,0 +1,158 @@
+@{
+    ViewData["Title"] = "Fuar Alanı";
+    ViewData["Description"] = "İstanbul Fuar Merkezi - Türkiye'nin en büyük fuar alanı. 200.000 m2 toplam alan, 7500 araçlık otopark kapasitesi.";
+    ViewData["Keywords"] = "İstanbul Fuar Merkezi, fuar alanı, İFM, LES-EXPO, fuar merkezi özellikleri";
+}
+@section Styles {
+  <link rel="stylesheet" href="~/css/hakkimizda.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES5.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+      color: white;
+    }
+
+    .breadcrumb-1 a {
+      color: white;
+    }
+    .pharmaist-section{text-align: center;}
+
+    .img-harita {
+      width: 45%;
+    }
+
+    @@media(max-width: 500px) {
+      .img-harita {
+
+        width: 100%;
+      }
+    }
+  </style>
+}
+
+
+
+
+  <div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+      <a href="index.html">Ana Sayfa /</a>
+      <a href="fuar-alani.html">Fuar Alanı</a>
+    </div>
+  </div>
+
+    <div class="container main-container">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar-container">
+          <div class="sidebar">
+            <div class="sidebar-sticky">
+              <div class="sidebar-header p-3 mb-3 text-center">
+                <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
+                <p class="small mb-0" data-translate="hakkimizda.sidebar.subTitle">Hakkında</p>
+              </div>
+              <ul class="nav flex-column">
+                <!-- Hakkımızda -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                    data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
+                    <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
+                    <span data-translate="hakkimizda.sidebar.aboutUs">Hakkımızda</span>
+                  </a>
+                  <div class="collapse show" id="hakkimizdaSubmenu">
+                    <ul class="nav flex-column submenu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="hakkimizda.html">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.bfmAbout">LESEXPO
+                            Hakkında</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="fuar-kunyesi.html">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.presidentMessage">Fuar
+                            Künyesi</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="fuar-alani.html">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.qualityPolicy">Fuar
+                            Alanı</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="ulasim.html">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.ourTeam">Nasıl Ulaşırım
+                            ?</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="fuar-sonuc-raporu.html">
+                          <i class="fas fa-angle-right me-2"></i>
+                          <span data-translate="hakkimizda.sidebar.boardOfDirectors">Fuar Sonuç
+                            Raporu</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Main content -->
+        <div class="content-area">
+          <section class="pharmaist-section">
+            <div class="pharmaist-text">
+              <h2>Türkiyenin En Büyük Fuar Alanı</h2>
+              <p>Toplam fuar alanı 200.000 m2</p>
+              <p>Avrasya'nın en büyük uluslararası fuar merkezi</p>
+              <p>7500 araçlık elektronik otopark sistemi (1 kapalı ve 2 açık dev otopark)</p>
+              <h4>GÜÇLÜ ALTYAPI VE ÜSTÜN HİZMET</h4>
+              <p>Her türlü teknolojik araç ve sistemi destekleyecek enerji, ısıtma-soğutma, klima, telekomünikasyon, su,
+                hava, basınçlı hava gereksinimlerini eksiksiz sağlayacak bir altyapı sunar. Tüm ihtiyaçlara anında cevap
+                verir.</p>
+              <p>Çevre yollara yakınlığı, metronun merkezin içinden geçmesi, çok geniş otopark alanlarının mevcudiyeti,
+                çevre düzenlemeleri ve mükemmel alt yapısı İFM'yi cazip merkezlerden biri haline getirmiştir. Aynı
+                kompleks
+                içinde İDTM İş Blokları, WOW Oteller, WOW Kongre Merkezi ile birlikte yer almaktadır.</p>
+              <h4>PARK ALANI</h4>
+              <p>Hall konumlarına göre düzenlenmiş 7500 araç kapasiteli otopark, katılımcı ve ziyaretçilere fuar boyunca
+                rahat bir konaklama ve güvenlik sağlar.</p>
+            </div>
+        </div>
+        </section>
+      </div>
+    </div>
+    <!-- Sidebar mobile toggle button -->
+    <button class="sidebar-toggle-button d-md-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <section class="text-center">
+      <img src="/images/les_expo_harita_page_2.png" class="img-harita" alt="">
+    </section>
+
+
+@section Scripts {
+      <script src="~/js/hakkimizda.js"></script>
+
+}

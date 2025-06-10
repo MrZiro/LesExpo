@@ -1,0 +1,138 @@
+@{
+    ViewData["Title"] = "Why Visiting";
+    ViewData["Description"] = "Why Visiting";
+    ViewData["Keywords"] = "Why Visiting";
+    ViewData["CanonicalUrl"] = "~/en/why-visiting";
+    ViewData["AlternateUrls"] = new string[] { "~/tr/neden-ziyaret-etmelisiniz" };
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/katilimci-profili.css">
+  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES4.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      color: white;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+    }
+    .pharmaist-section{text-align: center;}
+
+  </style>
+}
+
+
+
+
+  <div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+      <a href="/en">Home Page /</a>
+      <a href="/en/why-visiting">Why Visiting</a>
+    </div>
+  </div>
+
+<div class="container main-container">
+    <div class="row">
+        <!-- Sidebar -->
+        <partial name="Components/AboutUs/_Sidebar" />
+        <!-- Main content -->
+        <div class="container-nze content-area">
+            <section>
+                <h1 class="h1-ziyaretci mb-3 text-dark">LES-EXPO<br>WHY SHOULD YOU VISIT?</h1>
+                <div class="card-grid-nze">
+                    <!-- Kart 1 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <p class="card-text-nze">Discover Innovations in the Industry.</p>
+                    </div>
+
+                    <!-- Kart 2 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="far fa-handshake"></i>
+                        </div>
+                        <p class="card-text-nze">Meet Leading Companies.</p>
+                    </div>
+
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <p class="card-text-nze">Training and Seminar Opportunities.</p>
+                    </div>
+
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <p class="card-text-nze">Networking Opportunities.</p>
+                    </div>
+
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <p class="card-text-nze">Technologies That Will Shape the Future.</p>
+                    </div>
+
+                    <!-- Kart 3 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <p class="card-text-nze">See Sectoral Solutions Together.</p>
+                    </div>
+
+                    <!-- Kart 4 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <p class="card-text-nze">Discover Sustainability Solutions</p>
+                    </div>
+
+                    <!-- Kart 5 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <p class="card-text-nze">Gain Competitive Advantage</p>
+                    </div>
+
+                    <!-- Kart 6 -->
+                    <div class="card-nze">
+                        <div class="icon-nze">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <p class="card-text-nze">Meet Your Industrial Infrastructure Needs</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- Sidebar mobile toggle button -->
+<button class="sidebar-toggle-button d-md-none">
+    <i class="fas fa-bars"></i>
+</button>
+<!-- Sidebar mobile toggle button -->
+<button class="sidebar-toggle-button d-md-none">
+    <i class="fas fa-bars"></i>
+</button>
+

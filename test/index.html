@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #1a1c23; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-header {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        
+        .dashboard-header p {
+            font-size: 1em;
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .metric-panel {
+            background-color: #252830; /* Slightly lighter dark for panels */
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .panel-icon {
+            font-size: 1.8em; /* Placeholder for actual icons */
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .panel-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #c0c0c0;
+        }
+
+        .panel-value {
+            font-size: 3em;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 10px 0;
+            line-height: 1.1;
+        }
+
+        .panel-unit {
+            font-size: 0.9em;
+            color: #a0a0a0;
+            margin-top: -5px;
+            margin-bottom: 15px;
+        }
+        
+        .panel-footer {
+            font-size: 0.8em;
+            color: #707070;
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        /* Example: Simple progress bar or indicator */
+        .value-indicator {
+            height: 6px;
+            border-radius: 3px;
+            background-color: #4a4e59; /* Default track color */
+            margin-top: 10px;
+            overflow: hidden; /* For the inner bar */
+        }
+        .indicator-fill {
+            height: 100%;
+            border-radius: 3px;
+            width: 0%; /* Will be set by JS */
+            transition: width 0.5s ease-out;
+        }
+
+        /* Specific panel styling (colors for icons and indicators) */
+        /* You can use https://lucide.dev/ for icons or other SVG icon libraries */
+        .metric-panel.blog .panel-icon { background-color: rgba(239, 68, 68, 0.2); color: #ef4444; } /* Red */
+        .metric-panel.blog .indicator-fill { background-color: #ef4444; }
+
+        .metric-panel.icerik-turu .panel-icon { background-color: rgba(59, 130, 246, 0.2); color: #3b82f6; } /* Blue */
+        .metric-panel.icerik-turu .indicator-fill { background-color: #3b82f6; }
+
+        .metric-panel.sliders .panel-icon { background-color: rgba(245, 158, 11, 0.2); color: #f59e0b; } /* Amber */
+        .metric-panel.sliders .indicator-fill { background-color: #f59e0b; }
+
+        .metric-panel.sending-email .panel-icon { background-color: rgba(16, 185, 129, 0.2); color: #10b981; } /* Emerald */
+        .metric-panel.sending-email .indicator-fill { background-color: #10b981; }
+
+        .metric-panel.ticket .panel-icon { background-color: rgba(139, 92, 246, 0.2); color: #8b5cf6; } /* Violet */
+        .metric-panel.ticket .indicator-fill { background-color: #8b5cf6; }
+
+        .metric-panel.users .panel-icon { background-color: rgba(236, 72, 153, 0.2); color: #ec4899; } /* Pink */
+        .metric-panel.users .indicator-fill { background-color: #ec4899; }
+
+    </style>
+    <!-- Consider adding an icon library like Lucide Icons or Font Awesome -->
+    <!-- Example: <script src="https://unpkg.com/lucide-static@latest/dist/lucide.min.js"></script> -->
+</head>
+<body>
+
+    <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Overview of key metrics and activities.</p>
+    </div>
+
+    <div class="metrics-grid" id="metricsGrid">
+        <!-- Metric panels will be dynamically inserted here -->
+    </div>
+
+    <script>
+        const dashboardMetrics = [
+            { id: 'blog', title: 'Blog Posts', value: 65, unit: 'Active Posts', icon: '📝', maxValueForIndicator: 100, footerText: 'Updated daily' },
+            { id: 'icerik-turu', title: 'Content Types', value: 59, unit: 'Varieties', icon: '📄', maxValueForIndicator: 70, footerText: 'System data' },
+            { id: 'sliders', title: 'Active Sliders', value: 80, unit: 'Homepage Sliders', icon: '🖼️', maxValueForIndicator: 100, footerText: 'Real-time' },
+            { id: 'sending-email', title: 'Emails Sent', value: 1245, unit: 'Last 24h', icon: '📧', maxValueForIndicator: 2000, footerText: 'Hourly sync' },
+            { id: 'ticket', title: 'Open Tickets', value: 56, unit: 'Support Requests', icon: '🎟️', maxValueForIndicator: 80, footerText: 'Needs attention' },
+            { id: 'users', title: 'Registered Users', value: 3500, unit: 'Total Users', icon: '👥', maxValueForIndicator: 5000, footerText: 'Growing steadily' }
+        ];
+
+        const metricsGrid = document.getElementById('metricsGrid');
+
+        dashboardMetrics.forEach(metric => {
+            const panel = document.createElement('div');
+            panel.classList.add('metric-panel', metric.id);
+
+            // Calculate percentage for indicator
+            const indicatorPercentage = metric.maxValueForIndicator > 0 ? (metric.value / metric.maxValueForIndicator) * 100 : 0;
+
+            panel.innerHTML = `
+                <div class="panel-header">
+                    <div class="panel-icon">${metric.icon}</div>
+                    <span class="panel-title">${metric.title}</span>
+                </div>
+                <div class="panel-value">${metric.value.toLocaleString()}</div>
+                <div class="panel-unit">${metric.unit}</div>
+                <div class="value-indicator">
+                    <div class="indicator-fill" style="width: ${Math.min(indicatorPercentage, 100)}%;"></div>
+                </div>
+                <div class="panel-footer">${metric.footerText}</div>
+            `;
+            metricsGrid.appendChild(panel);
+        });
+
+        // If you were to use an icon library like Lucide:
+        // setTimeout(() => { // Ensure DOM is ready if icons are added dynamically
+        //    lucide.createIcons();
+        // }, 0);
+
+    </script>
+</body>
+</html>

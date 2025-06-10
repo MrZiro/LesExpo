@@ -1,0 +1,197 @@
+@model LesExpo.Models.ViewModels.ContactVM
+@{
+    ViewData["Title"] = "İletişim";
+    ViewData["Description"] = "İletişim";
+    ViewData["Keywords"] = "İletişim, LES-EXPO, Fuar, Katılımcı, Ziyaretçi, Etkinlik, Haber, Galeri, Kurumsal Kimlik";
+    ViewData["Author"] = "LESEXPO";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/iletisim.css">
+    <style>
+        .banner {
+            position: relative;
+            background-image: url('/images/LES5.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 178px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .breadcrumb-1 {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .breadcrumb-1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb-1 a:hover {
+            text-decoration: underline;
+        }
+
+        .img-harita {
+            width: 45%;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .iframe1 {
+            width: 100%;
+            max-width: 1200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        .submit-btn-if {
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn-if:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+}
+
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+        <a asp-controller="Home" asp-action="Index">Ana Sayfa /</a>
+        <a asp-controller="Contact" asp-action="Iletisim">İletişim</a>
+    </div>
+</div>
+
+<div class="container-if">
+    <div class="contact-form-container-if">
+        <div class="form-header-if">
+            <h2 class="contact-title-if">Bize Ulaşın</h2>
+            <p class="contact-subtitle-if">Detaylı Bilgi</p>
+            <p class="contact-description-if">
+                LES-EXPO Fuarı ile ilgili soru, öneri ve görüşleriniz için lütfen bize yazın.
+            </p>
+        </div>
+        <div class="form-content-if">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["Success"]
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["Error"]
+                </div>
+            }
+            <form asp-action="Index" asp-controller="Contact" method="post" class="contact-form-if">
+                @Html.AntiForgeryToken()
+                <div class="form-row-if">
+                    <div class="form-group-if">
+                        <label asp-for="Name">İsim:</label>
+                        <input asp-for="Name" class="" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-if">
+                        <label asp-for="Email">E-mail:</label>
+                        <input asp-for="Email" class="" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group-if">
+                    <label asp-for="Subject">Konu:</label>
+                    <input asp-for="Subject" class="" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group-if">
+                    <label asp-for="Message">Mesaj:</label>
+                    <textarea asp-for="Message" class="" rows="5"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <button type="submit" class="submit-btn-if">Gönder</button>
+            </form>
+        </div>
+    </div>
+    <div class="contact-info-container-if">
+        <div class="contact-card-if address-if">
+            <i class="icon-if fas fa-map-marker-alt"></i>
+            <h4>Adress</h4>
+            <p>Fethiye OSB Mahallesi Mavi Cadde No:13 Nilüfer Bursa</p>
+        </div>
+        <div class="contact-card-if email-if">
+            <i class="icon-if fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p>info@les-expo.com</p>
+            <p>info@kfa.com.tr</p>
+        </div>
+        <div class="contact-card-if phone-if">
+            <i class="icon-if fas fa-phone"></i>
+            <h4>Telefon</h4>
+            <p>İFM: 0216 526 44 64</p>
+            <p>KFA: +90 (224) 294 85 50</p>
+        </div>
+    </div>
+</div>
+
+<section class="map-section">
+    <div class="container">
+        <h3 class="text-center mb-4">Konum</h3>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.4858715894916!2d28.823648507992235!3d40.98895529824187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa37998cc3537%3A0xee53d7b87dde799d!2s%C4%B0stanbul%20Fuar%20Merkezi!5e0!3m2!1str!2str!4v1746697199685!5m2!1str!2str"
+                height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" class="iframe1"></iframe>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -39,7 +39,17 @@
                 {
                     title: 'Başlık',
                     data: 'title',
-                    width: '25%'
+                    width: '20%'
+                },
+                {
+                    title: 'Dil',
+                    data: 'Language',
+                    width: '10%',
+                    render: function(data) {
+                        return data === 'tr' ? 
+                            '<span class="badge bg-primary">TR</span>' : 
+                            '<span class="badge bg-info text-dark">EN</span>';
+                    }
                 },
                 {
                     title: 'İçerik Türü',

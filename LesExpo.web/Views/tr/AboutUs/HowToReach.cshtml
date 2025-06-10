@@ -1,0 +1,232 @@
+@{
+    ViewData["Title"] = "Ulaşım";
+    ViewData["Description"] = "İstanbul Fuar Merkezi'ne nasıl ulaşılır? Metro, metrobüs ve otobüs ile fuar alanına ulaşım bilgileri.";
+    ViewData["Keywords"] = "İstanbul Fuar Merkezi, ulaşım, metro, metrobüs, nasıl ulaşırım, LES-EXPO";
+}
+@section Styles {
+  <link rel="stylesheet" href="~/css/hakkimizda.css">
+    <link rel="stylesheet" href="~/css/ulasim.css">
+
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES5.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+      color: white;
+    }
+
+    .breadcrumb-1 a {
+      color: white;
+    }
+        .pharmaist-section{text-align: center;}
+
+    .img-harita {
+      width: 45%;
+    }
+
+    @@media(max-width: 500px) {
+      .img-harita {
+
+        width: 100%;
+      }
+    }
+  </style>
+}
+
+
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+        <a href="home.html">Home Page /</a>
+        <a href="how-to-reach.html">How To Reach ?</a>
+    </div>
+</div>
+
+
+<div class="container main-container">
+    <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar-container">
+        <div class="sidebar">
+        <div class="sidebar-sticky">
+            <div class="sidebar-header p-3 mb-3 text-center">
+            <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
+            <p class="small mb-0" data-translate="hakkimizda.sidebar.subTitle">Hakkında</p>
+            </div>
+            <ul class="nav flex-column">
+            <!-- Hakkımızda -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
+                data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
+                <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
+                <span data-translate="hakkimizda.sidebar.aboutUs">Hakkımızda</span>
+                </a>
+                <div class="collapse show" id="hakkimizdaSubmenu">
+                <ul class="nav flex-column submenu">
+                    <li class="nav-item">
+                    <a class="nav-link" href="hakkimizda.html">
+                        <i class="fas fa-angle-right me-2"></i>
+                        <span data-translate="hakkimizda.sidebar.bfmAbout">LESEXPO
+                        Hakkında</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="fuar-kunyesi.html">
+                        <i class="fas fa-angle-right me-2"></i>
+                        <span data-translate="hakkimizda.sidebar.presidentMessage">Fuar
+                        Künyesi</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="fuar-alani.html">
+                        <i class="fas fa-angle-right me-2"></i>
+                        <span data-translate="hakkimizda.sidebar.qualityPolicy">Fuar
+                        Alanı</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" href="ulasim.html">
+                        <i class="fas fa-angle-right me-2"></i>
+                        <span data-translate="hakkimizda.sidebar.ourTeam">Nasıl Ulaşırım
+                        ?</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="fuar-sonuc-raporu.html">
+                        <i class="fas fa-angle-right me-2"></i>
+                        <span data-translate="hakkimizda.sidebar.boardOfDirectors">Fuar Sonuç
+                        Raporu</span>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <!-- Main content -->
+    <div class="content-area">
+        <section class="pharmaist-section">
+        <div class="container-ulasim">
+            <div class="top-section">
+            <div class="contact-section-ulasim">
+                <h1><strong>İstanbul Fuar Merkezi (İFM)</strong></h1>
+                <p>Atatürk Havalimanı Karşısı<br>34149 Yeşilköy</p>
+                <p>Tel: (+90 212) 468 52 00<br>Faks: (+90 212) 465 59 59</p>
+                <p>
+                E-mail: <a href="mailto:expo@ifm.com.tr">expo@ifm.com.tr</a><br>
+                Web: <a href="http://www.ifm.com.tr" target="_blank">www.ifm.com.tr</a>
+                </p>
+            </div>
+            <div class="image-section-ulasim">
+                <img src="/images/ifm-2.jpg" alt="İstanbul Fuar Merkezi" />
+            </div>
+            </div>
+
+            <div class="description-ulasim">
+            <p>
+                İstanbul Dünya Ticaret Merkezi tarafından işletilen fuar salonlarında düzenlenen, kendi sektörlerinde
+                dünyanın en büyük fuarları arasında sayılan ve her yıl yurt içi ve yurt dışından yüz binlerce
+                ziyaretçi çeken Cosmetics & Home Ingredients gibi uluslararası fuarlar vasıtasıyla binlerce firma yeni
+                pazar ve fırsatlarla buluşmaktadır.
+            </p>
+            <p>
+                İstanbul'un diğer yerlerinden Fuar Alanına ulaşmak için aşağıdaki ulaşım seçeneklerini
+                kullanabilirsiniz.
+            </p>
+            </div>
+        </div>
+        </section>
+    </div>
+    </div>
+</div>
+<!-- Sidebar mobile toggle button -->
+<button class="sidebar-toggle-button d-md-none">
+    <i class="fas fa-bars"></i>
+</button>
+
+<section class="ulasim-container">
+    <h2>Fuar Alanına Ulaşım Seçenekleri</h2>
+
+    <div class="ulasim-item">
+
+    <div class="ulasim-content">
+        <h3>Metrobüs</h3>
+        <p>Zincirlikuyu, Mecidiyeköy ve Avcılar'dan fuar alanına ulaşım en hızlı Metrobüs ile sağlanmaktadır. 34 A
+        metrobüs hattını kullanarak Atatürk - Şirinevler durağından Atatürk Havalimanı (M1A) metrosuna aktarma yapıp
+        Dünya Ticaret Merkezi/İstanbul Fuar Merkezi istasyonunda inilebilir ve fuar alanına ulaşabilirsiniz.</p>
+        <a href="http://www.iett.gov.tr" target="_blank">www.iett.gov.tr</a>
+    </div>
+    </div>
+
+    <div class="ulasim-item">
+
+    <div class="ulasim-content">
+        <h3>Metro</h3>
+        <p>Yenikapı- Atatürk Havalimanı metro hattı (M1A) İstanbul Dünya Ticaret Merkezi/İstanbul Fuar Merkezi
+        kompleksi içinden geçmektedir. Zeytinburnu ya da Şirinevler metrobüs duraklarından Atatürk Havalimanı metro
+        hattına aktarma yapılabilmektedir.</p>
+        <a href="https://metro.istanbul" target="_blank">metro.istanbul</a>
+    </div>
+    </div>
+
+    <div class="ulasim-item">
+
+    <div class="ulasim-content">
+        <h3>Otobüs</h3>
+        <p>İstanbul Havalimanı'ndan kalkan HVİST- 13 otobüsleri ile Ataköy-Şirinevler metro durağından M1A Yenikapı-
+        Atatürk Havalimanı metro güzergahı kullanılarak İstanbul Fuar Merkezi'ne ulaşabilirsiniz.</p>
+        <a href="http://www.iett.gov.tr" target="_blank">www.iett.gov.tr</a>
+    </div>
+    </div>
+
+    <div class="ulasim-item">
+
+    <div class="ulasim-content ms-5 ps-3">
+        <h3>Araba</h3>
+        <p>3 alternatif arterden karayolu ile fuar alanına ulaşabilirsiniz. (E5, TEM ve Sahil Yolu)</p>
+
+    </div>
+    </div>
+    <div class="ulasim-item">
+
+    <div class="ulasim-content">
+        <h3>Marmaray</h3>
+        <p>Halkalı-Gebze Marmaray hattını kullanarak Yeşilyurt durağında taksi ile 5 dakikada fuar alanına
+        ulaşabilirsiniz.</p>
+        <a href="https://marmaray.istanbul/" target="_blank">https://marmaray.istanbul/</a>
+    </div>
+    </div>
+</section>
+
+<section>
+    <div>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.4858715894916!2d28.823648507992235!3d40.98895529824187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa37998cc3537%3A0xee53d7b87dde799d!2s%C4%B0stanbul%20Fuar%20Merkezi!5e0!3m2!1str!2str!4v1746697199685!5m2!1str!2str"
+        width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade" class="iframe1"></iframe>
+    </div>
+</section>
+
+
+@section Scripts {
+      <script src="~/js/hakkimizda.js"></script>
+
+}

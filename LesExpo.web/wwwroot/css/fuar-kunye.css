@@ -1,0 +1,171 @@
+:root {
+  --primarycolor: #FBAD18;
+  --secondarycolor: #85837D;
+  --thirdcolor: #0c243d;
+}
+
+
+.container-kunye {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.main-content-kunye {
+  flex: 1 1 600px;
+  text-align: start;
+}
+
+.sidebar-kunye {
+  flex: 1 1 300px;
+  text-align: start;
+  padding-left: 120px;
+  padding-top: 88px;
+}
+
+
+
+.header-text-kunye {
+  color: #6b6b6b;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.title-left-kunye h1 {
+  color: #000000;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.share-btn-kunye {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  color: #666;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.title-container-kunye {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-left-kunye {
+  flex: 1;
+}
+
+.title-right-kunye {
+  display: flex;
+  align-items: center;
+}
+
+kunye-p {
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+kunye-h2 {
+  font-size: 22px;
+  margin: 30px 0 20px;
+  color: #3c3c3c;
+}
+
+.calendar-grid-kunye {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.calendar-item-kunye {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.calendar-header-kunye {
+  background-color: var(--thirdcolor);
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.calendar-content-kunye {
+  padding: 15px;
+  min-height: 100px;
+}
+
+.salon-info-kunye {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.salon-number-kunye {
+  background-color: var(--thirdcolor);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.sidebar-kunye h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #000000;
+}
+
+.info-item-kunye {
+  margin-bottom: 20px;
+}
+
+.info-title-kunye {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.info-content-kunye {
+  color: #e74c3c;
+}
+
+.info-content-kunye a {
+  color: #e74c3c;
+  text-decoration: none;
+}
+
+.info-content-kunye a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .container-kunye {
+    flex-direction: column;
+  }
+
+  .title-container-kunye {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title-right-kunye {
+    margin-top: 15px;
+  }
+
+  .calendar-grid-kunye {
+    grid-template-columns: 1fr;
+  }
+}

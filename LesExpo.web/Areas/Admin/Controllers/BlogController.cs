@@ -6,15 +6,12 @@ using LesExpo.web.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using HtmlAgilityPack;
+
 
 namespace LesExpo.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+     [Authorize(Roles = SD.Role_Admin)] // Temporarily commented for testing
     public class BlogController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -37,6 +34,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        // DEBUG: Simple test action to verify routing works
+        [HttpGet]
+        public IActionResult Test()
+        {
+            return Content("BlogController Test Action - Routing Works!");
         }
 
         // GET: Admin/Blog/Create
@@ -232,7 +236,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Blog silinirken bir hata oluştu: " + ex.Message });
             }
         }
-
+        [HttpGet]
         public IActionResult GetAll()
         {
             var allObj = _unitOfWork.Blog.GetAll(includeProperties: "ContentType").OrderByDescending(u => u.Id);

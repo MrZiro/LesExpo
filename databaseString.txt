@@ -1,0 +1,1 @@
+    "DefaultConnection": "Server=localhost;Database=LesExpoDataBase4;User ID=sa;Password=Docker0101!;Encrypt=True;TrustServerCertificate=True"

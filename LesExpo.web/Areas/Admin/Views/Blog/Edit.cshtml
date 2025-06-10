@@ -70,6 +70,14 @@
                         <span asp-validation-for="Blog.Title" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
+                        <label asp-for="Blog.Language" class="form-label">Dil</label>
+                        <select asp-for="Blog.Language" class="form-select">
+                            <option value="tr">Türkçe</option>
+                            <option value="en">English</option>
+                        </select>
+                        <span asp-validation-for="Blog.Language" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
                         <label asp-for="Blog.Slug" class="form-label">URL Slug</label>
                         <input asp-for="Blog.Slug" class="form-control" placeholder="Otomatik oluşturmak için boş bırakın" />
                         <span asp-validation-for="Blog.Slug" class="text-danger"></span>
@@ -183,18 +191,15 @@
         <script src="~/admin/scripts/Editor.js"></script>
         <partial name="_ValidationScriptsPartial" />
         <script src="~/admin/scripts/Dropzone.js"></script>
+        <script src="~/js/slug-generator.js"></script>
     }
     <script>
         // Auto-generate slug from title if slug is empty
         $('#Blog_Title').change(function () {
             // Only update slug if it's empty
             if (!$('#Blog_Slug').val()) {
-                // Convert title to slug format
-                var slug = $(this).val().toLowerCase()
-                    .replace(/[^\w\s-]/g, '') // Remove special characters
-                    .replace(/\s+/g, '-')     // Replace spaces with hyphens
-                    .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
-
+                // Use our professional slug generator function
+                var slug = generateSlug($(this).val());
                 $('#Blog_Slug').val(slug);
             }
         });

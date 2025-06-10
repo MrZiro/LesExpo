@@ -1,0 +1,171 @@
+@{
+    ViewData["Title"] = "Ziyaretçi Profili";
+    ViewData["Description"] = "Ziyaretçi Profili";
+    ViewData["Keywords"] = "Ziyaretçi Profili";
+    ViewData["CanonicalUrl"] = "~/tr/ziyaretci-profili";
+    ViewData["AlternateUrls"] = new string[] { "~/en/visitor-profile" };
+}
+@section Styles {
+  <link rel="stylesheet" href="~/css/katilimci-profili.css">
+  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES4.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      color: white;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+    }
+    .pharmaist-section{text-align: center;}
+
+  </style>
+}
+
+
+
+
+  <div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+      <a href="/tr">Ana Sayfa /</a>
+      <a href="/tr/ziyaretci-profili">Ziyaretçi Profili</a>
+    </div>
+  </div>
+
+    <div class="container main-container">
+      <div class="row">
+        
+        <partial name="Components/AboutUs/_Sidebar" />
+
+        <!-- Main content -->
+        <div class="container-ziyaretci content-area">
+          <section class="">
+            <h1 class="h1-ziyaretci ">LES-EXPO<br>ZİYARETÇİ PROFİLİ</h1>
+            <div class="container-nze content-area">
+              <div class="card-grid-nze">
+                <!-- Kart 1 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-drafting-compass"></i>
+                  </div>
+                  <p class="card-text-nze"> Yük mühendisliği uzmanları ve mühendisler</p>
+                </div>
+
+                <!-- Kart 2 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-truck-fast"></i>
+                  </div>
+                  <p class="card-text-nze"> Lojistik ve taşıma sektöründen profesyoneller</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-gears"></i>
+                  </div>
+                  <p class="card-text-nze">Makine ve ekipman tedarikçileri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-microchip"></i>
+                  </div>
+                  <p class="card-text-nze">Teknoloji ve dijital dönüşüm profesyonelleri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-leaf"></i>
+                  </div>
+                  <p class="card-text-nze">Çevre dostu ve sürdürülebilirlik uzmanları</p>
+                </div>
+
+                <!-- Kart 3 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-user-graduate"></i>
+                  </div>
+                  <p class="card-text-nze">Akademisyenler ve araştırmacılar</p>
+                </div>
+
+                <!-- Kart 4 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-briefcase"></i>
+                  </div>
+                  <p class="card-text-nze"> İş dünyası ve yatırımcılar</p>
+                </div>
+
+                <!-- Kart 5 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-landmark"></i>
+                  </div>
+                  <p class="card-text-nze"> Kamu kurumları ve regülatörler</p>
+                </div>
+
+                <!-- Kart 6 -->
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                  </div>
+                  <p class="card-text-nze">Endüstriyel tasarımcılar ve proje yöneticileri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-newspaper"></i>
+                  </div>
+                  <p class="card-text-nze">Medya ve basın temsilcileri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-hard-hat"></i>
+                  </div>
+                  <p class="card-text-nze">Maden sektörü profesyonelleri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-road"></i>
+                  </div>
+                  <p class="card-text-nze">Yol bakım ve inşaat sektörü profesyonelleri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                  </div>
+                  <p class="card-text-nze"> Kaldırma ve taşıma sektörü profesyonelleri</p>
+                </div>
+
+                <div class="card-nze">
+                  <div class="icon-nze">
+                    <i class="fa-solid fa-industry"></i>
+                  </div>
+                  <p class="card-text-nze">Endüstriyel tedarikçiler ve üreticiler</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar mobile toggle button -->
+    <button class="sidebar-toggle-button d-md-none">
+      <i class="fas fa-bars"></i>
+    </button>

@@ -1,0 +1,42 @@
+@model List<ContentType>
+
+
+@section Styles{
+        <!-- Css -->
+        <link rel="stylesheet" href="~/css/tum-haberler.css">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+}
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+    </div>
+</div>
+
+<div class="container-blogs">
+    <h2 class="heading-blogs">BFM Gündem</h2>
+    <div class="filter-buttons-blogs" id="filterButtons-blogs">
+        <button class="filter-button-blogs active-blogs" data-category="all">All</button>
+        @foreach (var contentType in Model)
+        {
+            <button class="filter-button-blogs" data-category="@contentType.NameEn">@contentType.NameEn</button>
+        }
+
+    </div>
+    <div class="card-grid-blogs" id="cardGrid-blogs">
+        <!-- Cards will be added here dynamically -->
+    </div>
+</div>
+
+@section Scripts{
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- Custom Scripts -->
+        <script src="~/js/tum-haberler.js"></script>
+
+
+}
+
+
