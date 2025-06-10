@@ -68,5 +68,18 @@ namespace LesExpo.web.Controllers
             
             return View();
         }
+        [HttpGet("visitor-profile")]
+        [HttpGet("ziyaretci-profili")]
+        public IActionResult VisitorProfile()
+        {
+            return View();
+        }
+        [HttpGet("why-visit")]
+        [HttpGet("neden-ziyaret-etmelisiniz")]
+        public IActionResult WhyVisiting()
+        {
+            return View();
+        }
+        
     }
 }
