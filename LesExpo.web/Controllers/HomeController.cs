@@ -5,7 +5,7 @@ using LesExpo.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 namespace LesExpo.web.Controllers;
 
-public class HomeController : BaseController
+public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IUnitOfWork _unitOfWork;
@@ -22,9 +22,6 @@ public class HomeController : BaseController
     [HttpGet("{lang}/anasayfa")]
     public IActionResult Index()
     {
-
-        var lang = Request.RouteValues["lang"]?.ToString();
-
         var sliders = _unitOfWork.Slider.GetAll()
                     .Where(s => s.IsActive)
                     .OrderBy(s => s.DisplayOrder)
@@ -54,3 +51,4 @@ public class HomeController : BaseController
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+

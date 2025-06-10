@@ -6,6 +6,8 @@ using LesExpo.Models;
 using LesExpo.Utility;
 using LesExpo.web.Services;
 using LesExpo.web.ViewEngines;
+using LesExpo.web.Middleware;
+using LesExpo.web.Models.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,6 +46,17 @@ builder.Services.AddScoped<IHtmlContentService, HtmlContentService>();
 // builder.Services.AddScoped<IEmailSender, EmailSenderGrid>(); // Comment out or remove old sender
 builder.Services.AddScoped<IEmailSender, EmailSenderSmtp>(); // Add new SMTP sender
 
+// Configure localized routes from appsettings.json
+builder.Services.Configure<LocalizedRoutesConfig>(
+    builder.Configuration.GetSection(LocalizedRoutesConfig.SectionName));
+
+// Configure email templates from appsettings.json
+builder.Services.Configure<EmailTemplatesConfig>(
+    builder.Configuration.GetSection(EmailTemplatesConfig.SectionName));
+
+// Add URL localization service
+builder.Services.AddScoped<IUrlLocalizationService, UrlLocalizationService>();
+
 // Register background services
 builder.Services.AddHostedService<TempFileCleanupService>();
 
@@ -52,6 +65,9 @@ builder.Services.AddHttpClient("FairApi", client =>
     client.BaseAddress = new Uri("https://fair.smartexpo.com.tr/");
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
+
+
+
 
 
 // View Engine Configuration
@@ -93,6 +109,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// Add URL canonicalization middleware BEFORE routing
+app.UseUrlCanonicalization();
 
 app.UseRouting();
 app.UseAuthentication();

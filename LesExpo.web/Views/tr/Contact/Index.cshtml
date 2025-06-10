@@ -10,7 +10,7 @@
     <style>
         .banner {
             position: relative;
-            background-image: url('/images/LES\ 5.jpg');
+            background-image: url('/images/LES5.jpg');
             background-size: cover;
             background-position: center;
             height: 300px;
@@ -128,7 +128,7 @@
                     @TempData["Error"]
                 </div>
             }
-            <form asp-action="Iletisim" asp-controller="Contact" method="post" class="contact-form-if">
+            <form asp-action="Index" asp-controller="Contact" method="post" class="contact-form-if">
                 @Html.AntiForgeryToken()
                 <div class="form-row-if">
                     <div class="form-group-if">

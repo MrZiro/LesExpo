@@ -1,4 +1,5 @@
 using LesExpo.DataAccess.Repository.IRepository;
+using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LesExpo.web.Controllers
@@ -8,20 +9,25 @@ namespace LesExpo.web.Controllers
     {
         private readonly ILogger<BlogsController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUrlLocalizationService _urlService;
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
 
-        public BlogsController(ILogger<BlogsController> logger, IUnitOfWork unitOfWork)
+        public BlogsController(ILogger<BlogsController> logger, IUnitOfWork unitOfWork, IUrlLocalizationService urlService)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _urlService = urlService;
         }
         
         [HttpGet("all-news")]
         [HttpGet("tum-haberler")]
         public IActionResult Index()
         {
-
             var ContentTypes = _unitOfWork.ContentType.GetAll().ToList();
+
+            // Add URL data to ViewBag for SEO and navigation
+            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Index", Lang);
+            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Index", Lang);
 
             return View(ContentTypes);
         }
@@ -46,7 +52,11 @@ namespace LesExpo.web.Controllers
                 return NotFound();
             }
 
+            // Add URL data to ViewBag for SEO and navigation
+            ViewBag.CanonicalUrl = _urlService.GetCanonicalUrl("Details", Lang, new { slug });
+            ViewBag.AlternateUrls = _urlService.GetAlternateLanguageUrls("Details", Lang, new { slug });
             ViewData["Lang"] = Lang;
+            
             return View(blog);
         }
 

@@ -1,0 +1,18 @@
+@{
+    var canonicalUrl = ViewBag.CanonicalUrl as string;
+    var alternateUrls = ViewBag.AlternateUrls as Dictionary<string, string>;
+}
+
+@if (!string.IsNullOrEmpty(canonicalUrl))
+{
+    <link rel="canonical" href="@Url.Content($"~{canonicalUrl}")" />
+}
+
+@if (alternateUrls != null)
+{
+    foreach (var alternate in alternateUrls)
+    {
+        var hreflang = alternate.Key == "en" ? "en-US" : "tr-TR";
+        <link rel="alternate" hreflang="@hreflang" href="@Url.Content($"~{alternate.Value}")" />
+    }
+} 

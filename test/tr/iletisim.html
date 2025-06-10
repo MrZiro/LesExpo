@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="title">İletişim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/iletisim.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" type="image" href="./images/lesexpo-favicon.png">
+    <style>
+        .banner {
+            position: relative;
+            background-image: url('./images/LES\ 5.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 178px;
+            color: white;
+        }
+
+        .breadcrumb-1 a {
+            color: white;
+        }
+
+        .img-harita {
+            width: 45%;
+        }
+
+        @media(max-width: 500px) {
+            .img-harita {
+
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container-navbar">
+            <a href="index.html" class="logo mt-5">
+                <!-- Gerçek logo dosyanızın yolunu buraya ekleyin -->
+                <img src="./images/lesexpologo-inter.png" class="" alt="">
+            </a>
+
+            <nav class="main-nav">
+                <ul class="">
+                    <!-- nav-toggle-button class'ı menüyü açar -->
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.discoverBFM">LES-EXPO<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.organizeFair">Katılımcı<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.visitBFM">Ziyaretçi<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.events">Etkinlikler<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="#" class="nav-toggle-button" data-translate="nav.events">Medya<i
+                                class="fas fa-chevron-down"></i></a></li>
+                    <li><a href="iletisim.html" data-translate="nav.contactUs">Bize Ulaşın</a></li>
+                </ul>
+
+            </nav>
+
+            <div class="header-actions">
+                <div class="lang-switch mt-4 ms-4">
+                    <div class="header-search">
+                        <input type="text" class="header-search-input" placeholder="Ara...">
+                        <button class="header-search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <a href="online-bilet.html" class="trigger-button">Onlıne Bilet</a>
+                    <a href="#" class="active" data-lang="tr" data-translate="lang.tr">TR</a> | <a
+                        href="../en/contact.html" class="" data-lang="en" data-translate="lang.en">EN</a>
+                </div>
+                <!-- nav-toggle-button class'ı menüyü açar -->
+
+            </div>
+
+            <!-- Mobil için Hamburger İkonu (nav-toggle-button class'ı menüyü açar/kapatır) -->
+            <button class="mobile-menu-toggle nav-toggle-button" data-translate-aria-label="menu.toggleAriaLabel"
+                aria-label="Menüyü Aç/Kapat">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Mobil Arama Çubuğu -->
+    <div class="search-overlay">
+        <div class="search-container">
+            <div class="search-content">
+                <input type="text" class="search-input" placeholder="Aramak istediğiniz kelimeyi yazınız...">
+                <button class="search-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Tam Ekran Overlay Menü -->
+    <div class="fullscreen-menu">
+        <div class="menu-header">
+            <a href="index.html" class="logo-menu">
+                <img src="./images/lesexpologo-inter.png" alt="" class="fs-2">
+            </a>
+            <div class="menu-header-actions-fs">
+                <div class="lang-switch">
+                    <a href="online-bilet.html" class="trigger-button">Online Bilet</a>
+                    <a href="#" class="active" data-lang="tr" data-translate="lang.tr">TR</a> | <a
+                        href="../en/contact.html" class="" data-lang="en" data-translate="lang.en">EN</a>
+                </div>
+                <button class="close-menu-btn" aria-label="Menüyü Kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <div class="menu-column">
+                <!-- Başlığa tıklanınca menüyü kapatmak için nav-toggle-button ekledik -->
+                <h3 class="nav-toggle-button">LES-EXPO</h3>
+                <ul>
+                    <li><a href="hakkimizda.html">Hakkında</a></li>
+                    <li><a href="fuar-kunyesi.html">Fuar Künyesi</a></li>
+                    <li><a href="fuar-alani.html">Fuar Alanı</a></li>
+                    <li><a href="ulasim.html">Nasıl Ulaşırım ?</a></li>
+                    <li><a href="fuar-sonuc-raporu.html">Fuar Sonuç Raporu</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Katılımcı</h3>
+                <ul>
+                    <li><a href="katilimci-profili.html">Katılımcı Profili</a></li>
+                    <li><a href="on-kayit-formu.html">Ön Kayıt Formu</a></li>
+                    <li><a href="neden-katilmalisiniz.html">Neden Katılmalısınız ?</a></li>
+                    <li><a href="katilimci-listesi.html">Katılımcı Listesi 2025</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button" data-translate="menu.visitBFM">Ziyaretçi</h3>
+                <ul>
+                    <li><a href="ziyaretci-profili.html">Ziyaretçi Profili</a></li>
+                    <li><a href="neden-ziyaret-etmelisiniz.html">Neden Ziyaret Etmelisiniz ?</a></li>
+                    <li><a href="sss.html">Sıkça Sorulan Sorular</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">ETKİNLİKLER</h3>
+                <ul>
+                    <li><a href="b2b-toplantıları.html">B2B Toplantıları</a></li>
+                    <li><a href="insights.html">LES Insights</a></li>
+                    <li><a href="experience.html">LES Experience</a></li>
+                </ul>
+            </div>
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Medya</h3>
+                <ul>
+                    <li><a href="medya-logo.html">Logo</a></li>
+                    <li><a href="tum-haberler.html">Haberler</a></li>
+                    <li><a href="#">Galeri</a></li>
+                    <li><a href="#">Kurumsal Kimlik</a></li>
+                </ul>
+            </div>
+
+            <div class="menu-column">
+                <h3 class="nav-toggle-button">Bize Ulaşın</h3>
+                <ul>
+                    <li><a href="iletisim.html">İletişim Bilgileri</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="menu-footer">
+            <!-- <span class="up-menu-f2f"> Powered By F2F Bilişim Reklam ve Danışmanlık Hizmetleri</span> -->
+            <span data-translate="menu.followUs">Bizi Takip Edin</span>
+            <div class="social-icons-menu">
+                <a href="https://www.facebook.com/lesexpofair" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="banner-yazi">LES-EXPO</div>
+        <div class="breadcrumb-1">
+            <a href="index.html">Ana Sayfa /</a>
+            <a href="iletisim.html">İletişim</a>
+        </div>
+
+        <div class="container-if">
+            <div class="contact-form-container-if">
+                <div class="form-header-if">
+                    <h2 class="contact-title-if">Bize Ulaşın</h2>
+                    <p class="contact-subtitle-if">Detaylı Bilgi</p>
+                    <p class="contact-description-if">
+                        LES-EXPO Fuarı ile ilgili soru, öneri ve görüşleriniz için lütfen bize yazın.
+                    </p>
+                </div>
+                <div class="form-content-if">
+                    <form class="contact-form-if">
+                        <div class="form-row-if">
+                            <div class="form-group-if">
+                                <label for="name">İsim:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group-if">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group-if">
+                            <label for="subject">Konu:</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group-if">
+                            <label for="message">Mesaj:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn-if">Gönder</button>
+                    </form>
+                </div>
+            </div>
+            <div class="contact-info-container-if">
+                <div class="contact-card-if address-if">
+                    <i class="icon-if fas fa-map-marker-alt"></i>
+                    <h4>Adres</h4>
+                    <p>Yeşilköy Istanbul, Fuar Merkezi, 34149 Bakırköy/İstanbul</p>
+                </div>
+                <div class="contact-card-if email-if">
+                    <i class="icon-if fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>info@les-expo.com</p>
+                    <p>lesexpo@kfa.com.tr</p>
+                </div>
+                <div class="contact-card-if phone-if">
+                    <i class="icon-if fas fa-phone"></i>
+                    <h4>Telefon</h4>
+                    <p>İFM: 0216 526 44 64</p>
+                    <p>KFA: +90 (224) 294 85 50</p>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.4858715894916!2d28.823648507992235!3d40.98895529824187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa37998cc3537%3A0xee53d7b87dde799d!2s%C4%B0stanbul%20Fuar%20Merkezi!5e0!3m2!1str!2str!4v1746697199685!5m2!1str!2str"
+                    width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="iframe1"></iframe>
+            </div>
+        </section>
+
+        <!-- Logo Slider -->
+        <div class="container-fluid logo-slider">
+            <div class="logo-slider-container">
+                <!-- First Slide -->
+                <div class="logo-slide">
+                    <a href="https://ymbd.org" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                </div>
+
+                <!-- Second Slide (duplicate for seamless looping) -->
+                <div class="logo-slide">
+                    <a href="https://ymbd.org" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/yukmuhlogo.png" alt="YMB" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.kfa.com.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/kfa-logo.png" alt="KFA" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                    <a href="https://www.tetsiad.org.tr" class="logo-link" target="_blank">
+                        <div class="logo-img-container">
+                            <img src="./images/ifmlogo_300x130.png" alt="TETSİAD" class="logo-img-slider">
+                        </div>
+                        <div class="logo-text"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="footer-content mt-3">
+                <div class="footer-left">
+                    <div class="logo-footer">
+                        <img src="./images/lesexpologo-footer.png" alt="">
+                    </div>
+                    <p class="address">İLETİŞİM BİLGİLERİ</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i><span>+90 549 458 56 10</span></p>
+                        <p><i class="fas fa-phone"></i><span>+90 546 458 77 16</span></p>
+                        <p><i class="fas fa-phone"></i><span>+90 549 458 01 34</span></p>
+                        <p><i class="fas fa-envelope"></i><span>info@les-expo.com</span></p>
+                        <p><i class="fas fa-envelope"></i><span>lesexpo@kfa.com.tr</span></p>
+                    </div>
+                    <h4 class="follow-us">Bizi Takip Edin</h4>
+                    <div class="social-icons-footer">
+                        <a href="https://www.facebook.com/lesexpofair" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h3>LES-EXPO</h3>
+                            <ul>
+                                <li><a href="hakkimizda.html">Hakkında</a></li>
+                                <li><a href="fuar-kunyesi.html">Fuar Künyesi</a></li>
+                                <li><a href="fuar-alani.html">Fuar Alanı</a></li>
+                                <li><a href="ulasim.html">Nasıl Ulaşırım ?</a></li>
+                                <li><a href="fuar-sonuc-raporu.html">Fuar Sonuç Raporu</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>KATILIMCI</h3>
+                            <ul>
+                                <li><a href="katilimci-profili.html">Katılımcı Profili</a></li>
+                                <li><a href="on-kayit-formu.html">Ön Kayıt Formu</a></li>
+                                <li><a href="katilimci-profili.html">Neden Katılmalısınız ?</a></li>
+                                <li><a href="katilimci-listesi.html">Katılımcı Listesi 2025</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>ZİYARETÇİ</h3>
+                            <ul>
+                                <li><a href="ziyaretci-profili.html">Ziyaretçi Profili</a></li>
+                                <li><a href="neden-ziyaret-etmelisiniz.html">Neden Ziyaret Etmelisiniz?</a></li>
+                                <li><a href="sss.html">Sıkça Sorulan Sorular</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>ETKİNLİKLER</h3>
+                            <ul>
+                                <li><a href="b2b-toplantıları.html">B2B Toplantıları</a></li>
+                                <li><a href="tum-haberler.html">Haberler</a></li>
+                                <li><a href="insights.html">LES Insights</a></li>
+                                <li><a href="experience.html">LES Experiences</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+
+        </script>
+
+        <!-- Bootstrap Bundle JS (includes Popper) - Load BEFORE custom scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+            crossorigin="anonymous"></script>
+
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- Custom Scripts -->
+        <script src="hakkimizda.js"></script>
+        <script src="main.js"></script>
+
+</body>
+
+</html>

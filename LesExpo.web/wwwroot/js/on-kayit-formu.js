@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const ulkeSelect = document.getElementById('ulke');
     const citySelect = document.getElementById('sehir');
     const faaliyetAlaniSelect = document.getElementById('FaaliyetAlani');
+    
+    // Get language from URL
+    const lang = getLangFromUrl();
+    
+    // Localized text based on language
+    const texts = {
+        en: {
+            pleaseSelect: "Please Select"
+        },
+        tr: {
+            pleaseSelect: "Lütfen Seçiniz"
+        }
+    };
+    
+    const currentTexts = texts[lang] || texts.tr;
 
     // Fetch countries and populate the dropdown
     fetch('/ExtranalData/GetStates')
@@ -41,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedCountryId = this.value;
 
             // Clear city dropdown
-            citySelect.innerHTML = '<option value="">Lütfen Seçiniz</option>';
+            citySelect.innerHTML = `<option value="">${currentTexts.pleaseSelect}</option>`;
 
             fetch(`/ExtranalData/GetCities?ulkeId=${selectedCountryId}`)
                 .then(response => {
@@ -174,3 +189,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function getLangFromUrl() {
+    const path = window.location.pathname; // Gets the path part of the URL, e.g., "/en/on-kayit-formu"
+    const segments = path.split('/');      // Splits the path into an array: ["", "en", "on-kayit-formu"]
+
+    // The 'lang' segment will be at index 1 if the URL structure is consistent
+    if (segments.length > 1) {
+        return segments[1];
+    }
+
+    return 'tr'; // Default to Turkish if 'lang' is not found
+}

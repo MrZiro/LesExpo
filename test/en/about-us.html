@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title">LESEXPO</title>
+    <title>About Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <!-- Css -->
@@ -16,6 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="icon" type="image" href="./images/lesexpo-favicon.png">
     <style>
         .banner {
             position: relative;
@@ -79,17 +80,21 @@
             </nav>
 
             <div class="header-actions">
-                
+
                 <div class="lang-switch mt-4 ms-4">
-                    <a href="online-bilet.html" class="trigger-button">Onlıne Ticket</a>
+                    <div class="header-search">
+                        <input type="text" class="header-search-input" placeholder="Search...">
+                        <button class="header-search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <a href="online-ticket.html" class="trigger-button">Onlıne Tıcket</a>
                     <a href="../tr/hakkimizda.html" class="" data-lang="tr" data-translate="lang.tr">TR</a> | <a
                         href="#" class="active" data-lang="en" data-translate="lang.en">EN</a>
                 </div>
                 <!-- nav-toggle-button class'ı menüyü açar -->
 
             </div>
-
-            <!-- Mobil için Hamburger İkonu (nav-toggle-button class'ı menüyü açar/kapatır) -->
             <button class="mobile-menu-toggle nav-toggle-button" data-translate-aria-label="menu.toggleAriaLabel"
                 aria-label="Menüyü Aç/Kapat">
                 <i class="fas fa-bars"></i>
@@ -104,10 +109,10 @@
                 <!-- Menüdeki logo -->
                 <img src="./images/lesexpologo-inter.png" alt="" class="fs-2">
             </a>
-           
+
             <div class="menu-header-actions-fs">
                 <div class="lang-switch">
-                    <a href="online-bilet.html" class="trigger-button">Onlıne Ticket</a>
+                    <a href="online-ticket.html" class="trigger-button">Onlıne Tıcket</a>
                     <a href="../tr/index.html" class="" data-lang="tr" data-translate="lang.tr">TR</a> | <a
                         href="home.html" class="active" data-lang="en" data-translate="lang.en">EN</a>
                 </div>
@@ -123,7 +128,7 @@
                 <h3 class="nav-toggle-button">LES-EXPO</h3>
                 <ul>
                     <li><a href="about-us.html">About</a></li>
-                    <li><a href="exhibition-identification.html">Exhibition Identification</a></li>
+                    <li><a href="exhibiton-identification.html">Exhibition Identification</a></li>
                     <li><a href="exhibition-area.html">Exhibition Area</a></li>
                     <li><a href="how-to-reach.html">How To Reach?</a></li>
                     <li><a href="show-report.html">Post Show Report</a></li>
@@ -143,15 +148,15 @@
                 <ul>
                     <li><a href="visitor-profile.html">Visitor Profile</a></li>
                     <li><a href="why-visit.html">Why Should You Visit?</a></li>
-                    <li><a href="sss.html">Frequently Asked Questions</a></li>
+                    <li><a href="faq.html">Frequently Asked Questions</a></li>
                 </ul>
             </div>
             <div class="menu-column">
                 <h3 class="nav-toggle-button">Events</h3>
                 <ul>
-                    <li><a href="#">B2B Toplantıları</a></li>
-                    <li><a href="#">İlham Alanları</a></li>
-                    <li><a href="#">LES-EXPO Dialogs</a></li>
+                    <li><a href="b2b-meeting.html">B2B Meetings</a></li>
+                    <li><a href="les-insights.html">LES Insights</a></li>
+                    <li><a href="les-experiences.html">LES experiences</a></li>
                 </ul>
             </div>
             <div class="menu-column">
@@ -172,17 +177,18 @@
             </div>
         </div>
 
-       <div class="menu-footer">
-      <!-- <span class="up-menu-f2f"> Powered By F2F Bilişim Reklam ve Danışmanlık Hizmetleri</span> -->
-      <span data-translate="menu.followUs">Bizi Takip Edin</span>
-      <div class="social-icons-menu">
-        <a href="https://www.facebook.com/lesexpofair" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-    </div>
+        <div class="menu-footer">
+            <!-- <span class="up-menu-f2f"> Powered By F2F Bilişim Reklam ve Danışmanlık Hizmetleri</span> -->
+            <span data-translate="menu.followUs">Follow us</span>
+            <div class="social-icons-menu">
+                <a href="https://www.facebook.com/lesexpofair" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
     </div>
 
     <div class="banner">
@@ -297,6 +303,42 @@
                             </p>
                             <p>With the change of technology, climate and projects, the variety of cargo transported is
                                 increasing, making the future role of cargo engineering specialists even more vital.</p>
+                            <h2>The Future of Freight Engineering Takes Shape at Les-Expo</h2>
+                            <p>
+                                LES-EXPO 2025 brings together the latest developments, technologies and innovative
+                                solutions in the cargo engineering sector. With the participation of expert companies
+                                and professionals in the field, this fair offers a unique opportunity to discover the
+                                latest trends in the sector and revolutionary innovations in engineering.
+                                <br><br>
+                                LES-EXPO, the center of innovations, technological breakthroughs and strategic
+                                collaborations in the field of load engineering, is an international fair that brings
+                                together all stakeholders in the sector under one roof. Exhibiting a wide range of
+                                products and services from heavy-lifting
+                                systems to transportation solutions, from structural support technologies to digital
+                                planning tools, LES-EXPO is one of the gatherings that shape the engineering world.
+
+                                During the fair, while leading companies in the sector exhibit their latest products and
+                                projects, visitors have the opportunity to follow current trends on site, experience
+                                technologies with practical demonstrations, and communicate directly with experts in
+                                their fields.
+                                <br><br>
+                                LES-EXPO is not only an exhibition area, but also a dynamic platform for sharing
+                                knowledge, transferring experience and establishing professional networks. This event,
+                                full of seminars, technical sessions and special events, offers an inspiring environment
+                                for both professionals looking for technical depth and those new to the sector.
+                            </p>
+                            <h2>Freight Engineering Services: The Strategic Discipline of Heavy Transportation</h2>
+                            <p class="description-3">Load engineering is a multidisciplinary field that covers the safe,
+                                accurate and planned lifting, transportation and placement of loads of unusual size and
+                                weight. This process is not only realized with vehicles, but also with the planning,
+                                analysis and decisions of the expert engineers who manage these vehicles.</p>
+                            <p class="description-3">Although not formally defined, load engineering encompasses
+                                critical processes such as risk analysis, ground assessment, vehicle selection, and
+                                implementation monitoring in heavy-lift operations by land, air, sea, rail, and
+                                sometimes even submarine.</p>
+                            <p class="description-3">With the changing technology, climate and projects, the variety of
+                                cargoes transported is increasing, making the future role of cargo engineering
+                                specialists even more vital.</p>
                             <h2>OUR MISSION</h2>
                             <p>To produce reliable, durable and innovative construction equipment in the field of load
                                 engineering;
@@ -310,10 +352,7 @@
                                 industrial transformation with R&D investments, digitalization and environmentally
                                 friendly production strategies.</p>
                         </div>
-                        <div class="pharmaist-images">
-                            <img src="./images/LES 1.jpg" alt="Fuar Katılımcıları" class="img-top">
-                            <img src="./images/LES 4.jpg" alt="Dijital İnsanlar" class="img-bottom">
-                        </div>
+
                     </section>
                 </div>
             </div>
@@ -412,66 +451,74 @@
             <div class="footer-content mt-3">
                 <div class="footer-left">
                     <div class="logo-footer">
-                        <img src="./images/lesexpologo-inter.png" alt="">
-
+                        <img src="./images/lesexpologo-footer.png" alt="">
                     </div>
-                    <p class="address">Yesilkoy Istanbul, Fair Center, 34149 Bakirkoy/Istanbul</p>
+                    <p class="address">CONTACT INFORMATION</p>
                     <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> (0212) 468 52 51</p>
-                        <p><i class="fas fa-fax"></i> (0212) 468 52 54</p>
-                        <p><i class="fas fa-envelope"></i> info@les-expo.com</p>
+                        <p><i class="fas fa-phone"></i><span>+90 549 458 56 10</span></p>
+                        <p><i class="fas fa-phone"></i><span>+90 546 458 77 16</span></p>
+                        <p><i class="fas fa-phone"></i><span>+90 549 458 01 34</span></p>
+                        <p><i class="fas fa-envelope"></i><span>info@les-expo.com</span></p>
+                        <p><i class="fas fa-envelope"></i><span>lesexpo@kfa.com.tr</span></p>
+                    </div>
+                    <h4 class="follow-us">Follow us</h4>
+                    <div class="social-icons-footer">
+                        <a href="https://www.facebook.com/lesexpofair" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/lesexpofair" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/lesexpofair/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@lesexpofair" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/yük-mühendisliği-birliği/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h3>LES-EXPO</h3>
-                        <ul>
-                            <li><a href="about-us.html">About</a></li>
-                            <li><a href="exhibiton-identification.html">Exhibiton Identification</a></li>
-                            <li><a href="exhibition-area.html">Exhibiton Area</a></li>
-                            <li><a href="how-to-reach.html">How To Reach?</a></li>
-                            <li><a href="show-report.html">Post Show Report</a></li>
-                        </ul>
-                    </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h3>LES-EXPO</h3>
+                            <ul>
+                                <li><a href="about-us.html">About</a></li>
+                                <li><a href="exhibiton-identification.html">Exhibiton Identification</a></li>
+                                <li><a href="exhibition-area.html">Exhibiton Area</a></li>
+                                <li><a href="how-to-reach.html">How To Reach?</a></li>
+                                <li><a href="show-report.html">Post Show Report</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="footer-column">
-                        <h3>Exhibitor</h3>
-                        <ul>
-                            <li><a href="exhibitor-profile.html">Exhibitor Profile</a></li>
-                            <li><a href="pre-registration-form.html">Pre-Registration Form</a></li>
-                            <li><a href="why-exhibit.html">Why Should You Exhibit</a></li>
-                            <li><a href="exhibitor-list.html">2025 Exhibitor List</a></li>
-                        </ul>
-                    </div>
+                        <div class="footer-column">
+                            <h3>Exhibitor</h3>
+                            <ul>
+                                <li><a href="exhibitor-profile.html">Exhibitor Profile</a></li>
+                                <li><a href="pre-registration-form.html">Pre-Registration Form</a></li>
+                                <li><a href="why-exhibit.html">Why Should You Exhibit</a></li>
+                                <li><a href="exhibitor-list.html">2025 Exhibitor List</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="footer-column">
-                        <h3>Visitor</h3>
-                        <ul>
-                            <li><a href="visitor-profile.html">Visitor Profile</a></li>
-                            <li><a href="why-visit.html">Why Should You Visit?</a></li>
-                            <li><a href="faq.html">Frequently Asked Questions</a></li>
-                        </ul>
-                    </div>
+                        <div class="footer-column">
+                            <h3>Visitor</h3>
+                            <ul>
+                                <li><a href="visitor-profile.html">Visitor Profile</a></li>
+                                <li><a href="why-visit.html">Why Should You Visit?</a></li>
+                                <li><a href="faq.html">Frequently Asked Questions</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="footer-column">
-                        <h3>Events</h3>
-                        <ul>
-                            <li><a href="b2b-toplantı.html">B2B Meetings</a></li>
-                            <li><a href="all-news.html">News</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">Corporate Identity</a></li>
-                        </ul>
+                        <div class="footer-column">
+                            <h3>Events</h3>
+                            <ul>
+                                <li><a href="b2b-meeting.html">B2B Toplantıları</a></li>
+                                <li><a href="all-news.html">Haberler</a></li>
+                                <li><a href="les-insights.html">LES Insights</a></li>
+                                <li><a href="les-experiences.html">LES Experiences</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- <div class="footer-bottom">
-          <div class="copyright">
-            <p>KFA Fuarcılık A.Ş. Bursa Ticaret ve Sanayi Odası (BTSO) iştirakidir. ©2025 | <a href="#">KVKK Aydınlatma
-                Metni</a> | <a href="#">Çerez Politikası</a></p>
-          </div>
-          <div class="created-by">
-            <p>created by <span>exmedia</span></p>
-          </div>
-        </div> -->
+                </div>
+            </div>
         </footer>
 
         <script>

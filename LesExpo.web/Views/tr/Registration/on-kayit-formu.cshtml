@@ -6,7 +6,7 @@
         <style>
             .banner {
                 position: relative;
-                background-image: url('/images/LES\ 2.jpg');
+                background-image: url('/images/LES2.jpg');
                 /* Görselin yolu */
                 background-size: cover;
                 background-position: center;
@@ -210,16 +210,17 @@
                                 <label>Firmanızı Ziyaret Etmemizi İster Misiniz? *</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="ziyaret" id="ziyaretEvet"
+                                        <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretEvet"
                                             value="evet" required>
                                         <label class="form-check-label" for="ziyaretEvet">Evet</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="ziyaret" id="ziyaretHayir"
+                                        <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretHayir"
                                             value="hayir">
                                         <label class="form-check-label" for="ziyaretHayir">Hayır</label>
                                     </div>
                                 </div>
+                                <span asp-validation-for="FirmaZiyareti" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -227,16 +228,17 @@
                                 <label>Fuar Katılım Hakkında Ayrıntılı Bilgi *</label>
                                 <div class="radio-group-form">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="katilim"
+                                        <input asp-for="FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstiyorum" value="istiyorum" required>
                                         <label class="form-check-label" for="katilimIstiyorum">İstiyorum</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="katilim"
+                                        <input asp-for="FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstemiyorum" value="istemiyorum">
                                         <label class="form-check-label" for="katilimIstemiyorum">İstemiyorum</label>
                                     </div>
                                 </div>
+                                <span asp-validation-for="FuarKatilim" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">

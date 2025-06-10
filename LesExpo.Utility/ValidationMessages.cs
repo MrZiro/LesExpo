@@ -4,6 +4,7 @@ namespace LesExpo.Utility
 {
     public static class ValidationMessages
     {
+        public const string Required_Field_Message = "*";
         // Required field messages
         public const string Required_Field = "{0} alanı gereklidir";
         

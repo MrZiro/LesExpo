@@ -1,70 +1,69 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using LesExpo.Utility;
 
 namespace LesExpo.Models.ViewModels
 {
     public class RegistrationVM
     {
-        [Required(ErrorMessage = "Şirket adı zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string SirketAdi { get; set; }
 
-        [Required(ErrorMessage = "Ad soyad zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string AdSoyad { get; set; }
 
-        [Required(ErrorMessage = "Görev zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Gorev { get; set; }
 
-        [Required(ErrorMessage = "Şirket adresi zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string SirketAdresi { get; set; }
 
-        [Required(ErrorMessage = "Ülke zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Ulke { get; set; }
 
-        [Required(ErrorMessage = "Şehir zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Sehir { get; set; }
 
-        [Required(ErrorMessage = "Telefon zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Telefon { get; set; }
 
-        [Required(ErrorMessage = "E-posta zorunludur.")]
-        [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi giriniz.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
+        [EmailAddress(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Email { get; set; }
 
         public string WebSitesi { get; set; }
 
-        [Required(ErrorMessage = "Faaliyet alanı zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string FaaliyetAlani { get; set; }
 
-        [Required(ErrorMessage = "Ürün grubu zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string UrunGrubu { get; set; }
 
-        [Required(ErrorMessage = "Markalar zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string Markalar { get; set; }
-
-        [Required(ErrorMessage = "İstenen metrekare zorunludur.")]
         public string IstenenMetrekare { get; set; }
 
-        [Required(ErrorMessage = "Kuruluş tarihi zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         [DataType(DataType.Date)]
         public DateTime KurulusTarihi { get; set; }
 
-        [Required(ErrorMessage = "Aktivite türü zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string AktiviteTuru { get; set; }
 
-        [Required(ErrorMessage = "İhracat cirosu zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string IhracatCirosu { get; set; }
 
-        [Required(ErrorMessage = "Toplam ciro zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string ToplamCiro { get; set; }
 
-        [Required(ErrorMessage = "Personel sayısı zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public int PersonelSayisi { get; set; }
 
-        [Required(ErrorMessage = "Fuar Katılımı zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string FuarKatilim { get; set; }
 
-        [Required(ErrorMessage = "Firma Ziyareti zorunludur.")]
+        [Required(ErrorMessage = ValidationMessages.Required_Field_Message)]
         public string FirmaZiyareti { get; set; }
 
         public List<FuarKatilimVM> UlusalFuarlar { get; set; }
