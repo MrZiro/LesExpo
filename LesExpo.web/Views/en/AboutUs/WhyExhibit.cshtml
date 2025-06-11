@@ -1,0 +1,113 @@
+@{
+  ViewData["Title"] = "Why Exhibit";
+  ViewData["Description"] = "Why Exhibit";
+  ViewData["Keywords"] = "Why Exhibit";
+  @* ViewData["CanonicalUrl"] = SD.siteUrl + "/en/why-exhibit";
+  ViewData["AlternateUrls"] = new string[] { SD.siteUrl + "/tr/neden-katilmalisiniz" }; *@
+}
+@section Styles{
+  <link rel="stylesheet" href="/css/katilimci-profili.css">
+  <link rel="stylesheet" href="/css/neden-katilmalisiniz.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES2.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+      color: white;
+    }
+
+    .breadcrumb-1 a {
+      color: white;
+    }
+  </style>
+}
+
+
+  <div class="banner">
+        <div class="banner-yazi">LES-EXPO</div>
+        <div class="breadcrumb-1">
+            <a href="/en">Home Page /</a>
+            <a href="/en/why-exhibit">Why Should You Exhibit? </a>
+        </div>
+
+  </div>
+
+    <!-- Sidebar mobile toggle button -->
+    <button class="sidebar-toggle-button d-md-none">
+      <i class="fas fa-bars"></i>
+    </button>
+        <section id="nedenkatilmalisiniz" class="fuar-container">
+            <div class="fuar-left">
+                <img src="/images/textileshow-blog.png" alt="Rising City Görseli" class="fuar-image">
+            </div>
+            <div class="fuar-right">
+                <p class="subtitle-3">LES-EXPO Freight Engineering Services Fair</p>
+                <h1>WHY SHOULD YOU EXHİBİT?</h1>
+                <p class="intro">
+                    The Load Engineering Services Fair brings together the latest developments in the fields of
+                    load-bearing system solutions, heavy load engineering, structural safety and industrial
+                    infrastructure projects, and guides the sector...
+                </p>
+                <ul class="benefits">
+                    <li>Opportunity to closely examine the latest products, software and technologies in heavy-duty
+                        engineering ✓</li>
+                    <li>Increasing business volume by holding one-on-one meetings with potential business partners and
+                        customers ✓</li>
+                    <li>Increasing brand awareness and highlighting your expertise in the industry ✓</li>
+                    <li>Obtaining strategic advantages by observing the solutions of competitor companies ✓</li>
+                    <li>Get direct feedback from project owners and engineers and improve your services ✓
+                    </li>
+                    <li>Evaluating export opportunities by connecting with international participants </li>
+                </ul>
+                <a href="/en/pre-registration-form" class="btn-kp">Reserve Your Place</a>
+            </div>
+
+            <div class="features-nk">
+                <div class="feature-item-nk">
+                    <div class="icon-container-nk">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <p>Meet with Industry<br>Leaders</p>
+                </div>
+
+                <div class="feature-item-nk">
+                    <div class="icon-container-nk">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <p>Innovative<br>Technologies</p>
+                </div>
+
+                <div class="feature-item-nk">
+                    <div class="icon-container-nk">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p>Training and <br>Seminars</p>
+                </div>
+
+                <div class="feature-item-nk">
+                    <div class="icon-container-nk">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <p>Global Networking <br>Opportunities</p>
+                </div>
+            </div>
+        </section>
+
+
+@section Scripts{
+  <script src="/js/hakkimizda.js"></script>
+}

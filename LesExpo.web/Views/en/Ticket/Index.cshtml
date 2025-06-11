@@ -1,0 +1,179 @@
+@model LesExpo.Models.ViewModels.TicketVM
+@{
+    ViewData["Title"] = "Online Ticket";
+    ViewData["Description"] = "Online Ticket";
+    ViewData["Keywords"] = "Online Ticket, LES-EXPO";
+}
+@section Styles{
+    <link rel="stylesheet" href="/css/online-bilet.css">
+        <style>
+        .banner {
+            position: relative;
+            background-image: url('/images/LES2.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            color: white;
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 180px;
+
+        }
+    </style>
+    }
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1 mt-1">
+        <a href="/en">Home Page</a> /
+        <a href="/en/online-ticket">Online Ticket</a>
+    </div>
+</div>
+
+
+
+<div class="container-ob">
+    <div class="form-container-ob">
+        <h1>Online Ticket</h1>
+        <p class="form-description-ob">Fill out your ticket information to attend our fair event.</p>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form id="ticketForm" asp-action="Index" method="post">
+            <div class="form-section-ob">
+                <h2>Personal Information</h2>
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="FirstName">Name <span class="required-ob">*</span></label>
+                        <input asp-for="FirstName" type="text" id="firstName" class="form-control" required>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="LastName">Last Name <span class="required-ob">*</span></label>
+                        <input asp-for="LastName" type="text" id="lastName" class="form-control" required>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Email">Email <span class="required-ob">*</span></label>
+                        <input asp-for="Email" type="email" id="email" class="form-control" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Phone">Phone <span class="required-ob">*</span></label>
+                        <input asp-for="Phone" type="tel" id="phone" class="form-control" required>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="CompanyName">Company Name <span class="required-ob">*</span></label>
+                        <input asp-for="CompanyName" type="text" id="companyName" class="form-control" required>
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Sector">Sector <span class="required-ob">*</span></label>
+                        <select asp-for="Sector" id="sector" class="form-control" required>
+                            <option value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="Sector" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Website">Website</label>
+                        <input asp-for="Website" type="url" id="website" class="form-control" placeholder="https://www.example.com">
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Country">Country <span class="required-ob">*</span></label>
+                        <select asp-for="Country" id="country" class="form-control" required>
+                            <option value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="City">City <span class="required-ob">*</span></label>
+                        <select asp-for="City" id="city" class="form-control" required>
+                            <option value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Position">Position</label>
+                        <select asp-for="Position" id="position" class="form-control">
+                            <option value="">Please Select</option>
+                            <option value="Asistan">Assistant</option>
+                            <option value="Danışman">Consultant</option>
+                            <option value="Satın Alma">Purchasing</option>
+                            <option value="Müdür">Manager</option>
+                            <option value="CEO/CCO/Başkan">CEO/CCO/President</option>
+                            <option value="Genel Müdür">General Manager</option>
+                        </select>
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Gender">Gender <span class="required-ob">*</span></label>
+                        <select asp-for="Gender" id="gender" class="form-control" required>
+                            <option value="">Please Select</option>
+                            <option value="Erkek">Male</option>
+                            <option value="Kadın">Female</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section-ob">
+                <div class="form-group-ob checkbox-group-ob">
+                    <input asp-for="Terms" type="checkbox" id="terms" required>
+                    <label asp-for="Terms">I accept the terms and conditions <span
+                            class="required-ob">*</span></label>
+                    <span asp-validation-for="Terms" class="text-danger"></span>
+                </div>
+            </div>
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions-ob">
+                <button type="submit" class="btn-primary-ob">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/ticket.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

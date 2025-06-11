@@ -1,0 +1,246 @@
+:root {
+  --primary-color: #ff6b00;
+  --secondary-color: #2c3e50;
+  --accent-color: #f39c12;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+.container-ob {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-container-ob {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  padding: 30px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.form-description-ob {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+}
+
+.form-section-ob {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-section-ob:last-child {
+  border-bottom: none;
+}
+
+.form-section-ob h2 {
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+.form-row-ob {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  gap: 20px;
+}
+
+.form-group-ob {
+  flex: 1 1 calc(50% - 10px);
+  min-width: 250px;
+  margin-bottom: 15px;
+}
+
+.full-width-ob {
+  flex: 1 1 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.required-ob {
+  color: var(--error-color);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
+}
+
+.checkbox-group-ob {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group-ob input {
+  width: auto;
+  margin-right: 10px;
+}
+
+.checkbox-group-ob label {
+  margin-bottom: 0;
+}
+
+.total-section-ob {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.total-amount-ob {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.form-actions-ob {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn-primary-ob,
+.btn-secondary-ob {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary-ob {
+  background-color: var(--primary-color);
+  color: white;
+  flex: 2;
+}
+
+.btn-secondary-ob {
+  background-color: #e9ecef;
+  color: var(--secondary-color);
+  flex: 1;
+}
+
+.btn-primary-ob:hover {
+  background-color: #e05e00;
+}
+
+.btn-secondary-ob:hover {
+  background-color: #dee2e6;
+}
+
+.success-message-ob {
+  text-align: center;
+  padding: 30px;
+}
+
+.success-message-ob i {
+  font-size: 5rem;
+  color: var(--success-color);
+  margin-bottom: 20px;
+}
+
+.success-message-ob h2 {
+  color: var(--success-color);
+  margin-bottom: 15px;
+}
+
+.success-message-ob p {
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.hidden-ob {
+  display: none;
+}
+
+/* Error styling */
+input.error-ob,
+select.error-ob {
+  border-color: var(--error-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-container-ob {
+    padding: 20px;
+  }
+
+  .form-group-ob {
+    flex: 1 1 100%;
+  }
+
+  .form-actions-ob {
+    flex-direction: column;
+  }
+
+  .btn-primary-ob,
+  .btn-secondary-ob {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-section-ob h2 {
+    font-size: 1.1rem;
+  }
+}

@@ -1,4 +1,5 @@
-﻿using LesExpo.web.Services;
+﻿using AspNetCoreGeneratedDocument;
+using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LesExpo.web.Controllers
@@ -86,6 +87,45 @@ namespace LesExpo.web.Controllers
         {
             return View();
         }
+        [HttpGet("b2b-toplantilari")]
+        [HttpGet("b2b-meetings")]
+        public IActionResult B2BMeeting()
+        {
+            return View();
+        }
+        [HttpGet("les-insights")]
+        public IActionResult Insights()
+        {
+            return View();
+        }
+        [HttpGet("les-experiences")]
+        public IActionResult Experiences()
+        {
+            return View();
+        }
+        [HttpGet("medya-logo")]
+        [HttpGet("media-logo")]
+        public IActionResult MediaLogo()
+        {
+            return View();
+        }
+        [HttpGet("exhibitor-profile")]
+        [HttpGet("katilimci-profili")]
+        public IActionResult ExhibitorProfile()
+        {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "ExhibitorProfile", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "ExhibitorProfile", Lang);
+            return View();
+        }
+        [HttpGet("why-exhibit")]
+        [HttpGet("neden-katilmalisiniz")]
+        public IActionResult WhyExhibit()
+        {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "WhyExhibit", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "WhyExhibit", Lang);
+            return View();
+        }
+        
         
     }
 }

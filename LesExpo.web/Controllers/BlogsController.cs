@@ -1,6 +1,7 @@
 using LesExpo.DataAccess.Repository.IRepository;
 using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace LesExpo.web.Controllers
 {
@@ -70,11 +71,14 @@ namespace LesExpo.web.Controllers
                 .OrderByDescending(b => b.CreatedAt)
                 .ToList();
 
+            // Set culture based on language
+            var culture = Lang == "en" ? new CultureInfo("en-US") : new CultureInfo("tr-TR");
+
             var result = blogs.Select(b => new
             {
                 title = b.Title,
                 image = b.CardImageUrl,
-                date = b.CreatedAt.ToString("dd MMMM yyyy"),
+                date = b.CreatedAt.ToString("dd MMMM yyyy", culture),
                 category = b.ContentType.Name,
                 slug = b.Slug,
                 metaDescription = b.MetaDescription,

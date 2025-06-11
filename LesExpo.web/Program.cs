@@ -57,6 +57,9 @@ builder.Services.Configure<EmailTemplatesConfig>(
 // Add URL localization service
 builder.Services.AddScoped<IUrlLocalizationService, UrlLocalizationService>();
 
+// Add external API service
+builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
+
 // Register background services
 builder.Services.AddHostedService<TempFileCleanupService>();
 

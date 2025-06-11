@@ -1,4 +1,12 @@
 @model LesExpo.Models.ViewModels.RegistrationVM
+@{
+    ViewData["Title"] = "Ön Kayıt Formu - LESEXPO";
+    ViewData["Description"] = "LESEXPO Ön Kayıt Formu";
+    ViewData["Keywords"] = "LESEXPO, Ön Kayıt, Fuar";
+    ViewData["Author"] = "LESEXPO";
+    ViewData["CanonicalUrl"] = SD.siteUrl + "/tr/on-kayit-formu";
+    ViewData["AlternateUrls"] = new string[] { SD.siteUrl + "/en/on-kayit-formu" };
+}
 
 @section Styles{
     <link rel="stylesheet" href="~/css/on-kayit-formu.css">

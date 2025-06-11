@@ -1,0 +1,179 @@
+@model LesExpo.Models.ViewModels.TicketVM
+@{
+    ViewData["Title"] = "Online Bilet";
+    ViewData["Description"] = "Online Bilet";
+    ViewData["Keywords"] = "Online Bilet, LES-EXPO";
+}
+@section Styles{
+    <link rel="stylesheet" href="/css/online-bilet.css">
+        <style>
+        .banner {
+            position: relative;
+            background-image: url('/images/LES2.jpg');
+            /* Görselin yolu */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            /* Yüksekliği isteğe göre ayarlayın */
+            color: white;
+            font-family: Arial, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner-yazi {
+            position: relative;
+            font-size: 48px;
+            font-weight: bold;
+            padding-top: 180px;
+
+        }
+    </style>
+    }
+
+
+<div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1 mt-1">
+        <a href="index.html">Ana Sayfa</a> /
+        <a href="online-bilet.html">Online Bilet</a>
+    </div>
+</div>
+
+
+
+<div class="container-ob">
+    <div class="form-container-ob">
+        <h1>Online Bilet Satın Al</h1>
+        <p class="form-description-ob">Fuar etkinliğimize katılmak için bilet bilgilerinizi doldurun.</p>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <form id="ticketForm" asp-action="Index" method="post">
+            <div class="form-section-ob">
+                <h2>Kişisel Bilgiler</h2>
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="FirstName">Ad <span class="required-ob">*</span></label>
+                        <input asp-for="FirstName" type="text" id="firstName" class="form-control" required>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="LastName">Soyad <span class="required-ob">*</span></label>
+                        <input asp-for="LastName" type="text" id="lastName" class="form-control" required>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Email">E-posta <span class="required-ob">*</span></label>
+                        <input asp-for="Email" type="email" id="email" class="form-control" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Phone">Telefon <span class="required-ob">*</span></label>
+                        <input asp-for="Phone" type="tel" id="phone" class="form-control" required>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="CompanyName">Firma Adı <span class="required-ob">*</span></label>
+                        <input asp-for="CompanyName" type="text" id="companyName" class="form-control" required>
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Sector">Sektör <span class="required-ob">*</span></label>
+                        <select asp-for="Sector" id="sector" class="form-control" required>
+                            <option value="">Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="Sector" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Website">Web Sitesi</label>
+                        <input asp-for="Website" type="url" id="website" class="form-control" placeholder="https://www.example.com">
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Country">Ülke <span class="required-ob">*</span></label>
+                        <select asp-for="Country" id="country" class="form-control" required>
+                            <option value="">Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="City">Şehir <span class="required-ob">*</span></label>
+                        <select asp-for="City" id="city" class="form-control" required>
+                            <option value="">Önce ülke seçiniz</option>
+                        </select>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Position">Pozisyon</label>
+                        <select asp-for="Position" id="position" class="form-control">
+                            <option value="">Seçiniz</option>
+                            <option value="Asistan">Asistan</option>
+                            <option value="Danışman">Danışman</option>
+                            <option value="Satın Alma">Satın Alma</option>
+                            <option value="Müdür">Müdür</option>
+                            <option value="CEO/CCO/Başkan">CEO/CCO/Başkan</option>
+                            <option value="Genel Müdür">Genel Müdür</option>
+                        </select>
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Gender">Cinsiyet <span class="required-ob">*</span></label>
+                        <select asp-for="Gender" id="gender" class="form-control" required>
+                            <option value="">Seçiniz</option>
+                            <option value="Erkek">Erkek</option>
+                            <option value="Kadın">Kadın</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section-ob">
+                <div class="form-group-ob checkbox-group-ob">
+                    <input asp-for="Terms" type="checkbox" id="terms" required>
+                    <label asp-for="Terms">Şartları ve koşulları kabul ediyorum <span
+                            class="required-ob">*</span></label>
+                    <span asp-validation-for="Terms" class="text-danger"></span>
+                </div>
+            </div>
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions-ob">
+                <button type="submit" class="btn-primary-ob">Gönder</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/ticket.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

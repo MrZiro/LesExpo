@@ -20,5 +20,7 @@ namespace LesExpo.Utility
         // Temp File Cleanup
         public const int TempFileCleanupIntervalMinutes =  1440; // 24 hours
         public const int TempFileMaxAgeMinutes = 120; // 2 hours
+
+        public const string siteUrl = "https://les-expo.com";
     }
 }
