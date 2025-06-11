@@ -1,0 +1,108 @@
+@{
+  ViewData["Title"] = "Exhibitor List";
+  ViewData["Description"] = "Exhibitor List - You can fill out the pre-registration form to participate in our fair.";
+  ViewData["Keywords"] = "Exhibitor List, Fair";
+}
+@section Styles{
+  <link rel="stylesheet" href="~/css/katilimci-listesi.css">
+
+  <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES5.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      color: white;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+}
+
+
+
+  <div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+      <a href="/tr">Ana Sayfa /</a>
+      <a href="/tr/katilimci-listesi">Katılımcı Listesi</a>
+    </div>
+  </div>
+
+    <div class="container-klf">
+      <h1>2025 Katılımcı Listesi</h1>
+
+      <div class="year-indicator-klf">
+      </div>
+
+      <div class="filters-klf">
+        <div class="filter-group-klf">
+          <label for="firma-adi">Firma Adı</label>
+          <input type="text" id="firma-adi" class="filter-input-klf" placeholder="Firma adı giriniz...">
+        </div>
+
+        <div class="filter-group-klf">
+          <label for="adres-ulke">Ülke</label>
+          <div class="custom-select-klf">
+            <div class="select-selected-klf" id="selected-country">Türkiye</div>
+            <div class="select-arrow-klf">&#9662;</div>
+            <div class="select-items-klf select-hide-klf" id="country-items">
+              <div class="search-container-klf">
+                <input type="text" id="country-search" placeholder="Ara...">
+                <span class="search-icon-klf">&#128269;</span>
+              </div>
+              <div class="options-container-klf">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group-klf">
+          <label for="urun-gruplari">Ürün Grupları</label>
+          <div class="custom-select-klf">
+            <div class="select-selected-klf" id="selected-product">Vinç Sistemleri</div>
+            <div class="select-arrow-klf">&#9662;</div>
+            <div class="select-items-klf select-hide-klf" id="product-items">
+              <div class="options-container-klf">
+                <div class="select-item-klf" data-value="vinc-sistemleri">Vinç Sistemleri</div>
+                <div class="select-item-klf" data-value="kaldirma-ekipmanlari">Kaldırma Ekipmanları</div>
+                <div class="select-item-klf" data-value="tasima-sistemleri">Taşıma Sistemleri</div>
+                <div class="select-item-klf" data-value="yuk-dengeleme">Yük Dengeleme</div>
+                <div class="select-item-klf" data-value="konteyner-sistemleri">Konteyner Sistemleri</div>
+                <div class="select-item-klf" data-value="forklift-ekipmanlari">Forklift Ekipmanları</div>
+                <div class="select-item-klf" data-value="agir-yuk-tasima">Ağır Yük Taşıma</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-klf"></div>
+
+      <div class="table-container-klf">
+        <table id="participants-table">
+          <thead>
+            <tr>
+              <th>Firma Adı</th>
+              <th>Ülke</th>
+              <th>Salon</th>
+              <th>Stant No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Veriler JavaScript ile doldurulacak -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+@section Scripts{
+    <!-- Custom Scripts -->
+    <script src="~/js/hakkimizda.js"></script>
+
+    <script src="~/js/exhibitor-list.js"></script>
+}

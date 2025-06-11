@@ -8,12 +8,33 @@ document.addEventListener('DOMContentLoaded', function() {
     var langLinks = document.querySelectorAll('a[data-lang]');
     langLinks.forEach(function(link) {
         var linkLang = link.getAttribute('data-lang');
+        var newHref = '';
         
         if (linkLang === 'tr') {
-            link.href = currentPath.replace('/en', '/tr');
+            if (currentPath === '/' || currentPath === '') {
+                // Root homepage - stay as root for Turkish (default)
+                newHref = '/';
+            } else if (currentPath.startsWith('/en')) {
+                // English page - convert to Turkish
+                newHref = currentPath.replace('/en', '/tr');
+            } else {
+                // Already Turkish path or other
+                newHref = currentPath;
+            }
+            link.href = newHref;
             link.classList.toggle('active', currentLang === 'tr');
         } else if (linkLang === 'en') {
-            link.href = currentPath.replace('/tr', '/en');
+            if (currentPath === '/' || currentPath === '') {
+                // Root homepage - go to English
+                newHref = '/en';
+            } else if (currentPath.startsWith('/tr')) {
+                // Turkish page - convert to English  
+                newHref = currentPath.replace('/tr', '/en');
+            } else {
+                // Already English path or other
+                newHref = currentPath;
+            }
+            link.href = newHref;
             link.classList.toggle('active', currentLang === 'en');
         }
     });

@@ -93,7 +93,7 @@ namespace LesExpo.web.Services
         public async Task<(bool Success, string ResponseContent, string ErrorMessage)> AddZiyaretciAsync(
             string firstName, string lastName, string email, string phone, string gender,
             string companyName, string position, string sector, int countryId, string city,
-            bool isYabanci, int fuarId = 4139)
+            bool isYabanci, int fuarId = 41395)
         {
             var httpClient = _httpClientFactory.CreateClient("FairApi");
             try

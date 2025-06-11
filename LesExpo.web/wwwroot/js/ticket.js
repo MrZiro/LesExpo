@@ -117,12 +117,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const ticketForm = document.getElementById('ticketForm');
     if (ticketForm) {
         ticketForm.addEventListener('submit', function(e) {
-            // Add any client-side validation or UI feedback here if needed
             const submitButton = this.querySelector('button[type="submit"]');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = lang === 'en' ? 'Submitting...' : 'Gönderiliyor...';
+            
+            // Check if form is valid before disabling button
+            if (ticketForm.checkValidity()) {
+                // Form is valid, safe to disable button
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = lang === 'en' ? 'Submitting...' : 'Gönderiliyor...';
+                }
             }
+            // If form is not valid, don't disable button - let validation errors show
+        });
+
+        // Re-enable button if user makes changes after failed submission
+        const formInputs = ticketForm.querySelectorAll('input, select, textarea');
+        formInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const submitButton = ticketForm.querySelector('button[type="submit"]');
+                if (submitButton && submitButton.disabled) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = lang === 'en' ? 'Submit' : 'Gönder';
+                }
+            });
         });
     }
 });

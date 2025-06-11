@@ -73,6 +73,8 @@ namespace LesExpo.web.Controllers
         [HttpGet("ziyaretci-profili")]
         public IActionResult VisitorProfile()
         {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "WhyVisiting", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "WhyVisiting", Lang);
             return View();
         }
         [HttpGet("why-visit")]
@@ -85,12 +87,16 @@ namespace LesExpo.web.Controllers
         [HttpGet("sikca-sorulan-sorular")]
         public IActionResult faq()
         {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "Insights", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "Insights", Lang);
             return View();
         }
         [HttpGet("b2b-toplantilari")]
         [HttpGet("b2b-meetings")]
         public IActionResult B2BMeeting()
         {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "B2BMeeting", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "B2BMeeting", Lang);
             return View();
         }
         [HttpGet("les-insights")]
@@ -101,12 +107,16 @@ namespace LesExpo.web.Controllers
         [HttpGet("les-experiences")]
         public IActionResult Experiences()
         {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "WhyExhibit", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "WhyExhibit", Lang);
             return View();
         }
         [HttpGet("medya-logo")]
         [HttpGet("media-logo")]
         public IActionResult MediaLogo()
         {
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("AboutUs", "MediaLogo", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("AboutUs", "MediaLogo", Lang);
             return View();
         }
         [HttpGet("exhibitor-profile")]

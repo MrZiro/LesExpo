@@ -18,7 +18,7 @@ namespace LesExpo.web.Controllers
         private readonly string _adminEmail = "adobe.mrziro@gmail.com";
         
         // FUAR_ID - you can provide this value
-        private const int FUAR_ID = 4139; // You need to provide this value
+        private const int FUAR_ID = 41395; // You need to provide this value
         
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
 
