@@ -5,6 +5,37 @@
   height: 100vh;
 }
 
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.desktop-video {
+  display: block;
+}
+
+.mobile-video {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-video {
+    display: none;
+  }
+  .mobile-video {
+    display: block;
+  }
+}
+
 .carousel-item img {
   width: 100%;
   height: 100vh;
@@ -125,7 +156,7 @@
 .hero-content p {
   font-size: 1.7rem;
   color: #fff;
-  max-width: 800px;
+  max-width: 840px;
   margin: 0 auto;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -1605,12 +1636,4 @@
   100% {
     width: 100%;
   }
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-body {
-  background-color: #0c243d;
 }

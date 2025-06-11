@@ -208,7 +208,8 @@ function getLangFromUrl() {
             const submitButton = document.querySelector('.btn-okf-1');
             const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
             const acceptPrivacyButton = document.getElementById('acceptPrivacy');
-
+            console.log('Privacy Modal and Checkbox functionality initialized');
+            console.log('Privacy Checkbox:', privacyCheckbox);
             // Checkbox'a tıklandığında modal'ı aç
             privacyCheckbox.addEventListener('click', function(e) {
                 e.preventDefault(); // Checkbox'ın varsayılan davranışını engelle
