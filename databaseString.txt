@@ -1,1 +1,3 @@
     "DefaultConnection": "Server=localhost;Database=LesExpoDataBase4;User ID=sa;Password=Docker0101!;Encrypt=True;TrustServerCertificate=True"
+
+     "DefaultConnection": "Server=UMUT\\SQLEXPRESS;Database=Les-expo;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True"

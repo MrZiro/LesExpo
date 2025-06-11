@@ -1,0 +1,120 @@
+/* Sidebar Styles */
+.sidebar-container {
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .sidebar {
+    background-color: var(--sidebar-bg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 50%;
+    min-height: 70vh;
+    overflow-y: auto;
+    border-radius: 0 10px 10px 0;
+    margin-top: 0.4rem;
+  }
+  
+  .sidebar-sticky {
+    position: sticky;
+    top: 0;
+    padding-top: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .sidebar-header {
+    color: white;
+  }
+  
+  .sidebar .nav-link {
+    color: var(--primarycolor);
+    text-decoration: none;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    margin: 2px 0;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: rgba(12, 36, 61, 0.05);
+    color: var(--primarycolor);
+  }
+  
+  .sidebar .nav-link.active {
+    background-color: var(--primarycolor);
+    color: #fff;
+  }
+  
+  .sidebar .dropdown-toggle {
+    position: relative;
+  }
+  
+  .sidebar .dropdown-toggle::after {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar .dropdown-toggle[aria-expanded="true"]::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  .sidebar .menu-icon {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .sidebar .submenu {
+    padding-left: 20px;
+  }
+  
+  .sidebar .submenu .nav-link {
+    padding: 6px 15px;
+    font-size: 13px;
+  }
+  
+  .sidebar .submenu .nav-link:hover {
+    background-color: rgba(12, 36, 61, 0.05);
+    color: var(--primarycolor);
+  }
+  
+  /* Simplified Collapse Animation */
+  .collapse {
+    /* display: block !important; /* Bootstrap handles display */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    /* Adjusted duration for smoother feel */
+  }
+  
+  .collapse.show {
+    max-height: 1000px;
+    /* Set a large enough max-height to accommodate content */
+  }
+  
+  /* Nav Item Styling */
+  .sidebar .nav-item {
+    margin-bottom: 5px;
+  }
+  
+  .sidebar .nav-item.dropdown {
+    border-radius: 5px;
+    margin: 5px 10px;
+    overflow: hidden;
+  }
+  
+  .sidebar .dropdown-toggle {
+    background-color:var(--sidebar-bg);
+    border-radius: 5px;
+  }
+  
+  .sidebar .submenu .nav-link:hover {
+    color: var(--primarycolor);
+    background-color: rgba(220, 53, 69, 0.05);
+  }
