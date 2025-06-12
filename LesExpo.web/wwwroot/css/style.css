@@ -1033,7 +1033,7 @@ ul {
 }
 
 .footer-column ul li a:hover {
-  color: #007bff;
+  color: var(--primarycolor);
 }
 
 @media (max-width: 992px) {
@@ -1896,6 +1896,74 @@ body {
   }
   
   .privacy-modal-content {
+    margin: 20px;
+    width: auto;
+  }
+}
+
+/* English Privacy Modal Styles */
+.privacy-modal-en {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  overflow-y: auto;
+}
+
+.privacy-modal-content-en {
+  position: relative;
+  background-color: #fff;
+  margin: 50px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.privacy-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.privacy-modal-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+}
+
+.privacy-modal-close-en {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  line-height: 1;
+}
+
+.privacy-modal-close-en:hover {
+  color: #333;
+}
+
+.privacy-modal-body {
+  color: #333;
+  line-height: 1.6;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .privacy-modal-content-en {
     margin: 20px;
     width: auto;
   }
