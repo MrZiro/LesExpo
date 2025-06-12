@@ -1,11 +1,8 @@
 @model LesExpo.Models.ViewModels.RegistrationVM
 @{
-    ViewData["Title"] = "Ön Kayıt Formu - LESEXPO";
-    ViewData["Description"] = "LESEXPO Ön Kayıt Formu - Fuarımıza katılımcı olarak yer almak için ön kayıt formunu doldurabilirsiniz.";
-    ViewData["Keywords"] = "LESEXPO, Ön Kayıt, Fuar";
-    ViewData["Author"] = "LESEXPO";
-    ViewData["CanonicalUrl"] = SD.siteUrl + "/tr/on-kayit-formu";
-    ViewData["AlternateUrls"] = new string[] { SD.siteUrl + "/en/on-kayit-formu" };
+    ViewData["Title"] = "Pre-Registration Form";
+    ViewData["Description"] = "LES-EXPO Pre-Registration Form";
+    ViewData["Keywords"] = "LES-EXPO, Pre-Registration, Fair";
 }
 
 @section Styles{
@@ -70,8 +67,8 @@
     <div class="banner">
         <div class="banner-yazi">LES-EXPO</div>
         <div class="breadcrumb-1 mt-1">
-            <a asp-controller="Home" asp-action="Index">Ana Sayfa</a> /
-            <a asp-controller="Registration" asp-action="OnKayitFormu">Ön Kayıt Formu</a>
+            <a asp-controller="Home" asp-action="Index">Home Page</a> /
+            <a href="/en/pre-registration-form">Pre-Registration Form</a>
         </div>
     </div>
 
@@ -89,27 +86,27 @@
                         @TempData["Error"]
                     </div>
                 }
-                <form asp-controller="Registration" asp-action="OnKayitFormu" method="post">
+                <form method="post">
                     @Html.AntiForgeryToken()
                     <!-- First Row -->
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="SirketAdi">Şirket Adınız *</label>
+                                <label asp-for="SirketAdi">Company Name *</label>
                                 <input asp-for="SirketAdi" class="form-control" required>
                                 <span asp-validation-for="SirketAdi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="AdSoyad">Adınız Soyadınız *</label>
+                                <label asp-for="AdSoyad">Name and Surname *</label>
                                 <input asp-for="AdSoyad" class="form-control" required>
                                 <span asp-validation-for="AdSoyad" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Gorev">Göreviniz *</label>
+                                <label asp-for="Gorev">Job Title *</label>
                                 <input asp-for="Gorev" class="form-control" required>
                                 <span asp-validation-for="Gorev" class="text-danger"></span>
                             </div>
@@ -120,7 +117,7 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label asp-for="SirketAdresi">Şirket Adresiniz *</label>
+                                <label asp-for="SirketAdresi">Address *</label>
                                 <textarea asp-for="SirketAdresi" class="form-control" rows="3" required></textarea>
                                 <span asp-validation-for="SirketAdresi" class="text-danger"></span>
                             </div>
@@ -131,25 +128,25 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Ulke">Ülke *</label>
+                                <label asp-for="Ulke">Country *</label>
                                 <select asp-for="Ulke" class="form-select" id="ulke" required>
-                                    <option value="">Lütfen Seçiniz</option>
+                                    <option value="">Please Select</option>
                                 </select>
                                 <span asp-validation-for="Ulke" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Sehir">Şehir *</label>
+                                <label asp-for="Sehir">City *</label>
                                 <select asp-for="Sehir" class="form-select" id="sehir" required>
-                                    <option value="">Lütfen Önce Ülke Seçiniz</option>
+                                    <option value="">Please Select</option>
                                 </select>
                                 <span asp-validation-for="Sehir" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Telefon">Telefon *</label>
+                                <label asp-for="Telefon">Phone *</label>
                                 <div class="input-group">
                                     <input asp-for="Telefon" type="tel" class="form-control" id="telefon" placeholder="+90 501 234 56 78" required>
                                 </div>
@@ -162,23 +159,23 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Email">E-Posta Adresiniz *</label>
+                                <label asp-for="Email">Email *</label>
                                 <input asp-for="Email" type="email" class="form-control" required>
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="WebSitesi">Web Sitesi Adresiniz</label>
+                                <label asp-for="WebSitesi">Website</label>
                                 <input asp-for="WebSitesi" type="url" class="form-control">
                                 <span asp-validation-for="WebSitesi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="FaaliyetAlani">Faaliyet Alanınız *</label>
+                                <label asp-for="FaaliyetAlani">Company Activity *</label>
                                 <select asp-for="FaaliyetAlani" class="form-select" id="FaaliyetAlani" required>
-                                    <option value="">Lütfen Seçiniz</option>
+                                    <option value="">Please Select</option>
                                 </select>
                                 <span asp-validation-for="FaaliyetAlani" class="text-danger"></span>
                             </div>
@@ -189,21 +186,21 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="UrunGrubu">Ürün Grubunuzu Giriniz *</label>
+                                <label asp-for="UrunGrubu">Products *</label>
                                 <input asp-for="UrunGrubu" type="text" class="form-control" required>
                                 <span asp-validation-for="UrunGrubu" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Markalar">Markalarınızı Giriniz *</label>
+                                <label asp-for="Markalar">Please enter the brand name *</label>
                                 <input asp-for="Markalar" type="text" class="form-control" required>
                                 <span asp-validation-for="Markalar" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="IstenenMetrekare">Ayırtmak İstediğiniz Metrekareyi Giriniz *</label>
+                                <label asp-for="IstenenMetrekare">Square meter prices that you have requestedz *</label>
                                 <input asp-for="IstenenMetrekare" type="text" class="form-control" required>
                                 <span asp-validation-for="IstenenMetrekare" class="text-danger"></span>
                             </div>
@@ -215,17 +212,17 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Firmanızı Ziyaret Etmemizi İster Misiniz? *</label>
+                                <label>Would you like us to visit your company? *</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
                                         <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretEvet"
                                             value="evet" required>
-                                        <label class="form-check-label" for="ziyaretEvet">Evet</label>
+                                        <label class="form-check-label" for="ziyaretEvet">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretHayir"
                                             value="hayir">
-                                        <label class="form-check-label" for="ziyaretHayir">Hayır</label>
+                                        <label class="form-check-label" for="ziyaretHayir">No</label>
                                     </div>
                                 </div>
                                 <span asp-validation-for="FirmaZiyareti" class="text-danger"></span>
@@ -233,17 +230,17 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Fuar Katılım Hakkında Ayrıntılı Bilgi *</label>
+                                <label>Detailed information about fair participation *</label>
                                 <div class="radio-group-form">
                                     <div class="form-check form-check-inline">
                                         <input asp-for="FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstiyorum" value="istiyorum" required>
-                                        <label class="form-check-label" for="katilimIstiyorum">İstiyorum</label>
+                                        <label class="form-check-label" for="katilimIstiyorum">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input asp-for="FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstemiyorum" value="istemiyorum">
-                                        <label class="form-check-label" for="katilimIstemiyorum">İstemiyorum</label>
+                                        <label class="form-check-label" for="katilimIstemiyorum">No</label>
                                     </div>
                                 </div>
                                 <span asp-validation-for="FuarKatilim" class="text-danger"></span>
@@ -251,7 +248,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="KurulusTarihi">Firmanızın Kuruluş Tarihi *</label>
+                                <label asp-for="KurulusTarihi">Company Establishment Date *</label>
                                 <input asp-for="KurulusTarihi" type="date" class="form-control" placeholder="GG-AA-YYYY" required>
                                 <span asp-validation-for="KurulusTarihi" class="text-danger"></span>
                             </div>
@@ -262,22 +259,22 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="AktiviteTuru">Firmanızın Aktivite Türü *</label>
+                                <label asp-for="AktiviteTuru">Company Activity *</label>
                                 <select asp-for="AktiviteTuru" class="form-select" required>
-                                    <option value="">Seçiniz</option>
-                                    <option value="uretici">Üretici</option>
-                                    <option value="ithalatci">İthalatçı</option>
-                                    <option value="ihracatci">İhracatçı</option>
-                                    <option value="distribütor">Distribütör</option>
-                                    <option value="toptanci">Toptancı</option>
-                                    <option value="perakendeci">Perakendeci</option>
+                                    <option value="">Please Select</option>
+                                    <option value="uretici">Exporter</option>
+                                    <option value="ithalatci">Producer</option>
+                                    <option value="ihracatci">Importer</option>
+                                    <option value="distribütor">Distributor</option>
+                                    <option value="toptanci">Retailer</option>
+                                    <option value="perakendeci">Wholesaler</option>
                                 </select>
                                 <span asp-validation-for="AktiviteTuru" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="IhracatCirosu">Firmanızın İhracat Cirosu *</label>
+                                <label asp-for="IhracatCirosu">Company Export Turnover *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
                                     <input asp-for="IhracatCirosu" type="text" class="form-control" required>
@@ -287,7 +284,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="ToplamCiro">Firmanızın Toplam Cirosu *</label>
+                                <label asp-for="ToplamCiro">Total Turnover *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
                                     <input asp-for="ToplamCiro" type="text" class="form-control" required>
@@ -301,7 +298,7 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label asp-for="PersonelSayisi">Firmanızda İstihdam Edilen Personel Sayısı *</label>
+                                <label asp-for="PersonelSayisi">Number of personnel employed in your company *</label>
                                 <input asp-for="PersonelSayisi" type="number" class="form-control" required>
                                 <span asp-validation-for="PersonelSayisi" class="text-danger"></span>
                             </div>
@@ -309,19 +306,19 @@
                     </div>
 
                     <!-- National Fairs Section -->
-                    <div class="section-title mb-3">Firmanızın Ulusal Fuarlara Katılımı</div>
+                    <div class="section-title mb-3">Participation of your company in national fairs</div>
                     <div id="nationalFairsContainer">
                         <div class="form-row-container">
                             <div class="row mb-4 national-fair-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ulusalFuarAdi">Fuar Adı</label>
+                                        <label for="ulusalFuarAdi">Fair Name</label>
                                         <input type="text" class="form-control ulusal-fuar-adi" id="ulusalFuarAdi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="ulusalKatilimYili">Katılım Yılı</label>
+                                        <label for="ulusalKatilimYili">Year of Participation</label>
                                         <input type="text" class="form-control ulusal-katilim-yili" id="ulusalKatilimYili">
                                     </div>
                                 </div>
@@ -330,24 +327,24 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-12 text-end">
-                            <button type="button" class="btn btn-dark" id="addNationalFair">Yeni Ekle</button>
+                            <button type="button" class="btn btn-dark" id="addNationalFair">Add New</button>
                         </div>
                     </div>
 
                     <!-- International Fairs Section -->
-                    <div class="section-title mb-3">Firmanızın Uluslararası Fuarlara Katılımı</div>
+                    <div class="section-title mb-3">Participation of your company in international fairs</div>
                     <div id="internationalFairsContainer">
                         <div class="form-row-container">
                             <div class="row mb-4 international-fair-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="uluslararasiFuarAdi">Fuar Adı</label>
+                                        <label for="uluslararasiFuarAdi">Fair Name</label>
                                         <input type="text" class="form-control uluslararasi-fuar-adi" id="uluslararasiFuarAdi">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="uluslararasiKatilimYili">Katılım Yılı</label>
+                                        <label for="uluslararasiKatilimYili">Year of Participation</label>
                                         <input type="text" class="form-control uluslararasi-katilim-yili" id="uluslararasiKatilimYili">
                                     </div>
                                 </div>
@@ -356,15 +353,14 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-12 text-end">
-                            <button type="button" class="btn btn-dark" id="addInternationalFair">Yeni Ekle</button>
+                            <button type="button" class="btn btn-dark" id="addInternationalFair">Add New</button>
                         </div>
                     </div>
                     <!-- Terms and Captcha -->
                     <div class="form-section-ob">
                         <div class="form-group-ob checkbox-group-ob">
                             <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">Aydınlatma Metni ve Kişisel Verilerin Kullanılması ve Korunması ile
-                                ilgili bilgilendirme yazısını okudum, kabul ediyorum. <span
+                            <label for="terms">I have read and accepted the information and consent statement regarding the use and protection of personal data. <span
                                     class="required-ob">*</span></label>
                         </div>
                     </div>
@@ -372,7 +368,7 @@
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <div class="input-group">
-                                <button class="btn btn-primary" type="submit">Hemen Yerinizi Ayırtın</button>
+                                <button class="btn btn-primary" type="submit">Book Your Place</button>
                             </div>
                         </div>
                     </div>

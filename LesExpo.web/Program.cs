@@ -60,6 +60,13 @@ builder.Services.AddScoped<IUrlLocalizationService, UrlLocalizationService>();
 // Add external API service
 builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
 
+// Add memory cache
+builder.Services.AddMemoryCache();
+
+// Configure External API settings
+builder.Services.Configure<ExternalApiConfig>(
+    builder.Configuration.GetSection(ExternalApiConfig.SectionName));
+
 // Register background services
 builder.Services.AddHostedService<TempFileCleanupService>();
 

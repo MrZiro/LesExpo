@@ -1,6 +1,7 @@
 ﻿using LesExpo.Models.ViewModels;
 using LesExpo.Utility;
 using LesExpo.web.Models.Configuration;
+using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -15,15 +16,17 @@ namespace LesExpo.web.Controllers
     {
         private readonly IEmailSender _emailSender;
         private readonly ILogger<RegistrationController> _logger;
+        private readonly IUrlLocalizationService _urlService;
         private readonly EmailTemplatesConfig _emailTemplates;
         private readonly string _adminEmail = "adobe.mrziro@gmail.com";
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
         
-        public RegistrationController(IEmailSender emailSender, ILogger<RegistrationController> logger, IOptions<EmailTemplatesConfig> emailTemplates)
+        public RegistrationController(IEmailSender emailSender, ILogger<RegistrationController> logger, IOptions<EmailTemplatesConfig> emailTemplates, IUrlLocalizationService urlService)
         {
             _emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _emailTemplates = emailTemplates.Value ?? throw new ArgumentNullException(nameof(emailTemplates));
+            _urlService = urlService ?? throw new ArgumentNullException(nameof(urlService));
         }
 
         [HttpGet("registration")]
@@ -37,7 +40,9 @@ namespace LesExpo.web.Controllers
         [HttpGet("on-kayit-formu")]
         public IActionResult OnKayitFormu()
         {
-            return View("on-kayit-formu");
+            ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("Registration", "OnKayitFormu", Lang);
+            ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("Registration", "OnKayitFormu", Lang);
+            return View();
         }
 
         [HttpPost("pre-registration-form")]
@@ -56,7 +61,7 @@ namespace LesExpo.web.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["Error"] = emailTemplate?.ValidationMessage ?? "Please fill in all required fields correctly.";
-                return View("on-kayit-formu",model);
+                return View(model:model);
             }
 
             try
@@ -174,7 +179,7 @@ namespace LesExpo.web.Controllers
             {
                 _logger.LogError(ex, "Failed to process registration form from {Email}: {ErrorMessage}", model.Email, ex.Message);
                 TempData["Error"] = emailTemplate?.ErrorMessage ?? "An error occurred while sending the form.";
-                return View("on-kayit-formu",model);
+                return View(model:model);
             }
         }
     }
