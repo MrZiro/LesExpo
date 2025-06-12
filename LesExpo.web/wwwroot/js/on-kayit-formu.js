@@ -201,3 +201,42 @@ function getLangFromUrl() {
 
     return 'tr'; // Default to Turkish if 'lang' is not found
 }
+
+ // Privacy Policy Modal and Checkbox Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const privacyCheckbox = document.getElementById('kabulEdiyorum');
+            const submitButton = document.querySelector('.btn-okf-1');
+            const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
+            const acceptPrivacyButton = document.getElementById('acceptPrivacy');
+            console.log('Privacy Modal and Checkbox functionality initialized');
+            console.log('Privacy Checkbox:', privacyCheckbox);
+            // Checkbox'a tıklandığında modal'ı aç
+            privacyCheckbox.addEventListener('click', function(e) {
+                e.preventDefault(); // Checkbox'ın varsayılan davranışını engelle
+                privacyModal.show();
+            });
+
+            // Modal'da "Kabul Ediyorum" butonuna tıklandığında
+            acceptPrivacyButton.addEventListener('click', function() {
+                privacyCheckbox.checked = true;
+                privacyModal.hide();
+                submitButton.disabled = false;
+            });
+
+            // Form gönderilmeden önce kontrol
+            submitButton.addEventListener('click', function(e) {
+                if (!privacyCheckbox.checked) {
+                    e.preventDefault();
+                    alert('Lütfen aydınlatma metnini okuyup kabul ediniz.');
+                    privacyModal.show();
+                }
+            });
+
+            // Sayfa yüklendiğinde submit butonunu devre dışı bırak
+            submitButton.disabled = true;
+
+            // Checkbox işaretli değilse submit butonunu devre dışı bırak
+            privacyCheckbox.addEventListener('change', function() {
+                submitButton.disabled = !this.checked;
+            });
+        });

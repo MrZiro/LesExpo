@@ -33,31 +33,7 @@
             padding-top: 180px;
         }
         
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .alert-danger {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-
-        .text-danger {
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 5px;
-            display: block;
-        }
+        
     </style>
 }
 @{
@@ -359,27 +335,91 @@
                             <button type="button" class="btn btn-dark" id="addInternationalFair">Yeni Ekle</button>
                         </div>
                     </div>
-                    <!-- Terms and Captcha -->
-                    <div class="form-section-ob">
-                        <div class="form-group-ob checkbox-group-ob">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">Aydınlatma Metni ve Kişisel Verilerin Kullanılması ve Korunması ile
-                                ilgili bilgilendirme yazısını okudum, kabul ediyorum. <span
-                                    class="required-ob">*</span></label>
-                        </div>
-                    </div>
-
                     <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <button class="btn btn-primary" type="submit">Hemen Yerinizi Ayırtın</button>
+                        <div class="col-12">
+                            <div class="onay-kutusu-okf-1">
+                                <label>
+                                    <input type="checkbox" id="kabulEdiyorum" />
+                                    <span>
+                                        <a href="#" onclick="event.preventDefault(); bootstrap.Modal.getOrCreateInstance(document.getElementById('privacyModal')).show();">Aydınlatma Metni ve Gizlilik Politikasını okudum, kabul ediyorum.</a>
+                                    </span>
+                                </label>
                             </div>
                         </div>
                     </div>
-                </form>
+        <!-- Privacy Policy Modal -->
+        <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="privacyModalLabel">GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="privacy-content">
+                            <h4>GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h4>
+                            <p>Bu internet sitesini kullanmadan önce lütfen aşağıdaki maddeleri dikkatle okuyup inceleyiniz.</p>
+                            <p>https://les-expo.com.tr/ alan adlı internet sitesi ("Site" veya "Internet Sitesi") KFA Fuarcılık A.Ş ("KFA")'ne aittir.</p>
+                            <p>Bu İnternet Sitesini kullanmakla aşağıda yer alan Kullanıcı Sözleşmesini kabul etmektesiniz.</p>
+
+                            <h5>1- Kabul</h5>
+                            <p>Bu Siteyi ziyaret etmekle, işbu Gizlilik Politikası ve Kullanım Şartları'nı ("Sözleşme") açıklanan şartlar kapsamında hareket etmeyi ve bu koşullara uymayı kabul etmektesiniz.</p>
+                            <p>KFA bu koşulları ve ayrıca yine işbu internet sitesinde yer alan Gizlilik Politikası dahil diğer her türlü bilgiyi zaman zaman ve gerekli gördüğü takdirde herhangi bir bildirimde bulunmaksızın değiştirme hakkını saklı tutmaktadır. Bu Sözleşmenin güncel haline ve Gizlilik Politikası'na her zaman internet sitesinden ulaşabilirsiniz. İşbu İnternet Sitesine giriş yapmanız, işbu Sözleşme'yi ve herhangi bir zamanda Sözleşme'de meydana gelebilecek olan değişiklikleri kabul ettiğiniz anlamına gelmektedir. İnternet Sitesi üzerinde her türlü kullanım ve tasarruf yetkisi KFA'ya aittir.</p>
+
+                            <h5>2- Sorumluluk</h5>
+                            <p>KFA, fiyatlar, düzenlenen fuarlar ve sunulan hizmetler üzerinde değişiklik yapma hakkını her zaman saklı tutar. İnternet sitesinin kullanımında kaynak kodunu bulmak veya elde etmek amacına yönelik herhangi bir başka işlemde bulunmayacağınızı, aksi halde ve 3. Kişiler nezdinde doğacak zararlardan sorumlu olacağınızı, hakkında hukuki ve cezai işlem yapılacağını peşinen kabul etmektesiniz.</p>
+
+                            <h5>3- Yayınlanan Bilgiye Güven</h5>
+                            <p>İnternet Sitesinde yer alan bilgiler tamamen genel bilgi niteliğinde olup, bu bilgilerin doğruluğu garanti edilmemektedir. İnternet Sitesinden edinilen bilgilere güvenden doğacak tüm sorumluluk tarafınıza aittir.</p>
+
+                            <h5>4- Kişisel Veriler</h5>
+                            <p>İnternet sitesine sunduğunuz kişisel bilgilerin işlenmesi, kaydedilmesi ve korunması hakkında bilgi edinmek için lütfen KVKK formlarımızı okuyunuz.</p>
+
+                            <h5>5- Kişisel Olmayan Bilgiler</h5>
+                            <p>Kişisel olmayan bilgiler, şahsen sizlerin tanımlanamayacağımız bilgilerdir. Örneğin; kullanım saatleri, Site'nin kullanıldığı lokasyon, incelenen sayfalar vb. bilgilerdir.</p>
+
+                            <h5>6- Çerez (Cookie) Kullanımı</h5>
+                            <p>Çerezler, Site'yi ziyaret ettiğiniz zaman bilgisayarınıza tercihlerinizi kaydeden küçük metin dosyalarıdır. Çerezler, alışveriş sepetinizde hangi ürünlerin olduğunu hatırlamak, web sitesine veya mobil uygulamaya tekrar giriş yaptığınızda sitenin sizi tanıması, ilginizi çekebilecek ilan ve reklamların en çok giriş yaptığınız sayfalarda yayınlanması gibi işlemlerde size en kaliteli hizmeti sağlamak için kullanılmaktadır.</p>
+
+                            <h5>7- Ödeme Güvenliği</h5>
+                            <p>Toplanan mali bilgiler satın aldığınız ürünleri size fatura etmek için kullanılmaktadır. Web sitesinde veya mobil uygulamada online ödemeli bir satın alma yaptığınızda size ait mali bilgilerin, işleminizi gerçekleştirmek için gerekli 3. şahıslara (bankalar, kredi kartı şirketleri vb.) verilmesini kabul etmektesiniz.</p>
+
+                            <h5>8- Diğer İnternet Sitelerine Verilen Linkler</h5>
+                            <p>Bu internet sitesinden üçüncü kişilere ait başka internet sitelerine link verilebilmektedir. KFA link verilen internet sitelerinde yer alan içerikten sorumlu değildir ve bunların doğruluğunu, kalitesini yahut güncelliğini kontrol etme yükümlülüğü bulunmamaktadır.</p>
+
+                            <h5>9- Fikri Mülkiyet Hakları</h5>
+                            <p>Bu internet sitesi ve tüm sayfaları ve bu internet uygulaması yazılımı ve içerisindeki tüm görsel eserler, tasarımlar, arayüzler, kullanıcı kontrolleri, süreçler, programlar ve yazılım bileşenlerin ve bunlarla sınırlı kalmaksızın her türlü hakkı münhasıran KFA, lisans veren veya diğer sağlayıcılara aittir.</p>
+
+                            <h5>10- Zararların Tazmini</h5>
+                            <p>Tarafınızca işbu hükümlerin ihlal edilmesi veya İnternet Sitesi'nin aykırı kullanılmasından doğacak her türlü talepten, sorumluluktan, zarardan, karardan, hükümden, kayıptan, masraftan veya ücretten (vekalet ücreti dahil olmak üzere) KFA'yi, iştiraklerini, lisans verenlerini ve bunların çalışanlarını, yöneticileri, temsilcilerini, tedarikçilerini ve haleflerini ari tutacağınızı ve zararları tazmin edeceğinizi kabul etmektesiniz.</p>
+
+                            <h5>11- İletişim Bilgileri</h5>
+                            <p>Sorularınız için info@les-expo.com e-mail adresini kullanınız.</p>
+
+                            <h5>12- Uygulanacak Hukuk ve Uyuşmazlıkların Çözümü</h5>
+                            <p>İşbu Sözleşmeye herhangi bir çelişkiye mahal vermeksizin Türk hukuku uygulanacak olup, ihtilafın karşılıklı müzakereler neticesinde çözümünün mümkün olmadığı hallerde söz konusu uyuşmazlık Bursa Mahkemeleri ve İcra Müdürlükleri nezdinde çözümlenecektir.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="acceptPrivacy">Kabul Ediyorum</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="onay-kutusu-okf-1">
+                               
 
+                                <button class="btn-okf-1" onclick="butonKontrolOkf1()">Hemen Yerinizi Ayırtın</button>
+                            </div>
+                        </div>
+        </div>
+    </form>  
+    </div>
+</div>     
+                    
 @section Scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
@@ -391,7 +431,7 @@
             document.querySelector('form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Ulusal fuarları topla
+                //   Ulusal fuarları topla
                 const ulusalFuarlar = [];
                 document.querySelectorAll('.national-fair-row').forEach(function(row) {
                     const fuarAdi = row.querySelector('.ulusal-fuar-adi').value.trim();

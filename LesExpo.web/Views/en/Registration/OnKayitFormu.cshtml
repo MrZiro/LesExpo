@@ -30,31 +30,6 @@
             padding-top: 180px;
         }
         
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .alert-danger {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-
-        .text-danger {
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 5px;
-            display: block;
-        }
     </style>
 }
 @{
@@ -357,21 +332,87 @@
                         </div>
                     </div>
                     <!-- Terms and Captcha -->
-                    <div class="form-section-ob">
-                        <div class="form-group-ob checkbox-group-ob">
-                            <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">I have read and accepted the information and consent statement regarding the use and protection of personal data. <span
-                                    class="required-ob">*</span></label>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <button class="btn btn-primary" type="submit">Book Your Place</button>
+                     <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="onay-kutusu-okf-1">
+                                <label>
+                                    <input type="checkbox" id="kabulEdiyorum" />
+                                    <span>
+                                        <a href="#" onclick="event.preventDefault(); bootstrap.Modal.getOrCreateInstance(document.getElementById('privacyModal')).show();">I have read and accept the Information Text and Privacy Policy.</a>
+                                    </span>
+                                </label>
                             </div>
                         </div>
                     </div>
+                    <!-- Privacy Policy Modal -->
+        <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="privacyModalLabel">PRIVACY POLICY AND WEBSITE TERMS OF USE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                           <div class="privacy-content">
+                            <h4>PRIVACY POLICY AND WEBSITE TERMS OF USE</h4>
+                            <p>Please read and review the following items carefully before using this website.</p>
+                            <p>The website with the domain name https://les-expo.com/ ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
+                            <p>By using this Website, you accept the User Agreement below.</p>
+
+                            <h5>1- Acceptance</h5>
+                            <p>By visiting this Site, you agree to act within the scope of the terms stated in this Privacy Policy and Terms of Use ("Agreement") and to comply with these conditions.</p>
+                            <p>KFA reserves the right to change these terms and other information, including the Privacy Policy, from time to time without any notice. You can always access the current version of this Agreement and Privacy Policy from the website. Your access to this Website means that you accept this Agreement and any changes that may occur in the Agreement at any time. All usage and disposal rights on the Website belong to KFA.</p>
+
+                            <h5>2- Responsibility</h5>
+                            <p>KFA always reserves the right to make changes to prices, organized fairs and services provided. You accept in advance that you will not engage in any other action aimed at finding or obtaining the source code in the use of the website, and that you will be responsible for any damages that may arise from third parties, and that legal and criminal proceedings will be initiated.</p>
+
+                            <h5>3- Trust in Published Information</h5>
+                            <p>The information on the Website is purely general information, and the accuracy of this information is not guaranteed. All responsibility arising from relying on information obtained from the Website belongs to you.</p>
+
+                            <h5>4- Personal Data</h5>
+                            <p>Please read our KVKK forms for information about the processing, recording and protection of personal information you provide to the website.</p>
+
+                            <h5>5- Non-Personal Information</h5>
+                            <p>Non-personal information is information that cannot personally identify you. For example; usage hours, location where the Site is used, pages viewed, etc. information.</p>
+
+                            <h5>6- Cookie Usage</h5>
+                            <p>Cookies are small text files that record your preferences on your computer when you visit the Site. Cookies are used to remember which products are in your shopping cart, to recognize you when you log in to the website or mobile application again, and to provide you with the highest quality service in processes such as publishing advertisements that may interest you on the pages you visit most.</p>
+
+                            <h5>7- Payment Security</h5>
+                            <p>Financial information collected is used to invoice the products you purchase. When you make an online payment purchase on the website or mobile application, you accept that your financial information will be given to third parties (banks, credit card companies, etc.) necessary to complete your transaction.</p>
+
+                            <h5>8- Links to Other Websites</h5>
+                            <p>Links to other websites belonging to third parties may be provided from this website. KFA is not responsible for the content of the websites linked to, and has no obligation to check their accuracy, quality or currency.</p>
+
+                            <h5>9- Intellectual Property Rights</h5>
+                            <p>This website and all its pages and this web application software and all visual works, designs, interfaces, user controls, processes, programs and software components contained therein and all rights, including but not limited to these, belong exclusively to KFA, licensors or other providers.</p>
+
+                            <h5>10- Indemnification</h5>
+                            <p>You accept that you will indemnify KFA, its affiliates, licensors and their employees, managers, representatives, suppliers and successors from any claim, liability, damage, decision, judgment, loss, expense or fee (including attorney's fees) arising from your violation of these provisions or improper use of the Website.</p>
+
+                            <h5>11- Contact Information</h5>
+                            <p>Please use the e-mail address info@les-expo.com for your questions.</p>
+
+                            <h5>12- Applicable Law and Dispute Resolution</h5>
+                            <p>Turkish law shall apply to this Agreement without any contradiction, and in cases where the dispute cannot be resolved as a result of mutual negotiations, the relevant dispute will be resolved before the Bursa Courts and Enforcement Offices.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="acceptPrivacy">I Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="onay-kutusu-okf-1">
+                               
+
+                                <button class="btn-okf-1" onclick="butonKontrolOkf1()">Book your Place</button>
+                            </div>
+                        </div>
+            </div>
                 </form>
             </div>
         </div>
