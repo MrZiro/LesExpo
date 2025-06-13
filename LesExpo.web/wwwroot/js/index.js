@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /*========================================================Gallery End====================================================================================================*/
 
 /* Countdown */
-const targetDate = new Date('2025-09-09T10:00:00');
+const targetDate = new Date('2026-04-07T10:00:00');
 
 function updateCountdown() {
   const now = new Date();
