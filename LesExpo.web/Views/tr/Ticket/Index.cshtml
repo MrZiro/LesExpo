@@ -68,71 +68,71 @@
                 <h2>Kişisel Bilgiler</h2>
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="FirstName">Ad <span class="required-ob">*</span></label>
-                        <input asp-for="FirstName" type="text" id="firstName" class="form-control" required>
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <label asp-for="Ticket.FirstName">Ad <span class="required-ob">*</span></label>
+                        <input asp-for="Ticket.FirstName" type="text" id="firstName" class="form-control" required>
+                        <span asp-validation-for="Ticket.FirstName" class="text-danger"></span>
                     </div>
                     <div class="form-group-ob">
-                        <label asp-for="LastName">Soyad <span class="required-ob">*</span></label>
-                        <input asp-for="LastName" type="text" id="lastName" class="form-control" required>
-                        <span asp-validation-for="LastName" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="form-row-ob">
-                    <div class="form-group-ob">
-                        <label asp-for="Email">E-posta <span class="required-ob">*</span></label>
-                        <input asp-for="Email" type="email" id="email" class="form-control" required>
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group-ob">
-                        <label asp-for="Phone">Telefon <span class="required-ob">*</span></label>
-                        <input asp-for="Phone" type="tel" id="phone" class="form-control" required>
-                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        <label asp-for="Ticket.LastName">Soyad <span class="required-ob">*</span></label>
+                        <input asp-for="Ticket.LastName" type="text" id="lastName" class="form-control" required>
+                        <span asp-validation-for="Ticket.LastName" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="CompanyName">Firma Adı <span class="required-ob">*</span></label>
-                        <input asp-for="CompanyName" type="text" id="companyName" class="form-control" required>
-                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        <label asp-for="Ticket.Email">E-posta <span class="required-ob">*</span></label>
+                        <input asp-for="Ticket.Email" type="email" id="email" class="form-control" required>
+                        <span asp-validation-for="Ticket.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group-ob">
-                        <label asp-for="Sector">Sektör <span class="required-ob">*</span></label>
-                        <select asp-for="Sector" id="sector" class="form-control" required>
+                        <label asp-for="Ticket.Phone">Telefon <span class="required-ob">*</span></label>
+                        <input asp-for="Ticket.Phone" type="tel" id="phone" class="form-control" required>
+                        <span asp-validation-for="Ticket.Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row-ob">
+                    <div class="form-group-ob">
+                        <label asp-for="Ticket.CompanyName">Firma Adı <span class="required-ob">*</span></label>
+                        <input asp-for="Ticket.CompanyName" type="text" id="companyName" class="form-control" required>
+                        <span asp-validation-for="Ticket.CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group-ob">
+                        <label asp-for="Ticket.Sector">Sektör <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.Sector" id="sector" class="form-control" required>
                             <option value="">Seçiniz</option>
                         </select>
-                        <span asp-validation-for="Sector" class="text-danger"></span>
+                        <span asp-validation-for="Ticket.Sector" class="text-danger"></span>
                     </div>
                     <div class="form-group-ob">
-                        <label asp-for="Website">Web Sitesi</label>
-                        <input asp-for="Website" type="url" id="website" class="form-control" placeholder="https://www.example.com">
-                        <span asp-validation-for="Website" class="text-danger"></span>
+                        <label asp-for="Ticket.Website">Web Sitesi</label>
+                        <input asp-for="Ticket.Website" type="url" id="website" class="form-control" placeholder="https://www.example.com">
+                        <span asp-validation-for="Ticket.Website" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="Country">Ülke <span class="required-ob">*</span></label>
-                        <select asp-for="Country" id="country" class="form-control" required>
+                        <label asp-for="Ticket.Country">Ülke <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.Country" id="country" class="form-control" required>
                             <option value="">Seçiniz</option>
                         </select>
-                        <span asp-validation-for="Country" class="text-danger"></span>
+                        <span asp-validation-for="Ticket.Country" class="text-danger"></span>
                     </div>
                     <div class="form-group-ob">
-                        <label asp-for="City">Şehir <span class="required-ob">*</span></label>
-                        <select asp-for="City" id="city" class="form-control" required>
+                        <label asp-for="Ticket.City">Şehir <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.City" id="city" class="form-control" required>
                             <option value="">Önce ülke seçiniz</option>
                         </select>
-                        <span asp-validation-for="City" class="text-danger"></span>
+                        <span asp-validation-for="Ticket.City" class="text-danger"></span>
                     </div>
                 </div>
 
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="Position">Pozisyon</label>
-                        <select asp-for="Position" id="position" class="form-control">
+                        <label asp-for="Ticket.Position">Pozisyon</label>
+                        <select asp-for="Ticket.Position" id="position" class="form-control">
                             <option value="">Seçiniz</option>
                             <option value="Asistan">Asistan</option>
                             <option value="Danışman">Danışman</option>
@@ -141,26 +141,26 @@
                             <option value="CEO/CCO/Başkan">CEO/CCO/Başkan</option>
                             <option value="Genel Müdür">Genel Müdür</option>
                         </select>
-                        <span asp-validation-for="Position" class="text-danger"></span>
+                        <span asp-validation-for="Ticket.Position" class="text-danger"></span>
                     </div>
                     <div class="form-group-ob">
-                        <label asp-for="Gender">Cinsiyet <span class="required-ob">*</span></label>
-                        <select asp-for="Gender" id="gender" class="form-control" required>
+                        <label asp-for="Ticket.Gender">Cinsiyet <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.Gender" id="gender" class="form-control" required>
                             <option value="">Seçiniz</option>
                             <option value="Erkek">Erkek</option>
                             <option value="Kadın">Kadın</option>
                         </select>
-                        <span asp-validation-for="Gender" class="text-danger"></span>
+                        <span asp-validation-for="Ticket.Gender" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
             <div class="form-section-ob">
                 <div class="form-group-ob checkbox-group-ob">
-                    <input asp-for="Terms" type="checkbox" id="terms" required>
-                    <label asp-for="Terms">Şartları ve koşulları kabul ediyorum <span
+                    <input asp-for="Ticket.Terms" type="checkbox" id="terms" required>
+                    <label asp-for="Ticket.Terms">Şartları ve koşulları kabul ediyorum <span
                             class="required-ob">*</span></label>
-                    <span asp-validation-for="Terms" class="text-danger"></span>
+                    <span asp-validation-for="Ticket.Terms" class="text-danger"></span>
                 </div>
             </div>
 

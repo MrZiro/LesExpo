@@ -1,25 +1,58 @@
 ﻿@model List<Blog>
 @section Styles {
 	<link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
-	<link href="~/admin/styles/table.css" rel="stylesheet" />
 }
 
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Blog Yazıları
-            </h2>
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-journal-text me-3"></i>Blog Yazıları
+            </h1>
+            <p class="mb-0 opacity-75">Blog yazılarınızı görüntüleyin ve yönetin</p>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Blog" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Yeni Blog Yazısı Oluştur
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Toplam Blog</h5>
+                <h3 class="mb-0" id="totalBlogs">@ViewBag.Count</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Controls -->
+<div class="filter-card p-4">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h5 class="text-dark mb-0">
+                <i class="bi bi-funnel me-2 text-primary"></i>Blog Yazılarını Filtrele
+            </h5>
+            <small class="text-muted">Dil ve durum seçeneklerine göre filtreleyebilirsiniz</small>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="btn-group me-3" role="group">
+                <button type="button" class="btn btn-filter active" onclick="filterBlogsByLanguage('all')">
+                    <i class="bi bi-globe me-1"></i>Tümü
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterBlogsByLanguage('tr')">
+                    Türkçe
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterBlogsByLanguage('en')">
+                    İngilizce
+                </button>
+            </div>
+            <a asp-controller="Blog" asp-action="Create" class="btn btn-custom btn-back">
+                <i class="bi bi-plus-circle"></i>Yeni Blog Yazısı
             </a>
         </div>
     </div>
+</div>
 
-    <div class="table-container">
-        <table id="tblData" class="">
+<!-- Data Table -->
+<div class="table-container">
+    <div class="table-responsive">
+        <table id="tblData" class="table table-modern" style="width:100%">
             <thead>
                 <!-- DataTable will populate headers -->
             </thead>
@@ -34,35 +67,32 @@
     <partial name="_PartialReqScript" />
 
     <script>
+        let dataTable;
+        
         $(document).ready(() => {
-            initializeDataTableWithOption('Blog', [
+            dataTable = initializeDataTableWithOption('Blog', [
                 {
                     title: 'Başlık',
                     data: 'title',
-                    width: '20%'
+                    width: '25%'
                 },
                 {
                     title: 'Dil',
-                    data: 'Language',
-                    width: '10%',
+                    data: 'language',
+                    width: '8%',
                     render: function(data) {
                         return data === 'tr' ? 
-                            '<span class="badge bg-primary">TR</span>' : 
-                            '<span class="badge bg-info text-dark">EN</span>';
+                            '<span class="badge-modern badge-tr">TR</span>' : 
+                            '<span class="badge-modern badge-en">EN</span>';
                     }
                 },
                 {
                     title: 'İçerik Türü',
                     data: 'contentType.name',
-                    width: '15%',
+                    width: '12%',
                     render: function (data) {
-                        return data || 'Yok';
+                        return data || '<span class="text-muted">Yok</span>';
                     }
-                },
-                {
-                    title: 'Slug',
-                    data: 'slug',
-                    width: '15%'
                 },
                 {
                     title: 'Durum',
@@ -70,8 +100,8 @@
                     width: '10%',
                     render: function (data) {
                         return data ?
-                            '<span class="badge bg-success">Yayınlandı</span>' :
-                            '<span class="badge bg-warning text-dark">Taslak</span>';
+                            '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Yayınlandı</span>' :
+                            '<span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>Taslak</span>';
                     }
                 },
                 {
@@ -90,6 +120,68 @@
                     }
                 }
             ]);
+
+            // Update total count
+            updateTotalCount();
         });
+
+        // Filter function for language
+        function filterBlogsByLanguage(language) {
+            // Update active button
+            $('.btn-filter').removeClass('active');
+            event.target.classList.add('active');
+
+            // Reload datatable with filter
+            dataTable = reloadDataTableWithFilter('Blog', [
+                {
+                    title: 'Başlık',
+                    data: 'title',
+                    width: '25%'
+                },
+                {
+                    title: 'Dil',
+                    data: 'language',
+                    width: '8%',
+                    render: function(data) {
+                        return data === 'tr' ? 
+                            '<span class="badge-modern badge-tr">TR</span>' : 
+                            '<span class="badge-modern badge-en">EN</span>';
+                    }
+                },
+                {
+                    title: 'İçerik Türü',
+                    data: 'contentType.name',
+                    width: '12%',
+                    render: function (data) {
+                        return data || '<span class="text-muted">Yok</span>';
+                    }
+                },
+                {
+                    title: 'Durum',
+                    data: 'isPublished',
+                    width: '10%',
+                    render: function (data) {
+                        return data ?
+                            '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Yayınlandı</span>' :
+                            '<span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>Taslak</span>';
+                    }
+                },
+                {
+                    title: 'Oluşturuldu',
+                    data: 'createdAt',
+                    width: '15%',
+                    render: function(data) {
+                        return new Intl.DateTimeFormat('tr-TR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false
+                        }).format(new Date(data)).replace(',', ' -');
+                    }
+                }
+            ], '#tblData', language);
+        }
     </script>
 } 

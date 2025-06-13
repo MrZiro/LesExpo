@@ -4,6 +4,7 @@ using LesExpo.web.Models.Configuration;
 using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using LesExpo.DataAccess.Repository.IRepository;
 
 namespace LesExpo.web.Controllers
 {
@@ -15,6 +16,7 @@ namespace LesExpo.web.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger<TicketController> _logger;
         private readonly EmailTemplatesConfig _emailTemplates;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly string _adminEmail = "adobe.mrziro@gmail.com";
         
         // FUAR_ID - you can provide this value
@@ -24,13 +26,14 @@ namespace LesExpo.web.Controllers
 
         public TicketController(IUrlLocalizationService urlService, IExternalApiService externalApiService,
                                IEmailSender emailSender, ILogger<TicketController> logger, 
-                               IOptions<EmailTemplatesConfig> emailTemplates)
+                               IOptions<EmailTemplatesConfig> emailTemplates, IUnitOfWork unitOfWork)
         {
             _urlService = urlService;
             _externalApiService = externalApiService;
             _emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _emailTemplates = emailTemplates.Value ?? throw new ArgumentNullException(nameof(emailTemplates));
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
         [HttpGet("online-bilet")]
@@ -39,7 +42,13 @@ namespace LesExpo.web.Controllers
         {
             ViewData["CanonicalUrl"] = _urlService.GetCanonicalUrl("ticket", "Index", Lang);
             ViewData["AlternateUrls"] = _urlService.GetAlternateLanguageUrls("ticket", "Index", Lang);
-            return View();
+            
+            var model = new TicketVM
+            {
+                Language = Lang
+            };
+            
+            return View(model);
         }
 
         [HttpPost("online-bilet")]
@@ -63,35 +72,105 @@ namespace LesExpo.web.Controllers
 
             try
             {
-                _logger.LogInformation("Processing ticket form submission from {Email} in language {Language}", model.Email, Lang);
+                _logger.LogInformation("Processing ticket form submission from {Email} in language {Language}", model.Ticket.Email, Lang);
+                
+                // Set language
+                model.Ticket.Language = Lang;
                 
                 // Sanitize inputs
-                model.FirstName = model.FirstName?.Trim();
-                model.LastName = model.LastName?.Trim();
-                model.Email = model.Email?.Trim();
-                model.CompanyName = model.CompanyName?.Trim();
+                model.Ticket.FirstName = model.Ticket.FirstName?.Trim();
+                model.Ticket.LastName = model.Ticket.LastName?.Trim();
+                model.Ticket.Email = model.Ticket.Email?.Trim();
+                model.Ticket.CompanyName = model.Ticket.CompanyName?.Trim();
 
                 // isYabanci: false for Turkish (tr), true for other languages
                 bool isYabanci = Lang != "tr";
 
                 // Call external API through IExternalApiService
                 var apiResult = await _externalApiService.AddZiyaretciAsync(
-                    model.FirstName, model.LastName, model.Email, model.Phone, model.Gender,
-                    model.CompanyName, model.Position, model.Sector, int.Parse(model.Country), 
-                    model.City, isYabanci, FUAR_ID);
+                    model.Ticket.FirstName, model.Ticket.LastName, model.Ticket.Email, model.Ticket.Phone, model.Ticket.Gender,
+                    model.Ticket.CompanyName, model.Ticket.Position, model.Ticket.Sector, int.Parse(model.Ticket.Country), 
+                    model.Ticket.City, isYabanci, FUAR_ID);
 
-                if (!apiResult.Success)
+                // Store API response details and parse JSON response
+                model.Ticket.ApiResponse = apiResult.ResponseContent ?? "";
+                
+                // Parse JSON response to extract the actual success value
+                try 
                 {
-                    _logger.LogError("API call failed: {ErrorMessage}. Response: {ResponseContent}", 
-                                   apiResult.ErrorMessage, apiResult.ResponseContent);
-                    TempData["Error"] = emailTemplate?.ErrorMessage ?? "An error occurred while processing your ticket request.";
-                    return View(model);
+                    if (!string.IsNullOrEmpty(apiResult.ResponseContent))
+                    {
+                        using var jsonDoc = System.Text.Json.JsonDocument.Parse(apiResult.ResponseContent);
+                        if (jsonDoc.RootElement.TryGetProperty("success", out var successElement))
+                        {
+                            model.Ticket.ApiSuccess = successElement.GetBoolean();
+                            _logger.LogInformation("Parsed API success status for {Email}: {ApiSuccess}", model.Ticket.Email, model.Ticket.ApiSuccess);
+                        }
+                        else
+                        {
+                            model.Ticket.ApiSuccess = apiResult.Success;
+                            _logger.LogWarning("No 'success' property found in API response for {Email}. Using HTTP success status: {Success}", model.Ticket.Email, apiResult.Success);
+                        }
+                    }
+                    else
+                    {
+                        model.Ticket.ApiSuccess = apiResult.Success;
+                        _logger.LogWarning("Empty API response for {Email}. Using HTTP success status: {Success}", model.Ticket.Email, apiResult.Success);
+                    }
+                }
+                catch (System.Text.Json.JsonException ex)
+                {
+                    _logger.LogWarning("Failed to parse API response JSON for {Email}: {Error}. Using apiResult.Success instead.", model.Ticket.Email, ex.Message);
+                    model.Ticket.ApiSuccess = apiResult.Success;
                 }
 
-                _logger.LogInformation("Successfully submitted ticket to API for {Email}", model.Email);
+                // Always save the ticket to database for tracking, regardless of API response
+                _unitOfWork.Ticket.Add(model.Ticket);
+                await _unitOfWork.SaveAsync();
 
-                // Send confirmation email to admin
-                string subject = $"New Ticket Registration - {model.CompanyName} - {model.FirstName} {model.LastName}";
+                if (!model.Ticket.ApiSuccess)
+                {
+                    _logger.LogWarning("API returned success=false for ticket {Email}. Response: {ResponseContent}", 
+                                      model.Ticket.Email, apiResult.ResponseContent);
+                    
+                    // Extract error message from API response if available
+                    string apiErrorMessage = "";
+                    try 
+                    {
+                        if (!string.IsNullOrEmpty(apiResult.ResponseContent))
+                        {
+                            using var jsonDoc = System.Text.Json.JsonDocument.Parse(apiResult.ResponseContent);
+                            if (jsonDoc.RootElement.TryGetProperty("message", out var messageElement))
+                            {
+                                apiErrorMessage = messageElement.GetString() ?? "";
+                            }
+                        }
+                    }
+                    catch (System.Text.Json.JsonException)
+                    {
+                        // Ignore JSON parsing errors for message extraction
+                    }
+                    
+                    // Show appropriate error message
+                    string userErrorMessage = Lang == "en" 
+                        ? "Your ticket registration was saved but there was an issue with the external processing. Our team will contact you shortly."
+                        : "Bilet kaydınız alındı ancak işlem sırasında bir sorun oluştu. Ekibimiz en kısa sürede sizinle iletişime geçecektir.";
+                    
+                    TempData["Error"] = userErrorMessage;
+                    if (!string.IsNullOrEmpty(apiErrorMessage))
+                    {
+                        _logger.LogInformation("API error message for {Email}: {ApiError}", model.Ticket.Email, apiErrorMessage);
+                    }
+                    
+                    // Skip sending email when API call fails
+                    _logger.LogInformation("Skipping email notification due to API failure for {Email}", model.Ticket.Email);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                _logger.LogInformation("Successfully submitted ticket to API for {Email}", model.Ticket.Email);
+
+                // Send confirmation email to admin (only when API is successful)
+                string subject = $"New Ticket Registration - {model.Ticket.CompanyName} - {model.Ticket.FirstName} {model.Ticket.LastName}";
                 
                 // Generate field labels based on language
                 var labels = Lang == "en" 
@@ -111,17 +190,17 @@ namespace LesExpo.web.Controllers
                 string htmlMessage = $@"
                     <h2>New Ticket Registration</h2>
                     <table border='0' cellpadding='5'>
-                        <tr><td><b>{labels.FirstName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.FirstName)}</td></tr>
-                        <tr><td><b>{labels.LastName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.LastName)}</td></tr>
-                        <tr><td><b>{labels.Email}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Email)}</td></tr>
-                        <tr><td><b>{labels.Phone}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Phone)}</td></tr>
-                        <tr><td><b>{labels.CompanyName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.CompanyName)}</td></tr>
-                        <tr><td><b>{labels.Sector}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Sector)}</td></tr>
-                        <tr><td><b>{labels.Website}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Website)}</td></tr>
-                        <tr><td><b>{labels.Country}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Country)}</td></tr>
-                        <tr><td><b>{labels.City}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.City)}</td></tr>
-                        <tr><td><b>{labels.Position}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Position)}</td></tr>
-                        <tr><td><b>{labels.Gender}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Gender)}</td></tr>
+                        <tr><td><b>{labels.FirstName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.FirstName)}</td></tr>
+                        <tr><td><b>{labels.LastName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.LastName)}</td></tr>
+                        <tr><td><b>{labels.Email}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Email)}</td></tr>
+                        <tr><td><b>{labels.Phone}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Phone)}</td></tr>
+                        <tr><td><b>{labels.CompanyName}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.CompanyName)}</td></tr>
+                        <tr><td><b>{labels.Sector}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Sector)}</td></tr>
+                        <tr><td><b>{labels.Website}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Website)}</td></tr>
+                        <tr><td><b>{labels.Country}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Country)}</td></tr>
+                        <tr><td><b>{labels.City}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.City)}</td></tr>
+                        <tr><td><b>{labels.Position}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Position)}</td></tr>
+                        <tr><td><b>{labels.Gender}:</b></td><td>{System.Web.HttpUtility.HtmlEncode(model.Ticket.Gender)}</td></tr>
                         <tr><td><b>{labels.Date}:</b></td><td>{DateTime.Now:dd.MM.yyyy HH:mm}</td></tr>
                     </table>
                     <br>
@@ -129,14 +208,14 @@ namespace LesExpo.web.Controllers
 
                 // Send to the admin email
                 await _emailSender.SendEmailAsync(_adminEmail, subject, htmlMessage);
-                _logger.LogInformation("Ticket form email sent to admin for {Company} - {FullName}", model.CompanyName, $"{model.FirstName} {model.LastName}");
+                _logger.LogInformation("Ticket form email sent to admin for {Company} - {FullName}", model.Ticket.CompanyName, $"{model.Ticket.FirstName} {model.Ticket.LastName}");
                 
                 TempData["Success"] = Lang == "en" ? "Your ticket registration has been submitted successfully!" : "Bilet kaydınız başarıyla gönderildi!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to process ticket form from {Email}: {ErrorMessage}", model.Email, ex.Message);
+                _logger.LogError(ex, "Failed to process ticket form from {Email}: {ErrorMessage}", model.Ticket.Email, ex.Message);
                 TempData["Error"] = emailTemplate?.ErrorMessage ?? "An error occurred while processing your ticket request.";
                 return View(model);
             }

@@ -33,6 +33,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Count = _unitOfWork.Blog.GetCount();
             return View();
         }
 
@@ -241,6 +242,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
         {
             var allObj = _unitOfWork.Blog.GetAll(includeProperties: "ContentType").OrderByDescending(u => u.Id);
             return Json(new { data = allObj });
+        }
+
+        [HttpGet]
+        public IActionResult GetByLanguage(string language)
+        {
+            var blogs = _unitOfWork.Blog.GetAll(includeProperties: "ContentType").Where(b => b.Language == language).OrderByDescending(b => b.Id);
+            return Json(new { data = blogs });
         }
     }
 }

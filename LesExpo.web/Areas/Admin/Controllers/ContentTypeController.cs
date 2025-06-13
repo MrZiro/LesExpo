@@ -20,6 +20,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<ContentType> contentTypeList = _unitOfWork.ContentType.GetAll().ToList();
+            ViewBag.Count = _unitOfWork.ContentType.GetCount();
             return View(contentTypeList);
         }
 

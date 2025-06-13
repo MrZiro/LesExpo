@@ -11,5 +11,7 @@ namespace LesExpo.DataAccess.Repository.IRepository
     public interface IBlogRepository : IRepository<Blog>
     {
         public void Update(Blog obj);
+
+        IEnumerable<Blog> GetBlogsByLanguage(string language);
     }
 }

@@ -41,5 +41,10 @@ namespace LesExpo.DataAccess.Repository
 
             }
         }
+
+        public IEnumerable<Blog> GetBlogsByLanguage(string language)
+        {
+            return _db.Blogs.Where(b => b.Language == language).OrderByDescending(b => b.CreatedAt);
+        }
     }
 }

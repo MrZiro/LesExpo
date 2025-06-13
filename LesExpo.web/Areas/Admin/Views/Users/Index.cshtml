@@ -1,70 +1,129 @@
 ﻿@model List<UserVM>
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
+    <link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
 }
-@* @Html.AntiForgeryToken() *@
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Kullanıcı Listesi
-            </h2>
+
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-people me-3"></i>Kullanıcı Yönetimi
+            </h1>
+            <p class="mb-0 opacity-75">Sistem kullanıcılarını görüntüleyin ve yönetin</p>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Users" asp-action="Upsert" class="btn btn-primary">
-                Yeni Kullanıcı Oluştur
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Toplam Kullanıcı</h5>
+                <h3 class="mb-0" id="totalUsers">@ViewBag.Count</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Controls -->
+<div class="filter-card p-4">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h5 class="text-dark mb-0">
+                <i class="bi bi-funnel me-2 text-primary"></i>Kullanıcıları Filtrele
+            </h5>
+            <small class="text-muted">Rol seçeneğine göre filtreleyebilirsiniz</small>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="btn-group me-3" role="group">
+                <button type="button" class="btn btn-filter active" onclick="filterUsersByRole('all')">
+                    <i class="bi bi-grid me-1"></i>Tümü
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterUsersByRole('Admin')">
+                    <i class="bi bi-shield me-1"></i>Admin
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterUsersByRole('User')">
+                    <i class="bi bi-person me-1"></i>Kullanıcı
+                </button>
+            </div>
+            <a asp-controller="Users" asp-action="Upsert" class="btn btn-custom btn-back">
+                <i class="bi bi-plus-circle"></i>Yeni Kullanıcı
             </a>
         </div>
     </div>
+</div>
 
-    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
-        <thead>
-        </thead>
-    </table>
+<!-- Data Table -->
+<div class="table-container">
+    <div class="table-responsive">
+        <table id="tblData" class="table table-modern" style="width:100%">
+            <thead>
+            </thead>
+        </table>
+    </div>
 </div>
 
 @section Scripts {
     <partial name="_PartialReqScript" />
 
-
     <script>
-
-
+        let dataTable;
+        
         $(document).ready(() => {
-            initializeDataTableNoOption('users', [
+            dataTable = initializeDataTableNoOption('users', [
                 {
-                    title: 'isim',
+                    title: 'İsim',
                     data: 'name',
-                    width: '15%'
-                },
-                {
-                    title: 'e-posta',
-                    data: 'email',
-                    width: '15%'
-                },
-                {
-                    title: 'rol',
-                    data: 'role',
-                    width: '10%'
-                },
-                {
-                    title: 'oluşturma tarihi',
-                    data: 'createdAt',
                     width: '25%',
                     render: function(data) {
-                    // Use Intl.DateTimeFormat for localized formatting
-                    return new Intl.DateTimeFormat('tr-TR', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        hour12: false
-                    }).format(new Date(data)).replace(',', ' -');
-                }
+                        return data || '<span class="text-muted">İsim Yok</span>';
+                    }
+                },
+                {
+                    title: 'E-posta',
+                    data: 'email',
+                    width: '30%',
+                    render: function(data) {
+                        return `<a href="mailto:${data}" class="email-link">${data}</a>`;
+                    }
+                },
+                {
+                    title: 'Rol',
+                    data: 'role',
+                    width: '15%',
+                    render: function(data) {
+                        const isAdmin = data === 'Admin';
+                        return isAdmin ? 
+                            '<span class="badge bg-danger"><i class="bi bi-shield me-1"></i>Admin</span>' : 
+                            '<span class="badge bg-primary"><i class="bi bi-person me-1"></i>Kullanıcı</span>';
+                    }
+                },
+                {
+                    title: 'Oluşturuldu',
+                    data: 'createdAt',
+                    width: '20%',
+                    render: function(data) {
+                        return new Intl.DateTimeFormat('tr-TR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false
+                        }).format(new Date(data)).replace(',', ' -');
+                    }
                 }
             ]);
         });
+
+        // Filter function for roles
+        function filterUsersByRole(role) {
+            // Update active button
+            $('.btn-filter').removeClass('active');
+            event.target.classList.add('active');
+
+            // Apply filter
+            if (role === 'all') {
+                dataTable.column(2).search('').draw();
+            } else {
+                dataTable.column(2).search(role).draw();
+            }
+        }
     </script>
 }

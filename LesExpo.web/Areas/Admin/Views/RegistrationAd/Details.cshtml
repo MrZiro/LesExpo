@@ -1,0 +1,88 @@
+@model Registration
+
+@{
+    ViewData["Title"] = "Ön Kayıt Detayları";
+}
+
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-clipboard-data me-3"></i>Ön Kayıt Detayları
+            </h1>
+            <p class="mb-0 opacity-75">@Model.CreatedAt.ToString("dd MMMM yyyy, HH:mm") tarihinde alınan kayıt</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <span class="lang-badge @(Model.Language == "tr" ? "badge-tr" : "badge-en") text-white">
+                @(Model.Language == "tr" ? "Türkçe" : "İngilizce")
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="contact-card p-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">Şirket Bilgileri</h5>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Şirket Adı</div>
+                <div class="info-value">@Model.SirketAdi</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Şirket Adresi</div>
+                <div class="info-value">@Model.SirketAdresi</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Ülke / Şehir</div>
+                <div class="info-value">@Model.Ulke / @Model.Sehir</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Kuruluş Tarihi</div>
+                <div class="info-value">@Model.KurulusTarihi.ToString("dd MMMM yyyy")</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">İletişim Bilgileri</h5>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Ad Soyad</div>
+                <div class="info-value">@Model.AdSoyad</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">E-posta</div>
+                <div class="info-value">
+                    <a href="mailto:@Model.Email" class="email-link">@Model.Email</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Görev</div>
+                <div class="info-value">@Model.Gorev</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Telefon</div>
+                <div class="info-value">@Model.Telefon</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-buttons text-center">
+        <a asp-controller="RegistrationAd" asp-action="Index" class="btn btn-custom btn-back me-3">
+            <i class="bi bi-arrow-left"></i>
+            Listeye Dön
+        </a>
+        <a href="mailto:@Model.Email" class="btn btn-custom btn-reply">
+            <i class="bi bi-reply"></i>
+            E-posta ile İletişim
+        </a>
+    </div>
+</div> 

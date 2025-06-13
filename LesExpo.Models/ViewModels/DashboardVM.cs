@@ -15,6 +15,14 @@ namespace LesExpo.Models.ViewModels
         public int TotalPages { get; set; }
         public int TotalIcerikTuru { get; set; }
 
+        // Additional statistics
+        public int PublishedBlogs { get; set; }
+        public int UnpublishedBlogs { get; set; }
+        public int ActiveSliders { get; set; }
+        public int RecentContactsCount { get; set; }
+        public int ThisMonthBlogsCount { get; set; }
+        public int ThisMonthUsersCount { get; set; }
+
         public List<MonthlyStats> MonthlyBlogStats { get; set; } = new();
         public List<MonthlyStats> MonthlyUserStats { get; set; } = new();
         public List<CategoryStats> CategoryStats { get; set; } = new();

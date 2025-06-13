@@ -92,23 +92,23 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="SirketAdi">Company Name *</label>
-                                <input asp-for="SirketAdi" class="form-control" required>
-                                <span asp-validation-for="SirketAdi" class="text-danger"></span>
+                                <label asp-for="Registration.SirketAdi">Company Name *</label>
+                                <input asp-for="Registration.SirketAdi" class="form-control" required>
+                                <span asp-validation-for="Registration.SirketAdi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="AdSoyad">Name and Surname *</label>
-                                <input asp-for="AdSoyad" class="form-control" required>
-                                <span asp-validation-for="AdSoyad" class="text-danger"></span>
+                                <label asp-for="Registration.AdSoyad">Name and Surname *</label>
+                                <input asp-for="Registration.AdSoyad" class="form-control" required>
+                                <span asp-validation-for="Registration.AdSoyad" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Gorev">Job Title *</label>
-                                <input asp-for="Gorev" class="form-control" required>
-                                <span asp-validation-for="Gorev" class="text-danger"></span>
+                                <label asp-for="Registration.Gorev">Job Title *</label>
+                                <input asp-for="Registration.Gorev" class="form-control" required>
+                                <span asp-validation-for="Registration.Gorev" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -117,9 +117,9 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label asp-for="SirketAdresi">Address *</label>
-                                <textarea asp-for="SirketAdresi" class="form-control" rows="3" required></textarea>
-                                <span asp-validation-for="SirketAdresi" class="text-danger"></span>
+                                <label asp-for="Registration.SirketAdresi">Address *</label>
+                                <textarea asp-for="Registration.SirketAdresi" class="form-control" rows="3" required></textarea>
+                                <span asp-validation-for="Registration.SirketAdresi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -128,29 +128,29 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Ulke">Country *</label>
-                                <select asp-for="Ulke" class="form-select" id="ulke" required>
+                                <label asp-for="Registration.Ulke">Country *</label>
+                                <select asp-for="Registration.Ulke" class="form-select" id="ulke" required>
                                     <option value="">Please Select</option>
                                 </select>
-                                <span asp-validation-for="Ulke" class="text-danger"></span>
+                                <span asp-validation-for="Registration.Ulke" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Sehir">City *</label>
-                                <select asp-for="Sehir" class="form-select" id="sehir" required>
+                                <label asp-for="Registration.Sehir">City *</label>
+                                <select asp-for="Registration.Sehir" class="form-select" id="sehir" required>
                                     <option value="">Please Select</option>
                                 </select>
-                                <span asp-validation-for="Sehir" class="text-danger"></span>
+                                <span asp-validation-for="Registration.Sehir" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Telefon">Phone *</label>
+                                <label asp-for="Registration.Telefon">Phone *</label>
                                 <div class="input-group">
-                                    <input asp-for="Telefon" type="tel" class="form-control" id="telefon" placeholder="+90 501 234 56 78" required>
+                                    <input asp-for="Registration.Telefon" type="tel" class="form-control" id="telefon" placeholder="+90 501 234 56 78" required>
                                 </div>
-                                <span asp-validation-for="Telefon" class="text-danger"></span>
+                                <span asp-validation-for="Registration.Telefon" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -159,25 +159,25 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Email">Email *</label>
-                                <input asp-for="Email" type="email" class="form-control" required>
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <label asp-for="Registration.Email">Email *</label>
+                                <input asp-for="Registration.Email" type="email" class="form-control" required>
+                                <span asp-validation-for="Registration.Email" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="WebSitesi">Website</label>
-                                <input asp-for="WebSitesi" type="url" class="form-control">
-                                <span asp-validation-for="WebSitesi" class="text-danger"></span>
+                                <label asp-for="Registration.WebSitesi">Website</label>
+                                <input asp-for="Registration.WebSitesi" type="url" class="form-control">
+                                <span asp-validation-for="Registration.WebSitesi" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="FaaliyetAlani">Company Activity *</label>
-                                <select asp-for="FaaliyetAlani" class="form-select" id="FaaliyetAlani" required>
+                                <label asp-for="Registration.FaaliyetAlani">Company Activity *</label>
+                                <select asp-for="Registration.FaaliyetAlani" class="form-select" id="FaaliyetAlani" required>
                                     <option value="">Please Select</option>
                                 </select>
-                                <span asp-validation-for="FaaliyetAlani" class="text-danger"></span>
+                                <span asp-validation-for="Registration.FaaliyetAlani" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -186,23 +186,23 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="UrunGrubu">Products *</label>
-                                <input asp-for="UrunGrubu" type="text" class="form-control" required>
-                                <span asp-validation-for="UrunGrubu" class="text-danger"></span>
+                                <label asp-for="Registration.UrunGrubu">Products *</label>
+                                <input asp-for="Registration.UrunGrubu" type="text" class="form-control" required>
+                                <span asp-validation-for="Registration.UrunGrubu" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="Markalar">Please enter the brand name *</label>
-                                <input asp-for="Markalar" type="text" class="form-control" required>
-                                <span asp-validation-for="Markalar" class="text-danger"></span>
+                                <label asp-for="Registration.Markalar">Please enter the brand name *</label>
+                                <input asp-for="Registration.Markalar" type="text" class="form-control" required>
+                                <span asp-validation-for="Registration.Markalar" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="IstenenMetrekare">Square meter prices that you have requestedz *</label>
-                                <input asp-for="IstenenMetrekare" type="text" class="form-control" required>
-                                <span asp-validation-for="IstenenMetrekare" class="text-danger"></span>
+                                <label asp-for="Registration.IstenenMetrekare">Square meter prices that you have requestedz *</label>
+                                <input asp-for="Registration.IstenenMetrekare" type="text" class="form-control" required>
+                                <span asp-validation-for="Registration.IstenenMetrekare" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -215,17 +215,17 @@
                                 <label>Would you like us to visit your company? *</label>
                                 <div class="radio-group">
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretEvet"
+                                        <input asp-for="Registration.FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretEvet"
                                             value="evet" required>
                                         <label class="form-check-label" for="ziyaretEvet">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretHayir"
+                                        <input asp-for="Registration.FirmaZiyareti" class="form-check-input" type="radio" id="ziyaretHayir"
                                             value="hayir">
                                         <label class="form-check-label" for="ziyaretHayir">No</label>
                                     </div>
                                 </div>
-                                <span asp-validation-for="FirmaZiyareti" class="text-danger"></span>
+                                <span asp-validation-for="Registration.FirmaZiyareti" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -233,24 +233,24 @@
                                 <label>Detailed information about fair participation *</label>
                                 <div class="radio-group-form">
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="FuarKatilim" class="form-check-input" type="radio"
+                                        <input asp-for="Registration.FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstiyorum" value="istiyorum" required>
                                         <label class="form-check-label" for="katilimIstiyorum">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input asp-for="FuarKatilim" class="form-check-input" type="radio"
+                                        <input asp-for="Registration.FuarKatilim" class="form-check-input" type="radio"
                                             id="katilimIstemiyorum" value="istemiyorum">
                                         <label class="form-check-label" for="katilimIstemiyorum">No</label>
                                     </div>
                                 </div>
-                                <span asp-validation-for="FuarKatilim" class="text-danger"></span>
+                                <span asp-validation-for="Registration.FuarKatilim" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="KurulusTarihi">Company Establishment Date *</label>
-                                <input asp-for="KurulusTarihi" type="date" class="form-control" placeholder="GG-AA-YYYY" required>
-                                <span asp-validation-for="KurulusTarihi" class="text-danger"></span>
+                                <label asp-for="Registration.KurulusTarihi">Company Establishment Date *</label>
+                                <input asp-for="Registration.KurulusTarihi" type="date" class="form-control" placeholder="GG-AA-YYYY" required>
+                                <span asp-validation-for="Registration.KurulusTarihi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -259,8 +259,8 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="AktiviteTuru">Company Activity *</label>
-                                <select asp-for="AktiviteTuru" class="form-select" required>
+                                <label asp-for="Registration.AktiviteTuru">Company Activity *</label>
+                                <select asp-for="Registration.AktiviteTuru" class="form-select" required>
                                     <option value="">Please Select</option>
                                     <option value="uretici">Exporter</option>
                                     <option value="ithalatci">Producer</option>
@@ -269,27 +269,27 @@
                                     <option value="toptanci">Retailer</option>
                                     <option value="perakendeci">Wholesaler</option>
                                 </select>
-                                <span asp-validation-for="AktiviteTuru" class="text-danger"></span>
+                                <span asp-validation-for="Registration.AktiviteTuru" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="IhracatCirosu">Company Export Turnover *</label>
+                                <label asp-for="Registration.IhracatCirosu">Company Export Turnover *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
-                                    <input asp-for="IhracatCirosu" type="text" class="form-control" required>
+                                    <input asp-for="Registration.IhracatCirosu" type="text" class="form-control" required>
                                 </div>
-                                <span asp-validation-for="IhracatCirosu" class="text-danger"></span>
+                                <span asp-validation-for="Registration.IhracatCirosu" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label asp-for="ToplamCiro">Total Turnover *</label>
+                                <label asp-for="Registration.ToplamCiro">Total Turnover *</label>
                                 <div class="input-group">
                                     <span class="input-group-text">USD</span>
-                                    <input asp-for="ToplamCiro" type="text" class="form-control" required>
+                                    <input asp-for="Registration.ToplamCiro" type="text" class="form-control" required>
                                 </div>
-                                <span asp-validation-for="ToplamCiro" class="text-danger"></span>
+                                <span asp-validation-for="Registration.ToplamCiro" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -298,9 +298,9 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <div class="form-group">
-                                <label asp-for="PersonelSayisi">Number of personnel employed in your company *</label>
-                                <input asp-for="PersonelSayisi" type="number" class="form-control" required>
-                                <span asp-validation-for="PersonelSayisi" class="text-danger"></span>
+                                <label asp-for="Registration.PersonelSayisi">Number of personnel employed in your company *</label>
+                                <input asp-for="Registration.PersonelSayisi" type="number" class="form-control" required>
+                                <span asp-validation-for="Registration.PersonelSayisi" class="text-danger"></span>
                             </div>
                         </div>
                     </div>

@@ -12,50 +12,64 @@
             width: 100%;
             max-height: 300px;
             object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid var(--ca-border-medium);
+            border-radius: var(--ca-radius-lg);
         }
 
         .img-remove {
             position: absolute;
             top: 5px;
             right: 5px;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             padding: 5px;
             cursor: pointer;
-            color: #dc3545;
+            color: var(--ca-danger);
+            box-shadow: var(--ca-shadow-sm);
         }
 
         .dropzone {
-            border: 2px dashed #ddd;
-            border-radius: 5px;
-            padding: 25px;
+            border: 2px dashed var(--ca-border-medium);
+            border-radius: var(--ca-radius-lg);
+            padding: var(--ca-spacing-xl);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--ca-transition-fast);
+            background: var(--ca-bg-light);
         }
 
-            .dropzone:hover {
-                border-color: #007bff;
-            }
+        .dropzone:hover {
+            border-color: var(--ca-primary);
+            background: var(--ca-bg-gradient);
+        }
 
-            .dropzone.dragover {
-                border-color: #28a745;
-                background-color: rgba(40, 167, 69, 0.1);
-            }
+        .dropzone.dragover {
+            border-color: var(--ca-success);
+            background-color: rgba(251, 173, 24, 0.1);
+        }
     </style>
 }
 
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-12">
-            <h2 class="text-primary">
-                Blog Düzenle
-            </h2>
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-pencil-square me-3"></i>Blog Düzenle
+            </h1>
+            <p class="mb-0 opacity-75">Mevcut blog yazısını düzenleyin</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Düzenleme Modu</h5>
+                <h3 class="mb-0">Blog</h3>
+            </div>
         </div>
     </div>
+</div>
 
+<!-- Form Content -->
+<div class="contact-card p-4">
     <form method="post" enctype="multipart/form-data">
         <input asp-for="Blog.Id" hidden />
         <input asp-for="Blog.CardImageUrl" hidden />
@@ -63,7 +77,11 @@
 
         <div class="row mb-3">
             <div class="col-md-8">
-                <div class="border p-3 mt-2 mb-3 rounded-2">
+                <!-- Basic Information Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-card-text me-1"></i>Temel Bilgiler
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Blog.Title" class="form-label">Başlık</label>
                         <input asp-for="Blog.Title" class="form-control" />
@@ -98,9 +116,13 @@
                     </div>
                 </div>
 
-                <div class="border p-3 mt-2 mb-3 rounded-2">
+                <!-- Content Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-file-earmark-text me-1"></i>İçerik
+                    </div>
                     <div class="row">
-                        <label asp-for="Blog.Content" class="form-label">İçerik</label>
+                        <label asp-for="Blog.Content" class="form-label">Blog İçeriği</label>
                         <textarea asp-for="Blog.Content" class="form-control Editor" rows="15"></textarea>
                         <span asp-validation-for="Blog.Content" class="text-danger"></span>
                     </div>
@@ -109,8 +131,10 @@
 
             <div class="col-md-4">
                 <!-- Card Image Section -->
-                <div class="border p-3 mt-2 rounded-2">
-                    <label class="form-label">Kart Görseli</label>
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-image me-1"></i>Kart Görseli
+                    </div>
                     <p class="text-muted small">Bu görsel kartlarda veya küçük resimlerde kullanılacak</p>
 
                     <div class="dropzone" id="card-image-dropzone" enabled="true">
@@ -124,6 +148,7 @@
                     </div>
                     <span asp-validation-for="CardImage" class="text-danger d-block mt-2"></span>
                 </div>
+                
                 <div class="mb-3 text-center" id="card-image-preview-container">
                     @if (!string.IsNullOrEmpty(Model.Blog.CardImageUrl))
                     {
@@ -148,7 +173,11 @@
                     }
                 </div>
 
-                <div class="border p-3 mt-2 rounded-2">
+                <!-- SEO Settings Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-search me-1"></i>SEO Ayarları
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Blog.MetaDescription" class="form-label">Meta Açıklama</label>
                         <textarea asp-for="Blog.MetaDescription" class="form-control" rows="3"
@@ -163,23 +192,30 @@
                     </div>
                 </div>
 
-                <div class="border p-3 mt-2">
+                <!-- Publishing Settings Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-gear me-1"></i>Yayın Ayarları
+                    </div>
                     <div class="mb-3 form-check">
                         <input asp-for="Blog.IsPublished" type="checkbox" class="form-check-input" />
                         <label asp-for="Blog.IsPublished" class="form-check-label">Yayınlandı</label>
                         <div class="form-text">Taslak olarak kaydetmek için işareti kaldırın</div>
                     </div>
                 </div>
-
-                <div class="text-end mt-3">
-                    <a asp-controller="Blog" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                        <i class="bi bi-arrow-left"></i> Listeye Dön
-                    </a>
-                    <button type="submit" class="btn btn-primary" style="width:150px">
-                        <i class="bi bi-save"></i> Güncelle
-                    </button>
-                </div>
             </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons text-center">
+            <a asp-controller="Blog" asp-action="Index" class="btn btn-custom btn-back me-3">
+                <i class="bi bi-arrow-left"></i>
+                Listeye Dön
+            </a>
+            <button type="submit" class="btn btn-custom btn-reply">
+                <i class="bi bi-save"></i>
+                Blog Güncelle
+            </button>
         </div>
     </form>
 </div>

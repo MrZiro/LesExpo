@@ -1,0 +1,190 @@
+@{
+    ViewData["Title"] = "İletişim Mesajları";
+}
+@section Styles{
+	<link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
+}
+
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-envelope-heart me-3"></i>İletişim Mesajları
+            </h1>
+            <p class="mb-0 opacity-75">Müşterilerden gelen mesajları görüntüleyin ve yönetin</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Toplam Mesaj</h5>
+                <h3 class="mb-0" id="totalMessages">@ViewBag.Count</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Controls -->
+<div class="filter-card p-4">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h5 class="text-dark mb-0">
+                <i class="bi bi-funnel me-2 text-primary"></i>Mesajları Filtrele
+            </h5>
+            <small class="text-muted">Dil seçeneğine göre filtreleyebilirsiniz</small>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-filter active" onclick="filterContactsByLanguage('all')">
+                    <i class="bi bi-globe me-1"></i>Tümü
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterContactsByLanguage('tr')">
+                    Türkçe
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterContactsByLanguage('en')">
+                    İngilizce
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Table -->
+<div class="table-container">
+    <div class="table-responsive">
+        <table id="tblData" class="table table-modern" style="width:100%">
+            <thead>
+                <!-- DataTable will populate headers -->
+            </thead>
+            <tbody>
+                <!-- DataTable will populate data -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_PartialReqScript" />
+
+    <script>
+        let dataTable;
+        
+        $(document).ready(() => {
+            dataTable = initializeDataTableWithOption('ContactAd', [
+                {
+                    title: 'İsim',
+                    data: 'name',
+                    width: '20%'
+                },
+                {
+                    title: 'E-posta',
+                    data: 'email',
+                    width: '20%',
+                    render: function(data) {
+                        return `<a href="mailto:${data}" class="email-link">${data}</a>`;
+                    }
+                },
+                {
+                    title: 'Konu',
+                    data: 'subject',
+                    width: '25%',
+                    render: function (data, type, row) {
+                        if (data && data.length > 50) {
+                            return data.substring(0, 50) + '...';
+                        }
+                        return data || '';
+                    }
+                },
+                {
+                    title: 'Dil',
+                    data: 'language',
+                    width: '10%',
+                    render: function (data, type, row) {
+                        const langText = data === 'tr' ? 'Türkçe' : 'English';
+                        const badgeClass = data === 'tr' ? 'badge-tr' : 'badge-en';
+                        return `<span class="badge-modern ${badgeClass} ${badgeClass}">
+                            ${langText}
+                        </span>`;
+                    }
+                },
+                {
+                    title: 'Tarih',
+                    data: 'createdAt',
+                    width: '15%',
+                    render: function (data, type, row) {
+                        if (!data) return '';
+                        return new Date(data).toLocaleDateString('tr-TR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                    }
+                }
+            ]);
+        });
+
+        // Filter function for languages 
+        function filterContactsByLanguage(language) {
+            // Update active button
+            $('.btn-filter').removeClass('active');
+            event.target.classList.add('active');
+
+            // Reload datatable with filter
+            dataTable = reloadDataTableWithFilter('Contact', [
+                {
+                    title: 'İsim',
+                    data: 'name',
+                    width: '20%'
+                },
+                {
+                    title: 'E-posta',
+                    data: 'email',
+                    width: '20%',
+                    render: function(data) {
+                        return `<a href="mailto:${data}" class="email-link">${data}</a>`;
+                    }
+                },
+                {
+                    title: 'Konu',
+                    data: 'subject',
+                    width: '25%',
+                    render: function (data, type, row) {
+                        if (data && data.length > 50) {
+                            return data.substring(0, 50) + '...';
+                        }
+                        return data || '';
+                    }
+                },
+                {
+                    title: 'Dil',
+                    data: 'language',
+                    width: '10%',
+                    render: function (data, type, row) {
+                        const langText = data === 'tr' ? 'Türkçe' : 'English';
+                        const badgeClass = data === 'tr' ? 'badge-tr' : 'badge-en';
+                        return `<span class="badge-modern ${badgeClass} ${badgeClass}">
+                            ${langText}
+                        </span>`;
+                    }
+                },
+                
+                {
+                    title: 'Tarih',
+                    data: 'createdAt',
+                    width: '15%',
+                    render: function (data, type, row) {
+                        if (!data) return '';
+                        return new Date(data).toLocaleDateString('tr-TR', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                    }
+                }
+            ], '#tblData', language);
+        }
+    </script>
+} 

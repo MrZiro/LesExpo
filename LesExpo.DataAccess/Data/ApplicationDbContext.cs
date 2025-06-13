@@ -21,6 +21,9 @@ namespace LesExpo.DataAccess.Data
         public DbSet<ContentType> ContentTypes { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

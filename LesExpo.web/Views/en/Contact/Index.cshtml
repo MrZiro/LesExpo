@@ -132,25 +132,25 @@
                 @Html.AntiForgeryToken()
                 <div class="form-row-if">
                     <div class="form-group-if">
-                        <label asp-for="Name">Name:</label>
-                        <input asp-for="Name" class="" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <label asp-for="Contact.Name">Name:</label>
+                        <input asp-for="Contact.Name" class="" />
+                        <span asp-validation-for="Contact.Name" class="text-danger"></span>
                     </div>
                     <div class="form-group-if">
-                        <label asp-for="Email">Email:</label>
-                        <input asp-for="Email" class="" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <label asp-for="Contact.Email">Email:</label>
+                        <input asp-for="Contact.Email" class="" />
+                        <span asp-validation-for="Contact.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group-if">
-                    <label asp-for="Subject">Subject:</label>
-                    <input asp-for="Subject" class="" />
-                    <span asp-validation-for="Subject" class="text-danger"></span>
+                    <label asp-for="Contact.Subject">Subject:</label>
+                    <input asp-for="Contact.Subject" class="" />
+                    <span asp-validation-for="Contact.Subject" class="text-danger"></span>
                 </div>
                 <div class="form-group-if">
-                    <label asp-for="Message">Message:</label>
-                    <textarea asp-for="Message" class="" rows="5"></textarea>
-                    <span asp-validation-for="Message" class="text-danger"></span>
+                    <label asp-for="Contact.Message">Message:</label>
+                    <textarea asp-for="Contact.Message" class="" rows="5"></textarea>
+                    <span asp-validation-for="Contact.Message" class="text-danger"></span>
                 </div>
                 <button type="submit" class="submit-btn-if">Send</button>
             </form>

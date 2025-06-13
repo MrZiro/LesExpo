@@ -7,6 +7,7 @@
 }
 
 <div class="container">
+    @* BEGIN: Legacy heading row hidden
     <div class="row pt-4 pb-3">
         <div class="col-6">
             <h2 class="text-primary">
@@ -19,16 +20,52 @@
             </a>
         </div>
     </div>
+    END: Legacy heading row hidden *@
+
+    <div class="page-header p-4 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="mb-1 fw-bold">
+                    <i class="bi bi-tags me-3"></i>İçerik Türleri
+                </h1>
+                <p class="mb-0 opacity-75">Sistemde kullanılan içerik türlerini yönetin</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <div class="stats-card p-3 text-center">
+                    <h5 class="mb-1">Toplam İçerik Türü</h5>
+                    <h3 class="mb-0" id="totalContentTypes">@ViewBag.Count</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-card p-4 mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h5 class="text-dark mb-0">
+                    <i class="bi bi-plus-circle me-2 text-primary"></i>Yeni İçerik Türü
+                </h5>
+                <small class="text-muted">Yeni içerik türü oluşturmak için butonu kullanın</small>
+            </div>
+            <div class="col-md-6 text-end">
+                <a asp-controller="ContentType" asp-action="Upsert" class="btn btn-custom btn-back">
+                    <i class="bi bi-plus-circle"></i> Oluştur
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="table-container">
-        <table id="tblData" class="table" style="width:100%">
-            <thead>
-                <!-- DataTable will populate headers -->
-            </thead>
-            <tbody>
-                <!-- DataTable will populate data -->
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table id="tblData" class="table table-modern" style="width:100%">
+                <thead>
+                    <!-- DataTable will populate headers -->
+                </thead>
+                <tbody>
+                    <!-- DataTable will populate data -->
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
