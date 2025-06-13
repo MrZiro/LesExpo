@@ -29,6 +29,12 @@
             padding-top: 180px;
 
         }
+
+        .btn-okf-1:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
     </style>
     }
 
@@ -160,84 +166,82 @@
                 <div class="form-group-ob checkbox-group-ob">
                     <input asp-for="Ticket.Terms" type="checkbox" id="terms" required>
                     <label asp-for="Ticket.Terms">
-                        Şartları ve koşulları kabul ediyorum <span class="required-ob">*</span> - 
-                        <a href="#" onclick="event.preventDefault(); bootstrap.Modal.getOrCreateInstance(document.getElementById('privacyModal')).show();">Aydınlatma Metni ve Gizlilik Politikasını okudum, kabul ediyorum.</a>
+                        <a href="#" id="privacyLink">Aydınlatma Metni ve Gizlilik Politikasını okudum, kabul ediyorum.</a>
+                        <span class="required-ob">*</span>
                     </label>
                     <span asp-validation-for="Ticket.Terms" class="text-danger"></span>
                 </div>
             </div>
 
-          <!-- Privacy Policy Modal -->
-        <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="privacyModalLabel">GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="privacy-content">
-                            <h4>GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h4>
-                            <p>Bu internet sitesini kullanmadan önce lütfen aşağıdaki maddeleri dikkatle okuyup inceleyiniz.</p>
-                            <p>https://www.les-expo.com alan adlı internet sitesi ("Site" veya "Internet Sitesi") KFA Fuarcılık A.Ş ("KFA")'ne aittir.</p>
-                            <p>Bu İnternet Sitesini kullanmakla aşağıda yer alan Kullanıcı Sözleşmesini kabul etmektesiniz.</p>
-
-                            <h5>1- Kabul</h5>
-                            <p>Bu Siteyi ziyaret etmekle, işbu Gizlilik Politikası ve Kullanım Şartları'nı ("Sözleşme") açıklanan şartlar kapsamında hareket etmeyi ve bu koşullara uymayı kabul etmektesiniz.</p>
-                            <p>KFA bu koşulları ve ayrıca yine işbu internet sitesinde yer alan Gizlilik Politikası dahil diğer her türlü bilgiyi zaman zaman ve gerekli gördüğü takdirde herhangi bir bildirimde bulunmaksızın değiştirme hakkını saklı tutmaktadır. Bu Sözleşmenin güncel haline ve Gizlilik Politikası'na her zaman internet sitesinden ulaşabilirsiniz. İşbu İnternet Sitesine giriş yapmanız, işbu Sözleşme'yi ve herhangi bir zamanda Sözleşme'de meydana gelebilecek olan değişiklikleri kabul ettiğiniz anlamına gelmektedir. İnternet Sitesi üzerinde her türlü kullanım ve tasarruf yetkisi KFA'ya aittir.</p>
-
-                            <h5>2- Sorumluluk</h5>
-                            <p>KFA, fiyatlar, düzenlenen fuarlar ve sunulan hizmetler üzerinde değişiklik yapma hakkını her zaman saklı tutar. İnternet sitesinin kullanımında kaynak kodunu bulmak veya elde etmek amacına yönelik herhangi bir başka işlemde bulunmayacağınızı, aksi halde ve 3. Kişiler nezdinde doğacak zararlardan sorumlu olacağınızı, hakkında hukuki ve cezai işlem yapılacağını peşinen kabul etmektesiniz.</p>
-
-                            <h5>3- Yayınlanan Bilgiye Güven</h5>
-                            <p>İnternet Sitesinde yer alan bilgiler tamamen genel bilgi niteliğinde olup, bu bilgilerin doğruluğu garanti edilmemektedir. İnternet Sitesinden edinilen bilgilere güvenden doğacak tüm sorumluluk tarafınıza aittir.</p>
-
-                            <h5>4- Kişisel Veriler</h5>
-                            <p>İnternet sitesine sunduğunuz kişisel bilgilerin işlenmesi, kaydedilmesi ve korunması hakkında bilgi edinmek için lütfen KVKK formlarımızı okuyunuz.</p>
-
-                            <h5>5- Kişisel Olmayan Bilgiler</h5>
-                            <p>Kişisel olmayan bilgiler, şahsen sizlerin tanımlanamayacağımız bilgilerdir. Örneğin; kullanım saatleri, Site'nin kullanıldığı lokasyon, incelenen sayfalar vb. bilgilerdir.</p>
-
-                            <h5>6- Çerez (Cookie) Kullanımı</h5>
-                            <p>Çerezler, Site'yi ziyaret ettiğiniz zaman bilgisayarınıza tercihlerinizi kaydeden küçük metin dosyalarıdır. Çerezler, alışveriş sepetinizde hangi ürünlerin olduğunu hatırlamak, web sitesine veya mobil uygulamaya tekrar giriş yaptığınızda sitenin sizi tanıması, ilginizi çekebilecek ilan ve reklamların en çok giriş yaptığınız sayfalarda yayınlanması gibi işlemlerde size en kaliteli hizmeti sağlamak için kullanılmaktadır.</p>
-
-                            <h5>7- Ödeme Güvenliği</h5>
-                            <p>Toplanan mali bilgiler satın aldığınız ürünleri size fatura etmek için kullanılmaktadır. Web sitesinde veya mobil uygulamada online ödemeli bir satın alma yaptığınızda size ait mali bilgilerin, işleminizi gerçekleştirmek için gerekli 3. şahıslara (bankalar, kredi kartı şirketleri vb.) verilmesini kabul etmektesiniz.</p>
-
-                            <h5>8- Diğer İnternet Sitelerine Verilen Linkler</h5>
-                            <p>Bu internet sitesinden üçüncü kişilere ait başka internet sitelerine link verilebilmektedir. KFA link verilen internet sitelerinde yer alan içerikten sorumlu değildir ve bunların doğruluğunu, kalitesini yahut güncelliğini kontrol etme yükümlülüğü bulunmamaktadır.</p>
-
-                            <h5>9- Fikri Mülkiyet Hakları</h5>
-                            <p>Bu internet sitesi ve tüm sayfaları ve bu internet uygulaması yazılımı ve içerisindeki tüm görsel eserler, tasarımlar, arayüzler, kullanıcı kontrolleri, süreçler, programlar ve yazılım bileşenlerin ve bunlarla sınırlı kalmaksızın her türlü hakkı münhasıran KFA, lisans veren veya diğer sağlayıcılara aittir.</p>
-
-                            <h5>10- Zararların Tazmini</h5>
-                            <p>Tarafınızca işbu hükümlerin ihlal edilmesi veya İnternet Sitesi'nin aykırı kullanılmasından doğacak her türlü talepten, sorumluluktan, zarardan, karardan, hükümden, kayıptan, masraftan veya ücretten (vekalet ücreti dahil olmak üzere) KFA'yi, iştiraklerini, lisans verenlerini ve bunların çalışanlarını, yöneticileri, temsilcilerini, tedarikçilerini ve haleflerini ari tutacağınızı ve zararları tazmin edeceğinizi kabul etmektesiniz.</p>
-
-                            <h5>11- İletişim Bilgileri</h5>
-                            <p>Sorularınız için info@les-expo.com e-mail adresini kullanınız.</p>
-
-                            <h5>12- Uygulanacak Hukuk ve Uyuşmazlıkların Çözümü</h5>
-                            <p>İşbu Sözleşmeye herhangi bir çelişkiye mahal vermeksizin Türk hukuku uygulanacak olup, ihtilafın karşılıklı müzakereler neticesinde çözümünün mümkün olmadığı hallerde söz konusu uyuşmazlık Bursa Mahkemeleri ve İcra Müdürlükleri nezdinde çözümlenecektir.</p>
+            <!-- Privacy Policy Modal -->
+            <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="privacyModalLabel">GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                        <button type="button" class="btn btn-primary" id="acceptPrivacy">Kabul Ediyorum</button>
+                        <div class="modal-body">
+                            <div class="privacy-content" style="max-height: 60vh; overflow-y: auto; padding: 20px;">
+                                <h4>GİZLİLİK POLİTİKASI VE İNTERNET SİTESİ KULLANIM KOŞULLARI</h4>
+                                <p>Bu internet sitesini kullanmadan önce lütfen aşağıdaki maddeleri dikkatle okuyup inceleyiniz.</p>
+                                <p>https://www.les-expo.com alan adlı internet sitesi ("Site" veya "Internet Sitesi") KFA Fuarcılık A.Ş ("KFA")'ne aittir.</p>
+                                <p>Bu İnternet Sitesini kullanmakla aşağıda yer alan Kullanıcı Sözleşmesini kabul etmektesiniz.</p>
+
+                                <h5>1- Kabul</h5>
+                                <p>Bu Siteyi ziyaret etmekle, işbu Gizlilik Politikası ve Kullanım Şartları'nı ("Sözleşme") açıklanan şartlar kapsamında hareket etmeyi ve bu koşullara uymayı kabul etmektesiniz.</p>
+                                <p>KFA bu koşulları ve ayrıca yine işbu internet sitesinde yer alan Gizlilik Politikası dahil diğer her türlü bilgiyi zaman zaman ve gerekli gördüğü takdirde herhangi bir bildirimde bulunmaksızın değiştirme hakkını saklı tutmaktadır. Bu Sözleşmenin güncel haline ve Gizlilik Politikası'na her zaman internet sitesinden ulaşabilirsiniz. İşbu İnternet Sitesine giriş yapmanız, işbu Sözleşme'yi ve herhangi bir zamanda Sözleşme'de meydana gelebilecek olan değişiklikleri kabul ettiğiniz anlamına gelmektedir. İnternet Sitesi üzerinde her türlü kullanım ve tasarruf yetkisi KFA'ya aittir.</p>
+
+                                <h5>2- Sorumluluk</h5>
+                                <p>KFA, fiyatlar, düzenlenen fuarlar ve sunulan hizmetler üzerinde değişiklik yapma hakkını her zaman saklı tutar. İnternet sitesinin kullanımında kaynak kodunu bulmak veya elde etmek amacına yönelik herhangi bir başka işlemde bulunmayacağınızı, aksi halde ve 3. Kişiler nezdinde doğacak zararlardan sorumlu olacağınızı, hakkında hukuki ve cezai işlem yapılacağını peşinen kabul etmektesiniz.</p>
+
+                                <h5>3- Yayınlanan Bilgiye Güven</h5>
+                                <p>İnternet Sitesinde yer alan bilgiler tamamen genel bilgi niteliğinde olup, bu bilgilerin doğruluğu garanti edilmemektedir. İnternet Sitesinden edinilen bilgilere güvenden doğacak tüm sorumluluk tarafınıza aittir.</p>
+
+                                <h5>4- Kişisel Veriler</h5>
+                                <p>İnternet sitesine sunduğunuz kişisel bilgilerin işlenmesi, kaydedilmesi ve korunması hakkında bilgi edinmek için lütfen KVKK formlarımızı okuyunuz.</p>
+
+                                <h5>5- Kişisel Olmayan Bilgiler</h5>
+                                <p>Kişisel olmayan bilgiler, şahsen sizlerin tanımlanamayacağımız bilgilerdir. Örneğin; kullanım saatleri, Site'nin kullanıldığı lokasyon, incelenen sayfalar vb. bilgilerdir.</p>
+
+                                <h5>6- Çerez (Cookie) Kullanımı</h5>
+                                <p>Çerezler, Site'yi ziyaret ettiğiniz zaman bilgisayarınıza tercihlerinizi kaydeden küçük metin dosyalarıdır. Çerezler, alışveriş sepetinizde hangi ürünlerin olduğunu hatırlamak, web sitesine veya mobil uygulamaya tekrar giriş yaptığınızda sitenin sizi tanıması, ilginizi çekebilecek ilan ve reklamların en çok giriş yaptığınız sayfalarda yayınlanması gibi işlemlerde size en kaliteli hizmeti sağlamak için kullanılmaktadır.</p>
+
+                                <h5>7- Ödeme Güvenliği</h5>
+                                <p>Toplanan mali bilgiler satın aldığınız ürünleri size fatura etmek için kullanılmaktadır. Web sitesinde veya mobil uygulamada online ödemeli bir satın alma yaptığınızda size ait mali bilgilerin, işleminizi gerçekleştirmek için gerekli 3. şahıslara (bankalar, kredi kartı şirketleri vb.) verilmesini kabul etmektesiniz.</p>
+
+                                <h5>8- Diğer İnternet Sitelerine Verilen Linkler</h5>
+                                <p>Bu internet sitesinden üçüncü kişilere ait başka internet sitelerine link verilebilmektedir. KFA link verilen internet sitelerinde yer alan içerikten sorumlu değildir ve bunların doğruluğunu, kalitesini yahut güncelliğini kontrol etme yükümlülüğü bulunmamaktadır.</p>
+
+                                <h5>9- Fikri Mülkiyet Hakları</h5>
+                                <p>Bu internet sitesi ve tüm sayfaları ve bu internet uygulaması yazılımı ve içerisindeki tüm görsel eserler, tasarımlar, arayüzler, kullanıcı kontrolleri, süreçler, programlar ve yazılım bileşenlerin ve bunlarla sınırlı kalmaksızın her türlü hakkı münhasıran KFA, lisans veren veya diğer sağlayıcılara aittir.</p>
+
+                                <h5>10- Zararların Tazmini</h5>
+                                <p>Tarafınızca işbu hükümlerin ihlal edilmesi veya İnternet Sitesi'nin aykırı kullanılmasından doğacak her türlü talepten, sorumluluktan, zarardan, karardan, hükümden, kayıptan, masraftan veya ücretten (vekalet ücreti dahil olmak üzere) KFA'yi, iştiraklerini, lisans verenlerini ve bunların çalışanlarını, yöneticileri, temsilcilerini, tedarikçilerini ve haleflerini ari tutacağınızı ve zararları tazmin edeceğinizi kabul etmektesiniz.</p>
+
+                                <h5>11- İletişim Bilgileri</h5>
+                                <p>Sorularınız için info@les-expo.com e-mail adresini kullanınız.</p>
+
+                                <h5>12- Uygulanacak Hukuk ve Uyuşmazlıkların Çözümü</h5>
+                                <p>İş bu Sözleşmeye herhangi bir çelişkiye mahal vermeksizin Türk hukuku uygulanacak olup, ihtilafın karşılıklı müzakereler neticesinde çözümünün mümkün olmadığı hallerde söz konusu uyuşmazlık Bursa Mahkemeleri ve İcra Müdürlükleri nezdinde çözümlenecektir.</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                            <button type="button" class="btn btn-primary" id="acceptPrivacy">Kabul Ediyorum</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             @Html.AntiForgeryToken()
 
             <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="onay-kutusu-okf-1">
-                               
-
-                                <button class="btn-okf-1" onclick="butonKontrolOkf1()">Gönder</button>
-                            </div>
-                        </div>
+                <div class="col-12">
+                    <div class="onay-kutusu-okf-1">
+                        <button type="submit" class="btn-okf-1" id="submitButton" disabled>Gönder</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -246,6 +250,53 @@
 @section Scripts {
     <script src="/js/ticket.js"></script>
     <script src="/js/on-kayit-formu.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const termsCheckbox = document.getElementById('terms');
+            const privacyLink = document.getElementById('privacyLink');
+            const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
+            const submitButton = document.getElementById('submitButton');
+
+            // Privacy policy link click handler
+            privacyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                privacyModal.show();
+            });
+
+            // Checkbox click handler
+            termsCheckbox.addEventListener('click', function(e) {
+                if (!this.checked) {
+                    e.preventDefault();
+                    privacyModal.show();
+                }
+            });
+
+            // Accept privacy button click handler
+            document.getElementById('acceptPrivacy').addEventListener('click', function() {
+                termsCheckbox.checked = true;
+                privacyModal.hide();
+                submitButton.disabled = false;
+                submitButton.classList.remove('disabled-button');
+            });
+
+            // Form submit handler
+            document.getElementById('ticketForm').addEventListener('submit', function(e) {
+                if (!termsCheckbox.checked) {
+                    e.preventDefault();
+                    alert('Lütfen gizlilik politikasını kabul ediniz.');
+                    privacyModal.show();
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .btn-okf-1:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

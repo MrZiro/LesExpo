@@ -160,95 +160,137 @@
                 <div class="form-group-ob checkbox-group-ob">
                     <input asp-for="Ticket.Terms" type="checkbox" id="terms" required>
                     <label asp-for="Ticket.Terms">
-                        I accept the terms and conditions <span class="required-ob">*</span> &nbsp;
-                        <a href="#" onclick="event.preventDefault(); bootstrap.Modal.getOrCreateInstance(document.getElementById('privacyModal')).show();">
-                            I have read and reviewed the Privacy Policy and Website Terms of Use, and I accept.
-                        </a>
+                        <a href="#" id="privacyLink">I have read and reviewed the Privacy Policy and Website Terms of Use, and I accept.</a>
+                        <span class="required-ob">*</span>
                     </label>
                     <span asp-validation-for="Ticket.Terms" class="text-danger"></span>
                 </div>
             </div>
 
-          <!-- Privacy Policy Modal -->
-        <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="privacyModalLabel">PRIVACY POLICY AND WEBSITE TERMS OF USE</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="privacy-content">
-                            <h4>PRIVACY POLICY AND WEBSITE TERMS OF USE</h4>
-                            <p>Please read and review the following items carefully before using this website.</p>
-                            <p>The website with the domain name https://www.les-expo.com ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
-                            <p>By using this Website, you accept the User Agreement below.</p>
-
-                            <h5>1- Acceptance</h5>
-                            <p>By visiting this Site, you accept to act within the scope of the terms stated in this Privacy Policy and Terms of Use ("Agreement") and to comply with these conditions.</p>
-                            <p>KFA reserves the right to change these terms and any other information, including the Privacy Policy, from time to time without any notice when deemed necessary. You can always access the current version of this Agreement and Privacy Policy from the website. Your access to this Website means that you accept this Agreement and any changes that may occur in the Agreement at any time. All usage and disposal rights on the Website belong to KFA.</p>
-
-                            <h5>2- Responsibility</h5>
-                            <p>KFA always reserves the right to make changes to prices, organized fairs, and services provided. You accept in advance that you will not engage in any other action aimed at finding or obtaining the source code in the use of the website, and that you will be responsible for any damages that may arise from third parties, and that legal and criminal proceedings will be initiated.</p>
-
-                            <h5>3- Reliance on Published Information</h5>
-                            <p>The information on the Website is entirely for general information purposes, and the accuracy of this information is not guaranteed. All responsibility arising from reliance on information obtained from the Website belongs to you.</p>
-
-                            <h5>4- Personal Data</h5>
-                            <p>Please read our KVKK forms to learn about the processing, storage, and protection of personal information you provide to the website.</p>
-
-                            <h5>5- Non-Personal Information</h5>
-                            <p>Non-personal information is information that cannot personally identify you. For example; usage hours, location where the Site is used, pages viewed, etc.</p>
-
-                            <h5>6- Cookie Usage</h5>
-                            <p>Cookies are small text files that save your preferences on your computer when you visit the Site. Cookies are used to provide you with the highest quality service in operations such as remembering which products are in your shopping cart, recognizing you when you log in to the website or mobile application again, and publishing advertisements and announcements that may interest you on the pages you visit most.</p>
-
-                            <h5>7- Payment Security</h5>
-                            <p>Collected financial information is used to invoice you for the products you purchase. When you make an online payment purchase on the website or mobile application, you accept that your financial information will be provided to third parties (banks, credit card companies, etc.) necessary to process your transaction.</p>
-
-                            <h5>8- Links to Other Websites</h5>
-                            <p>This website may provide links to other websites belonging to third parties. KFA is not responsible for the content on the linked websites and has no obligation to check their accuracy, quality, or currency.</p>
-
-                            <h5>9- Intellectual Property Rights</h5>
-                            <p>This website and all its pages, and this internet application software and all visual works, designs, interfaces, user controls, processes, programs, and software components contained therein, and all rights related thereto, without limitation, exclusively belong to KFA, licensors, or other providers.</p>
-
-                            <h5>10- Compensation for Damages</h5>
-                            <p>You accept that you will indemnify KFA, its affiliates, licensors, and their employees, managers, representatives, suppliers, and successors from any claim, liability, damage, decision, judgment, loss, expense, or fee (including attorney fees) arising from your violation of these provisions or improper use of the Website.</p>
-
-                            <h5>11- Contact Information</h5>
-                            <p>Use the e-mail address info@les-expo.com for your questions.</p>
-
-                            <h5>12- Applicable Law and Resolution of Disputes</h5>
-                            <p>Turkish law shall apply to this Agreement without any contradiction, and in cases where the dispute cannot be resolved through mutual negotiations, the relevant dispute will be resolved before the Bursa Courts and Enforcement Offices.</p>
+            <!-- Privacy Policy Modal -->
+            <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="privacyModalLabel">PRIVACY POLICY AND WEBSITE TERMS OF USE</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="acceptPrivacy">I accept</button>
+                        <div class="modal-body">
+                            <div class="privacy-content" style="max-height: 60vh; overflow-y: auto; padding: 20px;">
+                                <h4>PRIVACY POLICY AND WEBSITE TERMS OF USE</h4>
+                                <p>Please read and review the following items carefully before using this website.</p>
+                                <p>The website with the domain name https://www.les-expo.com ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
+                                <p>By using this Website, you accept the User Agreement below.</p>
+
+                                <h5>1- Acceptance</h5>
+                                <p>By visiting this Site, you accept to act within the scope of the terms stated in this Privacy Policy and Terms of Use ("Agreement") and to comply with these conditions.</p>
+                                <p>KFA reserves the right to change these terms and any other information, including the Privacy Policy, from time to time without any notice when deemed necessary. You can always access the current version of this Agreement and Privacy Policy from the website. Your access to this Website means that you accept this Agreement and any changes that may occur in the Agreement at any time. All usage and disposal rights on the Website belong to KFA.</p>
+
+                                <h5>2- Responsibility</h5>
+                                <p>KFA always reserves the right to make changes to prices, organized fairs, and services provided. You accept in advance that you will not engage in any other action aimed at finding or obtaining the source code in the use of the website, and that you will be responsible for any damages that may arise from third parties, and that legal and criminal proceedings will be initiated.</p>
+
+                                <h5>3- Reliance on Published Information</h5>
+                                <p>The information on the Website is entirely for general information purposes, and the accuracy of this information is not guaranteed. All responsibility arising from reliance on information obtained from the Website belongs to you.</p>
+
+                                <h5>4- Personal Data</h5>
+                                <p>Please read our KVKK forms to learn about the processing, storage, and protection of personal information you provide to the website.</p>
+
+                                <h5>5- Non-Personal Information</h5>
+                                <p>Non-personal information is information that cannot personally identify you. For example; usage hours, location where the Site is used, pages viewed, etc.</p>
+
+                                <h5>6- Cookie Usage</h5>
+                                <p>Cookies are small text files that save your preferences on your computer when you visit the Site. Cookies are used to provide you with the highest quality service in operations such as remembering which products are in your shopping cart, recognizing you when you log in to the website or mobile application again, and publishing advertisements and announcements that may interest you on the pages you visit most.</p>
+
+                                <h5>7- Payment Security</h5>
+                                <p>Collected financial information is used to invoice you for the products you purchase. When you make an online payment purchase on the website or mobile application, you accept that your financial information will be provided to third parties (banks, credit card companies, etc.) necessary to process your transaction.</p>
+
+                                <h5>8- Links to Other Websites</h5>
+                                <p>This website may provide links to other websites belonging to third parties. KFA is not responsible for the content on the linked websites and has no obligation to check their accuracy, quality, or currency.</p>
+
+                                <h5>9- Intellectual Property Rights</h5>
+                                <p>This website and all its pages, and this internet application software and all visual works, designs, interfaces, user controls, processes, programs, and software components contained therein, and all rights related thereto, without limitation, exclusively belong to KFA, licensors, or other providers.</p>
+
+                                <h5>10- Compensation for Damages</h5>
+                                <p>You accept that you will indemnify KFA, its affiliates, licensors, and their employees, managers, representatives, suppliers, and successors from any claim, liability, damage, decision, judgment, loss, expense, or fee (including attorney fees) arising from your violation of these provisions or improper use of the Website.</p>
+
+                                <h5>11- Contact Information</h5>
+                                <p>Use the e-mail address info@les-expo.com for your questions.</p>
+
+                                <h5>12- Applicable Law and Resolution of Disputes</h5>
+                                <p>Turkish law shall apply to this Agreement without any contradiction, and in cases where the dispute cannot be resolved through mutual negotiations, the relevant dispute will be resolved before the Bursa Courts and Enforcement Offices.</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="acceptPrivacy">I Accept</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
             @Html.AntiForgeryToken()
 
             <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="onay-kutusu-okf-1">
-                               
-
-                                <button class="btn-okf-1" onclick="butonKontrolOkf1()">Send</button>
-                            </div>
-                        </div>
+                <div class="col-12">
+                    <div class="onay-kutusu-okf-1">
+                        <button type="submit" class="btn-okf-1" id="submitButton" disabled>Send</button>
+                    </div>
+                </div>
             </div>
         </form>
-        
     </div>
 </div>
 
 @section Scripts {
     <script src="/js/ticket.js"></script>
     <script src="/js/on-kayit-formu.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const termsCheckbox = document.getElementById('terms');
+            const privacyLink = document.getElementById('privacyLink');
+            const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
+            const submitButton = document.getElementById('submitButton');
+
+            // Privacy policy link click handler
+            privacyLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                privacyModal.show();
+            });
+
+            // Checkbox click handler
+            termsCheckbox.addEventListener('click', function(e) {
+                if (!this.checked) {
+                    e.preventDefault();
+                    privacyModal.show();
+                }
+            });
+
+            // Accept privacy button click handler
+            document.getElementById('acceptPrivacy').addEventListener('click', function() {
+                termsCheckbox.checked = true;
+                privacyModal.hide();
+                submitButton.disabled = false;
+                submitButton.classList.remove('disabled-button');
+            });
+
+            // Form submit handler
+            document.getElementById('ticketForm').addEventListener('submit', function(e) {
+                if (!termsCheckbox.checked) {
+                    e.preventDefault();
+                    alert('Please accept the privacy policy.');
+                    privacyModal.show();
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .btn-okf-1:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
