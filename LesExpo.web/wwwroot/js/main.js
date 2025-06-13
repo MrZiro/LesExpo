@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
       content: `
         <h3>GİZLİLİK POLİTİKASI VE WEB SİTESİ KULLANIM ŞARTLARI</h3>
         <p>Lütfen bu web sitesini kullanmadan önce aşağıdaki maddeleri dikkatlice okuyunuz ve inceleyiniz.</p>
-        <p>https://les-expo.com alan adına sahip web sitesi ("Site" veya "Web Sitesi") KFA Fuarcılık A.Ş'ye ("KFA") aittir.</p>
+        <p>https://www.les-expo.com alan adına sahip web sitesi ("Site" veya "Web Sitesi") KFA Fuarcılık A.Ş'ye ("KFA") aittir.</p>
         <p>Bu Web Sitesini kullanarak, aşağıdaki Kullanıcı Sözleşmesini kabul etmiş olursunuz.</p>
 
         <h3>1- Kabul</h3>
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function () {
       content: `
         <h3>GİZLİLİK POLİTİKASI VE WEB SİTESİ KULLANIM ŞARTLARI</h3>
         <p>Lütfen bu web sitesini kullanmadan önce aşağıdaki maddeleri dikkatlice okuyunuz ve inceleyiniz.</p>
-        <p>https://les-expo.com alan adına sahip web sitesi ("Site" veya "Web Sitesi") KFA Fuarcılık A.Ş'ye ("KFA") aittir.</p>
+        <p>https://www.les-expo.com alan adına sahip web sitesi ("Site" veya "Web Sitesi") KFA Fuarcılık A.Ş'ye ("KFA") aittir.</p>
         <p>Bu Web Sitesini kullanarak, aşağıdaki Kullanıcı Sözleşmesini kabul etmiş olursunuz.</p>
 
         <h3>1- Kabul</h3>
@@ -581,7 +581,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// ================================== Footer KVKK KISMI ==================================
+// ================================== Footer KVKK KISMI ENGLISH ==================================
 // Privacy Modal Functionality
 document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('privacyModal-en');
@@ -625,47 +625,31 @@ Your processed personal data can be transferred within the above purposes and th
         <p>may be transferred with your explicit consent or under the conditions determined by law.</p>
 
         <p><strong>The method and legal reason for collecting personal data,</strong><br>
-        Kişisel verileriniz, şirketimiz veya şirketimiz adına veri işleyen gerçek ya da tüzel kişiler tarafından;
-        internet sitesi, muhtelif sözleşmeler, her türlü ilgi bilgi formları, anketler, iş başvuru formları, iş
-        sözleşmeleri, sosyal medya uygulamaları, çağrı merkezleri ve burada sayılanlarla sınırlı olmamak
-        üzere sözlü, yazılı veya elektronik kanallar aracılığı ile açık rızanız ile toplanmaktadır.</p>
+        Your personal data is collected with your explicit consent by our company or real or legal persons who process data on behalf of our company through verbal, written or electronic channels, including but not limited to the following:
 
-        <p>Bu bilgiler, ticari ve idari faaliyetlerimizin, iş ve sosyal hayatı düzenleyen yasalar çerçevesinde
-        sunulabilmesi ve bu kapsamda şirketimizin ticari hayatını sürdürebilmesi, yasalardan doğan
-        mesuliyetlerini eksiksiz ve doğru bir şekilde yerine getirebilmesi gayesi ile edinilir.</p>
+website, various contracts, all kinds of interest information forms, surveys, job application forms, employment contracts, social media applications, call centers.</p>
 
-        <p><strong>Veri Sahibinin Hakları,</strong><br>
-        KVKK kapsamında, kişisel verilerinize ilişkin olarak aşağıdaki haklara sahipsiniz:</p>
+        <p>This information is obtained so that our commercial and administrative activities can be presented within the framework of the laws regulating business and social life, and that our company can continue its commercial life and fulfill its responsibilities arising from the law completely and accurately.</p>
+
+        <p><strong>Data Owner's Rights,</strong><br>
+        Under the LPPD, you have the following rights regarding your personal data:</p>
         <ul>
-          <li>Kişisel veri işlenip işlenmediğini öğrenme,</li>
-          <li>Kişisel verileri işlenmişse buna ilişkin bilgi talep etme,</li>
-          <li>Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını
-        öğrenme,</li>
-          <li>Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı üçüncü kişileri bilme,</li>
-          <li>Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</li>
-          <li>Kişisel verinizin işlenmesini gerektiren sebeplerin ortadan kalkması hâlinde, verilerin
-        silinmesini veya yok edilmesini isteme,</li>
-          <li>Talebinizce düzeltilen ya da silinen bilgilerinizin, eğer aktarılmış ise kişisel verilerin aktarıldığı
-        üçüncü kişilere bildirilmesini isteme,</li>
-          <li>İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin
-        kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme,</li>
-          <li>Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın
-        giderilmesini talep etme.</li>
+          <li>Learning whether personal data is being processed,</li>
+          <li>To request information regarding the processing of personal data,</li>
+          <li>To learn the purpose of processing personal data and whether they are used in accordance with their purpose,</li>
+          <li>To know the third parties to whom personal data is transferred, either domestically or abroad,</li>
+          <li>To request correction of personal data if it is processed incompletely or incorrectly,</li>
+          <li>Requesting the deletion or destruction of personal data if the reasons requiring the processing of personal data are eliminated,</li>
+          <li>Request that your information, which has been corrected or deleted upon your request, be notified to third parties to whom your personal data has been transferred, if any,</li>
+          <li>To object to the emergence of a result against the person by analyzing the processed data exclusively through automatic systems,</li>
+          <li>To request compensation for damages in case of damages due to unlawful processing of personal data.</li>
         </ul>
 
-        <p>Yukarıda belirtilen haklarınızı kullanmak için kimliğinizi tespit edici gerekli bilgiler ve kullanmak
-        istediğiniz hakkınıza yönelik açıklamalarınızla birlikte yazılı talebinizi "[…]" adresine ıslak imzalı olarak
-        ve/veya […] kayıtlı elektronik posta adresimize güvenli elektronik imza ile imzalanmış olarak
-        gönderebilirsiniz.</p>
+        <p>In order to exercise your rights specified above, you can send your written request, along with the necessary information to identify you and your explanations regarding the right you wish to exercise, to the address "[…]" with a wet signature and/or to our registered e-mail address […] with a secure electronic signature.</p>
 
-        <p>Kişisel veri sahibi olarak sahip olduğunuz ve yukarıda belirtilen haklarınızı kullanmak için yapacağınız
-        ve kullanmayı talep ettiğiniz hakka ilişkin açıklamalarınızı içeren başvuruda; talep ettiğiniz hususun
-        açık ve anlaşılır olması, talep ettiğiniz konunun şahsınız ile ilgili olması veya başkası adına hareket
-        ediyor iseniz bu konuda özel olarak yetkili olmanız ve yetkinizi belgelendirilmesi, başvurunun kimlik ve
-        adres bilgilerini içermesi ve başvuruya kimliğinizi tevsik edici belgelerin eklenmesi gerekmektedir.</p>
+        <p>In the application that you will make to exercise your rights as a personal data owner and specified above, and that includes your explanations regarding the right you request to exercise; the subject you request must be clear and understandable, the subject you request must be related to you or if you are acting on behalf of someone else, you must be specifically authorized in this matter and your authority must be documented, the application must include your identity and address information and documents that prove your identity must be attached to the application.</p>
 
-        <p>Bu kapsamda yapacağınız başvurular mümkün olan en kısa zaman diliminde ve en çok 30 gün
-        içerisinde sonuçlandırılacaktır.</p>
+        <p>Your applications in this context will be finalized in the shortest possible time frame and within 30 days at most.</p>
       `
     },
     privacy: {
@@ -673,7 +657,7 @@ Your processed personal data can be transferred within the above purposes and th
       content: `
         <h3>PRIVACY POLICY AND WEBSITE TERMS OF USE</h3>
         <p>Please read and review the following items carefully before using this website.</p>
-        <p>The website with the domain name https://les-expo.com/ ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
+        <p>The website with the domain name https://www.les-expo.com ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
         <p>By using this Website, you accept the User Agreement below.</p>
 
         <h3>1- Acceptance</h3>
@@ -681,13 +665,13 @@ Your processed personal data can be transferred within the above purposes and th
         <p>KFA reserves the right to change these conditions and any other information, including the Privacy Policy on this website, from time to time and without any notice when deemed necessary. You can always access the current version of this Agreement and the Privacy Policy from the website. By entering this Website, you accept this Agreement and any changes that may occur in the Agreement at any time. All usage and disposal rights on the Website belong to KFA.</p>
 
         <h3>2- Responsibility</h3>
-        <p>KFA, fiyatlar, düzenlenen fuarlar ve sunulan hizmetlerde değişiklik yapma hakkını her zaman saklı tutar. Web sitesinin kullanımında kaynak kodunu bulmaya veya elde etmeye yönelik başka bir işlem yapmayacağınızı, aksi takdirde üçüncü kişilere gelebilecek zararlardan sorumlu olacağınızı ve hakkınızda yasal ve cezai işlem başlatılacağını önceden kabul edersiniz.</p>
+        <p>KFA always reserves the right to make changes in prices, fairs organized and services offered. You agree in advance that you will not take any other action to find or obtain the source code while using the website, otherwise you will be responsible for any damages that may occur to third parties and legal and criminal proceedings will be initiated against you.</p>
 
         <h3>3- Reliance on Published Information</h3>
         <p>The information on the Website is purely for general information purposes, and the accuracy of this information is not guaranteed. All responsibility arising from reliance on information obtained from the Website belongs to you.</p>
 
         <h3>4- Personal Data</h3>
-        <p>Web sitesine sağladığınız kişisel bilgilerin işlenmesi, kaydedilmesi ve korunması hakkında bilgi edinmek için lütfen KVKK formlarımızı okuyunuz.</p>
+        <p>Please read our LPPD forms to learn about the processing, recording and protection of personal information you provide to the website.</p>
 
         <h3>5- Non-Personal Information</h3>
         <p>Non-personal information is information that cannot personally identify you. For example; usage hours, location where the Site is used, pages viewed, etc.</p>
@@ -719,7 +703,7 @@ Your processed personal data can be transferred within the above purposes and th
       content: `
         <h3>PRIVACY POLICY AND WEBSITE TERMS OF USE</h3>
         <p>Please read and review the following items carefully before using this website.</p>
-        <p>The website with the domain name https://les-expo.com.tr/ ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
+        <p>The website with the domain name https://www.les-expo.com ("Site" or "Website") belongs to KFA Fuarcılık A.Ş ("KFA").</p>
         <p>By using this Website, you accept the User Agreement below.</p>
 
         <h3>1- Acceptance</h3>
