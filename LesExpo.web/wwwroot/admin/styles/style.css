@@ -19,6 +19,10 @@
     --ca-success-dark: #E09600;
     --ca-danger: #EF4444;
     --ca-danger-dark: #DC2626;
+    --ca-info: #0ea5e9; /* Sky 500 */
+    --ca-info-dark: #0284c7; /* Sky 600 */
+    --ca-accent: #14b8a6; /* Teal 500 */
+    --ca-accent-dark: #0d9488; /* Teal 600 */
     
     /* Background Colors */
     --ca-bg-white: #ffffff;
@@ -66,6 +70,13 @@
     /* Transitions */
     --ca-transition-fast: all 0.2s ease;
     --ca-transition-medium: all 0.3s ease;
+
+    /* Gradient Definitions */
+    --gradient-primary: linear-gradient(135deg, var(--ca-primary), var(--ca-primary-dark));
+    --gradient-success: linear-gradient(135deg, var(--ca-success), var(--ca-success-dark));
+    --gradient-danger: linear-gradient(135deg, var(--ca-danger), var(--ca-danger-dark));
+    --gradient-info: linear-gradient(135deg, var(--ca-info), var(--ca-info-dark));
+    --gradient-accent: linear-gradient(135deg, var(--ca-accent), var(--ca-accent-dark));
 }
 
 *{

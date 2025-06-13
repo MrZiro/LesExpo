@@ -10,8 +10,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using HtmlAgilityPack;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace LesExpo.web.Areas.Admin.Controllers
 {
@@ -20,12 +19,10 @@ namespace LesExpo.web.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public HomeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -37,11 +34,12 @@ namespace LesExpo.web.Areas.Admin.Controllers
         private async Task<DashboardVM> GetDashboardData()
         {
             // Get current counts
-            var totalUsers = await _userManager.Users.CountAsync();
             var totalBlogs = _unitOfWork.Blog.GetCount();
             var totalSliders = _unitOfWork.Slider.GetCount();
             var totalContentTypes = _unitOfWork.ContentType.GetCount();
             var totalContacts = _unitOfWork.Contact.GetCount();
+            var totalTickets = _unitOfWork.Ticket.GetCount();
+            var totalRegistrations = _unitOfWork.Registration.GetCount();
 
             // Get additional statistics
             var allBlogs = _unitOfWork.Blog.GetAll();
@@ -51,36 +49,52 @@ namespace LesExpo.web.Areas.Admin.Controllers
             var allSliders = _unitOfWork.Slider.GetAll();
             var activeSliders = allSliders.Count(s => s.IsActive);
             
+            // Get tickets with API status
+            var allTickets = _unitOfWork.Ticket.GetAll();
+            var successfulTickets = allTickets.Count(t => t.ApiSuccess);
+            var failedTickets = allTickets.Count(t => !t.ApiSuccess);
+            
             var currentMonth = DateTime.Now;
+            
+            // Monthly statistics for current month
             var thisMonthContacts = _unitOfWork.Contact.GetAll()
                 .Count(c => c.CreatedAt.Year == currentMonth.Year && c.CreatedAt.Month == currentMonth.Month);
             
+            var thisMonthTickets = allTickets
+                .Count(t => t.CreatedAt.Year == currentMonth.Year && t.CreatedAt.Month == currentMonth.Month);
+            
+            var thisMonthRegistrations = _unitOfWork.Registration.GetAll()
+                .Count(r => r.CreatedAt.Year == currentMonth.Year && r.CreatedAt.Month == currentMonth.Month);
+            
             var thisMonthBlogs = allBlogs
                 .Count(b => b.CreatedAt.Year == currentMonth.Year && b.CreatedAt.Month == currentMonth.Month);
-            
-            var allUsers = await _userManager.Users.ToListAsync();
-            var thisMonthUsers = allUsers
-                .Count(u => u.CreatedAt.Year == currentMonth.Year && u.CreatedAt.Month == currentMonth.Month);
 
-            // Get monthly blog statistics (last 6 months)
+            // Get monthly statistics (last 6 months)
             var monthlyBlogStats = GetMonthlyBlogStats();
-            
-            // Get monthly user registration statistics (last 6 months)  
-            var monthlyUserStats = await GetMonthlyUserStats();
+            var monthlyTicketStats = GetMonthlyTicketStats();
+            var monthlyRegistrationStats = GetMonthlyRegistrationStats();
+            var monthlyContactStats = GetMonthlyContactStats();
             
             // Get category statistics based on content types
             var categoryStats = GetCategoryStats();
+            
+            // Get country and sector statistics
+            var countryStats = GetCountryStats();
+            var sectorStats = GetSectorStats();
             
             // Get recent activities
             var recentActivities = await GetRecentActivities();
 
             var model = new DashboardVM
             {
-                TotalUsers = totalUsers,
+                // Main statistics
                 TotalBlogs = totalBlogs,
                 TotalSliders = totalSliders,
-                TotalPages = totalContacts, // Using contacts as pages for now
+                TotalPages = totalContacts, // Using contacts as pages for backward compatibility
                 TotalIcerikTuru = totalContentTypes,
+                TotalTickets = totalTickets,
+                TotalRegistrations = totalRegistrations,
+                TotalContacts = totalContacts,
                 
                 // Additional statistics
                 PublishedBlogs = publishedBlogs,
@@ -88,11 +102,26 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 ActiveSliders = activeSliders,
                 RecentContactsCount = thisMonthContacts,
                 ThisMonthBlogsCount = thisMonthBlogs,
-                ThisMonthUsersCount = thisMonthUsers,
                 
+                // Ticket statistics
+                SuccessfulTickets = successfulTickets,
+                FailedTickets = failedTickets,
+                ThisMonthTicketsCount = thisMonthTickets,
+                
+                // Registration and Contact statistics
+                ThisMonthRegistrationsCount = thisMonthRegistrations,
+                ThisMonthContactsCount = thisMonthContacts,
+                
+                // Monthly trends
                 MonthlyBlogStats = monthlyBlogStats,
-                MonthlyUserStats = monthlyUserStats,
+                MonthlyTicketStats = monthlyTicketStats,
+                MonthlyRegistrationStats = monthlyRegistrationStats,
+                MonthlyContactStats = monthlyContactStats,
+                
+                // Category and geographic statistics
                 CategoryStats = categoryStats,
+                CountryStats = countryStats,
+                SectorStats = sectorStats,
                 RecentActivities = recentActivities
             };
 
@@ -117,31 +146,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
             return monthlyStats;
         }
 
-        private async Task<List<MonthlyStats>> GetMonthlyUserStats()
-        {
-            var users = await _userManager.Users.ToListAsync();
-            var monthlyStats = new List<MonthlyStats>();
-            
-            for (int i = 5; i >= 0; i--)
-            {
-                var targetDate = DateTime.Now.AddMonths(-i);
-                var monthName = GetTurkishMonthName(targetDate.Month);
-                var count = users.Count(u => u.CreatedAt.Year == targetDate.Year && 
-                                           u.CreatedAt.Month == targetDate.Month);
-                
-                monthlyStats.Add(new MonthlyStats { Month = monthName, Count = count });
-            }
-
-            return monthlyStats;
-        }
-
         private List<CategoryStats> GetCategoryStats()
         {
             var contentTypes = _unitOfWork.ContentType.GetAll().ToList();
             var blogs = _unitOfWork.Blog.GetAll("ContentType").ToList();
             
             var categoryStats = new List<CategoryStats>();
-            var colors = new[] { "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#FF6384", "#C9CBCF" };
+            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8" };
             
             for (int i = 0; i < contentTypes.Count && i < colors.Length; i++)
             {
@@ -163,11 +174,149 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 {
                     Category = "Henüz içerik türü yok",
                     Count = 0,
-                    Color = "#C9CBCF"
+                    Color = "#e2e8f0"
                 });
             }
 
             return categoryStats;
+        }
+
+        private List<MonthlyStats> GetMonthlyTicketStats()
+        {
+            var tickets = _unitOfWork.Ticket.GetAll();
+            var monthlyStats = new List<MonthlyStats>();
+            
+            for (int i = 5; i >= 0; i--)
+            {
+                var targetDate = DateTime.Now.AddMonths(-i);
+                var monthName = GetTurkishMonthName(targetDate.Month);
+                var count = tickets.Count(t => t.CreatedAt.Year == targetDate.Year && 
+                                           t.CreatedAt.Month == targetDate.Month);
+                
+                monthlyStats.Add(new MonthlyStats { Month = monthName, Count = count });
+            }
+
+            return monthlyStats;
+        }
+
+        private List<MonthlyStats> GetMonthlyRegistrationStats()
+        {
+            var registrations = _unitOfWork.Registration.GetAll();
+            var monthlyStats = new List<MonthlyStats>();
+            
+            for (int i = 5; i >= 0; i--)
+            {
+                var targetDate = DateTime.Now.AddMonths(-i);
+                var monthName = GetTurkishMonthName(targetDate.Month);
+                var count = registrations.Count(r => r.CreatedAt.Year == targetDate.Year && 
+                                               r.CreatedAt.Month == targetDate.Month);
+                
+                monthlyStats.Add(new MonthlyStats { Month = monthName, Count = count });
+            }
+
+            return monthlyStats;
+        }
+
+        private List<MonthlyStats> GetMonthlyContactStats()
+        {
+            var contacts = _unitOfWork.Contact.GetAll();
+            var monthlyStats = new List<MonthlyStats>();
+            
+            for (int i = 5; i >= 0; i--)
+            {
+                var targetDate = DateTime.Now.AddMonths(-i);
+                var monthName = GetTurkishMonthName(targetDate.Month);
+                var count = contacts.Count(c => c.CreatedAt.Year == targetDate.Year && 
+                                           c.CreatedAt.Month == targetDate.Month);
+                
+                monthlyStats.Add(new MonthlyStats { Month = monthName, Count = count });
+            }
+
+            return monthlyStats;
+        }
+
+        private List<CategoryStats> GetCountryStats()
+        {
+            var tickets = _unitOfWork.Ticket.GetAll().ToList();
+            var registrations = _unitOfWork.Registration.GetAll().ToList();
+            
+            var countryStats = new Dictionary<string, int>();
+            
+            // Count from tickets
+            foreach (var ticket in tickets)
+            {
+                if (!string.IsNullOrEmpty(ticket.Country))
+                {
+                    countryStats[ticket.Country] = countryStats.GetValueOrDefault(ticket.Country, 0) + 1;
+                }
+            }
+            
+            // Count from registrations
+            foreach (var registration in registrations)
+            {
+                if (!string.IsNullOrEmpty(registration.Ulke))
+                {
+                    countryStats[registration.Ulke] = countryStats.GetValueOrDefault(registration.Ulke, 0) + 1;
+                }
+            }
+            
+            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8" };
+            var result = new List<CategoryStats>();
+            
+            var topCountries = countryStats.OrderByDescending(x => x.Value).Take(7).ToList();
+            for (int i = 0; i < topCountries.Count; i++)
+            {
+                result.Add(new CategoryStats
+                {
+                    Category = topCountries[i].Key,
+                    Count = topCountries[i].Value,
+                    Color = colors[i % colors.Length]
+                });
+            }
+            
+            return result;
+        }
+
+        private List<CategoryStats> GetSectorStats()
+        {
+            var tickets = _unitOfWork.Ticket.GetAll().ToList();
+            var registrations = _unitOfWork.Registration.GetAll().ToList();
+            
+            var sectorStats = new Dictionary<string, int>();
+            
+            // Count from tickets
+            foreach (var ticket in tickets)
+            {
+                if (!string.IsNullOrEmpty(ticket.Sector))
+                {
+                    sectorStats[ticket.Sector] = sectorStats.GetValueOrDefault(ticket.Sector, 0) + 1;
+                }
+            }
+            
+            // Count from registrations (using FaaliyetAlani as sector)
+            foreach (var registration in registrations)
+            {
+                if (!string.IsNullOrEmpty(registration.FaaliyetAlani))
+                {
+                    sectorStats[registration.FaaliyetAlani] = sectorStats.GetValueOrDefault(registration.FaaliyetAlani, 0) + 1;
+                }
+            }
+            
+            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8" };
+            var result = new List<CategoryStats>();
+            
+            var topSectors = sectorStats.OrderByDescending(x => x.Value).Take(7).ToList();
+            for (int i = 0; i < topSectors.Count; i++)
+            {
+                result.Add(new CategoryStats
+                {
+                    Category = topSectors[i].Key,
+                    Count = topSectors[i].Value,
+                    Color = colors[i % colors.Length]
+                });
+            }
+            
+            return result;
         }
 
         private async Task<List<RecentActivity>> GetRecentActivities()
@@ -191,20 +340,37 @@ namespace LesExpo.web.Areas.Admin.Controllers
                 });
             }
 
-            // Get recent users
-            var recentUsers = await _userManager.Users
-                .OrderByDescending(u => u.CreatedAt)
+            // Get recent tickets
+            var recentTickets = _unitOfWork.Ticket.GetAll()
+                .OrderByDescending(t => t.CreatedAt)
                 .Take(2)
-                .ToListAsync();
+                .ToList();
             
-            foreach (var user in recentUsers)
+            foreach (var ticket in recentTickets)
             {
                 activities.Add(new RecentActivity
                 {
-                    Action = $"Yeni kullanıcı: {user.Name}",
-                    User = "System",
-                    Date = user.CreatedAt,
-                    Type = "user"
+                    Action = $"Yeni bilet başvurusu: {ticket.FirstName} {ticket.LastName}",
+                    User = $"{ticket.FirstName} {ticket.LastName}",
+                    Date = ticket.CreatedAt,
+                    Type = "ticket"
+                });
+            }
+
+            // Get recent registrations
+            var recentRegistrations = _unitOfWork.Registration.GetAll()
+                .OrderByDescending(r => r.CreatedAt)
+                .Take(2)
+                .ToList();
+            
+            foreach (var registration in recentRegistrations)
+            {
+                activities.Add(new RecentActivity
+                {
+                    Action = $"Yeni fuar kayıt: {registration.SirketAdi}",
+                    User = registration.AdSoyad,
+                    Date = registration.CreatedAt,
+                    Type = "registration"
                 });
             }
 
@@ -221,11 +387,11 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     Action = $"Yeni iletişim: {contact.Subject}",
                     User = contact.Name,
                     Date = contact.CreatedAt,
-                    Type = "page"
+                    Type = "contact"
                 });
             }
 
-            return activities.OrderByDescending(a => a.Date).Take(10).ToList();
+            return activities.OrderByDescending(a => a.Date).Take(15).ToList();
         }
 
         private string GetTurkishMonthName(int month)
@@ -255,14 +421,19 @@ namespace LesExpo.web.Areas.Admin.Controllers
             
             return Json(new
             {
-                totalUsers = model.TotalUsers,
                 totalBlogs = model.TotalBlogs,
                 totalSliders = model.TotalSliders,
-                totalPages = model.TotalPages,
+                totalContacts = model.TotalContacts,
                 totalContentTypes = model.TotalIcerikTuru,
+                totalTickets = model.TotalTickets,
+                totalRegistrations = model.TotalRegistrations,
                 monthlyBlogStats = model.MonthlyBlogStats,
-                monthlyUserStats = model.MonthlyUserStats,
+                monthlyTicketStats = model.MonthlyTicketStats,
+                monthlyRegistrationStats = model.MonthlyRegistrationStats,
+                monthlyContactStats = model.MonthlyContactStats,
                 categoryStats = model.CategoryStats,
+                countryStats = model.CountryStats,
+                sectorStats = model.SectorStats,
                 recentActivities = model.RecentActivities
             });
         }
