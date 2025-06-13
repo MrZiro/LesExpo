@@ -20,7 +20,7 @@ namespace LesExpo.web.Controllers
         private readonly ILogger<RegistrationController> _logger;
         private readonly IUrlLocalizationService _urlService;
         private readonly EmailTemplatesConfig _emailTemplates;
-        private readonly string _adminEmail = "adobe.mrziro@gmail.com";
+        private readonly string _adminEmail = SD.AdminEmail;
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
         
         public RegistrationController(IUnitOfWork unitOfWork, IEmailSender emailSender, ILogger<RegistrationController> logger, IOptions<EmailTemplatesConfig> emailTemplates, IUrlLocalizationService urlService)

@@ -66,6 +66,7 @@
     --ca-font-weight-medium: 500;
     --ca-font-weight-semibold: 600;
     --ca-font-weight-bold: 700;
+    --ca-font-weight-light: 300;
     
     /* Transitions */
     --ca-transition-fast: all 0.2s ease;
@@ -422,7 +423,7 @@ main p {
 #tblData thead th {
     background: var(--ca-bg-gradient);
     color: var(--ca-text-primary);
-    font-weight: var(--ca-font-weight-bold);
+    font-weight: var(--ca-font-weight-semibold);
     font-size: var(--ca-font-size-sm);
     white-space: nowrap;
     padding: var(--ca-spacing-md) var(--ca-spacing-lg);
@@ -629,7 +630,7 @@ div.dt-container .dt-length select {
 div.dt-container .dt-length select:hover,
 div.dt-container .dt-length select:focus {
     border: 1px solid var(--ca-primary);
-    background: var(--ca-bg-white);
+    /* background: var(--ca-bg-white); */
     box-shadow: var(--ca-shadow-sm);
 }
 
@@ -878,7 +879,7 @@ div.dt-container{
 .email-link {
     color: var(--ca-text-primary);
     text-decoration: none;
-    font-weight: var(--ca-font-weight-bold);
+    font-weight: var(--ca-font-weight-light);
     transition: var(--ca-transition-fast);
     padding: 4px 8px;
     border-radius: var(--ca-radius-sm);
@@ -894,7 +895,7 @@ div.dt-container{
 .badge-modern {
     padding: 6px 12px;
     border-radius: var(--ca-radius-md);
-    font-weight: var(--ca-font-weight-semibold);
+    font-weight: var(--ca-font-weight-light);
     font-size: var(--ca-font-size-xs);
     display: inline-flex;
     align-items: center;
@@ -919,4 +920,12 @@ div.dt-container{
     border-radius: var(--ca-radius-md);
     font-weight: var(--ca-font-weight-bold);
     font-size: var(--ca-font-size-sm);
+}
+
+div.dt-container div.dt-layout-row:first-child {
+    margin-bottom: 4.75em;
+}
+
+.dt-column-order {
+    transform: scale(0.75);
 }

@@ -17,7 +17,7 @@ namespace LesExpo.web.Controllers
         private readonly ILogger<TicketController> _logger;
         private readonly EmailTemplatesConfig _emailTemplates;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly string _adminEmail = "adobe.mrziro@gmail.com";
+        private readonly string _adminEmail = SD.AdminEmail;
         
         // FUAR_ID - you can provide this value
         private const int FUAR_ID = 41395; // You need to provide this value
