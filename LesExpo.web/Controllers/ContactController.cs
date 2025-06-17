@@ -18,7 +18,7 @@ namespace LesExpo.web.Controllers
         private readonly ILogger<ContactController> _logger;
         private readonly EmailTemplatesConfig _emailTemplates;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly string _companyEmail = "adobe.mrziro@gmail.com";
+        private readonly string _companyEmail = SD.AdminEmail;
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
 
         public ContactController(IEmailSender emailSender, ILogger<ContactController> logger, IOptions<EmailTemplatesConfig> emailTemplates, IUnitOfWork unitOfWork)
