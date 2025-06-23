@@ -20,7 +20,7 @@ namespace LesExpo.web.Controllers
         private readonly string _adminEmail = SD.AdminEmail;
         
         // FUAR_ID - you can provide this value
-        private const int FUAR_ID = 41395; // You need to provide this value
+        private const int FUAR_ID = SD.FUAR_ID; // You need to provide this value
         
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
 

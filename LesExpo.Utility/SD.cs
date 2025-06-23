@@ -25,5 +25,7 @@ namespace LesExpo.Utility
 
         public const string AdminEmail = "adobe.mrzir@gmail.com";
         public const string AdminEmailName = "LES-EXPO İletişim";
+
+        public const int FUAR_ID = 4139;
     }
 }
