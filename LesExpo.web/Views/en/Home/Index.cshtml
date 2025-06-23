@@ -8,6 +8,7 @@
 
 @section Styles{
     <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/popup.css" rel="stylesheet" />
 }
 
   <!-- Splash Screen -->
@@ -347,11 +348,24 @@
     </div>
   </div>
 
+  <!-- LES-EXPO Popup Start -->
+  <div id="lesexpo-popup" class="lesexpo-popup" style="display:none;">
+    <div class="lesexpo-popup-overlay"></div>
+    <div class="lesexpo-popup-content">
+      <button class="lesexpo-popup-close" aria-label="Close">&times;</button>
+      <a href="/en/blog-detail/new-date">
+        <img src="/images/lesexpo_popup_en.jpg" alt="LES-EXPO Popup" class="lesexpo-popup-img" />
+      </a>
+    </div>
+  </div>
+  <!-- LES-EXPO Popup End -->
+
 
 
 
 @section Scripts {
     
     <script src="~/js/index.js"></script>
+    <script src="~/js/popup.js"></script>
 
   }
