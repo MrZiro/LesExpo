@@ -23,7 +23,7 @@ namespace LesExpo.Utility
 
         public const string siteUrl = "https://les-expo.com";
 
-        public const string AdminEmail = "bilgi@les-expo.com";
+        public const string AdminEmail = "adobe.mrzir@gmail.com";
         public const string AdminEmailName = "LES-EXPO İletişim";
     }
 }

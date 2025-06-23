@@ -160,6 +160,11 @@ void SeedDatabase()
 {
     using (var scope = app.Services.CreateScope())
     {
+        // Apply pending migrations
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        dbContext.Database.Migrate();
+
+        // Initialize database with seed data
         var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
         dbInitializer.Initialize();
     }
