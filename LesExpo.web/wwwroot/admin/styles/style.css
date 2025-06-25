@@ -851,7 +851,6 @@ div.dt-container{
     font-weight: var(--ca-font-weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
     gap: 8px;

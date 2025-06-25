@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Arama";
+    ViewData["Description"] = "LES-EXPO içerik arama";
+    ViewData["Keywords"] = "LES-EXPO, arama, içerik";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/search.css">
+    <style>
+        .main-header {
+            background-color: #0c243d;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: 18%;
+        }
+    </style>
+}
+
+<div class="search-page">
+    <div class="container">
+        <!-- Search Header -->
+        <div class="search-header">
+            <h1><i class="fas fa-search"></i> Arama</h1>
+            <p class="search-subtitle">LES-EXPO içeriklerinde arama yapın</p>
+            
+            <div class="search-box">
+                <input type="text" 
+                       id="searchInput" 
+                       class="search-input" 
+                       placeholder="Ara... (örn: Başlangıç Tarihi, Fuar Alanı)" 
+                       value="@ViewBag.SearchTerm"
+                       autocomplete="off">
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div id="searchSpinner" class="search-spinner" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Stats -->
+        <div class="search-filters">
+            <div class="search-stats">
+                <span id="searchStats" class="stats-text">Arama sonuçları yükleniyor...</span>
+            </div>
+        </div>
+
+        <!-- Search Results -->
+        <div class="search-results-container">
+            <div id="searchResults" class="search-results">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>İçerik yükleniyor...</p>
+                </div>
+            </div>
+
+            <!-- No Results State -->
+            <div id="noResultsState" class="no-results-state" style="display: none;">
+                <div class="no-results-content">
+                    <i class="fas fa-search"></i>
+                    <h3>Sonuç Bulunamadı</h3>
+                    <p>Aramanızla eşleşen içerik bulunamadı. Farklı terimler deneyin.</p>
+                    <div class="search-suggestions">
+                        <p><strong>Öneriler:</strong></p>
+                        <div class="suggestion-tags">
+                            <span class="suggestion-tag" onclick="performSuggestionSearch('Fuar Künyesi')">Fuar Künyesi</span>
+                            <span class="suggestion-tag" onclick="performSuggestionSearch('Başlangıç Tarihi')">Başlangıç Tarihi</span>
+                            <span class="suggestion-tag" onclick="performSuggestionSearch('Ulaşım')">Ulaşım</span>
+                            <span class="suggestion-tag" onclick="performSuggestionSearch('Katılımcı')">Katılımcı</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-state" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Bir Hata Oluştu</h3>
+                    <p>Arama yapılırken bir sorun yaşandı. Lütfen tekrar deneyin.</p>
+                    <button onclick="location.reload()" class="retry-button">
+                        <i class="fas fa-redo"></i> Tekrar Dene
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="~/js/fuse-search.js"></script>
+} 

@@ -43,7 +43,6 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Add other services
 builder.Services.AddScoped<IFileHelper, FileHelper>();
 builder.Services.AddScoped<IHtmlContentService, HtmlContentService>();
-// builder.Services.AddScoped<IEmailSender, EmailSenderGrid>(); // Comment out or remove old sender
 builder.Services.AddScoped<IEmailSender, EmailSenderSmtp>(); // Add new SMTP sender
 
 // Configure localized routes from appsettings.json
@@ -59,6 +58,9 @@ builder.Services.AddScoped<IUrlLocalizationService, UrlLocalizationService>();
 
 // Add external API service
 builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
+
+// Add search content indexing service
+builder.Services.AddScoped<IContentIndexService, ContentIndexService>();
 
 // Add memory cache
 builder.Services.AddMemoryCache();
@@ -110,7 +112,14 @@ builder.Services.AddRazorPages()
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    // This is a temporary solution for development to bypass SSL validation for SMTP.
+    // WARNING: This should not be used in production as it poses a security risk.
+    System.Net.ServicePointManager.ServerCertificateValidationCallback =
+        (sender, certificate, chain, sslPolicyErrors) => true;
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -160,11 +169,11 @@ void SeedDatabase()
 {
     using (var scope = app.Services.CreateScope())
     {
-        // Apply pending migrations
+        //// Apply pending migrations
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         dbContext.Database.Migrate();
 
-        // Initialize database with seed data
+        //// Initialize database with seed data
         var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
         dbInitializer.Initialize();
     }
