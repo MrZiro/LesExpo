@@ -61,7 +61,7 @@ namespace LesExpo.Models
         public string IstenenMetrekare { get; set; } = string.Empty;
 
         [Required(ErrorMessage = ValidationMessages.Required_Field)]
-        public DateTime KurulusTarihi { get; set; }
+        public DateTime KurulusTarihi { get; set; } = DateTime.Today;
 
         [Required(ErrorMessage = ValidationMessages.Required_Field)]
         [StringLength(100)]
