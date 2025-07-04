@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LesExpo.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250704121907_emptyWebSite")]
-    partial class emptyWebSite
+    [Migration("20250704123734_EmptyWebSite")]
+    partial class EmptyWebSite
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,7 +170,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Türkiye ekonomisine yaklaşık 12 milyar doların üzerinde katkı sağlayan yük mühendisliği hizmetleri ekosistemindeki hizmet alan ve hizmet verenleri bir araya getirecek ilk ihtisas fuarı LES-EXPO, İstanbul'da düzenleniyor.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4928),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3248),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "LES-EXPO Fuarı'nın iş birliği protokolü imzalandı. Yük mühendisliği sektörünün ilk ihtisas fuarı İstanbul'da düzenleniyor.",
@@ -185,7 +185,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "LES-EXPO, the first specialized fair that will bring together service providers and recipients in the heavy engineering services ecosystem that contributes more than 12 billion dollars to the Turkish economy, is being held in Istanbul.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4933),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3253),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "The cooperation protocol of the LES-EXPO Fair has been signed. The first specialized fair of the heavy engineering sector is being held in Istanbul.",
@@ -200,7 +200,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Yük mühendisliği sektöründe son dönemde yaşanan teknolojik gelişmeler ve yenilikler, sektörün geleceğini şekillendiriyor. Akıllı vinç sistemleri ve otomatik yük taşıma çözümleri öne çıkıyor.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4937),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3257),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "Yük mühendisliği sektöründeki teknolojik gelişmeler ve yenilikler hakkında detaylı bilgi.",
@@ -215,7 +215,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Recent technological developments and innovations in the heavy engineering sector are shaping its future. Smart crane systems and automated load handling solutions are leading the way.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4941),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3260),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "Detailed information about technological developments and innovations in the heavy engineering sector.",
@@ -230,7 +230,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Yük mühendisliği sektöründe güvenlik standartları ve yeni düzenlemeler hakkında güncel bilgiler. İş güvenliği ve kalite standartları konusunda yapılan güncellemeler.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4944),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3264),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "Yük mühendisliği sektöründeki güvenlik standartları ve yeni düzenlemeler hakkında bilgi.",
@@ -245,7 +245,7 @@ namespace LesExpo.DataAccess.Migrations
                             CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Current information about safety standards and new regulations in the heavy engineering sector. Updates regarding occupational safety and quality standards.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 7, 4, 15, 19, 4, 931, DateTimeKind.Local).AddTicks(4947),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3267),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "Information about safety standards and new regulations in the heavy engineering sector.",
