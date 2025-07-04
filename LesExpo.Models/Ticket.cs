@@ -35,7 +35,7 @@ namespace LesExpo.Models
         [StringLength(100)]
         public string Sector { get; set; } = string.Empty;
 
-        [NotMapped]
+        [Required(ErrorMessage = ValidationMessages.Required_Field)]
         [StringLength(200)]
         public string Website { get; set; } = string.Empty;
 

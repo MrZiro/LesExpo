@@ -41,12 +41,6 @@
             <div class="stat-label">Blog Yazıları</div>
         </div>
 
-        <div class="stat-card sliders loading" style="animation-delay: 0.3s" onclick="window.location.href='@Url.Action("Index", "Slider", new { area = "Admin" })'">
-            <div class="stat-icon"><i class="fas fa-images"></i></div>
-            <div class="stat-number" data-target="@Model.TotalSliders">0</div>
-            <div class="stat-label">Slider</div>
-        </div>
-
         <div class="stat-card pages loading" style="animation-delay: 0.4s" onclick="window.location.href='@Url.Action("Index", "ContactAd", new { area = "Admin" })'">
             <div class="stat-icon"><i class="fas fa-envelope"></i></div>
             <div class="stat-number" data-target="@Model.TotalContacts">0</div>
@@ -199,47 +193,101 @@
         </div>
         
         <!-- Country Distribution -->
-        @if (Model.CountryStats != null && Model.CountryStats.Any())
-        {
-            <div class="main-con loading" style="animation-delay: 1s">
-                <h3 class="chart-title">
-                    <i class="fas fa-globe" style="color: var(--ca-danger);"></i>
-                    Ülke Dağılımı
-                </h3>
-                @{
-                    var totalCountryCount = Model.CountryStats.Sum(c => c.Count);
-                    if (totalCountryCount > 0)
+        <div class="main-con loading" style="animation-delay: 1s">
+            <h3 class="chart-title">
+                <i class="fas fa-globe" style="color: var(--ca-danger);"></i>
+                Ülke Dağılımı
+            </h3>
+            @if (Model.CountryStats != null && Model.CountryStats.Any() && Model.CountryStats.Sum(c => c.Count) > 0)
+            {
+                var totalCountryCount = Model.CountryStats.Sum(c => c.Count);
+                var currentAngle = 0.0;
+                var gradientParts = new List<string>();
+                
+                foreach (var country in Model.CountryStats.Where(c => c.Count > 0))
+                {
+                    var percentage = (double)country.Count / totalCountryCount * 100;
+                    var angle = percentage * 3.6;
+                    gradientParts.Add($"{country.Color} {currentAngle}deg {currentAngle + angle}deg");
+                    currentAngle += angle;
+                }
+                var gradientStyle = $"conic-gradient(from 0deg, {string.Join(", ", gradientParts)})";
+                
+                <!-- Country distribution chart -->
+                <div class="pie-chart-fallback">
+                    @foreach (var country in Model.CountryStats.Where(c => c.Count > 0))
                     {
-                        var currentAngle = 0.0;
-                        var gradientParts = new List<string>();
-                        
-                        foreach (var country in Model.CountryStats.Where(c => c.Count > 0))
-                        {
-                            var percentage = (double)country.Count / totalCountryCount * 100;
-                            var angle = percentage * 3.6;
-                            gradientParts.Add($"{country.Color} {currentAngle}deg {currentAngle + angle}deg");
-                            currentAngle += angle;
-                        }
-                        var gradientStyle = $"conic-gradient(from 0deg, {string.Join(", ", gradientParts)})";
-                        
-                        <div class="pie-chart" style="background: @gradientStyle;"></div>
-                        <div class="pie-legend">
-                            @foreach (var country in Model.CountryStats.Where(c => c.Count > 0))
-                            {
-                                <div class="legend-item">
-                                    <div class="legend-color" style="background-color: @country.Color;"></div>
-                                    <span>@country.Category (@country.Count)</span>
-                                </div>
-                            }
+                        var percentage = (double)country.Count / totalCountryCount * 100;
+                        <div class="chart-bar-item">
+                            <div class="chart-bar-color" style="background-color: @country.Color;"></div>
+                            <span style="font-weight: 600; font-size: 13px; min-width: 80px;">@country.Category</span>
+                            <div class="chart-bar-bg">
+                                <div class="chart-bar-fill" style="background-color: @country.Color; width: @percentage.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)%;"></div>
+                            </div>
+                            <span class="chart-bar-label">@country.Count (@percentage.ToString("F1")%)</span>
                         </div>
                     }
+                </div>
+            }
+            else
+            {
+                <div style="text-align: center; color: var(--ca-text-muted); padding: 50px;">
+                    <i class="fas fa-globe" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                    <p>Henüz ülke verisi bulunmuyor</p>
+                </div>
+            }
+        </div>
+        
+        <!-- Sector Distribution -->
+        <div class="main-con loading" style="animation-delay: 1.1s">
+            <h3 class="chart-title">
+                <i class="fas fa-industry" style="color: var(--ca-warning);"></i>
+                Sektör Dağılımı
+            </h3>
+            @if (Model.SectorStats != null && Model.SectorStats.Any() && Model.SectorStats.Sum(s => s.Count) > 0)
+            {
+                var totalSectorCount = Model.SectorStats.Sum(s => s.Count);
+                var currentAngle = 0.0;
+                var gradientParts = new List<string>();
+                
+                foreach (var sector in Model.SectorStats.Where(s => s.Count > 0))
+                {
+                    var percentage = (double)sector.Count / totalSectorCount * 100;
+                    var angle = percentage * 3.6;
+                    gradientParts.Add($"{sector.Color} {currentAngle}deg {currentAngle + angle}deg");
+                    currentAngle += angle;
                 }
-            </div>
-        }
+                var gradientStyle = $"conic-gradient(from 0deg, {string.Join(", ", gradientParts)})";
+                
+                <!-- Sector distribution chart -->
+                <div class="pie-chart-fallback">
+                    @foreach (var sector in Model.SectorStats.Where(s => s.Count > 0))
+                    {
+                        var percentage = (double)sector.Count / totalSectorCount * 100;
+                        <div class="chart-bar-item">
+                            <div class="chart-bar-color" style="background-color: @sector.Color;"></div>
+                            <span style="font-weight: 600; font-size: 13px; min-width: 80px;">@sector.Category</span>
+                            <div class="chart-bar-bg">
+                                <div class="chart-bar-fill" style="background-color: @sector.Color; width: @percentage.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)%;"></div>
+                            </div>
+                            <span class="chart-bar-label">@sector.Count (@percentage.ToString("F1")%)</span>
+                        </div>
+                    }
+                </div>
+
+            }
+            else
+            {
+                <div style="text-align: center; color: var(--ca-text-muted); padding: 50px;">
+                    <i class="fas fa-industry" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                    <p>Henüz sektör verisi bulunmuyor</p>
+                </div>
+            }
+        </div>
     </div>
 
     <!-- Recent Activities -->
-    <div class="main-con loading" style="animation-delay: 1.1s">
+    <div class="main-con loading" style="animation-delay: 1.2s">
         <h3 class="chart-title">
             <i class="fas fa-history" style="color: var(--ca-text-muted);"></i>
             Son Aktiviteler

@@ -4,6 +4,99 @@
     ViewData["Title"] = "Ön Kayıt Detayları";
 }
 
+@section Styles {
+    <style>
+        .registration-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-active {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .fair-participation {
+            background: var(--ca-bg-light);
+            border-radius: var(--ca-radius-lg);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .fair-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .fair-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--ca-border-light);
+        }
+        
+        .fair-item:last-child {
+            border-bottom: none;
+        }
+        
+        .fair-name {
+            font-weight: 500;
+            color: var(--ca-text-primary);
+        }
+        
+        .fair-year {
+            color: var(--ca-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .metric-card {
+            background: var(--ca-bg-gradient);
+            border-radius: var(--ca-radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--ca-border-light);
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ca-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--ca-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .website-link {
+            color: var(--ca-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .website-link:hover {
+            text-decoration: underline;
+        }
+        
+        .section-divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ca-primary), transparent);
+            margin: 2rem 0;
+        }
+    </style>
+}
+
 <div class="page-header p-4">
     <div class="row align-items-center">
         <div class="col-md-8">
@@ -21,9 +114,12 @@
 </div>
 
 <div class="contact-card p-4">
+    <!-- Company Information -->
     <div class="row mb-4">
         <div class="col-12">
-            <h5 class="section-title mb-3">Şirket Bilgileri</h5>
+            <h5 class="section-title mb-3">
+                <i class="bi bi-building me-2"></i>Şirket Bilgileri
+            </h5>
         </div>
         <div class="col-lg-6">
             <div class="info-item">
@@ -34,22 +130,47 @@
                 <div class="info-label">Şirket Adresi</div>
                 <div class="info-value">@Model.SirketAdresi</div>
             </div>
-        </div>
-        <div class="col-lg-6">
             <div class="info-item">
                 <div class="info-label">Ülke / Şehir</div>
                 <div class="info-value">@Model.Ulke / @Model.Sehir</div>
             </div>
+        </div>
+        <div class="col-lg-6">
             <div class="info-item">
                 <div class="info-label">Kuruluş Tarihi</div>
                 <div class="info-value">@Model.KurulusTarihi.ToString("dd MMMM yyyy")</div>
             </div>
+            <div class="info-item">
+                <div class="info-label">Web Sitesi</div>
+                <div class="info-value">
+                    @if (!string.IsNullOrWhiteSpace(Model.WebSitesi))
+                    {
+                        <a href="@(Model.WebSitesi.StartsWith("http") ? Model.WebSitesi : "https://" + Model.WebSitesi)" 
+                           target="_blank" class="website-link">
+                            @Model.WebSitesi <i class="bi bi-box-arrow-up-right ms-1"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Belirtilmemiş</span>
+                    }
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Aktivite Türü</div>
+                <div class="info-value">@Model.AktiviteTuru</div>
+            </div>
         </div>
     </div>
 
+    <hr class="section-divider">
+
+    <!-- Contact Information -->
     <div class="row mb-4">
         <div class="col-12">
-            <h5 class="section-title mb-3">İletişim Bilgileri</h5>
+            <h5 class="section-title mb-3">
+                <i class="bi bi-person me-2"></i>İletişim Bilgileri
+            </h5>
         </div>
         <div class="col-lg-6">
             <div class="info-item">
@@ -75,12 +196,178 @@
         </div>
     </div>
 
+    <hr class="section-divider">
+
+    <!-- Business Information -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">
+                <i class="bi bi-briefcase me-2"></i>İş Bilgileri
+            </h5>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-item">
+                <div class="info-label">Faaliyet Alanı</div>
+                <div class="info-value">@Model.FaaliyetAlani</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Ürün Grubu</div>
+                <div class="info-value">@Model.UrunGrubu</div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-item">
+                <div class="info-label">Markalar</div>
+                <div class="info-value">@Model.Markalar</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">İstenen Metrekare</div>
+                <div class="info-value">@Model.IstenenMetrekare m²</div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-item">
+                <div class="info-label">Personel Sayısı</div>
+                <div class="info-value">@Model.PersonelSayisi kişi</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Information -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">
+                <i class="bi bi-graph-up me-2"></i>Mali Bilgiler
+            </h5>
+        </div>
+        <div class="col-md-6">
+            <div class="metric-card">
+                <div class="metric-value">@Model.IhracatCirosu</div>
+                <div class="metric-label">İhracat Cirosu (USD)</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="metric-card">
+                <div class="metric-value">@Model.ToplamCiro</div>
+                <div class="metric-label">Toplam Ciro (USD)</div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- Preferences -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">
+                <i class="bi bi-gear me-2"></i>Tercihler ve İletişim
+            </h5>
+        </div>
+        <div class="col-md-6">
+            <div class="info-item">
+                <div class="info-label">Firma Ziyareti</div>
+                <div class="info-value">
+                    <span class="badge @(Model.FirmaZiyareti == "evet" ? "bg-success" : "bg-secondary")">
+                        @(Model.FirmaZiyareti == "evet" ? "İstiyor" : "İstemiyor")
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="info-item">
+                <div class="info-label">Fuar Katılım Bilgisi</div>
+                <div class="info-value">
+                    <span class="badge @(Model.FuarKatilim == "istiyorum" ? "bg-success" : "bg-secondary")">
+                        @(Model.FuarKatilim == "istiyorum" ? "İstiyor" : "İstemiyor")
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fair Participation -->
+    @{
+        var ulusalFuarlar = new List<dynamic>();
+        var uluslararasiFuarlar = new List<dynamic>();
+        
+        if (!string.IsNullOrEmpty(Model.UlusalFuarlarJson))
+        {
+            try
+            {
+                ulusalFuarlar = System.Text.Json.JsonSerializer.Deserialize<List<dynamic>>(Model.UlusalFuarlarJson) ?? new List<dynamic>();
+            }
+            catch { }
+        }
+        
+        if (!string.IsNullOrEmpty(Model.UluslararasiFuarlarJson))
+        {
+            try
+            {
+                uluslararasiFuarlar = System.Text.Json.JsonSerializer.Deserialize<List<dynamic>>(Model.UluslararasiFuarlarJson) ?? new List<dynamic>();
+            }
+            catch { }
+        }
+    }
+
+    @if (ulusalFuarlar.Any() || uluslararasiFuarlar.Any())
+    {
+        <hr class="section-divider">
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="section-title mb-3">
+                    <i class="bi bi-calendar-event me-2"></i>Fuar Katılım Geçmişi
+                </h5>
+            </div>
+            
+            @if (ulusalFuarlar.Any())
+            {
+                <div class="col-lg-6">
+                    <div class="fair-participation">
+                        <h6 class="mb-3">
+                            <i class="bi bi-flag me-2"></i>Ulusal Fuarlar
+                        </h6>
+                        <ul class="fair-list">
+                            @foreach (var fuar in ulusalFuarlar)
+                            {
+                                <li class="fair-item">
+                                    <span class="fair-name">@fuar.GetProperty("FuarAdi").GetString()</span>
+                                    <span class="fair-year">@fuar.GetProperty("KatilimYili").GetString()</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            
+            @if (uluslararasiFuarlar.Any())
+            {
+                <div class="col-lg-6">
+                    <div class="fair-participation">
+                        <h6 class="mb-3">
+                            <i class="bi bi-globe me-2"></i>Uluslararası Fuarlar
+                        </h6>
+                        <ul class="fair-list">
+                            @foreach (var fuar in uluslararasiFuarlar)
+                            {
+                                <li class="fair-item">
+                                    <span class="fair-name">@fuar.GetProperty("FuarAdi").GetString()</span>
+                                    <span class="fair-year">@fuar.GetProperty("KatilimYili").GetString()</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
     <div class="action-buttons text-center">
         <a asp-controller="RegistrationAd" asp-action="Index" class="btn btn-custom btn-back me-3">
             <i class="bi bi-arrow-left"></i>
             Listeye Dön
         </a>
-        <a href="mailto:@Model.Email" class="btn btn-custom btn-reply">
+        <a href="mailto:@Model.Email" class="btn btn-custom btn-reply me-3">
             <i class="bi bi-reply"></i>
             E-posta ile İletişim
         </a>

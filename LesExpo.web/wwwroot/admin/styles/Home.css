@@ -80,20 +80,21 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--ca-spacing-md);
-    margin-bottom: var(--ca-spacing-lg);
+    margin-bottom: 6rem;
 }
 
 .stat-card {
-    background: var(--ca-bg-white);
-    border-radius: var(--ca-radius-lg);
-    padding: 4.2em 1em;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 16px;
+    padding: 4.5rem 1.5rem;
     text-align: center;
     box-shadow: var(--ca-shadow-sm);
-    transition: var(--ca-transition-medium);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid var(--ca-border-medium);
+    border: 1px solid rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
 }
 
 .stat-card::before {
@@ -102,61 +103,209 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    transition: var(--ca-transition-fast);
+    height: 3px;
+    transition: all 0.4s ease;
+    transform: scaleX(0);
+    transform-origin: left;
 }
 
-.stat-card.blogs::before { background: var(--gradient-primary); }
-.stat-card.sliders::before { background: var(--gradient-success); }
-.stat-card.pages::before { background: var(--gradient-info); }
-.stat-card.content::before { background: var(--gradient-accent); }
-.stat-card.tickets::before { background: var(--ca-primary-dark); }
-.stat-card.registrations::before { background: var(--ca-success-dark); }
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.stat-card.blogs::before { background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); }
+.stat-card.sliders::before { background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%); }
+.stat-card.pages::before { background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); }
+.stat-card.content::before { background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%); }
+.stat-card.tickets::before { background: linear-gradient(90deg, #fa709a 0%, #fee140 100%); }
+.stat-card.registrations::before { background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%); }
 
 .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--ca-shadow-md);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.9);
+    border-color: rgba(255,255,255,0.95);
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover::after {
+    opacity: 1;
+}
+
+.stat-card:active {
+    transform: translateY(-4px) scale(1.01);
+    transition: all 0.15s ease;
 }
 
 .stat-icon {
-    font-size: 1.5rem;
-    margin: 0 auto 1rem;
+    font-size: 1.75rem;
+    margin: 0 auto 1.5rem;
     color: var(--ca-text-white);
     display: flex;
-    transition: var(--ca-transition-fast);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     justify-content: center;
     align-items: center;
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    position: relative;
+    z-index: 2;
 }
 
-.stat-card.blogs .stat-icon { background: var(--gradient-primary); }
-.stat-card.sliders .stat-icon { background: var(--gradient-success); }
-.stat-card.pages .stat-icon { background: var(--gradient-info); }
-.stat-card.content .stat-icon { background: var(--gradient-accent); }
-.stat-card.tickets .stat-icon { background: var(--ca-primary-dark); }
-.stat-card.registrations .stat-icon { background: var(--ca-success-dark); }
+.stat-icon::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: -1;
+    filter: blur(0.5px);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.stat-card:hover .stat-icon::before {
+    opacity: 0.6;
+    transform: scale(1.05);
+}
+
+.stat-card.blogs .stat-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.stat-card.sliders .stat-icon { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.stat-card.pages .stat-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.stat-card.content .stat-icon { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.stat-card.tickets .stat-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.stat-card.registrations .stat-icon { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
 
 .stat-number {
-    font-size: 2rem;
-    font-weight: var(--ca-font-weight-bold);
-    margin-bottom: 0.5rem;
-    color: var(--ca-text-primary);
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: #1e293b;
     animation: countUp 1.5s ease-out;
+    transition: all 0.4s ease;
+    position: relative;
+    background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
-    font-size: var(--ca-font-size-sm);
-    color: var(--ca-text-muted);
-    font-weight: var(--ca-font-weight-semibold);
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease;
+    position: relative;
 }
+
 
 @keyframes countUp {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Premium stat card enhancements */
+.stat-card {
+    animation: cardSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+.stat-card:nth-child(5) { animation-delay: 0.5s; }
+.stat-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes cardSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ripple click effect */
+.stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+    z-index: 10;
+}
+
+@keyframes ripple {
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+/* Enhanced card-specific hover glows */
+.stat-card.blogs:hover {
+    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25), 0 0 0 1px rgba(0,0, 0,0.1);
+}
+
+.stat-card.pages:hover {
+    box-shadow: 0 25px 50px rgba(79, 172, 254, 0.25), 0 0 0 1px rgba(0,0, 0,0.1);
+}
+
+.stat-card.content:hover {
+    box-shadow: 0 25px 50px rgba(67, 233, 123, 0.25), 0 0 0 1px rgba(0,0, 0,0.1);
+}
+
+.stat-card.tickets:hover {
+    box-shadow: 0 25px 50px rgba(250, 112, 154, 0.25), 0 0 0 1px rgba(0,0, 0,0.1);
+}
+
+.stat-card.registrations:hover {
+    box-shadow: 0 25px 50px rgba(168, 237, 234, 0.25), 0 0 0 1px rgba(0,0, 0,0.1);
+}
+
+/* Floating animation on idle */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+.stat-card:nth-child(odd) {
+    animation: cardSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, float 4s ease-in-out infinite 2s;
+}
+
+.stat-card:nth-child(even) {
+    animation: cardSlideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards, float 4s ease-in-out infinite 2.5s;
 }
 
 /* Charts Grid */
@@ -282,6 +431,15 @@
     margin: 1rem auto;
     position: relative;
     animation: spin 1.5s ease-out;
+    /* Fallback for browsers that don't support conic-gradient */
+    background: linear-gradient(45deg, #334155 25%, #FBAD18 25%, #FBAD18 50%, #14b8a6 50%, #14b8a6 75%, #0ea5e9 75%);
+}
+
+/* Ensure conic-gradient is used when supported */
+@supports (background: conic-gradient(red, blue)) {
+    .pie-chart {
+        background: inherit; /* This will be overridden by inline style */
+    }
 }
 
 @keyframes spin {
@@ -486,4 +644,58 @@
     .chart-card { padding: 16px; }
     .system-info-grid { grid-template-columns: 1fr; }
     .dashboard-header .system-info, .refresh-btn { position: static; margin: 8px 0; }
+}
+
+
+/* Enhanced pie chart styles */
+.pie-chart-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 1rem auto;
+}
+
+.pie-chart-fallback {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+    margin-top: 2.75rem;
+}
+
+.chart-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.chart-bar-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    min-width: 16px;
+}
+
+.chart-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.chart-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+.chart-bar-label {
+    font-size: 12px;
+    color: #666;
+    min-width: 60px;
+    text-align: right;
 }

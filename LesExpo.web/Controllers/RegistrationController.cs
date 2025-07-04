@@ -20,16 +20,18 @@ namespace LesExpo.web.Controllers
         private readonly ILogger<RegistrationController> _logger;
         private readonly IUrlLocalizationService _urlService;
         private readonly EmailTemplatesConfig _emailTemplates;
+        private readonly IExternalApiService _externalApiService;
         private readonly string _adminEmail = SD.AdminEmail;
         protected string Lang => (RouteData.Values["lang"]?.ToString() ?? "tr").ToLower();
         
-        public RegistrationController(IUnitOfWork unitOfWork, IEmailSender emailSender, ILogger<RegistrationController> logger, IOptions<EmailTemplatesConfig> emailTemplates, IUrlLocalizationService urlService)
+        public RegistrationController(IUnitOfWork unitOfWork, IEmailSender emailSender, ILogger<RegistrationController> logger, IOptions<EmailTemplatesConfig> emailTemplates, IUrlLocalizationService urlService, IExternalApiService externalApiService)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
             _emailSender = emailSender ?? throw new ArgumentNullException(nameof(emailSender));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _emailTemplates = emailTemplates.Value ?? throw new ArgumentNullException(nameof(emailTemplates));
             _urlService = urlService ?? throw new ArgumentNullException(nameof(urlService));
+            _externalApiService = externalApiService ?? throw new ArgumentNullException(nameof(externalApiService));
         }
 
         [HttpGet("registration")]
@@ -97,11 +99,53 @@ namespace LesExpo.web.Controllers
                 model.Registration.AdSoyad = model.Registration.AdSoyad?.Trim();
                 model.Registration.Gorev = model.Registration.Gorev?.Trim();
                 model.Registration.Email = model.Registration.Email?.Trim();
+                
+                // Ensure WebSitesi is never null or empty
+                if (string.IsNullOrWhiteSpace(model.Registration.WebSitesi))
+                {
+                    model.Registration.WebSitesi = string.Empty;
+                }
 
-                // Try to convert IDs to names for displaying in email
+                // Convert IDs to names for both email display and database storage
                 string ulkeAdi = model.Registration.Ulke;
                 string sehirAdi = model.Registration.Sehir;
                 string faaliyetAlaniAdi = model.Registration.FaaliyetAlani;
+
+                // Convert Country ID to Name
+                if (int.TryParse(model.Registration.Ulke, out int ulkeId))
+                {
+                    var ulkelerResponse = await _externalApiService.GetStatesAsync();
+                    var ulke = ulkelerResponse?.data?.FirstOrDefault(u => u.ulkeId == ulkeId);
+                    if (ulke != null)
+                    {
+                        ulkeAdi = ulke.ulkeAdi;
+                        model.Registration.Ulke = ulke.ulkeAdi; // Update model for saving to DB
+                    }
+                }
+
+                // Convert City ID to Name
+                if (int.TryParse(model.Registration.Sehir, out int sehirId) && ulkeId > 0)
+                {
+                    var sehirlerResponse = await _externalApiService.GetCitiesAsync(ulkeId);
+                    var sehir = sehirlerResponse?.data?.FirstOrDefault(s => s.sehirId == sehirId);
+                    if (sehir != null)
+                    {
+                        sehirAdi = sehir.sehirAdi;
+                        model.Registration.Sehir = sehir.sehirAdi; // Update model for saving to DB
+                    }
+                }
+
+                // Convert Sector ID to Name
+                if (int.TryParse(model.Registration.FaaliyetAlani, out int sektorId))
+                {
+                    var sektorlerResponse = await _externalApiService.GetSectorAsync();
+                    var sektor = sektorlerResponse?.data?.FirstOrDefault(s => s.sektorId == sektorId);
+                    if (sektor != null)
+                    {
+                        faaliyetAlaniAdi = sektor.sektorName; // Use sektorName for display
+                        model.Registration.FaaliyetAlani = sektor.sektorName; // Update model for saving to DB
+                    }
+                }
 
                 // Use localized email template
                 string subject = emailTemplate.FormatSubject($"{model.Registration.SirketAdi} - {model.Registration.AdSoyad}");

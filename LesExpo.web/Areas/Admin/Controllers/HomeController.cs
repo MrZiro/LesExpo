@@ -245,25 +245,35 @@ namespace LesExpo.web.Areas.Admin.Controllers
             // Count from tickets
             foreach (var ticket in tickets)
             {
-                if (!string.IsNullOrEmpty(ticket.Country))
+                if (!string.IsNullOrWhiteSpace(ticket.Country) && 
+                    !ticket.Country.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
                 {
-                    countryStats[ticket.Country] = countryStats.GetValueOrDefault(ticket.Country, 0) + 1;
+                    var countryName = ticket.Country.Trim();
+                    countryStats[countryName] = countryStats.GetValueOrDefault(countryName, 0) + 1;
                 }
             }
             
             // Count from registrations
             foreach (var registration in registrations)
             {
-                if (!string.IsNullOrEmpty(registration.Ulke))
+                if (!string.IsNullOrWhiteSpace(registration.Ulke) && 
+                    !registration.Ulke.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
                 {
-                    countryStats[registration.Ulke] = countryStats.GetValueOrDefault(registration.Ulke, 0) + 1;
+                    var countryName = registration.Ulke.Trim();
+                    countryStats[countryName] = countryStats.GetValueOrDefault(countryName, 0) + 1;
                 }
             }
             
-            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8" };
+            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8", "#f59e0b", "#8b5cf6", "#ef4444" };
             var result = new List<CategoryStats>();
             
-            var topCountries = countryStats.OrderByDescending(x => x.Value).Take(7).ToList();
+            // Only include countries with data and sort by count
+            var topCountries = countryStats
+                .Where(x => x.Value > 0)
+                .OrderByDescending(x => x.Value)
+                .Take(10) // Increased to 10 for better visibility
+                .ToList();
+            
             for (int i = 0; i < topCountries.Count; i++)
             {
                 result.Add(new CategoryStats
@@ -287,25 +297,35 @@ namespace LesExpo.web.Areas.Admin.Controllers
             // Count from tickets
             foreach (var ticket in tickets)
             {
-                if (!string.IsNullOrEmpty(ticket.Sector))
+                if (!string.IsNullOrWhiteSpace(ticket.Sector) && 
+                    !ticket.Sector.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
                 {
-                    sectorStats[ticket.Sector] = sectorStats.GetValueOrDefault(ticket.Sector, 0) + 1;
+                    var sectorName = ticket.Sector.Trim();
+                    sectorStats[sectorName] = sectorStats.GetValueOrDefault(sectorName, 0) + 1;
                 }
             }
             
             // Count from registrations (using FaaliyetAlani as sector)
             foreach (var registration in registrations)
             {
-                if (!string.IsNullOrEmpty(registration.FaaliyetAlani))
+                if (!string.IsNullOrWhiteSpace(registration.FaaliyetAlani) && 
+                    !registration.FaaliyetAlani.Trim().Equals("none", StringComparison.OrdinalIgnoreCase))
                 {
-                    sectorStats[registration.FaaliyetAlani] = sectorStats.GetValueOrDefault(registration.FaaliyetAlani, 0) + 1;
+                    var sectorName = registration.FaaliyetAlani.Trim();
+                    sectorStats[sectorName] = sectorStats.GetValueOrDefault(sectorName, 0) + 1;
                 }
             }
             
-            var colors = new[] { "#334155", "#FBAD18", "#14b8a6", "#0ea5e9", "#EF4444", "#64748b", "#94a3b8" };
+            var colors = new[] { "#8b5cf6", "#f59e0b", "#10b981", "#3b82f6", "#ef4444", "#6366f1", "#f97316", "#06b6d4", "#84cc16", "#ec4899" };
             var result = new List<CategoryStats>();
             
-            var topSectors = sectorStats.OrderByDescending(x => x.Value).Take(7).ToList();
+            // Only include sectors with data and sort by count
+            var topSectors = sectorStats
+                .Where(x => x.Value > 0)
+                .OrderByDescending(x => x.Value)
+                .Take(8) // Top 8 sectors
+                .ToList();
+            
             for (int i = 0; i < topSectors.Count; i++)
             {
                 result.Add(new CategoryStats

@@ -23,7 +23,7 @@ namespace LesExpo.Utility
 
         public const string siteUrl = "https://les-expo.com";
 
-        public const string AdminEmail = "lesexpo@kfa.com.tr";
+        public const string AdminEmail = "adobe.mrziro@gmail.com";
         public const string AdminEmailName = "LES-EXPO İletişim";
 
         public const int FUAR_ID = 4139;

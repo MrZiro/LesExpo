@@ -42,9 +42,8 @@ namespace LesExpo.Models
         [StringLength(100)]
         public string Email { get; set; } = string.Empty;
 
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
         [StringLength(200)]
-        public string WebSitesi { get; set; } = string.Empty;
+        public string? WebSitesi { get; set; } = string.Empty;
 
         [Required(ErrorMessage = ValidationMessages.Required_Field)]
         [StringLength(200)]

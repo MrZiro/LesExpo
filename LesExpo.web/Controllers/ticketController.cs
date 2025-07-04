@@ -83,18 +83,62 @@ namespace LesExpo.web.Controllers
                 model.Ticket.Email = model.Ticket.Email?.Trim();
                 model.Ticket.CompanyName = model.Ticket.CompanyName?.Trim();
 
+                // Convert IDs to names for both email display and database storage
+                string countryName = model.Ticket.Country;
+                string cityName = model.Ticket.City;
+                string sectorName = model.Ticket.Sector;
+                int countryIdForApi = 0; // Keep original ID for API call
+
+                // Convert Country ID to Name
+                if (int.TryParse(model.Ticket.Country, out int countryId))
+                {
+                    countryIdForApi = countryId; // Store for API call
+                    var countriesResponse = await _externalApiService.GetStatesAsync();
+                    var country = countriesResponse?.data?.FirstOrDefault(u => u.ulkeId == countryId);
+                    if (country != null)
+                    {
+                        countryName = country.ulkeAdi;
+                        model.Ticket.Country = country.ulkeAdi; // Update model for saving to DB
+                    }
+                }
+
+                // Convert City ID to Name
+                if (int.TryParse(model.Ticket.City, out int cityId) && countryId > 0)
+                {
+                    var citiesResponse = await _externalApiService.GetCitiesAsync(countryId);
+                    var city = citiesResponse?.data?.FirstOrDefault(s => s.sehirId == cityId);
+                    if (city != null)
+                    {
+                        cityName = city.sehirAdi;
+                        model.Ticket.City = city.sehirAdi; // Update model for saving to DB
+                    }
+                }
+
+                // Convert Sector ID to Name
+                if (int.TryParse(model.Ticket.Sector, out int sectorId))
+                {
+                    var sectorsResponse = await _externalApiService.GetSectorAsync();
+                    var sector = sectorsResponse?.data?.FirstOrDefault(s => s.sektorId == sectorId);
+                    if (sector != null)
+                    {
+                        sectorName = sector.sektorName; // Use sektorName for display
+                        model.Ticket.Sector = sector.sektorName; // Update model for saving to DB
+                    }
+                }
+
                 // isYabanci: false for Turkish (tr), true for other languages
                 bool isYabanci = Lang != "tr";
 
-                // Call external API through IExternalApiService
+                // Call external API through IExternalApiService (use original IDs for API)
                 var apiResult = await _externalApiService.AddZiyaretciAsync(
                     model.Ticket.FirstName, model.Ticket.LastName, model.Ticket.Email, model.Ticket.Phone, model.Ticket.Gender,
-                    model.Ticket.CompanyName, model.Ticket.Position, model.Ticket.Sector, int.Parse(model.Ticket.Country), 
-                    model.Ticket.City, isYabanci, FUAR_ID);
+                    model.Ticket.CompanyName, model.Ticket.Position, sectorName, countryIdForApi, 
+                    cityName, isYabanci, FUAR_ID);
 
                 // Store API response details and parse JSON response
                 model.Ticket.ApiResponse = apiResult.ResponseContent ?? "";
-                
+                // Always save the ticket to database for tracking, regardless of API response
+
                 // Parse JSON response to extract the actual success value
                 try 
                 {
@@ -124,9 +168,7 @@ namespace LesExpo.web.Controllers
                     model.Ticket.ApiSuccess = apiResult.Success;
                 }
 
-                // Always save the ticket to database for tracking, regardless of API response
-                _unitOfWork.Ticket.Add(model.Ticket);
-                await _unitOfWork.SaveAsync();
+
 
                 if (!model.Ticket.ApiSuccess)
                 {
@@ -166,6 +208,8 @@ namespace LesExpo.web.Controllers
                     _logger.LogInformation("Skipping email notification due to API failure for {Email}", model.Ticket.Email);
                     return RedirectToAction(nameof(Index));
                 }
+                _unitOfWork.Ticket.Add(model.Ticket);
+                await _unitOfWork.SaveAsync();
 
                 _logger.LogInformation("Successfully submitted ticket to API for {Email}", model.Ticket.Email);
 
