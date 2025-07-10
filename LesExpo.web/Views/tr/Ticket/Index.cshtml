@@ -118,7 +118,7 @@
                         <span asp-validation-for="Ticket.Website" class="text-danger"></span>
                     </div>
                 </div>
-
+            
                 <div class="form-row-ob">
                     <div class="form-group-ob">
                         <label asp-for="Ticket.Country">Ülke <span class="required-ob">*</span></label>
@@ -138,8 +138,8 @@
 
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="Ticket.Position">Pozisyon</label>
-                        <select asp-for="Ticket.Position" id="position" class="form-control">
+                        <label asp-for="Ticket.Position">Pozisyon <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.Position" id="position" class="form-control" required>
                             <option value="">Seçiniz</option>
                             <option value="Asistan">Asistan</option>
                             <option value="Danışman">Danışman</option>
@@ -249,7 +249,6 @@
 
 @section Scripts {
     <script src="/js/ticket.js"></script>
-    <script src="/js/on-kayit-formu.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const termsCheckbox = document.getElementById('terms');

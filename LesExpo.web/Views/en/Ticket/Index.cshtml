@@ -132,8 +132,8 @@
 
                 <div class="form-row-ob">
                     <div class="form-group-ob">
-                        <label asp-for="Ticket.Position">Position</label>
-                        <select asp-for="Ticket.Position" id="position" class="form-control">
+                        <label asp-for="Ticket.Position">Position <span class="required-ob">*</span></label>
+                        <select asp-for="Ticket.Position" id="position" class="form-control" required>
                             <option value="">Please Select</option>
                             <option value="Asistan">Assistant</option>
                             <option value="Danışman">Consultant</option>

@@ -48,7 +48,29 @@
             </div>
             <div class="info-item">
                 <div class="info-label">Telefon</div>
-                <div class="info-value">@Model.Phone</div>
+                <div class="info-value">
+                    @{
+                        string rawTel = Model.Phone ?? "";
+                        var digits = new string(rawTel.Where(char.IsDigit).ToArray());
+                        if (digits.StartsWith("90") && digits.Length == 12)
+                        {
+                            digits = digits.Substring(2);
+                        }
+                        if (digits.Length == 10 && digits.StartsWith("5"))
+                        {
+                            digits = "0" + digits;
+                        }
+                        if (digits.Length == 11 && digits.StartsWith("0"))
+                        {
+                            var formatted = $"{digits.Substring(0,4)} {digits.Substring(4,3)} {digits.Substring(7,2)} {digits.Substring(9,2)}";
+                            @formatted
+                        }
+                        else
+                        {
+                            @Model.Phone
+                        }
+                    }
+                </div>
             </div>
             <div class="info-item">
                 <div class="info-label">Pozisyon</div>

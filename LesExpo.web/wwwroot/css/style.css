@@ -286,9 +286,9 @@ ul {
 
 .lang-switch {
   display: flex;
-  gap: 12px;
+  gap: 6px;
   flex-wrap: nowrap;
-  margin-top: 70px !important;
+  margin-top: 84px !important;
 }
 
 .lang-switch a {
@@ -605,15 +605,34 @@ ul {
 
 @media (max-width: 1289px) {
   .main-nav ul li a {
-    font-size: 0.5rem !important; 
-    padding: 6px 0px !important;
+    font-size: 0.8rem !important; 
+    padding: 10px 6px !important;
   }
+
+  .header-search-input {
+    width: 77px !important;
+    height: 27px !important;
+    padding: 8px 40px 8px 15px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 20px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    font-size: 12px !important;
+    transition: all 0.3s ease !important;
+}
 
 
   .lang-switch a {
-    font-size: 0.6rem;
-    padding: 6px 0px;
+    font-size: 0.5rem !important;
+    padding: 8px 8px !important;
+    margin-right: 0;
   }
+}
+
+.logo img {
+  height: 130px;
+  display: block;
+  margin-top: 30px;
 }
 
 /* 768px ve altı için mobil stil */
@@ -777,7 +796,7 @@ ul {
   color: var(--primarycolor) !important;
   border: none;
   font-weight: 600 !important;
-  padding: 5px 14px !important;
+  padding: 5px 14px ;
   font-size: 17px !important;
   cursor: pointer;
   border-radius: 25px;
