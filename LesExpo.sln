@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LesExpo.Models", "LesExpo.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LesExpo.Utility", "LesExpo.Utility\LesExpo.Utility.csproj", "{8BB70A7C-4D64-448A-BF96-F49A6D6B105E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchIndexGen", "Tools\SearchIndexGen\SearchIndexGen.csproj", "{B4A5122A-1E34-4B34-9C1C-6D5441A19428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8BB70A7C-4D64-448A-BF96-F49A6D6B105E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BB70A7C-4D64-448A-BF96-F49A6D6B105E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BB70A7C-4D64-448A-BF96-F49A6D6B105E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A5122A-1E34-4B34-9C1C-6D5441A19428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A5122A-1E34-4B34-9C1C-6D5441A19428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A5122A-1E34-4B34-9C1C-6D5441A19428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A5122A-1E34-4B34-9C1C-6D5441A19428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

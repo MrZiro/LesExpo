@@ -18,6 +18,18 @@ class LesExpoFuseSearch {
         }
     }
 
+    clearResults() {
+        const resultsContainer = document.getElementById('searchResults');
+        const noResultsState = document.getElementById('noResultsState');
+        if (resultsContainer) {
+            resultsContainer.innerHTML = '';
+            resultsContainer.style.display = 'none';
+        }
+        if (noResultsState) {
+            noResultsState.style.display = 'none';
+        }
+    }
+
     getCurrentLanguage() {
         const path = window.location.pathname;
         const segments = path.split('/');
@@ -28,9 +40,7 @@ class LesExpoFuseSearch {
         try {
             this.showLoading(true);
             
-            // Load basic search data first
-            await this.loadSearchData();
-            this.initializeFuse();
+            // Do not preload; wait for user input
             this.bindEvents();
             this.isInitialized = true;
             
@@ -48,7 +58,8 @@ class LesExpoFuseSearch {
                 console.log('Performing initial search for:', initialQuery);
                 await this.performSearch(initialQuery);
             } else {
-                this.showRecentContent();
+                this.clearResults();
+                this.updateStats(0, '', false);
             }
             
         } catch (error) {
@@ -147,7 +158,8 @@ class LesExpoFuseSearch {
         }
 
         if (!query) {
-            this.showRecentContent();
+            this.clearResults();
+            this.updateStats(0, '', false);
             return;
         }
 

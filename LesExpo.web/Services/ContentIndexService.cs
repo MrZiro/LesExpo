@@ -1,40 +1,94 @@
 using System.Text.RegularExpressions;
+using LesExpo.DataAccess.Repository.IRepository;
+using LesExpo.Models;
 
 namespace LesExpo.web.Services
 {
     public class ContentIndexService : IContentIndexService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<ContentIndexService> _logger;
 
-        public ContentIndexService(IWebHostEnvironment webHostEnvironment, ILogger<ContentIndexService> logger)
+        public ContentIndexService(IWebHostEnvironment webHostEnvironment, ILogger<ContentIndexService> logger, IUnitOfWork unitOfWork)
         {
             _webHostEnvironment = webHostEnvironment;
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<object> GetSearchIndexAsync(string language, string query = "")
         {
-            var searchIndex = new List<object>();
+            var results = new List<object>();
 
-            // Define the static pages to index with their view file paths
-            var pageDefinitions = GetPageDefinitions(language);
-
-            foreach (var page in pageDefinitions)
+            // 1) Load pre-generated static JSON from wwwroot/search/index.{lang}.json
+            try
             {
-                try
+                var staticPath = Path.Combine(_webHostEnvironment.ContentRootPath, "wwwroot", "search", $"index.{language}.json");
+                if (File.Exists(staticPath))
                 {
-                    var content = ExtractTextFromView(page.ViewPath);
-                    var searchItem = CreatePageSearchItem(page.Key, page.Title, content, language, query);
-                    searchIndex.Add(searchItem);
+                    var json = await File.ReadAllTextAsync(staticPath);
+                    var staticItems = System.Text.Json.JsonSerializer.Deserialize<List<PageItem>>(json) ?? new List<PageItem>();
+                    // Recompute contextual summaries if a query is provided
+                    if (!string.IsNullOrEmpty(query))
+                    {
+                        foreach (var item in staticItems)
+                        {
+                            item.summary = GetContextualSummary(item.content ?? string.Empty, query, 200);
+                        }
+                    }
+                    results.AddRange(staticItems);
                 }
-                catch (Exception ex)
+                else
                 {
-                    _logger.LogWarning(ex, "Failed to index page: {PageKey}", page.Key);
+                    _logger.LogWarning("Static search index file not found: {Path}", staticPath);
                 }
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed loading static search index");
+            }
 
-            return searchIndex;
+            // 2) Append dynamic items from DB (Blogs)
+            try
+            {
+                var blogs = _unitOfWork.Blog.GetAll(includeProperties: "ContentType")
+                    .Where(b => b.IsPublished && b.Language.ToLower() == language.ToLower())
+                    .OrderByDescending(b => b.CreatedAt)
+                    .ToList();
+
+                foreach (var b in blogs)
+                {
+                    var content = CleanViewContent((b.MetaDescription ?? b.Content) ?? string.Empty);
+                    var summary = string.IsNullOrEmpty(query)
+                        ? TruncateText(content, 200)
+                        : GetContextualSummary(content, query, 200);
+
+                    var keywords = string.IsNullOrWhiteSpace(b.MetaKeywords)
+                        ? ExtractKeywords(content)
+                        : b.MetaKeywords.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                            .Select(k => k.ToLowerInvariant()).Distinct().Take(15).ToArray();
+
+                    results.Add(new
+                    {
+                        id = $"blog_{b.Id}",
+                        type = "blog",
+                        title = b.Title,
+                        content,
+                        summary,
+                        keywords,
+                        url = BuildBlogUrl(b, language),
+                        language = b.Language.ToLower(),
+                        category = b.ContentType?.Name ?? (language == "en" ? "Blog" : "Blog")
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed loading dynamic search items");
+            }
+
+            return results;
         }
 
         public string ExtractTextFromView(string viewPath)
@@ -323,5 +377,24 @@ namespace LesExpo.web.Services
         }
 
         private record PageDefinition(string Key, string Title, string ViewPath);
+
+        private class PageItem
+        {
+            public string id { get; set; } = string.Empty;
+            public string type { get; set; } = string.Empty;
+            public string title { get; set; } = string.Empty;
+            public string? content { get; set; }
+            public string? summary { get; set; }
+            public string[]? keywords { get; set; }
+            public string url { get; set; } = string.Empty;
+            public string language { get; set; } = string.Empty;
+            public string category { get; set; } = string.Empty;
+        }
+
+        private static string BuildBlogUrl(Blog blog, string language)
+        {
+            var route = language.ToLower() == "en" ? "blog-detail" : "blog-detay";
+            return $"/{language}/{route}/{blog.Slug}";
+        }
     }
 } 
