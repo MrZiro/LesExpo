@@ -3,14 +3,14 @@
 const logos = [
     {
         id: 1,
-        title: "KFA Beyaz Logo",
+        title: "KFA White Logo",
         format: "PNG",
         imageUrl: "/images/kfa-logo.png", // Gerçek logo URL'si
         theme: "light" // Beyaz logo, koyu arka plan
     },
     {
         id: 2,
-        title: "KFA Siyah Logo",
+        title: "KFA Black Logo",
         format: "PNG",
         imageUrl: "/images/kfa-siyah.png", // Gerçek logo URL'si
         theme: "dark" // Siyah logo, açık arka plan
@@ -18,7 +18,7 @@ const logos = [
 
     {
         id: 3,
-        title: "LES-EXPO Beyaz Logo",
+        title: "LES-EXPO White Logo",
         format: "PNG",
         imageUrl: "/images/lesexpologo-inter.png", // Gerçek logo URL'si
         theme: "light"
@@ -26,7 +26,7 @@ const logos = [
 
     {
         id: 4,
-        title: "LES-EXPO Renkli Logo",
+        title: "LES-EXPO Colourful Logo",
         format: "PNG",
         imageUrl: "/images/lesexpologo-inter-eski.png", // Gerçek logo URL'si
         theme: "light"
@@ -34,7 +34,7 @@ const logos = [
 
     {
         id: 5,
-        title: "LES-EXPO Siyah Logo",
+        title: "LES-EXPO Black Logo",
         format: "PNG",
         imageUrl: "/images/les-expo-siyah.jpg", // Gerçek logo URL'si
         theme: "dark"
@@ -42,14 +42,14 @@ const logos = [
 
     {
         id: 6,
-        title: "İFM Beyaz Logo",
+        title: "İFM White Logo",
         format: "PNG",
         imageUrl: "/images/ifmlogo_300x130.png", // Gerçek logo URL'si
         theme: "light"
     },
     {
         id: 7,
-        title: "İFM Siyah Logo",
+        title: "İFM Black Logo",
         format: "PNG",
         imageUrl: "/images/ifm-siyah.png", // Gerçek logo URL'si
         theme: "dark"
@@ -76,7 +76,7 @@ function renderLogos() {
                         <div class="logo-title-2">${logo.title}</div>
                         <span class="logo-format-2">${logo.format}</span>
                     </div>
-                    <button class="download-btn-2" onclick="downloadLogo(${logo.id})">Logoyu İndir</button>
+                    <button class="download-btn-2" onclick="downloadLogo(${logo.id})">Download Logo</button>
                 `;
 
         container.appendChild(logoCard);
