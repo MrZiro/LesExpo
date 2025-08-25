@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const ulkeSelect = document.getElementById('ulke');
     const citySelect = document.getElementById('sehir');
     const faaliyetAlaniSelect = document.getElementById('FaaliyetAlani');
+    const phoneCodeSpan = document.getElementById('phoneCode');
+    const phoneInput = document.getElementById('telefon');
+    const countryFlagImgId = 'countryFlag';
+    let phoneCodes = [];
     
     // Get language from URL
     const lang = getLangFromUrl();
@@ -20,6 +24,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const currentTexts = texts[lang] || texts.tr;
 
+    // Load phone codes for flags and phone dialing codes
+    fetch('/json/phone-codes.json')
+        .then(r=>r.json())
+        .then(data=>{ phoneCodes = Array.isArray(data) ? data : []; })
+        .catch(()=>{ phoneCodes = []; });
+
+    function findPhoneCodeByCountryId(ulkeId){
+        const idNum = typeof ulkeId === 'string' ? parseInt(ulkeId) : ulkeId;
+        return phoneCodes.find(x => x.ulkeId === idNum);
+    }
+
+    function updatePhoneUI(ulkeId){
+        const info = findPhoneCodeByCountryId(ulkeId);
+        if(info){
+            if (phoneCodeSpan){
+                phoneCodeSpan.innerHTML = `<img id="${countryFlagImgId}" src="${info.flagUrl}" width="20" alt="${info.iso2}" /> ${info.phoneCode}`;
+            }
+            if (phoneInput){
+                const code = info.phoneCode + ' ';
+                if (!phoneInput.value || /^\+\d+\s*$/.test(phoneInput.value)){
+                    phoneInput.value = code;
+                } else {
+                    phoneInput.value = phoneInput.value.replace(/^\+\d+\s*/, code);
+                }
+            }
+        }
+    }
+
     // Fetch countries and populate the dropdown
     fetch('/ExtranalData/GetStates')
         .then(response => {
@@ -31,17 +63,22 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(apiResponse => {
             if (apiResponse.success && Array.isArray(apiResponse.data)) {
                 console.log('Fetched countries:', apiResponse); // Debugging log
-                apiResponse.data.forEach(country => {
-                    countries[country.ulkeId] = {
-                        ulkeAdi: country.ulkeAdi,
-                        cities: [],
-                    };
+                apiResponse.data
+                    .filter(country => country.ulkeId !== 0)
+                    .forEach(country => {
+                        countries[country.ulkeId] = {
+                            ulkeAdi: country.ulkeAdi,
+                            cities: [],
+                        };
 
-                    const option = document.createElement('option');
-                    option.value = country.ulkeId;
-                    option.textContent = country.ulkeAdi;
-                    ulkeSelect.appendChild(option);
-                });
+                        const option = document.createElement('option');
+                        option.value = country.ulkeId;
+                        option.textContent = country.ulkeAdi;
+                        ulkeSelect.appendChild(option);
+                    });
+                if (ulkeSelect && ulkeSelect.value){
+                    updatePhoneUI(ulkeSelect.value);
+                }
             } else {
                 console.error('Unexpected API response format:', apiResponse);
             }
@@ -57,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Clear city dropdown
             citySelect.innerHTML = `<option value="">${currentTexts.pleaseSelect}</option>`;
+
+            // Update phone code + flag
+            updatePhoneUI(selectedCountryId);
 
             fetch(`/ExtranalData/GetCities?ulkeId=${selectedCountryId}`)
                 .then(response => {
