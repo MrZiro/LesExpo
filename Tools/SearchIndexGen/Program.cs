@@ -75,17 +75,28 @@ internal class Program
         {
             new("home", language == "en" ? "Home" : "AnaSayfa", Path.Combine(language, "Home", "Index.cshtml")),
             new("contact", language == "en" ? "Contact" : "İletişim", Path.Combine(language, "Contact", "Index.cshtml")),
+
+            // About Us section
+            new("about-us", language == "en" ? "About Us" : "Hakkımızda", Path.Combine(language, "AboutUs", "Index.cshtml")),
             new("exhibition-identification", language == "en" ? "Exhibition Identification" : "Fuar Künyesi", Path.Combine(language, "AboutUs", "exhibitionidentification.cshtml")),
             new("exhibition-area", language == "en" ? "Exhibition Area" : "Fuar Alanı", Path.Combine(language, "AboutUs", "ExhibitionArea.cshtml")),
             new("how-to-reach", language == "en" ? "How to Reach" : "Ulaşım", Path.Combine(language, "AboutUs", "HowToReach.cshtml")),
+            new("show-report", language == "en" ? "Show Report" : "Fuar Sonuç Raporu", Path.Combine(language, "AboutUs", "ShowReport.cshtml")),
             new("visitor-profile", language == "en" ? "Visitor Profile" : "Ziyaretçi Profili", Path.Combine(language, "AboutUs", "VisitorProfile.cshtml")),
             new("exhibitor-profile", language == "en" ? "Exhibitor Profile" : "Katılımcı Profili", Path.Combine(language, "AboutUs", "ExhibitorProfile.cshtml")),
-            new("why-attend", language == "en" ? "Why Attend" : "Neden Katılmalısınız", Path.Combine(language, "AboutUs", "WhyAttend.cshtml")),
+            new("why-visit", language == "en" ? "Why Visit" : "Neden Ziyaret Etmelisiniz", Path.Combine(language, "AboutUs", "WhyVisiting.cshtml")),
             new("b2b-meetings", language == "en" ? "B2B Meetings" : "B2B Toplantıları", Path.Combine(language, "AboutUs", "B2BMeeting.cshtml")),
-            new("experiences", language == "en" ? "Experiences" : "Deneyimler", Path.Combine(language, "AboutUs", "Experiences.cshtml")),
+            new("insights", language == "en" ? "Insights" : "Insights", Path.Combine(language, "AboutUs", "Insights.cshtml")),
+            new("experiences", language == "en" ? "LES Experiences" : "LES Experiences", Path.Combine(language, "AboutUs", "Experiences.cshtml")),
+            new("media-logo", language == "en" ? "Media Logo" : "Medya Logo", Path.Combine(language, "AboutUs", "MediaLogo.cshtml")),
             new("exhibitor-list", language == "en" ? "Exhibitor List" : "Katılımcı Listesi", Path.Combine(language, "AboutUs", "ExhibitorList.cshtml")),
-            new("media-sponsorship", language == "en" ? "Media & Sponsorship" : "Medya ve Sponsorluk", Path.Combine(language, "AboutUs", "MediaSponsorship.cshtml")),
-            new("frequently-asked-questions", language == "en" ? "FAQ" : "Sık Sorulan Sorular", Path.Combine(language, "AboutUs", "FrequentlyAskedQuestions.cshtml"))
+            new("why-exhibit", language == "en" ? "Why Exhibit" : "Neden Katılmalısınız", Path.Combine(language, "AboutUs", "WhyExhibit.cshtml")),
+            new("faq", language == "en" ? "FAQ" : "Sık Sorulan Sorular", Path.Combine(language, "AboutUs", "Faq.cshtml")),
+
+            // Other public pages
+            new("online-ticket", language == "en" ? "Online Ticket" : "Online Bilet", Path.Combine(language, "Ticket", "Index.cshtml")),
+            new("pre-registration-form", language == "en" ? "Pre-Registration Form" : "Ön Kayıt Formu", Path.Combine(language, "Registration", "OnKayitFormu.cshtml")),
+            new("all-news", language == "en" ? "All News" : "Tüm Haberler", Path.Combine(language, "Blogs", "Index.cshtml"))
         };
     }
 
@@ -93,19 +104,28 @@ internal class Program
     {
         var urlMap = new Dictionary<string, string>
         {
-            { "home", $"/{language}/" },
+            { "home", $"/{language}/" + (language == "en" ? "home" : "anasayfa") },
             { "contact", $"/{language}/" + (language == "en" ? "contact" : "iletisim") },
-            { "exhibition-identification", $"/{language}/exhibition-identification" },
-            { "exhibition-area", $"/{language}/exhibition-area" },
-            { "transportation", $"/{language}/transportation" },
-            { "visitor-profile", $"/{language}/visitor-profile" },
-            { "exhibitor-profile", $"/{language}/exhibitor-profile" },
-            { "why-attend", $"/{language}/why-attend" },
-            { "b2b-meetings", $"/{language}/b2b-meetings" },
-            { "experiences", $"/{language}/experiences" },
-            { "exhibitor-list", $"/{language}/exhibitor-list" },
-            { "media-sponsorship", $"/{language}/media-sponsorship" },
-            { "frequently-asked-questions", $"/{language}/faq" }
+
+            { "about-us", $"/{language}/" + (language == "en" ? "about-us" : "hakkimizda") },
+            { "exhibition-identification", $"/{language}/" + (language == "en" ? "exhibition-identification" : "fuar-kunyesi") },
+            { "exhibition-area", $"/{language}/" + (language == "en" ? "exhibition-area" : "fuar-alani") },
+            { "how-to-reach", $"/{language}/" + (language == "en" ? "how-to-reach" : "ulasim") },
+            { "show-report", $"/{language}/" + (language == "en" ? "show-report" : "fuar-sonuc-raporu") },
+            { "visitor-profile", $"/{language}/" + (language == "en" ? "visitor-profile" : "ziyaretci-profili") },
+            { "exhibitor-profile", $"/{language}/" + (language == "en" ? "exhibitor-profile" : "katilimci-profili") },
+            { "why-visit", $"/{language}/" + (language == "en" ? "why-visit" : "neden-ziyaret-etmelisiniz") },
+            { "b2b-meetings", $"/{language}/" + (language == "en" ? "b2b-meetings" : "b2b-toplantilari") },
+            { "insights", $"/{language}/insights" },
+            { "experiences", $"/{language}/les-experiences" },
+            { "media-logo", $"/{language}/" + (language == "en" ? "media-logo" : "medya-logo") },
+            { "exhibitor-list", $"/{language}/" + (language == "en" ? "exhibitor-list" : "katilimci-listesi") },
+            { "why-exhibit", $"/{language}/" + (language == "en" ? "why-exhibit" : "neden-katilmalisiniz") },
+            { "faq", $"/{language}/" + (language == "en" ? "faq" : "sikca-sorulan-sorular") },
+
+            { "online-ticket", $"/{language}/" + (language == "en" ? "online-ticket" : "online-bilet") },
+            { "pre-registration-form", $"/{language}/" + (language == "en" ? "pre-registration-form" : "on-kayit-formu") },
+            { "all-news", $"/{language}/" + (language == "en" ? "all-news" : "tum-haberler") }
         };
 
         return urlMap.GetValueOrDefault(pageKey, $"/{language}/{pageKey}");
