@@ -86,7 +86,7 @@
 
         /* Ensure the card itself has pointer events */
         .card-blogs {
-            background-color: #fff;
+            background-color: var(--thirdcolor);
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

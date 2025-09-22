@@ -1,9 +1,9 @@
 ﻿tinymce.init({
     selector: '.Editor',
     plugins: [
-        'table', 'image', 'imagetools', 'media'
+        'table', 'image', 'imagetools', 'media', 'lists'
     ],
-    toolbar: 'undo redo | bold italic | table | tablecellverticalalign | image',
+    toolbar: 'undo redo | bold italic | bullist numlist | table | tablecellverticalalign | image',
     menu: {
         edit: { title: 'Edit', items: 'undo redo | selectall' },
         table: { title: 'Table', items: 'inserttable | cell row column | tablecellvalign | deletetable' }
