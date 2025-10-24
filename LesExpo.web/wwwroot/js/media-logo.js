@@ -15,43 +15,46 @@ const logos = [
         imageUrl: "/images/kfa-siyah.png", // Gerçek logo URL'si
         theme: "dark" // Siyah logo, açık arka plan
     },
-
     {
         id: 3,
-        title: "LES-EXPO White Logo",
-        format: "PNG",
-        imageUrl: "/images/lesexpologo-inter.png", // Gerçek logo URL'si
-        theme: "light"
-    },
-
-    {
-        id: 4,
-        title: "LES-EXPO Colourful Logo",
-        format: "PNG",
-        imageUrl: "/images/lesexpologo-inter-eski.png", // Gerçek logo URL'si
-        theme: "light"
-    },
-
-    {
-        id: 5,
-        title: "LES-EXPO Black Logo",
-        format: "PNG",
-        imageUrl: "/images/les-expo-siyah.jpg", // Gerçek logo URL'si
-        theme: "dark"
-    },
-
-    {
-        id: 6,
         title: "İFM White Logo",
         format: "PNG",
         imageUrl: "/images/ifmlogo_300x130.png", // Gerçek logo URL'si
         theme: "light"
     },
     {
-        id: 7,
+        id: 4,
         title: "İFM Black Logo",
         format: "PNG",
         imageUrl: "/images/ifm-siyah.png", // Gerçek logo URL'si
+        theme: "dark"
+    },
+    {
+        id: 5,
+        title: "Les-Expo Logo",
+        format: "PNG",
+        imageUrl: "/images/Les-Expo-Logo-TR-Y.png", // Gerçek logo URL'si
+        theme: "dark"
+    },
+    {
+        id: 6,
+        title: "Les-Expo Logo",
+        format: "PNG",
+        imageUrl: "/images/Les-Expo-Logo-TR-YT.png", // Gerçek logo URL'si
+        theme: "dark"
+    },
+    {
+        id: 7,
+        title: "Les-Expo Logo",
+        format: "PNG",
+        imageUrl: "/images/Les-Expo-Logo-TR.png", // Gerçek logo URL'si
+        theme: "dark"
+    },
+    {
+        id: 8,
+        title: "Les-Expo Logo",
+        format: "PNG",
+        imageUrl: "/images/Les-Expo-Logo.png", // Gerçek logo URL'si
         theme: "dark"
     }
 ];
