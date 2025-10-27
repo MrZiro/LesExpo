@@ -1,5 +1,5 @@
 using LesExpo.DataAccess.Data;
-using LesExpo.DataAccess.DbInitializer;
+
 using LesExpo.DataAccess.Repository;
 using LesExpo.DataAccess.Repository.IRepository;
 using LesExpo.Models;
@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.IIS;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +54,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 // Add repository services
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add other services
@@ -152,7 +153,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-SeedDatabase();
+
 
 
 
@@ -181,16 +182,4 @@ app.Run();
 
 
 
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        //// Apply pending migrations
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        dbContext.Database.Migrate();
 
-        //// Initialize database with seed data
-        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-        dbInitializer.Initialize();
-    }
-}
