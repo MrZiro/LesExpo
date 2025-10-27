@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.IO;
 using System;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace LesExpo.web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
+        [RequestSizeLimit(200 * 1024 * 1024)] // 200MB limit
         public IActionResult UploadEditorImage()
         {
             try
@@ -67,15 +70,26 @@ namespace LesExpo.web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
+        [RequestSizeLimit(200 * 1024 * 1024)] // 200MB limit
         public IActionResult UploadEditorVideo()
         {
             try
             {
+                // Check if files are present
+                if (Request.Form.Files == null || Request.Form.Files.Count == 0)
+                {
+                    return Json(new { error = "No file uploaded" });
+                }
+
                 var file = Request.Form.Files[0];
                 if (file == null || file.Length == 0)
                 {
                     return Json(new { error = "No file uploaded" });
                 }
+
+                // Log file details for debugging
+                System.Diagnostics.Debug.WriteLine($"Video upload attempt: {file.FileName}, Size: {file.Length} bytes");
 
                 // Validate video file
                 var modelState = new ModelStateDictionary();
@@ -85,6 +99,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
                         .FirstOrDefault() ?? "Invalid video file";
+                    System.Diagnostics.Debug.WriteLine($"Video validation failed: {errorMessage}");
                     return Json(new { error = errorMessage });
                 }
 
@@ -109,12 +124,14 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
                 // Return URL for TinyMCE
                 string fileUrl = $"/uploads/Temp/{fileName}";
+                System.Diagnostics.Debug.WriteLine($"Video uploaded successfully: {fileUrl}");
 
                 // TinyMCE expects this specific response format
                 return Json(new { location = fileUrl });
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"Video upload error: {ex.Message}");
                 return Json(new { error = ex.Message });
             }
         }

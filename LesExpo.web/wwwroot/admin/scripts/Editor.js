@@ -1,6 +1,6 @@
 ﻿tinymce.init({
   selector: ".Editor",
-  plugins: ["table", "image", "imagetools", "media"],
+  plugins: ["table", "image", "media"],
   toolbar:
     "undo redo | bold italic | table | tablecellverticalalign | image | media",
   menu: {
@@ -43,16 +43,48 @@
       input.onchange = function () {
         var file = this.files[0];
         if (file) {
+          console.log(
+            "Video file selected:",
+            file.name,
+            "Size:",
+            file.size,
+            "Type:",
+            file.type
+          );
+
+          // Show upload progress for large files
+          if (file.size > 10 * 1024 * 1024) {
+            // 10MB
+            alert(
+              "Large video file detected. Upload may take a few minutes..."
+            );
+          }
+
           // Upload video file
           var formData = new FormData();
           formData.append("file", file);
+
+          console.log("Uploading video to /Admin/Common/UploadEditorVideo");
 
           fetch("/Admin/Common/UploadEditorVideo", {
             method: "POST",
             body: formData,
           })
-            .then((response) => response.json())
+            .then((response) => {
+              console.log(
+                "Response received:",
+                response.status,
+                response.statusText
+              );
+              if (!response.ok) {
+                throw new Error(
+                  "Network response was not ok: " + response.status
+                );
+              }
+              return response.json();
+            })
             .then((data) => {
+              console.log("Response data:", data);
               if (data.error) {
                 alert("Video upload error: " + data.error);
               } else {
@@ -63,6 +95,7 @@
               }
             })
             .catch((error) => {
+              console.error("Video upload error:", error);
               alert("Video upload failed: " + error.message);
             });
         }

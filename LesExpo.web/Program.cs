@@ -10,11 +10,27 @@ using LesExpo.web.Middleware;
 using LesExpo.web.Models.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.IIS;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure request size limits for large file uploads
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 200 * 1024 * 1024; // 200MB
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 200 * 1024 * 1024; // 200MB
+    options.ValueLengthLimit = int.MaxValue;
+    options.ValueCountLimit = int.MaxValue;
+    options.KeyLengthLimit = int.MaxValue;
+});
 
 
 
@@ -88,17 +104,17 @@ builder.Services.AddRazorPages()
     .AddRazorOptions(options =>
     {
         // PRIORITY ORDER: Areas first (no language), then language-specific public views
-        
+
         // 1. AREAS (Admin, etc.) - Use standard ASP.NET Core area placeholders
         // {2} = Area name, {1} = Controller, {0} = Action
         options.ViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
-        
+
         // 2. LANGUAGE-SPECIFIC PUBLIC VIEWS - Custom language expansion
         // These will be expanded by CustomViewLocationExpander to use language instead of {2}
         options.ViewLocationFormats.Add("/Views/{2}/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/{2}/Shared/{0}.cshtml");
-        
+
         // 3. DEFAULT FALLBACK VIEWS - Last resort
         options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
