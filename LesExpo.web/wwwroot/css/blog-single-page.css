@@ -4,6 +4,12 @@
   --thirdcolor: #0c243d;
 }
 
+video {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  object-position: center
+}
 
 .news-container {
   max-width: 920px;

@@ -1,4 +1,4 @@
-﻿tinymce.init({
+tinymce.init({
   selector: ".Editor",
   plugins: ["table", "image", "media"],
   toolbar:
@@ -17,21 +17,20 @@
   relative_urls: false,
   remove_script_host: false,
   convert_urls: true,
+  setup: function (editor) {
+    editor.on('ExecCommand', function (e) {
+      if (e.command === 'mceMedia') {
+        setTimeout(function() {
+          var widthInput = document.querySelector('input[name="width"]');
+          var heightInput = document.querySelector('input[name="height"]');
+          if (widthInput && !widthInput.value) widthInput.value = '500';
+          if (heightInput && !heightInput.value) heightInput.value = '500';
+        }, 100);
+      }
+    });
+  },
   // Video upload configuration
   media_live_embeds: true,
-  media_url_resolver: function (data, resolve) {
-    // Handle video uploads
-    if (data.url && data.url.includes("/uploads/Temp/")) {
-      resolve({
-        html:
-          '<video controls><source src="' +
-          data.url +
-          '" type="video/mp4">Your browser does not support the video tag.</video>',
-      });
-    } else {
-      resolve({ html: data.html });
-    }
-  },
   // Custom file picker for videos
   file_picker_callback: function (callback, value, meta) {
     if (meta.filetype === "media") {
