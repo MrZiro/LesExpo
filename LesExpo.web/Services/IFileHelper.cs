@@ -21,6 +21,10 @@ namespace LesExpo.web.Services
         // Returns true if valid, false if invalid
         bool ValidateImageFile(IFormFile file, ModelStateDictionary modelState, string key, bool isRequired = false);
 
+        // Validates a video file and adds error messages to ModelState if validation fails
+        // Returns true if valid, false if invalid
+        bool ValidateVideoFile(IFormFile file, ModelStateDictionary modelState, string key, bool isRequired = false);
+
         // Optional: Add validation method if not doing it in controller
         // bool IsValidFile(IFormFile file);
     }

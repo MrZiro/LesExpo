@@ -49,7 +49,55 @@ namespace LesExpo.web.Services
                 return htmlContent; // Return original content if processing fails
             }
         }
-        
+
+        public string ProcessEditorContentVideos(string htmlContent)
+        {
+            if (string.IsNullOrEmpty(htmlContent))
+            {
+                return htmlContent;
+            }
+
+            try
+            {
+                // Use HtmlAgilityPack to parse HTML safely
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(htmlContent);
+
+                // Extract all video sources from content
+                var videoNodes = htmlDoc.DocumentNode.SelectNodes("//video");
+                if (videoNodes == null)
+                {
+                    return htmlContent; // No videos to process
+                }
+
+                // Process temporary videos
+                ProcessTempVideos(htmlDoc, videoNodes);
+
+                // Return the updated HTML content
+                return htmlDoc.DocumentNode.OuterHtml;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception - in a production app you'd use proper logging
+                System.Diagnostics.Debug.WriteLine($"Error processing editor videos: {ex.Message}");
+                return htmlContent; // Return original content if processing fails
+            }
+        }
+
+        public string ProcessEditorContent(string htmlContent)
+        {
+            if (string.IsNullOrEmpty(htmlContent))
+            {
+                return htmlContent;
+            }
+
+            // Process both images and videos
+            string processedContent = ProcessEditorContentImages(htmlContent);
+            processedContent = ProcessEditorContentVideos(processedContent);
+
+            return processedContent;
+        }
+
         public string ProcessEditedContent(string originalHtml, string editedHtml)
         {
             if (string.IsNullOrEmpty(editedHtml))
@@ -69,7 +117,7 @@ namespace LesExpo.web.Services
                 // Extract image sources from original content
                 var originalImgNodes = originalDoc.DocumentNode.SelectNodes("//img");
                 HashSet<string> originalImageFiles = new HashSet<string>();
-                
+
                 if (originalImgNodes != null)
                 {
                     foreach (var imgNode in originalImgNodes)
@@ -85,7 +133,7 @@ namespace LesExpo.web.Services
                 // Extract image sources from edited content
                 var editedImgNodes = editedDoc.DocumentNode.SelectNodes("//img");
                 HashSet<string> editedImageFiles = new HashSet<string>();
-                
+
                 if (editedImgNodes == null)
                 {
                     // No images in edited content, delete all images from original content
@@ -123,7 +171,7 @@ namespace LesExpo.web.Services
 
         private void ProcessTempImages(HtmlDocument htmlDoc, HtmlNodeCollection imgNodes)
         {
-            if (imgNodes == null || htmlDoc == null) 
+            if (imgNodes == null || htmlDoc == null)
                 return;
 
             string tempDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "Temp");
@@ -139,7 +187,7 @@ namespace LesExpo.web.Services
             foreach (var imgNode in imgNodes)
             {
                 string srcAttr = imgNode.GetAttributeValue("src", "");
-                
+
                 // Only process images from the temp folder
                 if (!string.IsNullOrEmpty(srcAttr) && srcAttr.Contains("/uploads/Temp/"))
                 {
@@ -169,6 +217,90 @@ namespace LesExpo.web.Services
             }
         }
 
+        private void ProcessTempVideos(HtmlDocument htmlDoc, HtmlNodeCollection videoNodes)
+        {
+            if (videoNodes == null || htmlDoc == null)
+                return;
+
+            string tempDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "Temp");
+            string permanentDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "Blogs", "video");
+
+            // Ensure permanent directory exists
+            if (!Directory.Exists(permanentDirectory))
+            {
+                Directory.CreateDirectory(permanentDirectory);
+            }
+
+            // Process each temporary video in the content
+            foreach (var videoNode in videoNodes)
+            {
+                // Check video source elements
+                var sourceNodes = videoNode.SelectNodes(".//source");
+                if (sourceNodes != null)
+                {
+                    foreach (var sourceNode in sourceNodes)
+                    {
+                        string srcAttr = sourceNode.GetAttributeValue("src", "");
+
+                        // Only process videos from the temp folder
+                        if (!string.IsNullOrEmpty(srcAttr) && srcAttr.Contains("/uploads/Temp/"))
+                        {
+                            // Extract filename from URL
+                            string fileName = Path.GetFileName(srcAttr);
+                            string tempFilePath = Path.Combine(tempDirectory, fileName);
+                            string permanentFilePath = Path.Combine(permanentDirectory, fileName);
+
+                            // Move the file if it exists in temp folder
+                            if (System.IO.File.Exists(tempFilePath))
+                            {
+                                // Move file from temp to permanent folder
+                                if (!System.IO.File.Exists(permanentFilePath))
+                                {
+                                    System.IO.File.Move(tempFilePath, permanentFilePath);
+                                }
+                                else
+                                {
+                                    // If file already exists in destination, delete the temp file
+                                    System.IO.File.Delete(tempFilePath);
+                                }
+
+                                // Update the src attribute in the HTML
+                                sourceNode.SetAttributeValue("src", srcAttr.Replace("/uploads/Temp/", "/uploads/Blogs/video/"));
+                            }
+                        }
+                    }
+                }
+
+                // Also check direct src attribute on video element
+                string videoSrcAttr = videoNode.GetAttributeValue("src", "");
+                if (!string.IsNullOrEmpty(videoSrcAttr) && videoSrcAttr.Contains("/uploads/Temp/"))
+                {
+                    // Extract filename from URL
+                    string fileName = Path.GetFileName(videoSrcAttr);
+                    string tempFilePath = Path.Combine(tempDirectory, fileName);
+                    string permanentFilePath = Path.Combine(permanentDirectory, fileName);
+
+                    // Move the file if it exists in temp folder
+                    if (System.IO.File.Exists(tempFilePath))
+                    {
+                        // Move file from temp to permanent folder
+                        if (!System.IO.File.Exists(permanentFilePath))
+                        {
+                            System.IO.File.Move(tempFilePath, permanentFilePath);
+                        }
+                        else
+                        {
+                            // If file already exists in destination, delete the temp file
+                            System.IO.File.Delete(tempFilePath);
+                        }
+
+                        // Update the src attribute in the HTML
+                        videoNode.SetAttributeValue("src", videoSrcAttr.Replace("/uploads/Temp/", "/uploads/Blogs/video/"));
+                    }
+                }
+            }
+        }
+
         private void DeleteImagesFromOriginalContent(HashSet<string> originalImageFiles)
         {
             if (originalImageFiles.Count == 0)
@@ -177,11 +309,11 @@ namespace LesExpo.web.Services
             }
 
             string permanentDirectory = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "Blogs", "editor");
-            
+
             foreach (var fileName in originalImageFiles)
             {
                 string filePath = Path.Combine(permanentDirectory, fileName);
-                
+
                 if (System.IO.File.Exists(filePath))
                 {
                     try
@@ -223,7 +355,7 @@ namespace LesExpo.web.Services
                 foreach (var imgNode in imgNodes)
                 {
                     string srcAttr = imgNode.GetAttributeValue("src", "");
-                    
+
                     // Only process images from the Blog/editor folder
                     if (!string.IsNullOrEmpty(srcAttr) && srcAttr.Contains("/uploads/Blogs/editor/"))
                     {
@@ -246,4 +378,4 @@ namespace LesExpo.web.Services
             }
         }
     }
-} 
+}

@@ -17,6 +17,11 @@ namespace LesExpo.Utility
         public const int MaxImageSizeInBytes = MaxImageSizeInMB * 1024 * 1024;
         public static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
 
+        // Video Uploads
+        public const int MaxVideoSizeInMB = 100; // 100MB for videos
+        public const int MaxVideoSizeInBytes = MaxVideoSizeInMB * 1024 * 1024;
+        public static readonly string[] AllowedVideoExtensions = { ".mp4", ".webm", ".avi", ".mov", ".wmv", ".flv", ".mkv" };
+
         // Temp File Cleanup
         public const int TempFileCleanupIntervalMinutes =  1440; // 24 hours
         public const int TempFileMaxAgeMinutes = 120; // 2 hours

@@ -110,7 +110,7 @@ namespace LesExpo.web.Services
                 modelState.AddModelError(key, "Lütfen bir görsel seçin.");
                 return false;
             }
-            
+
             // If file is not required and not provided, it's valid
             if (!isRequired && (file == null || file.Length == 0))
             {
@@ -131,6 +131,41 @@ namespace LesExpo.web.Services
             if (!SD.AllowedImageExtensions.Contains(fileExtension))
             {
                 modelState.AddModelError(key, "Yalnızca görsel dosyaları (jpg, jpeg, png, gif, webp) kabul edilir.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        public bool ValidateVideoFile(IFormFile file, ModelStateDictionary modelState, string key, bool isRequired = false)
+        {
+            // Check if file is required but not provided
+            if (isRequired && (file == null || file.Length == 0))
+            {
+                modelState.AddModelError(key, "Lütfen bir video seçin.");
+                return false;
+            }
+
+            // If file is not required and not provided, it's valid
+            if (!isRequired && (file == null || file.Length == 0))
+            {
+                return true;
+            }
+
+            bool isValid = true;
+
+            // Check file size using constant from SD
+            if (file.Length > SD.MaxVideoSizeInBytes)
+            {
+                modelState.AddModelError(key, $"Video boyutu {SD.MaxVideoSizeInMB}MB'ı geçemez.");
+                isValid = false;
+            }
+
+            // Check file format using allowed extensions from SD
+            var fileExtension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (!SD.AllowedVideoExtensions.Contains(fileExtension))
+            {
+                modelState.AddModelError(key, "Yalnızca video dosyaları (mp4, webm, avi, mov, wmv, flv, mkv) kabul edilir.");
                 isValid = false;
             }
 
