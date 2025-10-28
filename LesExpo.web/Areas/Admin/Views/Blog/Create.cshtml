@@ -211,8 +211,7 @@
 
 @section Scripts {
     @{
-        <script src="https://cdn.tiny.cloud/1/ksmksgnd1ppn1dd8gfjy1rhu22ru4v191js89isjbbf27fnm/tinymce/7/tinymce.min.js"
-            referrerpolicy="origin"></script>
+        <script src="~/admin/tinymce/tinymce.min.js"></script>
         <script src="~/admin/scripts/Editor.js"></script>
         <partial name="_ValidationScriptsPartial" />
         <script src="~/admin/scripts/Dropzone.js"></script>
@@ -251,12 +250,12 @@
         }
 
         const title = document.getElementById('Blog_Title');
-       
+
         const slug=document.getElementById('Blog_Slug');
         title?.addEventListener('input', () => { pvTitle.textContent = title.value; });
         title?.addEventListener('blur', () => { if (slug) { slug.value = toSlug(title.value); pvSlug.textContent = '/' + slug.value; } });
         slug?.addEventListener('input', () => { pvSlug.textContent = '/' + slug.value; });
-       
+
 
     </script>
 }

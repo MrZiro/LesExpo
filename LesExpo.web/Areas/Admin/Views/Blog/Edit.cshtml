@@ -110,7 +110,7 @@
                         <label asp-for="Blog.ContentTypeId" class="form-label">İçerik Türü</label>
                         <select asp-for="@Model.Blog.ContentTypeId" class="form-select"
                                 asp-items="@Model.ContentTypeList">
-                           
+
                         </select>
                         <span asp-validation-for="Blog.ContentTypeId" class="text-danger"></span>
                     </div>
@@ -148,7 +148,7 @@
                     </div>
                     <span asp-validation-for="CardImage" class="text-danger d-block mt-2"></span>
                 </div>
-                
+
                 <div class="mb-3 text-center" id="card-image-preview-container">
                     @if (!string.IsNullOrEmpty(Model.Blog.CardImageUrl))
                     {
@@ -223,7 +223,7 @@
 
 @section Scripts {
     @{
-        <script src="https://cdn.tiny.cloud/1/ksmksgnd1ppn1dd8gfjy1rhu22ru4v191js89isjbbf27fnm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="~/admin/tinymce/tinymce.min.js"></script>
         <script src="~/admin/scripts/Editor.js"></script>
         <partial name="_ValidationScriptsPartial" />
         <script src="~/admin/scripts/Dropzone.js"></script>
@@ -240,4 +240,4 @@
             }
         });
     </script>
-} 
+}

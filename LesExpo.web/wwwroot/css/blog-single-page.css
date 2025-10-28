@@ -8,7 +8,7 @@ video {
   width: 100% !important;
   height: auto !important;
   object-fit: cover;
-  object-position: center
+  object-position: center;
 }
 
 .news-container {

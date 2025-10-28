@@ -37,12 +37,6 @@ namespace LesExpo.web.Areas.Admin.Controllers
             return View();
         }
 
-        // DEBUG: Simple test action to verify routing works
-        [HttpGet]
-        public IActionResult Test()
-        {
-            return Content("BlogController Test Action - Routing Works!");
-        }
 
         // GET: Admin/Blog/Create
         public IActionResult Create()
