@@ -20,8 +20,8 @@ namespace LesExpo.web.Areas.Admin.Controllers
         private readonly IHtmlContentService _htmlContentService;
 
         public BlogController(
-            IUnitOfWork unitOfWork, 
-            IFileHelper fileHelper, 
+            IUnitOfWork unitOfWork,
+            IFileHelper fileHelper,
             IWebHostEnvironment webHostEnvironment,
             IHtmlContentService htmlContentService)
         {
@@ -33,15 +33,10 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Count = _unitOfWork.Blog.GetCount();
             return View();
         }
 
-        // DEBUG: Simple test action to verify routing works
-        [HttpGet]
-        public IActionResult Test()
-        {
-            return Content("BlogController Test Action - Routing Works!");
-        }
 
         // GET: Admin/Blog/Create
         public IActionResult Create()
@@ -81,24 +76,24 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     // Handle card image upload
                     pageVM.Blog.CardImageUrl = await _fileHelper.SaveFileAsync(
                         pageVM.CardImage, null, "Blogs");
-                    
+
                     if (pageVM.Blog.CardImageUrl == null)
                     {
                         ModelState.AddModelError("CardImage", "Görsel yüklenirken hata oluştu. Lütfen tekrar deneyin.");
                         return View(pageVM);
                     }
 
-                    // Process TinyMCE editor content to handle images
+                    // Process TinyMCE editor content to handle images and videos
                     if (!string.IsNullOrEmpty(pageVM.Blog.Content))
                     {
-                        // Process editor content and move images from temp to permanent storage
-                        pageVM.Blog.Content = _htmlContentService.ProcessEditorContentImages(pageVM.Blog.Content);
+                        // Process editor content and move media from temp to permanent storage
+                        pageVM.Blog.Content = _htmlContentService.ProcessEditorContent(pageVM.Blog.Content);
                     }
 
                     _unitOfWork.Blog.Add(pageVM.Blog);
                     _unitOfWork.Save();
                     TempData["success"] = "Blog başarıyla oluşturuldu.";
-                    
+
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -107,7 +102,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     return View(pageVM);
                 }
             }
-            
+
             return View(pageVM);
         }
 
@@ -159,14 +154,14 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     // Get the original blog content to compare with the edited version
                     var originalBlog = _unitOfWork.Blog.Get(u => u.Id == pageVM.Blog.Id);
                     string originalContent = originalBlog?.Content ?? string.Empty;
-                    
+
                     // Handle card image upload if new image is provided
                     if (pageVM.CardImage != null)
                     {
                         string oldImageUrl = pageVM.Blog.CardImageUrl;
                         pageVM.Blog.CardImageUrl = await _fileHelper.SaveFileAsync(
                             pageVM.CardImage, oldImageUrl, "Blogs");
-                        
+
                         if (pageVM.Blog.CardImageUrl == null)
                         {
                             ModelState.AddModelError("CardImage", "Görsel yüklenirken hata oluştu. Lütfen tekrar deneyin.");
@@ -184,7 +179,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     _unitOfWork.Blog.Update(pageVM.Blog);
                     _unitOfWork.Save();
                     TempData["success"] = "Blog başarıyla güncellendi.";
-                    
+
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -193,7 +188,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
                     return View(pageVM);
                 }
             }
-            
+
             return View(pageVM);
         }
 
@@ -241,6 +236,13 @@ namespace LesExpo.web.Areas.Admin.Controllers
         {
             var allObj = _unitOfWork.Blog.GetAll(includeProperties: "ContentType").OrderByDescending(u => u.Id);
             return Json(new { data = allObj });
+        }
+
+        [HttpGet]
+        public IActionResult GetByLanguage(string language)
+        {
+            var blogs = _unitOfWork.Blog.GetAll(includeProperties: "ContentType").Where(b => b.Language == language).OrderByDescending(b => b.Id);
+            return Json(new { data = blogs });
         }
     }
 }

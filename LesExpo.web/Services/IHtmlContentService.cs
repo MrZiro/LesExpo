@@ -10,6 +10,20 @@ namespace LesExpo.web.Services
         string ProcessEditorContentImages(string htmlContent);
 
         /// <summary>
+        /// Processes videos in HTML content, moving them from temp to permanent storage
+        /// </summary>
+        /// <param name="htmlContent">HTML content with video tags</param>
+        /// <returns>Updated HTML content with modified video paths</returns>
+        string ProcessEditorContentVideos(string htmlContent);
+
+        /// <summary>
+        /// Processes both images and videos in HTML content, moving them from temp to permanent storage
+        /// </summary>
+        /// <param name="htmlContent">HTML content with media tags</param>
+        /// <returns>Updated HTML content with modified media paths</returns>
+        string ProcessEditorContent(string htmlContent);
+
+        /// <summary>
         /// Processes edited HTML content, comparing original and edited versions
         /// to handle moved, deleted, and new images properly
         /// </summary>
@@ -24,4 +38,4 @@ namespace LesExpo.web.Services
         /// <param name="htmlContent">HTML content with image tags</param>
         void DeleteContentImages(string htmlContent);
     }
-} 
+}

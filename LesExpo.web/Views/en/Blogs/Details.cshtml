@@ -1,3 +1,4 @@
+@using System.Globalization
   @model Blog
 
 @{
@@ -6,10 +7,11 @@
     ViewData["Keywords"] = Model.MetaKeywords;
 
     var lang = ViewData["Lang"].ToString();
+    var culture = lang == "en" ? new CultureInfo("en-US") : new CultureInfo("tr-TR");
 }
   @section Styles{
     <link rel="stylesheet" href="~/css/blog-single-page.css">
-    
+
     <style>
         .banner {
             position: relative;
@@ -37,7 +39,7 @@
             }
     </style>
   }
-  
+
 <div class="banner">
     <div class="banner-yazi">LES-EXPO</div>
     <div class="breadcrumb-1">
@@ -59,9 +61,9 @@
                     <h2 class="blog-first-title">@Model.Title</h2>
                     @Html.Raw(Model.Content)
                 </div>
-                <div class="=mt-4">
+                <div class="mt-4">
                     <small class="text-muted">
-                        <i class="far fa-calendar-alt"></i> @Model.CreatedAt.ToString("dd MMMM yyyy")
+                        <i class="far fa-calendar-alt"></i> @Model.CreatedAt.ToString("dd MMMM yyyy", culture)
                     </small>
                     <small class="text-muted ml-2">
                         <i class="fas fa-tag"></i> @Model.ContentType.Name
@@ -84,7 +86,7 @@
     <div class="slider-container-haberler">
         <div class="slider-haberler" id="slider-haberler">
             <!-- Related blog-single-page will breadcrumb loaded via js-->
-            
+
 
         </div>
     </div>
@@ -94,7 +96,7 @@
 
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
+
    <!-- Custom Scripts -->
     <script src="~/js/main.js"></script>
 
@@ -102,8 +104,16 @@
 
         $(document).ready(function(){
             fetchData();
+
+            var video = document.querySelector('video');
+            if(video){
+            console.log(video);
+            var parent = video.parentElement;
+            parent.style.textAlign = "center";
+            }
+
         });
-        
+
         function getLangFromUrl() {
         const path = window.location.pathname; // Gets the path part of the URL, e.g., "/en/home/index"
         const segments = path.split('/');      // Splits the path into an array: ["", "en", "home", "index"]

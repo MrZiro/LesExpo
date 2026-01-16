@@ -5,25 +5,58 @@
 
 @section Styles {
     <link href="~/lib/datatables.net-dt/css/datatables.datatables.min.css" rel="stylesheet" />
-    <link href="~/admin/styles/table.css" rel="stylesheet" />
 }
 
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Slider Yönetimi
-            </h2>
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-images me-3"></i>Slider Yönetimi
+            </h1>
+            <p class="mb-0 opacity-75">Ana sayfa slider'larını görüntüleyin ve yönetin</p>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Slider" asp-action="Upsert" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Yeni Slider Ekle
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Toplam Slider</h5>
+                <h3 class="mb-0" id="totalSliders">@ViewBag.Count</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Controls -->
+<div class="filter-card p-4">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h5 class="text-dark mb-0">
+                <i class="bi bi-funnel me-2 text-primary"></i>Slider'ları Filtrele
+            </h5>
+            <small class="text-muted">Durum seçeneğine göre filtreleyebilirsiniz</small>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="btn-group me-3" role="group">
+                <button type="button" class="btn btn-filter active" onclick="filterSlidersByStatus('all')">
+                    <i class="bi bi-grid me-1"></i>Tümü
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterSlidersByStatus('true')">
+                    <i class="bi bi-check-circle me-1"></i>Aktif
+                </button>
+                <button type="button" class="btn btn-filter" onclick="filterSlidersByStatus('false')">
+                    <i class="bi bi-x-circle me-1"></i>Pasif
+                </button>
+            </div>
+            <a asp-controller="Slider" asp-action="Upsert" class="btn btn-custom btn-back">
+                <i class="bi bi-plus-circle"></i>Yeni Slider
             </a>
         </div>
     </div>
+</div>
 
-    <div class="table-container">
-        <table id="tblData" class="">
+<!-- Data Table -->
+<div class="table-container">
+    <div class="table-responsive">
+        <table id="tblData" class="table table-modern" style="width:100%">
             <thead>
                 <!-- DataTable will populate headers -->
             </thead>
@@ -38,44 +71,54 @@
     <partial name="_PartialReqScript" />
 
     <script>
+        let dataTable;
+        
         $(document).ready(() => {
-            initializeDataTableWithOption('Slider', [
+            dataTable = initializeDataTableWithOption('Slider', [
                 {
-                    title: 'Resim',
+                    title: 'Görsel',
                     data: 'imageUrl',
                     width: '15%',
                     render: function (data) {
                         if (data) {
-                            return `<img src="${data}" alt="Slider Görseli" style="width: 100px; height: 60px; object-fit: cover;" />`;
+                            return `<div class="myimg-container">
+                                        <img src="${data}" alt="Slider Görseli" 
+                                             style="width: 80px; height: 50px; object-fit: cover; border-radius: var(--ca-radius-md); box-shadow: var(--ca-shadow-sm);" />
+                                    </div>`;
                         }
-                        return 'Resim Yok';
+                        return '<span class="text-muted"><i class="bi bi-image me-1"></i>Görsel Yok</span>';
                     }
                 },
                 {
                     title: 'Başlık',
                     data: 'title',
-                    width: '20%'
+                    width: '25%',
+                    render: function (data) {
+                        return data || '<span class="text-muted">Başlık Yok</span>';
+                    }
                 },
-
                 {
                     title: 'Sıralama',
                     data: 'displayOrder',
-                    width: '10%'
+                    width: '10%',
+                    render: function (data) {
+                        return `<span class="badge bg-secondary">#${data}</span>`;
+                    }
                 },
                 {
                     title: 'Durum',
                     data: 'isActive',
-                    width: '10%',
+                    width: '12%',
                     render: function (data) {
                         return data ?
-                            '<span class="badge bg-success">Aktif</span>' :
-                            '<span class="badge bg-danger">Pasif</span>';
+                            '<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Aktif</span>' :
+                            '<span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Pasif</span>';
                     }
                 },
                 {
-                    title: 'Oluşturulma Tarihi',
+                    title: 'Oluşturuldu',
                     data: 'createdDate',
-                    width: '15%',
+                    width: '18%',
                     render: function(data) {
                         return new Intl.DateTimeFormat('tr-TR', {
                             day: '2-digit',
@@ -89,5 +132,21 @@
                 }
             ]);
         });
+
+        // Filter function for status
+        function filterSlidersByStatus(status) {
+            // Update active button
+            $('.btn-filter').removeClass('active');
+            event.target.classList.add('active');
+
+            // Apply filter
+            if (status === 'all') {
+                dataTable.column(3).search('').draw();
+            } else {
+                const searchTerm = status === 'true' ? 'Aktif' : 'Pasif';
+                dataTable.column(3).search(searchTerm).draw();
+            }
+        }
+
     </script>
 }

@@ -4,6 +4,12 @@
   --thirdcolor: #0c243d;
 }
 
+video {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  object-position: center;
+}
 
 .news-container {
   max-width: 920px;
@@ -22,9 +28,9 @@
   letter-spacing: -0.5px;
 }
 
-.blog-first-title{
-    font-weight: 600;
-    margin-bottom: 45px;
+.blog-first-title {
+  font-weight: 600;
+  margin-bottom: 45px;
 }
 
 .news-content {
@@ -33,8 +39,68 @@
   color: #444;
 }
 
-.news-content p{
-    text-align: start;
+.news-content ul,
+.news-content ol {
+  /* UL için padding-left korundu, ancak OL için kendi özel ayarlamamız olacak. */
+  padding-left: 20px;
+  margin-bottom: 1rem !important;
+}
+
+.news-content ul>li {
+  margin-bottom: 0.2rem !important;
+  margin-top: 0 !important;
+  padding-left: 21px !important;
+}
+
+
+/* --- SIRALI LİSTE (OL) İÇİN HİZALAMA DÜZELTMESİ --- */
+
+.news-content ol {
+  /* 1. Tarayıcının varsayılan numaralandırmasını kaldırıyoruz. */
+  list-style: none;
+  /* 2. Sayaç sistemini başlatıyoruz. */
+  counter-reset: item;
+  /* 3. list-style-position: inside/outside ayarlarının yerine kendi padding'imizi kullanacağız. */
+  padding-left: 0;
+  /* Önemli: Eğer .news-content ol'un üst elemanında padding varsa, burada ona uygun bir değer vermeniz gerekebilir. */
+}
+
+.news-content ol>li {
+  /* 1. Öğeleri yan yana hizalamak ve metin kaydığında düzgün görünmesini sağlamak için Flexbox kullanıyoruz. */
+  display: flex;
+  align-items: baseline;
+  /* Metin taban çizgisine göre hizala */
+}
+
+.news-content ol>li::before {
+  /* 1. Sayacı artır ve numarayı ekle. */
+  counter-increment: item;
+  content: counter(item) ". ";
+
+  /* 2. NUMARA ALANINA SABİT GENİŞLİK VEREREK HİZALAMAYI SAĞLA */
+  /* Bu, 1. ile 10. arasındaki boşluk farkını yok eder. */
+  min-width: 2em;
+  /* İki basamaklı numara (örneğin 99.) ve nokta için yeterli alan */
+  text-align: right;
+  /* Numaraların sağa dayalı olmasını sağlar (9. ve 10. hizalı görünür) */
+  flex-shrink: 0;
+  /* Numaranın daralmasını engelle */
+
+  /* 3. Numara ile metin arasında istediğiniz boşluk */
+  margin-right: 0.5em;
+}
+
+/* --- SIRASIZ LİSTE (UL) AYARLARI --- */
+
+.news-content ul {
+  list-style-type: disc;
+  /* list-style-position: inside !important; kuralını kaldırdım. */
+  list-style-position: inside;
+  /* Eğer eski kuralı kullanmak isterseniz */
+}
+
+.news-content p {
+  text-align: start;
 }
 
 .highlight-section {
@@ -68,9 +134,9 @@
   line-height: 1.5;
 }
 
-.list-2{
-    text-align: start;
-    font-size: 1.2rem;
+.list-2 {
+  text-align: start;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 992px) {
@@ -364,5 +430,3 @@
     margin: 20px auto;
   }
 }
-
-

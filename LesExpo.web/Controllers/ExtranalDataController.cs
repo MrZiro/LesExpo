@@ -1,18 +1,22 @@
 ﻿using LesExpo.Models.ViewModels.ExternalData;
+using LesExpo.web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace LesExpo.web.Controllers
 {
     public class ExtranalDataController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
-        private const string API_USERNAME = "lesexpo_com_fair";
-        private const string API_PASSWORD = "L2025e-16X%3F";
-        public ExtranalDataController(IHttpClientFactory httpClientFactory)
+        private readonly IExternalApiService _externalApiService;
+        private readonly ILogger<ExtranalDataController> _logger;
+
+        public ExtranalDataController(
+            IExternalApiService externalApiService,
+            ILogger<ExtranalDataController> logger)
         {
-            _httpClientFactory = httpClientFactory;
+            _externalApiService = externalApiService;
+            _logger = logger;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -21,106 +25,72 @@ namespace LesExpo.web.Controllers
         #region ApiCalls
         public async Task<IActionResult> GetStates()
         {
-            var httpClient = _httpClientFactory.CreateClient("FairApi");
             try
             {
-                string statesRequestUri = $"https://fair.smartexpo.com.tr/Api/GetUlkeler?&UserName={API_USERNAME}&Password={API_PASSWORD}";
-                var response = await httpClient.GetAsync(statesRequestUri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonString = await response.Content.ReadAsStringAsync();
-
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse<List<Ulke>>>(jsonString);
-                    if (apiResponse != null)
-                    {
-                        return Json(apiResponse);
-                    }
-                    else
-                    {
-                        return StatusCode(500, "Invalid API response format.");
-                    }
-                }
-                else
-                {
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, $"Failed to retrieve countries from the API. Response: {errorContent}");
-                }
+                _logger.LogDebug("Getting countries data");
+                var apiResponse = await _externalApiService.GetStatesAsync();
+                _logger.LogDebug("Successfully retrieved countries data with {Count} items", 
+                    apiResponse?.data?.Count ?? 0);
+                return Json(apiResponse);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}. StackTrace: {ex.StackTrace}");
+                _logger.LogError(ex, "Failed to get countries data");
+                return StatusCode(500, "Failed to retrieve countries data");
             }
         }
 
         public async Task<IActionResult> GetCities(int ulkeId)
         {
-            var httpClient = _httpClientFactory.CreateClient("FairApi");
             try
             {
-                string citiesRequestUri = $"https://fair.smartexpo.com.tr/Api/GetSehirler?UlkeId={ulkeId}&UserName={API_USERNAME}&Password={API_PASSWORD}";
-                var response = await httpClient.GetAsync(citiesRequestUri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonString = await response.Content.ReadAsStringAsync();
-
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse<List<Sehir>>>(jsonString);
-                    if (apiResponse != null)
-                    {
-                        return Json(apiResponse);
-                    }
-                    else
-                    {
-                        return StatusCode(500, "Invalid API response format.");
-                    }
-                }
-                else
-                {
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, $"Failed to retrieve cities from the API. Response: {errorContent}");
-                }
+                _logger.LogDebug("Getting cities data for country {UlkeId}", ulkeId);
+                var apiResponse = await _externalApiService.GetCitiesAsync(ulkeId);
+                _logger.LogDebug("Successfully retrieved cities data for country {UlkeId} with {Count} items", 
+                    ulkeId, apiResponse?.data?.Count ?? 0);
+                return Json(apiResponse);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}. StackTrace: {ex.StackTrace}");
+                _logger.LogError(ex, "Failed to get cities data for country {UlkeId}", ulkeId);
+                return StatusCode(500, "Failed to retrieve cities data");
             }
         }
 
         public async Task<IActionResult> GetSector()
         {
-            var httpClient = _httpClientFactory.CreateClient("FairApi");
             try
             {
-                string sectorRequestUri = $"https://fair.smartexpo.com.tr/Api/GetSektorler?UserName={API_USERNAME}&Password={API_PASSWORD}";
-                var response = await httpClient.GetAsync(sectorRequestUri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonString = await response.Content.ReadAsStringAsync();
-
-                    var apiResponse = JsonConvert.DeserializeObject<ApiResponse<List<Sektor>>>(jsonString);
-                    if (apiResponse != null)
-                    {
-                        return Json(apiResponse);
-                    }
-                    else
-                    {
-                        return StatusCode(500, "Invalid API response format.");
-                    }
-                }
-                else
-                {
-                    string errorContent = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, $"Failed to retrieve sectors from the API. Response: {errorContent}");
-                }
+                _logger.LogDebug("Getting sectors data");
+                var apiResponse = await _externalApiService.GetSectorAsync();
+                _logger.LogDebug("Successfully retrieved sectors data with {Count} items", 
+                    apiResponse?.data?.Count ?? 0);
+                return Json(apiResponse);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}. StackTrace: {ex.StackTrace}");
+                _logger.LogError(ex, "Failed to get sectors data");
+                return StatusCode(500, "Failed to retrieve sectors data");
             }
         }
 
+
+        public async Task<IActionResult> CacheTest()
+        {
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            
+            var countries = await _externalApiService.GetStatesAsync();
+            
+            stopwatch.Stop();
+            
+            return Json(new
+            {
+                cached = stopwatch.ElapsedMilliseconds < 100, // If under 100ms, likely cached
+                elapsed_ms = stopwatch.ElapsedMilliseconds,
+                countries_count = countries?.data?.Count ?? 0,
+                timestamp = DateTime.Now
+            });
+        }
 
         #endregion
     }

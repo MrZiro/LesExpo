@@ -1,11 +1,14 @@
 @model LesExpo.Models.ViewModels.HomeVM
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Load Engineering Fair";
+    ViewData["Description"] = "LES-EXPO - Turkey's first specialized freight engineering fair bringing together service providers and recipients in Istanbul. Discover innovations, network with industry leaders, and explore the future of freight transportation engineering.";
+    ViewData["Keywords"] = "LES-EXPO, Home Page, Fair, Exhibitor, Visitor, Event, News, Gallery, Corporate Identity";
 }
 
 @section Styles{
     <link href="~/css/index.css" rel="stylesheet" />
+    @* <link href="~/css/popup.css" rel="stylesheet" /> *@
 }
 
   <!-- Splash Screen -->
@@ -27,7 +30,7 @@
       <div class="loading-progress"></div>
     </div>
 
-    <div class="year">2025</div>
+    <div class="year">2026</div>
   </div>
 
 
@@ -51,13 +54,14 @@
                 It is the first specialized fair that will bring together service providers and service recipients in
                 the freight engineering services ecosystem, which contributes over 12 billion dollars to the Turkish
                 economy,<span class="highlight-sc">and it is being held in Istanbul.</span></p>
-              <a href="ymb-en-blog-1.html" class="btn-sc">More Information</a>
+              <a href="/en/blog-detail/les-expo-fair-cooperation-protocol-signed" class="btn-sc">More Information</a>
             </div>
             <div class="media-content-sc">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/I_Wu55RfC4I"
+              @* <iframe width="560" height="315" src="https://www.youtube.com/embed/I_Wu55RfC4I"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> *@
+                <img src="/images/haberler-1.jpeg" alt="">
             </div>
           </div>
         </div>
@@ -66,7 +70,7 @@
         <!-- <div class="slide-sc">
           <div class="slide-content-sc">
             <div class="text-content-sc">
-              <h2><span class="highlight-sc">ESTA 2025 EXCELLENCE AWARDS HAVE FOUND THEIR WINNERS!</span></h2>
+              <h2><span class="highlight-sc">ESTA 2026 EXCELLENCE AWARDS HAVE FOUND THEIR WINNERS!</span></h2>
               <p>YMB member YILNAK won the award in the Education category</p>
               <a href="example-blog-1.html" class="btn-sc">More Information</a>
             </div>
@@ -218,7 +222,7 @@
         </div>
         <!-- Card 8 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 1.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES1.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Gemi Brokerlik Şirketleri </h3>
@@ -229,7 +233,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 2.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES2.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Freight Forwarder Companies and Representatives</h3>
@@ -239,7 +243,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 5.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES5.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Ship Brokerage Companies</h3>
@@ -250,7 +254,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 4.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES4.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Business Organizations and Networks</h3>
@@ -277,18 +281,18 @@
   <div class="container-3">
     <div class="content-wrapper-3">
       <div class="text-content-3">
-        <h3 class="title-3">LES-EXPO 2025</h3>
+        <h3 class="title-3">LES-EXPO 2026</h3>
         <h1 class="heading-3">Freight Engineering Services: The Strategic Discipline of Heavy Transportation</h1>
         <p class="description-3">Load engineering is a multidisciplinary field that involves the safe, accurate and
           planned lifting, transportation and placement of loads of unusual size and weight. This process is not only
           realized with vehicles, but also with the planning, analysis and decisions of the expert engineers who manage
-          these vehicles. <a href="about-us.html" class="text-danger">Read more...</a></p>
-        <a href="on-kayit-formu.html" class="button" target="_blank">
+          these vehicles. <a href="/en/about-us" class="text-danger">Read more...</a></p>
+        <a href="/en/pre-registration-form" class="button" target="_blank">
           Yerinizi Ayırtın
         </a>
       </div>
       <div class="image-content-3">
-        <img src="./images/sectionphoto.jpg" alt="LES-EXPO 2025">
+        <img src="./images/sectionphoto.jpg" alt="LES-EXPO 2026">
       </div>
     </div>
   </div>
@@ -298,10 +302,10 @@
     <div class="text-content-4">
       <h2 class="text-uppercase">The future of freight engineering takes shape at les-expo</h2>
       <p>
-        LES-EXPO 2025 brings together the latest developments, technologies and innovative solutions in the cargo
+        LES-EXPO 2026 brings together the latest developments, technologies and innovative solutions in the cargo
         engineering sector. With the participation of expert companies and professionals in the field, this fair offers
         a unique opportunity to discover the latest trends in the sector and revolutionary innovations in engineering.
-        <a href="about-us.html" class="text-danger">Read more...</a>
+      <a href="/en/about-us" class="text-danger">Read more...</a>
       </p>
     </div>
     <div class="image-content-3">
@@ -340,10 +344,22 @@
     </div>
 
     <div class="button-group">
-      <button class="btn btn-reserve"> <a href="pre-registration-form.html">STAND RESERVATION</a></button>
-      <button class="btn btn-ticket"> <a href="online-ticket.html">ONLINE TICKET</a></button>
+      <button class="btn btn-reserve"> <a href="/en/pre-registration-form">STAND RESERVATION</a></button>
+      <button class="btn btn-ticket"> <a href="/en/online-ticket">ONLINE TICKET</a></button>
     </div>
   </div>
+
+  <!-- LES-EXPO Popup Start -->
+  <div id="lesexpo-popup" class="lesexpo-popup" style="display:none;">
+    <div class="lesexpo-popup-overlay"></div>
+    <div class="lesexpo-popup-content">
+      <button class="lesexpo-popup-close" aria-label="Close">&times;</button>
+      <a href="/en/blog-detail/new-date">
+        <img src="/images/lesexpo_popup_en.jpg" alt="LES-EXPO Popup" class="lesexpo-popup-img" />
+      </a>
+    </div>
+  </div>
+  <!-- LES-EXPO Popup End -->
 
 
 
@@ -351,5 +367,6 @@
 @section Scripts {
     
     <script src="~/js/index.js"></script>
+    @* <script src="~/js/popup.js"></script> *@
 
   }

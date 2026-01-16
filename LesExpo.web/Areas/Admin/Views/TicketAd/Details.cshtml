@@ -1,0 +1,189 @@
+@model Ticket
+
+@{
+    ViewData["Title"] = "Bilet Başvuru Detayları";
+}
+
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-ticket-detailed me-3"></i>Bilet Başvuru Detayları
+            </h1>
+            <p class="mb-0 opacity-75">@Model.CreatedAt.ToString("dd MMMM yyyy, HH:mm") tarihinde alınan başvuru</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <span class="lang-badge @(Model.Language == "tr" ? "badge-tr" : "badge-en") text-white">
+                @(Model.Language == "tr" ? "Türkçe" : "İngilizce")
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="contact-card p-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">Kişisel Bilgiler</h5>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Ad</div>
+                <div class="info-value">@Model.FirstName</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Soyad</div>
+                <div class="info-value">@Model.LastName</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Cinsiyet</div>
+                <div class="info-value">@Model.Gender</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">E-posta</div>
+                <div class="info-value">
+                    <a href="mailto:@Model.Email" class="email-link">@Model.Email</a>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Telefon</div>
+                <div class="info-value">
+                    @{
+                        string rawTel = Model.Phone ?? "";
+                        var digits = new string(rawTel.Where(char.IsDigit).ToArray());
+                        if (digits.StartsWith("90") && digits.Length == 12)
+                        {
+                            digits = digits.Substring(2);
+                        }
+                        if (digits.Length == 10 && digits.StartsWith("5"))
+                        {
+                            digits = "0" + digits;
+                        }
+                        if (digits.Length == 11 && digits.StartsWith("0"))
+                        {
+                            var formatted = $"{digits.Substring(0,4)} {digits.Substring(4,3)} {digits.Substring(7,2)} {digits.Substring(9,2)}";
+                            @formatted
+                        }
+                        else
+                        {
+                            @Model.Phone
+                        }
+                    }
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Pozisyon</div>
+                <div class="info-value">
+                    @if (!string.IsNullOrEmpty(Model.Position))
+                    {
+                        @Model.Position
+                    }
+                    else
+                    {
+                        <span class="text-muted">Belirtilmemiş</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">Şirket Bilgileri</h5>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Şirket Adı</div>
+                <div class="info-value">@Model.CompanyName</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Sektör</div>
+                <div class="info-value">@Model.Sector</div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Web Sitesi</div>
+                <div class="info-value">
+                    @if (!string.IsNullOrEmpty(Model.Website))
+                    {
+                        <a href="@Model.Website" target="_blank" class="email-link">@Model.Website</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Belirtilmemiş</span>
+                    }
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Ülke / Şehir</div>
+                <div class="info-value">@Model.Country / @Model.City</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5 class="section-title mb-3">Başvuru Durumu</h5>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">API Durumu</div>
+                <div class="info-value">
+                    <span class="badge @(Model.ApiSuccess ? "bg-success" : "bg-danger")">
+                        @(Model.ApiSuccess ? "Başarılı" : "Başarısız")
+                    </span>
+                    @if (!Model.ApiSuccess && !string.IsNullOrEmpty(Model.ApiResponse))
+                    {
+                        try 
+                        {
+                            var responseDoc = System.Text.Json.JsonDocument.Parse(Model.ApiResponse);
+                            if (responseDoc.RootElement.TryGetProperty("message", out var messageElement))
+                            {
+                                <br><small class="text-muted">@messageElement.GetString()</small>
+                            }
+                        }
+                        catch 
+                        {
+                            // Ignore JSON parsing errors
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-item">
+                <div class="info-label">Şartları Kabul</div>
+                <div class="info-value">
+                    <span class="badge @(Model.Terms ? "bg-success" : "bg-danger")">
+                        @(Model.Terms ? "Evet" : "Hayır")
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ApiResponse))
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="section-title mb-3">API Yanıtı</h5>
+                <div class="api-response-card">
+                    <pre>@Model.ApiResponse</pre>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="action-buttons text-center">
+        <a asp-controller="TicketAd" asp-action="Index" class="btn btn-custom btn-back me-3">
+            <i class="bi bi-arrow-left"></i>
+            Listeye Dön
+        </a>
+        <a href="mailto:@Model.Email" class="btn btn-custom btn-reply">
+            <i class="bi bi-reply"></i>
+            E-posta ile İletişim
+        </a>
+    </div>
+</div> 

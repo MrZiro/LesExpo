@@ -11,6 +11,9 @@ namespace LesExpo.DataAccess.Repository.IRepository
         IContentTypeRepository ContentType { get; }
         IBlogRepository Blog { get; }
         ISliderRepository Slider { get; }
+        IContactRepository Contact { get; }
+        ITicketRepository Ticket { get; }
+        IRegistrationRepository Registration { get; }
 
         void Save();
         Task SaveAsync();

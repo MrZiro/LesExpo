@@ -1,12 +1,13 @@
 
 @{
     ViewData["Title"] = "Exhibition Identification";
-    ViewData["Description"] = "LES-EXPO 2025 - Cargo Engineering Services Fair, taking place September 9-11 at Istanbul Fair Center.";
+    ViewData["Description"] = "LES-EXPO 2026 - Cargo Engineering Services Fair, taking place April 7-9 at Istanbul Fair Center.";
     ViewData["Keywords"] = "LES-EXPO, exhibition identification, cargo engineering, Istanbul Fair Center, fair information";
 }
 
 @section styles{
         <link rel="stylesheet" href="/css/fuar-kunye.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
         <style>
         .banner {
             position: relative;
@@ -34,75 +35,15 @@
     <div class="banner">
         <div class="banner-yazi">LES-EXPO</div>
         <div class="breadcrumb-1">
-            <a href="index.html">Home Page / </a>
-            <a href="exhibition-identification.html">Exhibition Identification</a>
+            <a href="/en">Home Page / </a>
+            <a href="/en/exhibition-identification">Exhibition Identification</a>
         </div>
         </div>
     </div>
 <div class="container main-container">
     <div class="row">
         <!-- Sidebar -->
-        <div class="col-md-3 sidebar-container">
-            <div class="sidebar">
-                <div class="sidebar-sticky">
-                    <div class="sidebar-header p-3 mb-3 text-center">
-                        <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
-                        <p class="small mb-0" data-translate="hakkimizda.sidebar.subTitle">About
-                        </p>
-                    </div>
-                    <ul class="nav flex-column">
-                        <!-- Hakkımızda -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
-                                <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
-                                <span data-translate="hakkimizda.sidebar.aboutUs">About Us</span>
-                            </a>
-                            <div class="collapse show" id="hakkimizdaSubmenu">
-                                <ul class="nav flex-column submenu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="about-us.html">
-                                            <i class="fas fa-angle-right me-2"></i>
-                                            <span data-translate="hakkimizda.sidebar.bfmAbout">About
-                                                LES-EXPO</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="exhibiton-identification.html">
-                                            <i class="fas fa-angle-right me-2"></i>
-                                            <span
-                                                data-translate="hakkimizda.sidebar.presidentMessage">Exhibition
-                                                Identification</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="exhibition-area.html">
-                                            <i class="fas fa-angle-right me-2"></i>
-                                            <span data-translate="hakkimizda.sidebar.qualityPolicy">Exhibition
-                                                Area</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="how-to-reach.html">
-                                            <i class="fas fa-angle-right me-2"></i>
-                                            <span data-translate="hakkimizda.sidebar.ourTeam">How To
-                                                Reach?</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="show-report.html">
-                                            <i class="fas fa-angle-right me-2"></i>
-                                            <span data-translate="hakkimizda.sidebar.boardOfDirectors">Post Show
-                                                Report</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <partial name="Components/AboutUs/_SidebarHakkimizda" />
         <!-- Main content -->
         <div class="container-kunye col-md-9">
             <div class="main-content-kunye">
@@ -114,9 +55,9 @@
                 </div>
 
                 <h2 class="kunye-h2">LES-EXPO-Cargo Engineering Services Fair Meets You at Istanbul Fair Center
-                    on September 9-11!</h2>
+                    on April 7-9!</h2>
 
-                <p class="kunye-p">Les-Expo 2025 brings together the latest developments, technologies and
+                <p class="kunye-p">Les-Expo 2026 brings together the latest developments, technologies and
                     innovative solutions in the field of freight engineering services.</p>
 
                 <p class="kunye-p">This fair, which will be held with the participation of expert companies and
@@ -162,12 +103,12 @@
 
                 <div class="info-item-kunye">
                     <div class="info-title-kunye">Start Date:</div>
-                    <div class="info-content-kunye">09.09.2025</div>
+                    <div class="info-content-kunye">07.04.2026</div>
                 </div>
 
                 <div class="info-item-kunye">
                     <div class="info-title-kunye">End Date:</div>
-                    <div class="info-content-kunye">11.09.2025</div>
+                    <div class="info-content-kunye">09.04.2026</div>
                 </div>
 
                 <div class="info-item-kunye">
@@ -199,3 +140,6 @@
       <i class="fas fa-bars"></i>
     </button>
 
+@section Scripts {
+    <script src="~/js/hakkimizda.js"></script>
+}

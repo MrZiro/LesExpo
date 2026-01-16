@@ -1,13 +1,13 @@
 @{
     ViewData["Title"] = "Ziyaretçi Profili";
-    ViewData["Description"] = "Ziyaretçi Profili";
-    ViewData["Keywords"] = "Ziyaretçi Profili";
-    ViewData["CanonicalUrl"] = "~/tr/ziyaretci-profili";
-    ViewData["AlternateUrls"] = new string[] { "~/en/visitor-profile" };
+    ViewData["Description"] = "LES-EXPO Ziyaretçi Profili - LES-EXPO 2026'teki ziyaretçi profilleri hakkında bilgi edinin.";
+    ViewData["Keywords"] = "LES-EXPO, Ziyaretçi Profili, Fair";
+
 }
 @section Styles {
   <link rel="stylesheet" href="~/css/katilimci-profili.css">
   <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
+  <link rel="stylesheet" href="~/css/sidebar.css">
     <style>
     .banner {
       position: relative;
@@ -169,3 +169,7 @@
     <button class="sidebar-toggle-button d-md-none">
       <i class="fas fa-bars"></i>
     </button>
+
+@section Scripts {
+  <script src="~/js/hakkimizda.js"></script>
+}

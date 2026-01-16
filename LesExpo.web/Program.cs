@@ -1,5 +1,5 @@
 using LesExpo.DataAccess.Data;
-using LesExpo.DataAccess.DbInitializer;
+
 using LesExpo.DataAccess.Repository;
 using LesExpo.DataAccess.Repository.IRepository;
 using LesExpo.Models;
@@ -10,11 +10,28 @@ using LesExpo.web.Middleware;
 using LesExpo.web.Models.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.IIS;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure request size limits for large file uploads
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 200 * 1024 * 1024; // 200MB
+});
+
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 200 * 1024 * 1024; // 200MB
+    options.ValueLengthLimit = int.MaxValue;
+    options.ValueCountLimit = int.MaxValue;
+    options.KeyLengthLimit = int.MaxValue;
+});
 
 
 
@@ -37,13 +54,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 // Add repository services
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add other services
 builder.Services.AddScoped<IFileHelper, FileHelper>();
 builder.Services.AddScoped<IHtmlContentService, HtmlContentService>();
-// builder.Services.AddScoped<IEmailSender, EmailSenderGrid>(); // Comment out or remove old sender
 builder.Services.AddScoped<IEmailSender, EmailSenderSmtp>(); // Add new SMTP sender
 
 // Configure localized routes from appsettings.json
@@ -56,6 +72,19 @@ builder.Services.Configure<EmailTemplatesConfig>(
 
 // Add URL localization service
 builder.Services.AddScoped<IUrlLocalizationService, UrlLocalizationService>();
+
+// Add external API service
+builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
+
+// Add search content indexing service
+builder.Services.AddScoped<IContentIndexService, ContentIndexService>();
+
+// Add memory cache
+builder.Services.AddMemoryCache();
+
+// Configure External API settings
+builder.Services.Configure<ExternalApiConfig>(
+    builder.Configuration.GetSection(ExternalApiConfig.SectionName));
 
 // Register background services
 builder.Services.AddHostedService<TempFileCleanupService>();
@@ -76,17 +105,17 @@ builder.Services.AddRazorPages()
     .AddRazorOptions(options =>
     {
         // PRIORITY ORDER: Areas first (no language), then language-specific public views
-        
+
         // 1. AREAS (Admin, etc.) - Use standard ASP.NET Core area placeholders
         // {2} = Area name, {1} = Controller, {0} = Action
         options.ViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
-        
+
         // 2. LANGUAGE-SPECIFIC PUBLIC VIEWS - Custom language expansion
         // These will be expanded by CustomViewLocationExpander to use language instead of {2}
         options.ViewLocationFormats.Add("/Views/{2}/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/{2}/Shared/{0}.cshtml");
-        
+
         // 3. DEFAULT FALLBACK VIEWS - Last resort
         options.ViewLocationFormats.Add("/Views/{1}/{0}.cshtml");
         options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
@@ -100,7 +129,14 @@ builder.Services.AddRazorPages()
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    // This is a temporary solution for development to bypass SSL validation for SMTP.
+    // WARNING: This should not be used in production as it poses a security risk.
+    System.Net.ServicePointManager.ServerCertificateValidationCallback =
+        (sender, certificate, chain, sslPolicyErrors) => true;
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -117,7 +153,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-SeedDatabase();
+
 
 
 
@@ -146,11 +182,4 @@ app.Run();
 
 
 
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-    {
-        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-        dbInitializer.Initialize();
-    }
-}
+

@@ -59,7 +59,7 @@
                             <li class="nav-item @GetActiveClass("Slider")">
                                 <a asp-area="admin" asp-controller="Slider" asp-action="Index" class="nav-link d-flex align-items-center">
                                     <span class="svv material-symbols-rounded">
-                                        home
+                                        view_carousel
                                     </span>
                                     <span class="label ms-3">Slider</span>
                                 </a>
@@ -67,7 +67,7 @@
                             <li class="nav-item @GetActiveClass("ContentType")">
                                 <a asp-area="admin" asp-controller="ContentType" asp-action="Index" class="nav-link d-flex align-items-center">
                                     <span class="svv material-symbols-rounded">
-                                        home
+                                        category
                                     </span>
                                     <span class="label ms-3">İçerik Türü</span>
                                 </a>
@@ -75,9 +75,33 @@
                             <li class="nav-item @GetActiveClass("Blog")">
                                 <a asp-area="admin" asp-controller="Blog" asp-action="Index" class="nav-link d-flex align-items-center">
                                     <span class="svv material-symbols-rounded">
-                                        home
+                                        article
                                     </span>
                                     <span class="label ms-3">Blog</span>
+                                </a>
+                            </li>
+                            <li class="nav-item @GetActiveClass("ContactAd")">
+                                <a asp-area="admin" asp-controller="ContactAd" asp-action="Index" class="nav-link d-flex align-items-center">
+                                    <span class="svv material-symbols-rounded">
+                                        mail
+                                    </span>
+                                    <span class="label ms-3">İletişim</span>
+                                </a>
+                            </li>
+                            <li class="nav-item @GetActiveClass("RegistrationAd")">
+                                <a asp-area="admin" asp-controller="RegistrationAd" asp-action="Index" class="nav-link d-flex align-items-center">
+                                    <span class="svv material-symbols-rounded">
+                                        how_to_reg
+                                    </span>
+                                    <span class="label ms-3">Ön Kayıt</span>
+                                </a>
+                            </li>
+                            <li class="nav-item @GetActiveClass("TicketAd")">
+                                <a asp-area="admin" asp-controller="TicketAd" asp-action="Index" class="nav-link d-flex align-items-center">
+                                    <span class="svv material-symbols-rounded">
+                                        confirmation_number
+                                    </span>
+                                    <span class="label ms-3">Bilet</span>
                                 </a>
                             </li>
                             <partial name="_AdminMenu" />

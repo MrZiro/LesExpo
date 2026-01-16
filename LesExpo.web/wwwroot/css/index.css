@@ -1,9 +1,83 @@
+body{
+  background-color: #0c243d;
+}
+
+
+
 /* Slider */
 .carousel-item {
   position: relative;
   overflow: hidden;
   height: 100vh;
 }
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background-color: var(--thirdcolor);
+}
+
+.desktop-video {
+  display: block;
+}
+
+.mobile-video {
+  display: none;
+}
+
+/* Tablet görünümü için responsive tasarım */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  
+  .carousel-item {
+    height: 100vh;
+    min-height: 600px;
+  }
+  
+  .video-container {
+    background-color: #000;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-video {
+    display: none;
+  }
+  .mobile-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .carousel-item {
+    height: 100vh;
+    min-height: 500px;
+  }
+  
+  .video-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 
 .carousel-item img {
   width: 100%;
@@ -125,7 +199,7 @@
 .hero-content p {
   font-size: 1.7rem;
   color: #fff;
-  max-width: 800px;
+  max-width: 840px;
   margin: 0 auto;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -1605,12 +1679,4 @@
   100% {
     width: 100%;
   }
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-body {
-  background-color: #0c243d;
 }

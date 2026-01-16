@@ -12,56 +12,74 @@
             width: 100%;
             max-height: 300px;
             object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid var(--ca-border-medium);
+            border-radius: var(--ca-radius-lg);
         }
 
         .img-remove {
             position: absolute;
             top: 5px;
             right: 5px;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             padding: 5px;
             cursor: pointer;
-            color: #dc3545;
+            color: var(--ca-danger);
+            box-shadow: var(--ca-shadow-sm);
         }
 
         .dropzone {
-            border: 2px dashed #ddd;
-            border-radius: 5px;
-            padding: 25px;
+            border: 2px dashed var(--ca-border-medium);
+            border-radius: var(--ca-radius-lg);
+            padding: var(--ca-spacing-xl);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--ca-transition-fast);
+            background: var(--ca-bg-light);
         }
 
-            .dropzone:hover {
-                border-color: #007bff;
-            }
+        .dropzone:hover {
+            border-color: var(--ca-primary);
+            background: var(--ca-bg-gradient);
+        }
 
-            .dropzone.dragover {
-                border-color: #28a745;
-                background-color: rgba(40, 167, 69, 0.1);
-            }
+        .dropzone.dragover {
+            border-color: var(--ca-success);
+            background-color: rgba(251, 173, 24, 0.1);
+        }
     </style>
 }
 
-<div class="container">
-    <div class="row pt-4 pb-3">
-        <div class="col-12">
-            <h2 class="text-primary">
-                Blog Oluştur
-            </h2>
+<!-- Page Header -->
+<div class="page-header p-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-1 fw-bold">
+                <i class="bi bi-plus-circle me-3"></i>Yeni Blog Yazısı
+            </h1>
+            <p class="mb-0 opacity-75">Yeni bir blog yazısı oluşturun</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="stats-card p-3 text-center">
+                <h5 class="mb-1">Yeni Kayıt</h5>
+                <h3 class="mb-0">Blog</h3>
+            </div>
         </div>
     </div>
+</div>
 
+<!-- Form Content -->
+<div class="contact-card p-4">
     <form method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="row mb-3">
             <div class="col-md-8">
-                <div class="border p-3 mt-2 mb-3 rounded-2">
+                <!-- Basic Information Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-card-text me-1"></i>Temel Bilgiler
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Blog.Title" class="form-label">Başlık</label>
                         <input asp-for="Blog.Title" class="form-control" />
@@ -76,8 +94,9 @@
                         <span asp-validation-for="Blog.Language" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label asp-for="Blog.Slug" class="form-label">Slug</label>
-                        <input asp-for="Blog.Slug" class="form-control" placeholder="Otomatik oluşturmak için boş bırakın" />
+                        <label asp-for="Blog.Slug" class="form-label">URL Slug</label>
+                        <input asp-for="Blog.Slug" class="form-control"
+                            placeholder="Otomatik oluşturmak için boş bırakın" />
                         <span asp-validation-for="Blog.Slug" class="text-danger"></span>
                         <div class="form-text">Başlıktan otomatik oluşturmak için boş bırakın.</div>
                     </div>
@@ -89,16 +108,20 @@
                     <div class="mb-3">
                         <label asp-for="Blog.ContentTypeId" class="form-label">İçerik Türü</label>
                         <select asp-for="@Model.Blog.ContentTypeId" class="form-select"
-                                asp-items="@Model.ContentTypeList">
-                            <option value="">-- İçerik Türü Seçin --</option>
+                            asp-items="@Model.ContentTypeList">
+
                         </select>
                         <span asp-validation-for="Blog.ContentTypeId" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="border p-3 mt-2 mb-3 rounded-2">
+                <!-- Content Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-file-earmark-text me-1"></i>İçerik
+                    </div>
                     <div class="row">
-                        <label asp-for="Blog.Content" class="form-label">İçerik</label>
+                        <label asp-for="Blog.Content" class="form-label">Blog İçeriği</label>
                         <textarea asp-for="Blog.Content" class="form-control Editor" rows="15"></textarea>
                         <span asp-validation-for="Blog.Content" class="text-danger"></span>
                     </div>
@@ -107,21 +130,25 @@
 
             <div class="col-md-4">
                 <!-- Card Image Section -->
-                <div class="border p-3 mt-2 rounded-2">
-                    <label class="form-label">Kart Görseli</label>
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-image me-1"></i>Kart Görseli
+                    </div>
                     <p class="text-muted small">Bu görsel kartlarda veya küçük resimlerde kullanılacak</p>
 
                     <div class="dropzone" id="card-image-dropzone" enabled="true">
-                        <input type="file" id="cardImageInput" asp-for="CardImage" class="d-none" accept=".jpg,.jpeg,.png,.gif,.webp" />
+                        <input type="file" id="cardImageInput" asp-for="CardImage" class="d-none"
+                            accept=".jpg,.jpeg,.png,.gif,.webp" />
                         <div id="card-dropzone-content">
                             <i class="bi bi-cloud-arrow-up fs-3"></i>
                             <p class="mb-1">Bir görseli buraya sürükleyip bırakın veya seçmek için tıklayın</p>
                             <p class="text-muted small mb-0">Kabul edilen: JPG, JPEG, PNG, GIF, WEBP (Maks 5MB)</p>
-                            <p class="text-muted small mb-0 mt-2"><strong>Önerilen boyutlar:</strong> 300×550 piksel</p>
+                            <p class="text-muted small mb-0 mt-2"><strong>Önerilen boyutlar:</strong> 500×300 piksel</p>
                         </div>
                     </div>
                     <span asp-validation-for="CardImage" class="text-danger d-block mt-2"></span>
                 </div>
+
                 <div class="mb-3 text-center" id="card-image-preview-container">
                     <div class="img-container" style="display:none;">
                         <img src="" id="cardImagePreview" class="img-preview" />
@@ -129,41 +156,54 @@
                             <i class="bi bi-x-circle-fill"></i>
                         </div>
                     </div>
-                    <p class="text-muted small" id="card-preview-caption" style="display:none;">Kart görseli önizleme. Değişiklikleri kaydetmek için gönder.</p>
+                    <p class="text-muted small" id="card-preview-caption" style="display:none;">Kart görseli önizleme.
+                        Değişiklikleri kaydetmek için gönder.</p>
                 </div>
 
-                <div class="border p-3 mt-2 rounded-2">
+                <!-- SEO Settings Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-search me-1"></i>SEO Ayarları
+                    </div>
                     <div class="mb-3">
                         <label asp-for="Blog.MetaDescription" class="form-label">Meta Açıklama</label>
                         <textarea asp-for="Blog.MetaDescription" class="form-control" rows="3"
-                                  placeholder="Arama motorları için kısa açıklama"></textarea>
+                            placeholder="Arama motorları için kısa açıklama"></textarea>
                         <span asp-validation-for="Blog.MetaDescription" class="text-danger"></span>
                         <div class="form-text">Önerilen: 150-160 karakter</div>
                     </div>
                     <div class="mb-3">
                         <label asp-for="Blog.MetaKeywords" class="form-label">Meta Anahtar Kelimeler</label>
-                        <input asp-for="Blog.MetaKeywords" class="form-control" placeholder="Virgülle ayrılmış anahtar kelimeler" />
+                        <input asp-for="Blog.MetaKeywords" class="form-control"
+                            placeholder="Virgülle ayrılmış anahtar kelimeler" />
                         <span asp-validation-for="Blog.MetaKeywords" class="text-danger"></span>
                     </div>
                 </div>
 
-                <div class="border p-3 mt-2">
+                <!-- Publishing Settings Card -->
+                <div class="info-item">
+                    <div class="info-label mb-3">
+                        <i class="bi bi-gear me-1"></i>Yayın Ayarları
+                    </div>
                     <div class="mb-3 form-check">
                         <input asp-for="Blog.IsPublished" type="checkbox" class="form-check-input" />
                         <label asp-for="Blog.IsPublished" class="form-check-label">Yayınlandı</label>
                         <div class="form-text">Taslak olarak kaydetmek için işareti kaldırın</div>
                     </div>
                 </div>
-
-                <div class="text-end mt-3">
-                    <a asp-controller="Blog" asp-action="Index" class="btn btn-secondary" style="width:150px">
-                        <i class="bi bi-arrow-left"></i> Listeye Dön
-                    </a>
-                    <button type="submit" class="btn btn-primary" style="width:150px">
-                        <i class="bi bi-save"></i> Oluştur
-                    </button>
-                </div>
             </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons text-center">
+            <a asp-controller="Blog" asp-action="Index" class="btn btn-custom btn-back me-3">
+                <i class="bi bi-arrow-left"></i>
+                Listeye Dön
+            </a>
+            <button type="submit" class="btn btn-custom btn-reply">
+                <i class="bi bi-save"></i>
+                Blog Oluştur
+            </button>
         </div>
     </form>
 </div>
@@ -171,21 +211,51 @@
 
 @section Scripts {
     @{
-        <script src="https://cdn.tiny.cloud/1/ksmksgnd1ppn1dd8gfjy1rhu22ru4v191js89isjbbf27fnm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="~/admin/tinymce/tinymce.min.js"></script>
         <script src="~/admin/scripts/Editor.js"></script>
         <partial name="_ValidationScriptsPartial" />
         <script src="~/admin/scripts/Dropzone.js"></script>
     }
     <script>
-        // Auto-generate slug from title if slug is empty
-        $('#Blog_Title').change(function () {
-            // Convert title to slug format
-            var slug = $(this).val().toLowerCase()
-                .replace(/[^\w\s-]/g, '') // Remove special characters
-                .replace(/\s+/g, '-')     // Replace spaces with hyphens
-                .replace(/-+/g, '-');     // Replace multiple hyphens with single hyphen
+        function toSlug(s) {
+            if (!s || !s.trim()) return '';
+            let text = s.toString().toLowerCase();
 
-            $('#Blog_Slug').val(slug);
-        });
+            // Replace Turkish characters
+            text = text
+                .replace(/ı/g, 'i').replace(/İ/g, 'i')
+                .replace(/ö/g, 'o').replace(/Ö/g, 'o')
+                .replace(/ş/g, 's').replace(/Ş/g, 's')
+                .replace(/ğ/g, 'g').replace(/Ğ/g, 'g')
+                .replace(/ü/g, 'u').replace(/Ü/g, 'u')
+                .replace(/ç/g, 'c').replace(/Ç/g, 'c');
+
+            // Remove diacritics
+            text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+            // Remove invalid chars (allow only letters, digits, space, dash)
+            text = text.replace(/[^a-z0-9 \-]/g, '-');
+
+            // Collapse newlines, tabs, underscores to space
+            text = text.replace(/[\n\r\t_]+/g, ' ');
+
+            // Collapse whitespace to single dash
+            text = text.replace(/\s+/g, '-');
+
+            // Collapse multiple dashes to single dash
+            text = text.replace(/-+/g, '-');
+
+            // Trim dashes
+            return text.replace(/^-+|-+$/g, '');
+        }
+
+        const title = document.getElementById('Blog_Title');
+
+        const slug=document.getElementById('Blog_Slug');
+        title?.addEventListener('input', () => { pvTitle.textContent = title.value; });
+        title?.addEventListener('blur', () => { if (slug) { slug.value = toSlug(title.value); pvSlug.textContent = '/' + slug.value; } });
+        slug?.addEventListener('input', () => { pvSlug.textContent = '/' + slug.value; });
+
+
     </script>
-} 
+}

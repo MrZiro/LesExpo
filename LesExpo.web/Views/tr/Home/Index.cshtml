@@ -1,15 +1,16 @@
 @model LesExpo.Models.ViewModels.HomeVM
 
 @{
-    ViewData["Title"] = "Anasayfa";
-    ViewData["Description"] = "Anasayfa";
-    ViewData["Keywords"] = "Anasayfa";
-    ViewData["CanonicalUrl"] = "~/tr/anasayfa";
-    ViewData["AlternateUrls"] = new string[] { "~/en/home" };
+    ViewData["Title"] = "Yük Mühendisliği Fuarı";
+    ViewData["Description"] = "LES-EXPO Anasayfa - Türkiye'nin önde gelen yük mühendisliği fuarında geçmiş etkinliklerimiz, başarı hikayeleri ve sektör deneyimlerimiz.";
+    ViewData["Keywords"] = "LES-EXPO, Anasayfa, Fair";
+    ViewData["CanonicalUrl"] = SD.siteUrl + "/tr/anasayfa";
+    ViewData["AlternateUrls"] = new string[] { SD.siteUrl + "/en/home" };
 }
 
 @section Styles{
     <link href="~/css/index.css" rel="stylesheet" />
+    @* <link href="~/css/popup.css" rel="stylesheet" /> *@
 }
 
   <!-- Splash Screen -->
@@ -31,7 +32,7 @@
       <div class="loading-progress"></div>
     </div>
 
-    <div class="year">2025</div>
+    <div class="year">2026</div>
   </div>
 
 
@@ -52,13 +53,14 @@
               <p>Türkiye ekonomisine yaklaşık 12 milyar doların üzerinde katkı sağlayan yük mühendisliği hizmetleri
                 ekosistemindeki hizmet alan ve hizmet verenleri bir araya getirecek ilk ihtisas fuarı <span
                   class="highlight-sc">ve İstanbul'da düzenleniyor.</span></p>
-              <a href="ymb.blog-1.html" class="btn-sc">Detaylı Bilgi</a>
+              <a href="/tr/blog-detay/les-expo-fuari-is-birligi-protokolu-imzalandi" class="btn-sc">Detaylı Bilgi</a>
             </div>
             <div class="media-content-sc">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/I_Wu55RfC4I"
+              @* <iframe width="560" height="315" src="https://www.youtube.com/embed/I_Wu55RfC4I"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> *@
+                <img src="/images/haberler-1.jpeg" alt="">
             </div>
           </div>
         </div>
@@ -176,7 +178,7 @@
         </div>
         <!-- Card 8 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 1.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES1.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Gemi Brokerlik Şirketleri </h3>
@@ -187,7 +189,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 2.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES2.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>İş Örgütleri ve Networkleri</h3>
@@ -197,7 +199,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 5.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES5.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Enerji Şirketleri</h3>
@@ -208,7 +210,7 @@
         </div>
         <!-- Card 9 -->
         <div class="gallery-card">
-          <div class="card-image" style="background-image: url('./images/LES\ 4.jpg');">
+          <div class="card-image" style="background-image: url('./images/LES4.jpg');">
             <div class="card-overlay"></div>
             <div class="card-content">
               <h3>Mühendislik Hizmetleri Şirketleri</h3>
@@ -235,18 +237,18 @@
   <div class="container-3">
     <div class="content-wrapper-3">
       <div class="text-content-3">
-        <h3 class="title-3">LES-EXPO 2025</h3>
+        <h3 class="title-3">LES-EXPO 2026</h3>
         <h1 class="heading-3">Yük Mühendisliği Hizmetleri: Ağır Taşımacılığın Stratejik Disiplini</h1>
         <p class="description-3">Yük mühendisliği, sıra dışı boyut ve ağırlıktaki yüklerin güvenli, doğru ve planlı
           şekilde kaldırılması, taşınması ve yerleştirilmesi süreçlerini kapsayan çok disiplinli bir alandır. Bu süreç
           yalnızca araçlarla değil, bu araçları yöneten uzman mühendislerin planlama, analiz ve kararlarıyla
-          gerçekleşir. <a href="hakkimizda.html" class="text-danger">Devamını oku...</a></p>
-        <a href="on-kayit-formu.html" class="button" target="_blank">
+          gerçekleşir. <a href="/tr/hakkimizda" class="text-danger">Devamını oku...</a></p>
+        <a href="/tr/on-kayit-formu" class="button" target="_blank">
           Yerinizi Ayırtın
         </a>
       </div>
       <div class="image-content-3">
-        <img src="./images/sectionphoto.jpg" alt="LES-EXPO 2025">
+        <img src="/images/sectionphoto.jpg" alt="LES-EXPO 2026">
       </div>
     </div>
   </div>
@@ -256,11 +258,11 @@
     <div class="text-content-4">
       <h2 class="text-uppercase">yük mühendisliğinin geleceği les-expo fuarında şekilleniyor</h2>
       <p>
-        LES-EXPO 2025, yük mühendisliği sektöründeki en yeni gelişmeleri, teknolojileri ve yenilikçi çözümleri bir
+        LES-EXPO 2026, yük mühendisliği sektöründeki en yeni gelişmeleri, teknolojileri ve yenilikçi çözümleri bir
         araya
         getiriyor. Alanında uzman firmaların ve profesyonellerin katılımıyla gerçekleşecek olan bu fuar, sektördeki en
         son trendleri ve mühendislikteki devrim niteliğindeki yenilikleri keşfetmeniz için eşsiz bir fırsat sunuyor.
-        <a href="hakkimizda.html" class="text-danger">Devamını oku...</a>
+        <a href="/tr/hakkimizda" class="text-danger">Devamını oku...</a>
       </p>
     </div>
     <div class="image-content-3">
@@ -299,16 +301,27 @@
     </div>
 
     <div class="button-group">
-      <button class="btn btn-reserve"> <a href="on-kayit-formu.html">STANT REZERVASYONU</a></button>
-      <button class="btn btn-ticket"> <a href="online-bilet.html">ONLINE BİLET</a></button>
+      <button class="btn btn-reserve"> <a href="/tr/on-kayit-formu">STANT REZERVASYONU</a></button>
+      <button class="btn btn-ticket"> <a href="/tr/online-bilet">ONLINE BİLET</a></button>
     </div>
   </div>
 
-
+<!-- LES-EXPO Popup Start -->
+  <div id="lesexpo-popup" class="lesexpo-popup" style="display:none;">
+    <div class="lesexpo-popup-overlay"></div>
+    <div class="lesexpo-popup-content">
+      <button class="lesexpo-popup-close" aria-label="Close">&times;</button>
+      <a href="/tr/blog-detay/yeni-tarih">
+        <img src="/images/lesexpo_popup.jpg" alt="LES-EXPO Popup" class="lesexpo-popup-img" />
+      </a>
+    </div>
+  </div>
+  <!-- LES-EXPO Popup End -->
 
 
 @section Scripts {
     
     <script src="~/js/index.js"></script>
+    @* <script src="~/js/popup.js"></script> *@
 
   }

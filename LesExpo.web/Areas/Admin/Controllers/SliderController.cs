@@ -34,6 +34,7 @@ namespace LesExpo.web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Count = _unitOfWork.Slider.GetCount();
             return View();
         }
 

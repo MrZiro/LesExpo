@@ -1,0 +1,114 @@
+@{
+  ViewData["Title"] = "Exhibitor List";
+  ViewData["Description"] = "Exhibitor List - You can fill out the pre-registration form to participate in our fair.";
+  ViewData["Keywords"] = "Exhibitor List, Fair";
+}
+@section Styles{
+  <link rel="stylesheet" href="~/css/katilimci-listesi.css">
+  <link rel="stylesheet" href="~/css/sidebar.css">
+
+  <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES5.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      color: white;
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+}
+
+
+
+  <div class="banner">
+    <div class="banner-yazi">LES-EXPO</div>
+    <div class="breadcrumb-1">
+      <a href="/en">Home Page /</a>
+      <a href="/en/exhibitor-list">Exhibitor List</a>
+    </div>
+  </div>
+
+    <div class="container-klf">
+      <h1>2026 Participants List</h1>
+
+      <div class="year-indicator-klf">
+      </div>
+
+      <div class="filters-klf">
+        <div class="filter-group-klf">
+          <label for="company-name">Company Name</label>
+          <input type="text" id="firma-adi" class="filter-input-klf" placeholder="Company Name">
+        </div>
+
+        <div class="filter-group-klf">
+          <label for="country">Country</label>
+          <div class="custom-select-klf">
+            <div class="select-selected-klf" id="selected-country">Turkey</div>
+            <div class="select-arrow-klf">&#9662;</div>
+            <div class="select-items-klf select-hide-klf" id="country-items">
+              <div class="search-container-klf">
+                <input type="text" id="country-search" placeholder="Search...">
+                <span class="search-icon-klf">&#128269;</span>
+              </div>
+              <div class="options-container-klf">
+                <div class="select-item-klf" data-value="turkey">Turkey</div>
+                <div class="select-item-klf" data-value="sri-lanka">Sri Lanka</div>
+                <div class="select-item-klf" data-value="taiwan">Taiwan</div>
+                <div class="select-item-klf" data-value="ukraine">Ukraine</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group-klf">
+          <label for="product-groups">Product Groups</label>
+          <div class="custom-select-klf">
+            <div class="select-selected-klf" id="selected-product">Crane Systems</div>
+            <div class="select-arrow-klf">&#9662;</div>
+            <div class="select-items-klf select-hide-klf" id="product-items">
+              <div class="options-container-klf">
+                <div class="select-item-klf" data-value="crane-systems">Crane Systems</div>
+                <div class="select-item-klf" data-value="lifting-equipment">Lifting Equipment</div>
+                <div class="select-item-klf" data-value="transport-systems">Transport Systems</div>
+                <div class="select-item-klf" data-value="load-balancing">Load Balancing</div>
+                <div class="select-item-klf" data-value="container-systems">Container Systems</div>
+                <div class="select-item-klf" data-value="forklift-equipment">Forklift Equipment</div>
+                <div class="select-item-klf" data-value="heavy-load-transport">Heavy Load Transport</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-klf"></div>
+
+      <div class="table-container-klf">
+        <table id="participants-table">
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Country</th>
+              <th>Hall</th>
+              <th>Stand No</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+@section Scripts{
+    <!-- Custom Scripts -->
+    <script src="~/js/hakkimizda.js"></script>
+
+    <script src="~/js/exhibitor-list.js"></script>
+}

@@ -22,6 +22,12 @@
     <ProjectReference Include="..\LesExpo.DataAccess\LesExpo.DataAccess.csproj" />
     <ProjectReference Include="..\LesExpo.Models\LesExpo.Models.csproj" />
     <ProjectReference Include="..\LesExpo.Utility\LesExpo.Utility.csproj" />
+    <ProjectReference Include="..\Tools\SearchIndexGen\SearchIndexGen.csproj" />
   </ItemGroup>
+
+  <Target Name="GenerateStaticSearchIndex" BeforeTargets="Publish">
+    <Message Importance="high" Text="Generating static search index JSON files..." />
+    <Exec Command="&quot;$(MSBuildProjectDirectory)\..\Tools\SearchIndexGen\bin\$(Configuration)\net8.0\SearchIndexGen.exe&quot; &quot;$(MSBuildProjectDirectory)&quot; &quot;wwwroot/search&quot; &quot;en,tr&quot;" />
+  </Target>
 
 </Project>

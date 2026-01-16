@@ -1,0 +1,76 @@
+@{
+    ViewData["Title"] = "Fuar Sonuç Raporu";
+    ViewData["Description"] = "Fuar Sonuç Raporu";
+    ViewData["Keywords"] = "Fuar Sonuç Raporu, LES-EXPO";
+}
+@section Styles {
+   <link rel="stylesheet" href="~/css/hakkimizda.css">
+  <link rel="stylesheet" href="~/css/sidebar.css">
+    <style>
+    .banner {
+      position: relative;
+      background-image: url('/images/LES5.jpg');
+      /* Görselin yolu */
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      /* Yüksekliği isteğe göre ayarlayın */
+      font-family: Arial, sans-serif;
+      align-items: center;
+      text-align: center;
+    }
+
+    .banner-yazi {
+      position: relative;
+      font-size: 48px;
+      font-weight: bold;
+      padding-top: 178px;
+      color: white;
+    }
+
+    .breadcrumb-1 a {
+      color: white;
+    }
+        .pharmaist-section{text-align: center;}
+
+    .img-harita {
+      width: 45%;
+    }
+
+    @@media(max-width: 500px) {
+      .img-harita {
+
+        width: 100%;
+      }
+    }
+  </style>
+}
+
+
+
+
+<div class="banner">
+        <div class="banner-yazi">LES-EXPO</div>
+        <div class="breadcrumb-1">
+            <a href="/en">Home Page /</a>
+            <a href="/en/show-report">Show Report</a>
+        </div>
+</div>
+
+
+<div class="container main-container">
+    <div class="row">
+    <!-- Sidebar -->
+        <partial name="Components/AboutUs/_SidebarHakkimizda" />
+        <!-- Main content -->
+
+        <div class="content-area">
+            <section class="loading">
+
+                <h2>PREPARİNG...</h2>
+                <div class="loader"></div>
+
+            </section>
+        </div>
+    </div>
+</div>

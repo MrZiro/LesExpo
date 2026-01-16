@@ -2,12 +2,12 @@
     ViewData["Title"] = "Visitor Profile";
     ViewData["Description"] = "Visitor Profile";
     ViewData["Keywords"] = "Visitor Profile";
-    ViewData["CanonicalUrl"] = "~/en/visitor-profile";
-    ViewData["AlternateUrls"] = new string[] { "~/tr/ziyaretci-profili" };
+
 }
 @section Styles {
     <link rel="stylesheet" href="~/css/katilimci-profili.css">
-  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">
+  <link rel="stylesheet" href="~/css/ziyaretci-profili.css">  
+<link rel="stylesheet" href="~/css/sidebar.css">
     <style>
     .banner {
       position: relative;
@@ -53,7 +53,7 @@
         <!-- Main content -->
         <div class="container-ziyaretci content-area">
           <section class="">
-            <h1 class="h1-ziyaretci ">LES-EXPO<br>VİSİTOR PROFİLE</h1>
+            <h1 class="h1-ziyaretci ">LES-EXPO<br>VISITOR PROFILE</h1>
             <div class="container-nze content-area">
               <div class="card-grid-nze">
                 <!-- Kart 1 -->
@@ -171,3 +171,6 @@
     </button>
 
 
+@section Scripts {
+    <script src="~/js/hakkimizda.js"></script>
+}

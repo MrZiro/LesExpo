@@ -1,3 +1,4 @@
+using LesExpo.Utility;
 using LesExpo.web.Models.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -40,7 +41,7 @@ namespace LesExpo.web.Services
             var localizedRoute = GetLocalizedRoute(controller, action, language);
             
             // Build the URL based on the localized route configuration
-            var baseUrl = language.ToLower() == "tr" ? "https://lesexpo.com/tr" : "https://lesexpo.com/en";
+            var baseUrl = language.ToLower() == "tr" ? SD.siteUrl + "/tr" : SD.siteUrl + "/en";
             
             // For AboutUs controller, add the appropriate path segment
             if (controller.Equals("AboutUs", StringComparison.OrdinalIgnoreCase))

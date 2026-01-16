@@ -33,7 +33,7 @@
                     <a href="${baseUrl}/${editAction}?id=${data}" class="btn btn-mine1 edit-btn">
                         <i class="bi bi-pencil-square"></i>
                     </a>
-                    <button class="btn btn-mine1 delete-btn" 
+                    <button class="btn btn-mine- delete-btn" 
                             onclick="deleteItem('${entity}', '${data}')">
                         <i class="bi bi-trash-fill"></i>
                     </button>
@@ -53,10 +53,11 @@
                 next: "Sonraki",
                 previous: "Önceki"
             },
-            search: "Arama:"
+            search: "Arama:",
+            lengthMenu: "_MENU_ kayıt göster"
         },
         pagingType: "full_numbers",
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Tümü"]],
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tümü"]],
     });
 }
 
@@ -104,7 +105,8 @@ function initializeDataTableNoOption(entity, columns, tableId = '#tblData') {
         language: {
             zeroRecords: "Eşleşen kayıt bulunamadı",
             info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
-            search: "Arama:"
+            search: "Arama:",
+            lengthMenu: "_MENU_ kayıt göster"
         },
         paging: false,
         info: false,
@@ -129,12 +131,20 @@ $(document).on('init.dt', function(e, settings) {
 
 
 
-function initializeDataTableWithOption(entity, columns, tableId = '#tblData') {
+function initializeDataTableWithOption(entity, columns, tableId = '#tblData', filter = null) {
     const $table = $(tableId);
     const baseUrl = `/admin/${entity}`;
+    
+    // Determine URL based on filter
+    let ajaxUrl = `${baseUrl}/getall`;
+    if (filter && filter !== 'all') {
+        // Use generic getbylanguage endpoint for language filtering
+        ajaxUrl = `${baseUrl}/getbylanguage?language=${filter}`;
+    }
 
     // Create thead and headers
     const $thead = $(`${tableId} thead`);
+    $thead.empty(); // Clear existing headers to prevent duplication
     const $headerRow = $('<tr>').appendTo($thead);
 
     // Add columns including the Actions column
@@ -146,8 +156,9 @@ function initializeDataTableWithOption(entity, columns, tableId = '#tblData') {
 
     // Initialize DataTable with modified options
     dataTables = $table.DataTable({
-        ajax: { url: `${baseUrl}/getall` },
+        ajax: { url: ajaxUrl },
         order: [], // Prevents default sorting
+        destroy: true, // Allow reinitialization
         createdRow: function (row, data, dataIndex) {
             console.log(data);
             console.log(row);
@@ -158,17 +169,30 @@ function initializeDataTableWithOption(entity, columns, tableId = '#tblData') {
         columns: columns.concat({
             data: 'id',
             render: function (data) {
-                // Use 'edit' action for Blog entity, keep 'upsert' for others
-                const editAction = entity === 'Blog' ? 'edit' : 'upsert';
-                return `<div class="btn-container" role="group">
-                    <a href="${baseUrl}/${editAction}?id=${data}" class="btn btn-mine1 edit-btn">
-                        <i class="bi bi-pencil-square"></i>
-                    </a>
-                    <button class="btn btn-mine1 delete-btn" 
-                            onclick="deleteItem('${entity}', '${data}')">
-                        <i class="bi bi-trash-fill"></i>
-                    </button>
-                </div>`;
+                // Handle different entity actions
+                if (entity.toLowerCase() === 'contactad' || entity.toLowerCase() === 'registrationad' || entity.toLowerCase() === 'ticketad') {
+                    return `<div class="btn-container" role="group">
+                        <a href="${baseUrl}/details/${data}" class="btn btn-mine1 edit-btn" title="Görüntüle">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <button class="btn btn-mine1 delete-btn" 
+                                onclick="deleteItem('${entity}', '${data}')" title="Sil">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>`;
+                } else {
+                    // Use 'edit' action for Blog entity, keep 'upsert' for others
+                    const editAction = entity === 'Blog' ? 'edit' : 'upsert';
+                    return `<div class="btn-container" role="group">
+                        <a href="${baseUrl}/${editAction}?id=${data}" class="btn btn-mine1 edit-btn">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <button class="btn btn-mine1 delete-btn" 
+                                onclick="deleteItem('${entity}', '${data}')">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </div>`;
+                }
             },
             width: "",
         }),
@@ -179,8 +203,18 @@ function initializeDataTableWithOption(entity, columns, tableId = '#tblData') {
                 next: "Sonraki",
                 previous: "Önceki"
             },
-            search: "Arama:"
+            search: "Arama:",
+            lengthMenu: "_MENU_ kayıt göster"
         },
-        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Tümü"]],
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Tümü"]],
     });
+    
+}
+
+// Function to reload data with language filter
+function reloadDataTableWithFilter(entity, columns, tableId, filter) {
+    if (dataTables) {
+        dataTables.destroy();
+    }
+    return initializeDataTableWithOption(entity, columns, tableId, filter);
 }

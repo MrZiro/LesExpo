@@ -6,6 +6,11 @@
 @{
     var user = await UserManager.GetUserAsync(User);
     bool isAdmin = user != null && await UserManager.IsInRoleAsync(user, SD.Role_Admin);
+    string GetActiveClass(string controller)
+    {
+        var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+        return controller.Equals(currentController, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    }
 }
 
 
@@ -13,7 +18,7 @@
 
 @if (isAdmin)
 {
-    <li class="nav-item">
+    <li class="nav-item @GetActiveClass("Users")">
         <a asp-area="admin" asp-controller="Users" asp-action="Index" class="nav-link d-flex align-items-center">
             <span class="svv material-symbols-rounded">
                 people

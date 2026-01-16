@@ -23,7 +23,7 @@ namespace LesExpo.Utility
             try
             {
                 var client = new SendGridClient(SendGridSecret);
-                var from = new EmailAddress("adobe.mrziro@gmail.com", "LES-EXPO İletişim");
+                var from = new EmailAddress("lesexpofair@gmail.com", "LES-EXPO İletişim");
                 var to = new EmailAddress(email);
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
                 var response = await client.SendEmailAsync(msg);

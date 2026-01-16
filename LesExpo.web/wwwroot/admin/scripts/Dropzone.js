@@ -7,7 +7,7 @@
     const config = {
         maxFileSize: 5 * 1024 * 1024, // 5MB
         validImageTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
-        cardImageDimensions: { width: 850, height: 550 }
+        cardImageDimensions: { width: 1080, height: 850 }
     };
 
     // DOM Elements cache

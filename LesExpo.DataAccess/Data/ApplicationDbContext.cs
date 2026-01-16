@@ -21,6 +21,9 @@ namespace LesExpo.DataAccess.Data
         public DbSet<ContentType> ContentTypes { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,10 +40,10 @@ namespace LesExpo.DataAccess.Data
                 new Blog {
                 Id = 1,
                 Language = "tr",
-                Title = "LES-EXPO Fuarı'nın İş Birliği Protokolü İmzalandı",
-                Slug = "les-expo-fuari-is-birligi-protokolu-imzalandi",
+                Title = "İstanbul’da Yük Mühendisliği Sektörünü Buluşturacak LESEXPO Fuarı İçin İş Birliği Protokolü İmzalandı",
+                Slug = "les-expo-fuari-is-birligi-imzalandi-yuk-muhendisligi-istanbul",
                 Content = "Türkiye ekonomisine yaklaşık 12 milyar doların üzerinde katkı sağlayan yük mühendisliği hizmetleri ekosistemindeki hizmet alan ve hizmet verenleri bir araya getirecek ilk ihtisas fuarı LES-EXPO, İstanbul'da düzenleniyor.",
-                CardImageUrl = "/images/blog-1.jpg",
+                CardImageUrl = "/images/ESTAblog1.jpeg",
                 CreatedAt = DateTime.Now,
                 IsPublished = true,
                 Author = "LesExpo Admin",
@@ -54,7 +57,7 @@ namespace LesExpo.DataAccess.Data
                     Title = "LES-EXPO Fair's Cooperation Protocol Signed",
                     Slug = "les-expo-fair-cooperation-protocol-signed",
                     Content = "LES-EXPO, the first specialized fair that will bring together service providers and recipients in the heavy engineering services ecosystem that contributes more than 12 billion dollars to the Turkish economy, is being held in Istanbul.",
-                    CardImageUrl = "/images/blog-1.jpg",
+                    CardImageUrl = "/images/ESTAblog1.jpeg",
                     CreatedAt = DateTime.Now,
                     IsPublished = true,
                     Author = "LesExpo Admin",
@@ -68,7 +71,7 @@ namespace LesExpo.DataAccess.Data
                     Title = "Yük Mühendisliği Sektöründe Yeni Teknolojiler",
                     Slug = "yuk-muhendisligi-sektorunde-yeni-teknolojiler",
                     Content = "Yük mühendisliği sektöründe son dönemde yaşanan teknolojik gelişmeler ve yenilikler, sektörün geleceğini şekillendiriyor. Akıllı vinç sistemleri ve otomatik yük taşıma çözümleri öne çıkıyor.",
-                    CardImageUrl = "/images/blog-2.jpg",
+                    CardImageUrl = "/images/ESTAblog1.jpeg",
                     CreatedAt = DateTime.Now,
                     IsPublished = true,
                     Author = "LesExpo Admin",
@@ -82,7 +85,7 @@ namespace LesExpo.DataAccess.Data
                     Title = "Innovations in Heavy Engineering Sector",
                     Slug = "innovations-in-heavy-engineering-sector",
                     Content = "Recent technological developments and innovations in the heavy engineering sector are shaping its future. Smart crane systems and automated load handling solutions are leading the way.",
-                    CardImageUrl = "/images/blog-2.jpg",
+                    CardImageUrl = "/images/ESTAblog1.jpeg",
                     CreatedAt = DateTime.Now,
                     IsPublished = true,
                     Author = "LesExpo Admin",
@@ -96,7 +99,7 @@ namespace LesExpo.DataAccess.Data
                     Title = "Sektörde Güvenlik Standartları ve Yeni Düzenlemeler",
                     Slug = "sektorde-guvenlik-standartlari-ve-yeni-duzenlemeler",
                     Content = "Yük mühendisliği sektöründe güvenlik standartları ve yeni düzenlemeler hakkında güncel bilgiler. İş güvenliği ve kalite standartları konusunda yapılan güncellemeler.",
-                    CardImageUrl = "/images/blog-3.jpg",
+                    CardImageUrl = "/images/ESTAblog1.jpeg",
                     CreatedAt = DateTime.Now,
                     IsPublished = true,
                     Author = "LesExpo Admin",
@@ -110,7 +113,7 @@ namespace LesExpo.DataAccess.Data
                     Title = "Safety Standards and New Regulations in the Industry",
                     Slug = "safety-standards-and-new-regulations-in-the-industry",
                     Content = "Current information about safety standards and new regulations in the heavy engineering sector. Updates regarding occupational safety and quality standards.",
-                    CardImageUrl = "/images/blog-3.jpg",
+                    CardImageUrl = "/images/ESTAblog1.jpeg",
                     CreatedAt = DateTime.Now,
                     IsPublished = true,
                     Author = "LesExpo Admin",

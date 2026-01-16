@@ -1,12 +1,13 @@
 
 @{
     ViewData["Title"] = "Fuar Künyesi";
-    ViewData["Description"] = "LES-EXPO 2025 - Yük Mühendisliği Hizmetleri Fuarı, 9-11 Eylül tarihlerinde İstanbul Fuar Merkezi'nde gerçekleşecek.";
+    ViewData["Description"] = "LES-EXPO 2026 - Yük Mühendisliği Hizmetleri Fuarı, 7-9 Nisan tarihlerinde İstanbul Fuar Merkezi'nde gerçekleşecek.";
     ViewData["Keywords"] = "LES-EXPO, fuar künyesi, yük mühendisliği, İstanbul Fuar Merkezi, fuar bilgileri";
 }
 
 @section styles{
         <link rel="stylesheet" href="/css/fuar-kunye.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
         <style>
         .banner {
             position: relative;
@@ -34,8 +35,8 @@
     <div class="banner">
         <div class="banner-yazi">LES-EXPO</div>
         <div class="breadcrumb-1">
-            <a href="index.html">Ana Sayfa / </a>
-            <a href="fuar-kunyesi.html">Fuar Künyesi</a>
+            <a href="/tr">Ana Sayfa / </a>
+            <a href="/tr/fuar-kunyesi">Fuar Künyesi</a>
         </div>
     </div>
 
@@ -43,67 +44,7 @@
 <div class="container main-container">
     <div class="row">
     <!-- Sidebar -->
-    <div class="col-md-3 sidebar-container">
-        <div class="sidebar">
-        <div class="sidebar-sticky">
-            <div class="sidebar-header p-3 mb-3 text-center">
-            <h3 class="" data-translate="hakkimizda.sidebar.mainTitle">LESEXPO</h3>
-            <p class="text-white small mb-0" data-translate="hakkimizda.sidebar.subTitle">Hakkında
-            </p>
-            </div>
-            <ul class="nav flex-column">
-            <!-- Hakkımızda -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="collapse"
-                data-bs-target="#hakkimizdaSubmenu" aria-expanded="true">
-                <span class="menu-icon"><i class="fas fa-info-circle"></i></span>
-                <span data-translate="hakkimizda.sidebar.aboutUs">Hakkımızda</span>
-                </a>
-                <div class="collapse show" id="hakkimizdaSubmenu">
-                <ul class="nav flex-column submenu">
-                    <li class="nav-item">
-                    <a class="nav-link" href="hakkimizda.html">
-                        <i class="fas fa-angle-right me-2"></i>
-                        <span data-translate="hakkimizda.sidebar.bfmAbout">LESEXPO
-                        Hakkında</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link active" href="fuar-kunyesi.html">
-                        <i class="fas fa-angle-right me-2"></i>
-                        <span data-translate="hakkimizda.sidebar.presidentMessage">Fuar
-                        Künyesi</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="fuar-alani.html">
-                        <i class="fas fa-angle-right me-2"></i>
-                        <span data-translate="hakkimizda.sidebar.qualityPolicy">Fuar
-                        Alanı</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="ulasim.html">
-                        <i class="fas fa-angle-right me-2"></i>
-                        <span data-translate="hakkimizda.sidebar.ourTeam">Nasıl Ulaşırım
-                        ?</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="fuar-sonuc-raporu.html">
-                        <i class="fas fa-angle-right me-2"></i>
-                        <span data-translate="hakkimizda.sidebar.boardOfDirectors">Fuar
-                        Sonuç
-                        Raporu</span>
-                    </a>
-                    </li>
-                </ul>
-                </div>
-            </li>
-            </ul>
-        </div>
-        </div>
-    </div>
+        <partial name="Components/AboutUs/_SidebarHakkimizda" />
     <!-- Main content -->
     <div class="container-kunye col-md-9">
         <div class="main-content-kunye">
@@ -114,10 +55,10 @@
             </div>
         </div>
 
-        <h2 class="kunye-h2">LES-EXPO-Yük Mühendisliği Hizmetleri Fuarı 9-11 Eylül Tarihlerinde İstanbul Fuar
+        <h2 class="kunye-h2">LES-EXPO-Yük Mühendisliği Hizmetleri Fuarı 7-9 Nisan Tarihlerinde İstanbul Fuar
             Merkezinde Sizlerle Buluşuyor!</h2>
 
-        <p class="kunye-p">Les-Expo 2025, yük mühendisliği hizmetleri alanındaki en yeni gelişmeleri, teknolojileri
+        <p class="kunye-p">Les-Expo 2026, yük mühendisliği hizmetleri alanındaki en yeni gelişmeleri, teknolojileri
             ve yenilikçi çözümleri bir araya getiriyor.</p>
 
         <p class="kunye-p">Alanında uzman firmaların ve profesyonellerin katılımıyla gerçekleşecek olan bu fuar,
@@ -162,12 +103,12 @@
 
         <div class="info-item-kunye">
             <div class="info-title-kunye">Başlangıç Tarihi:</div>
-            <div class="info-content-kunye">09.09.2025</div>
+            <div class="info-content-kunye">07.04.2026</div>
         </div>
 
         <div class="info-item-kunye">
             <div class="info-title-kunye">Bitiş Tarihi:</div>
-            <div class="info-content-kunye">11.09.2025</div>
+            <div class="info-content-kunye">09.04.2026</div>
         </div>
 
         <div class="info-item-kunye">
@@ -199,3 +140,7 @@
         <button class="sidebar-toggle-button d-md-none">
             <i class="fas fa-bars"></i>
         </button>
+
+        @section Scripts {
+    <script src="~/js/hakkimizda.js"></script>
+}

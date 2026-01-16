@@ -76,5 +76,9 @@ namespace LesExpo.DataAccess.Repository
         {
             dbSet.RemoveRange(entities);
         }
+        public int GetCount()
+        {
+            return dbSet.Count();
+        }
     }
 }

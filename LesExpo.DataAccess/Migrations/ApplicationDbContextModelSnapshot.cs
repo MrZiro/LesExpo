@@ -164,25 +164,25 @@ namespace LesExpo.DataAccess.Migrations
                         {
                             Id = 1,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-1.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Türkiye ekonomisine yaklaşık 12 milyar doların üzerinde katkı sağlayan yük mühendisliği hizmetleri ekosistemindeki hizmet alan ve hizmet verenleri bir araya getirecek ilk ihtisas fuarı LES-EXPO, İstanbul'da düzenleniyor.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(6989),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3248),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "LES-EXPO Fuarı'nın iş birliği protokolü imzalandı. Yük mühendisliği sektörünün ilk ihtisas fuarı İstanbul'da düzenleniyor.",
                             MetaKeywords = "LES-EXPO, fuar, yük mühendisliği, iş birliği protokolü, İstanbul",
-                            Slug = "les-expo-fuari-is-birligi-protokolu-imzalandi",
-                            Title = "LES-EXPO Fuarı'nın İş Birliği Protokolü İmzalandı"
+                            Slug = "les-expo-fuari-is-birligi-imzalandi-yuk-muhendisligi-istanbul",
+                            Title = "İstanbul’da Yük Mühendisliği Sektörünü Buluşturacak LESEXPO Fuarı İçin İş Birliği Protokolü İmzalandı"
                         },
                         new
                         {
                             Id = 2,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-1.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "LES-EXPO, the first specialized fair that will bring together service providers and recipients in the heavy engineering services ecosystem that contributes more than 12 billion dollars to the Turkish economy, is being held in Istanbul.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(7034),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3253),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "The cooperation protocol of the LES-EXPO Fair has been signed. The first specialized fair of the heavy engineering sector is being held in Istanbul.",
@@ -194,10 +194,10 @@ namespace LesExpo.DataAccess.Migrations
                         {
                             Id = 3,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-2.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Yük mühendisliği sektöründe son dönemde yaşanan teknolojik gelişmeler ve yenilikler, sektörün geleceğini şekillendiriyor. Akıllı vinç sistemleri ve otomatik yük taşıma çözümleri öne çıkıyor.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(7036),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3257),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "Yük mühendisliği sektöründeki teknolojik gelişmeler ve yenilikler hakkında detaylı bilgi.",
@@ -209,10 +209,10 @@ namespace LesExpo.DataAccess.Migrations
                         {
                             Id = 4,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-2.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Recent technological developments and innovations in the heavy engineering sector are shaping its future. Smart crane systems and automated load handling solutions are leading the way.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(7039),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3260),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "Detailed information about technological developments and innovations in the heavy engineering sector.",
@@ -224,10 +224,10 @@ namespace LesExpo.DataAccess.Migrations
                         {
                             Id = 5,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-3.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Yük mühendisliği sektöründe güvenlik standartları ve yeni düzenlemeler hakkında güncel bilgiler. İş güvenliği ve kalite standartları konusunda yapılan güncellemeler.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(7041),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3264),
                             IsPublished = true,
                             Language = "tr",
                             MetaDescription = "Yük mühendisliği sektöründeki güvenlik standartları ve yeni düzenlemeler hakkında bilgi.",
@@ -239,10 +239,10 @@ namespace LesExpo.DataAccess.Migrations
                         {
                             Id = 6,
                             Author = "LesExpo Admin",
-                            CardImageUrl = "/images/blog-3.jpg",
+                            CardImageUrl = "/images/ESTAblog1.jpeg",
                             Content = "Current information about safety standards and new regulations in the heavy engineering sector. Updates regarding occupational safety and quality standards.",
                             ContentTypeId = 1,
-                            CreatedAt = new DateTime(2025, 6, 9, 1, 8, 11, 404, DateTimeKind.Local).AddTicks(7043),
+                            CreatedAt = new DateTime(2025, 7, 4, 15, 37, 33, 603, DateTimeKind.Local).AddTicks(3267),
                             IsPublished = true,
                             Language = "en",
                             MetaDescription = "Information about safety standards and new regulations in the heavy engineering sector.",
@@ -250,6 +250,47 @@ namespace LesExpo.DataAccess.Migrations
                             Slug = "safety-standards-and-new-regulations-in-the-industry",
                             Title = "Safety Standards and New Regulations in the Industry"
                         });
+                });
+
+            modelBuilder.Entity("LesExpo.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("LesExpo.Models.ContentType", b =>
@@ -299,6 +340,132 @@ namespace LesExpo.DataAccess.Migrations
                             Name = "Haberler",
                             NameEn = "News"
                         });
+                });
+
+            modelBuilder.Entity("LesExpo.Models.Registration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdSoyad")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("AktiviteTuru")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FaaliyetAlani")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("FirmaZiyareti")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FuarKatilim")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Gorev")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("IhracatCirosu")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("IstenenMetrekare")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("KurulusTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("Markalar")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("PersonelSayisi")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Sehir")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SirketAdi")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("SirketAdresi")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Telefon")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ToplamCiro")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Ulke")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("UlusalFuarlarJson")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("UluslararasiFuarlarJson")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("UrunGrubu")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("WebSitesi")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("LesExpo.Models.Slider", b =>
@@ -356,6 +523,92 @@ namespace LesExpo.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("LesExpo.Models.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApiResponse")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("ApiSuccess")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Sector")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("Terms")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
